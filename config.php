@@ -1,9 +1,9 @@
 <?php $config = array(
     "database_type"=>"mysql",
-    "database_name"=>"edc",
+    "database_name"=>"u4580489_edc",
     "server"=>"localhost",
-    "username"=>"root",
-    "password"=>"Pg@sc0m.1",
+    "username"=>"u4580489_dev",
+    "password"=>"P@sswordmyteacher",
     "charset"=>"utf8",
     "port"=>3306,
     "encryption_key"=>"94109c83884e360ae9daaffde22c41fe50eec625f632c4cbd9579447773c82ad",
