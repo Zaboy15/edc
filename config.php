@@ -3,7 +3,7 @@
     "database_name"=>"u4580489_edc",
     "server"=>"localhost",
     "username"=>"u4580489_dev",
-    "password"=>"P@sswordmyteacher",
+    "password"=>"P@ssw0rdmyteacher",
     "charset"=>"utf8",
     "port"=>3306,
     "encryption_key"=>"94109c83884e360ae9daaffde22c41fe50eec625f632c4cbd9579447773c82ad",
