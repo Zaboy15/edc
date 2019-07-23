@@ -9,6 +9,12 @@ class Client extends App {
     	global $database;
     	$lastid = $database->insert("clients", [
             "name" => $data['name'],
+            "kode_merchant" => $data['kode_merchant'],
+            "alamat" => $data['alamat'],
+            "pic" => $data['pic'],
+            "phone_pic" => $data['phone_pic'],
+            "kordinat" => $data['kordinat'],
+            "status" => $data['status'],
             "asset_tag_prefix" => $data['asset_tag_prefix'],
             "license_tag_prefix" => $data['license_tag_prefix'],
             "id_customer" => $data['id_customer'],
@@ -23,13 +29,27 @@ class Client extends App {
         if(isset($data['notes'])) {
             $database->update("clients", [
                 "name" => $data['name'],
+                "kode_merchant" => $data['kode_merchant'],
+                "alamat" => $data['alamat'],
+                "pic" => $data['pic'],
+                "phone_pic" => $data['phone_pic'],
+                "kordinat" => $data['kordinat'],
+                "status" => $data['status'],
                 "asset_tag_prefix" => $data['asset_tag_prefix'],
                 "license_tag_prefix" => $data['license_tag_prefix'],
+                "id_customer" => $data['id_customer'],
                 "notes" => $data['notes']
             ], [ "id" => $data['id'] ]);
         } else {
             $database->update("clients", [
                 "name" => $data['name'],
+                "kode_merchant" => $data['kode_merchant'],
+                "alamat" => $data['alamat'],
+                "pic" => $data['pic'],
+                "phone_pic" => $data['phone_pic'],
+                "kordinat" => $data['kordinat'],
+                "status" => $data['status'],
+                "id_customer" => $data['id_customer'],
                 "asset_tag_prefix" => $data['asset_tag_prefix'],
                 "license_tag_prefix" => $data['license_tag_prefix']
             ], [ "id" => $data['id'] ]);

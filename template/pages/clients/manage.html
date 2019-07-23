@@ -19,12 +19,12 @@
 			            <ul class="nav nav-tabs">
 			              <li <?php if ($section == "") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section="><?php _e('Summary'); ?></a></li>
 						  <?php if(in_array("viewAssets",$perms)) { ?><li <?php if ($section == "assets") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=assets"><?php _e('Assets'); ?></a></li><?php } ?>
-						  <?php if(in_array("viewLicenses",$perms)) { ?><li <?php if ($section == "licenses") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=licenses"><?php _e('Licenses'); ?></a></li><?php } ?>
-						  <?php if(in_array("viewProjects",$perms)) { ?><li <?php if ($section == "projects") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=projects"><?php _e('Projects'); ?></a></li><?php } ?>
-						  <?php if(in_array("viewIssues",$perms)) { ?><li <?php if ($section == "issues") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=issues"><?php _e('Issues'); ?></a></li><?php } ?>
+						  <!-- <?php if(in_array("viewLicenses",$perms)) { ?><li <?php if ($section == "licenses") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=licenses"><?php _e('Licenses'); ?></a></li><?php } ?> -->
+						  <!-- <?php if(in_array("viewProjects",$perms)) { ?><li <?php if ($section == "projects") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=projects"><?php _e('Projects'); ?></a></li><?php } ?> -->
+						  <!-- <?php if(in_array("viewIssues",$perms)) { ?><li <?php if ($section == "issues") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=issues"><?php _e('Issues'); ?></a></li><?php } ?> -->
 						  <?php if(in_array("viewTickets",$perms)) { ?><li <?php if ($section == "tickets") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=tickets"><?php _e('Tickets'); ?></a></li><?php } ?>
 						  <?php if(in_array("viewCredentials",$perms)) { ?><li <?php if ($section == "credentials") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=credentials"><?php _e('Credentials'); ?></a></li><?php } ?>
-						  <?php if(in_array("viewUsers",$perms)) { ?><li <?php if ($section == "users") echo 'class="active"'; ?>><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=users"><?php _e('Users'); ?></a></li><?php } ?>
+						  <!-- <?php if(in_array("viewUsers",$perms)) { ?><li <?php if ($section == "users") echo 'class="active"'; ?>><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=users"><?php _e('Users'); ?></a></li><?php } ?> -->
 						  <?php if(in_array("viewFiles",$perms)) { ?><li <?php if ($section == "files") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=files"><?php _e('Files'); ?></a></li><?php } ?>
 						  <?php if(in_array("viewTime",$perms)) { ?><li <?php if ($section == "timelog") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=timelog"><?php _e('Time Log'); ?></a></li><?php } ?>
 						  <li <?php if ($section == "notes") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=notes"><?php _e('Notes'); ?></a></li>
@@ -73,17 +73,58 @@
 								            <div class="info-box">
 								              <span class="info-box-icon bg-green"><i class="fa fa-certificate"></i></span>
 								              <div class="info-box-content">
-								                <span class="info-box-text"><?php _e('Licenses'); ?></span>
+								                <span class="info-box-text"><?php _e('Tickets'); ?></span>
 								                <span class="info-box-number" style="font-size:42px"><?php echo $sumLicenses; ?></span>
 								              </div>
 								              <!-- /.info-box-content -->
 								            </div>
 								            <!-- /.info-box -->
-								          </div>
+										  </div>
+										  
+
+										  <!-- <div class="col-xs-6">
+												<div class="ibox ">
+													
+													<div class="ibox-content">
+														<style>
+															#map-canvas {
+																height: 200px;
+																margin: 0px;
+																padding: 0px
+															}
+														</style>
+														<script>
+															function initMap() {
+	var myLatLng = {lat: -25.363, lng: 131.044};
+
+	var map = new google.maps.Map(document.getElementById('map-canvas'), {
+	  zoom: 4,
+	  center: myLatLng
+	});
+
+	var marker = new google.maps.Marker({
+	  position: myLatLng,
+	  map: map,
+	  title: 'Hello World!'
+	});
+  }
+								
+														</script>
+														<script async defer
+														src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&callback=initMap">
+														</script>
+								
+														<section id="map-canvas" ng-controller="GoogleMaps">
+															<div ui-map="myMap" ui-options="mapOptions" class="google-map"></div>
+														</section>
+													</div>
+												</div>
+								
+											</div> -->
 								          <!-- /.col -->
 
 								          <!-- fix for small devices only -->
-								          <div class="clearfix visible-sm-block"></div>
+								          <!-- <div class="clearfix visible-sm-block"></div>
 								          <div class="col-md-3 col-sm-6 col-xs-12">
 								            <div class="info-box">
 								              <span class="info-box-icon bg-yellow"><i class="fa fa-lightbulb-o"></i></span>
@@ -91,32 +132,175 @@
 								                <span class="info-box-text"><?php _e('Projects'); ?></span>
 								                <span class="info-box-number" style="font-size:42px"><?php echo $sumProjects; ?></span>
 								              </div>
-								              <!-- /.info-box-content -->
+								              
 								            </div>
-								            <!-- /.info-box -->
-								          </div>
+								           
+								          </div> -->
 								          <!-- /.col -->
-								          <div class="col-md-3 col-sm-6 col-xs-12">
+								          <!-- <div class="col-md-3 col-sm-6 col-xs-12">
 								            <div class="info-box">
 								              <span class="info-box-icon bg-purple"><i class="fa fa-users"></i></span>
 								              <div class="info-box-content">
 								                <span class="info-box-text"><?php _e('Users'); ?></span>
 								                <span class="info-box-number" style="font-size:42px"><?php echo $sumUsers; ?></span>
 								              </div>
-								              <!-- /.info-box-content -->
+								              
 								            </div>
-								            <!-- /.info-box -->
-								          </div>
+								            
+								          </div> -->
 								          <!-- /.col -->
 								        </div>
 								        <!-- /.row -->
 
+										
+												
 								  <div class="row">
+										<div class="col-xs-4">
+												<div class="box box-primary">
+													<div class="box-body">
+														<table id="clientTable" class="table table-striped table-hover">
+															<tbody>
+																<tr>
+																	<td><b><?php _e('Project'); ?></b></td>
+																	<td><span class='label' style='background-color:green;color:#fff;border:1px solid <?php echo getSingleValue("tabel_customer","nama_customer",$client['id_customer']); ?>'><?php echo getSingleValue('tabel_customer','nama_customer',$client['id_customer']); ?></span></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Nama Merchant'); ?></b></td>
+																	<td><span class='badge' style='background-color: green'><?php echo $client['name']; ?></span></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Kode Merchant'); ?></b></td>
+																	<td><?php echo $client['kode_merchant']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Alamat Merchant'); ?></b></td>
+																	<td><?php echo $client['alamat']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('PIC Merchant'); ?></b></td>
+																	<td><?php echo $client['pic']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('PIC Phone Merchant'); ?></b></td>
+																	<td><?php echo $client['phone_pic']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Kota'); ?></b></td>
+																	<td><?php echo $asset['name']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Master MIDTID'); ?></b></td>
+																	<td><?php echo $asset['name']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Master MID'); ?></b></td>
+																	<td><?php echo $asset['name']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Master TID'); ?></b></td>
+																	<td><?php echo $asset['name']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('CSI'); ?></b></td>
+																	<td><?php echo $asset['name']; ?></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Location'); ?></b></td>
+																	<td><a href='http://maps.google.com/?q=<?php echo $client['kordinat']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a></td>
+																</tr>
+																<tr>
+																	<td><b><?php _e('Status Merchant'); ?></b></td>
+																	<td><?php echo $client['status']; ?></td>
+																</tr>
+						
+						
+																<?php foreach($customfields as $customfield) { ?>
+																	<tr>
+																		<td><b><?php echo $customfield['name']; ?></b></td>
+																		<td><?php echo $customdata[$customfield['id']]; ?></td>
+																	</tr>
+																<?php } ?>
+						
+						
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+
+
+
+
+											<div class="col-md-4">
+													<!-- DONUT CHART -->
+													 <div class="box box-primary">
+													   <div class="box-header with-border">
+														 <h3 class="box-title"><?php _e('Assets by Category'); ?></h3>
+														 <div class="box-tools pull-right">
+														   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+														 </div>
+													   </div>
+													   <div class="box-body">
+														   <div class="row">
+															 <div class="col-lg-6">
+															   <div class="chart-responsive">
+																 <canvas id="pieChart" height=""></canvas>
+															   </div>
+															   <!-- ./chart-responsive -->
+															 </div>
+															 <!-- /.col -->
+															 <div class="col-lg-6">
+															   <div id="js-legend" class="chart-legend">
+		
+															   </div>
+															 </div>
+															 <!-- /.col -->
+														   </div>
+														   <!-- /.row -->
+													   </div>
+													   <!-- /.box-body -->
+													 </div>
+													 <!-- /.box -->
+		
+												  </div>
+												  <div class="col-md-4">
+														<!-- ASSIGNED ADMINS -->
+														<div class="box box-primary">
+														  <div class="box-header with-border">
+															<h3 class="box-title"><?php _e('Assigned Staff'); ?></h3>
+															<div class="box-tools pull-right">
+															  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+															</div>
+														  </div>
+														  <!-- /.box-header -->
+														  <div class="box-body ">
+															<ul class="users-list clearfix">
+																<?php
+																foreach ($assignedadmins as $aasign) { ?>
+																	<li>
+																	 
+																	  <a class="users-list-name" href="#"><?php echo getSingleValue("people","name",$aasign['adminid']); ?></a>
+																	  <span class="users-list-date"><?php echo getSingleValue("people","title",$aasign['adminid']); ?></span>
+																	<?php if(in_array("adminsClient",$perms)) { ?><span class="users-list-date"><a onClick='showM("index.php?modal=clients/unassignAdmin&reroute=clients/manage&routeid=<?php echo $client['id']; ?>&id=<?php echo $aasign['id']; ?>");return false' data-toggle="modal"><?php _e('Unassign'); ?></a></span><?php } ?>
+																	</li>
+																<?php } ?>
+			
+															</ul>
+															<!-- /.users-list -->
+															<?php if(empty($assignedadmins)) echo __("There are no assigned admins to display."); ?>
+														  </div>
+														  <!-- /.box-body -->
+														</div>
+														<!--/.box -->
+													  </div>
+
+
 									  <div class="col-md-8">
 										  <!-- BAR CHART -->
 								           <div class="box box-primary">
 								             <div class="box-header with-border">
-								               <h3 class="box-title"><?php _e('Total Worked Hours'); ?></h3>
+								               <h3 class="box-title"><?php _e('Total Tiket per Merchants'); ?></h3>
 								               <div class="box-tools pull-right">
 								                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 								               </div>
@@ -145,67 +329,11 @@
 										   <!-- /.box -->
 										</div>
 
-										  <div class="col-md-4">
-							                <!-- ASSIGNED ADMINS -->
-							                <div class="box box-primary">
-							                  <div class="box-header with-border">
-							                    <h3 class="box-title"><?php _e('Assigned Staff'); ?></h3>
-							                    <div class="box-tools pull-right">
-							                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-							                    </div>
-							                  </div>
-							                  <!-- /.box-header -->
-							                  <div class="box-body ">
-							                    <ul class="users-list clearfix">
-													<?php
-													foreach ($assignedadmins as $aasign) { ?>
-														<li>
-		  						                       
-		  						                        <a class="users-list-name" href="#"><?php echo getSingleValue("people","name",$aasign['adminid']); ?></a>
-		  						                        <span class="users-list-date"><?php echo getSingleValue("people","title",$aasign['adminid']); ?></span>
-														<?php if(in_array("adminsClient",$perms)) { ?><span class="users-list-date"><a onClick='showM("index.php?modal=clients/unassignAdmin&reroute=clients/manage&routeid=<?php echo $client['id']; ?>&id=<?php echo $aasign['id']; ?>");return false' data-toggle="modal"><?php _e('Unassign'); ?></a></span><?php } ?>
-		  						                      </li>
-													<?php } ?>
 
-							                    </ul>
-							                    <!-- /.users-list -->
-												<?php if(empty($assignedadmins)) echo __("There are no assigned admins to display."); ?>
-							                  </div>
-							                  <!-- /.box-body -->
-							                </div>
-							                <!--/.box -->
+											
 
-											<!-- DONUT CHART -->
-								             <div class="box box-primary">
-								               <div class="box-header with-border">
-								                 <h3 class="box-title"><?php _e('Assets by Category'); ?></h3>
-								                 <div class="box-tools pull-right">
-								                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-								                 </div>
-								               </div>
-											   <div class="box-body">
-								 				  <div class="row">
-								 	                <div class="col-lg-6">
-								 	                  <div class="chart-responsive">
-								 	                    <canvas id="pieChart" height=""></canvas>
-								 	                  </div>
-								 	                  <!-- ./chart-responsive -->
-								 	                </div>
-								 	                <!-- /.col -->
-								 	                <div class="col-lg-6">
-								 	                  <div id="js-legend" class="chart-legend">
-
-								 	                  </div>
-								 	                </div>
-								 	                <!-- /.col -->
-								 	              </div>
-								 	              <!-- /.row -->
-								 			  </div>
-								 			  <!-- /.box-body -->
-								             </div>
-								             <!-- /.box -->
-
-							              </div>
+										  
+											
 							              <!-- /.col -->
 								  </div>
 								  <!-- /.row -->

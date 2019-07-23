@@ -21,10 +21,12 @@
 	                            <thead>
 	                                <tr>
 	                                    <th><?php _e('ID'); ?></th>
-										<th><?php _e('Name'); ?></th>
+										<th><?php _e('Nama Merchant'); ?></th>
+										<th><?php _e('Kode Merchant'); ?></th>
 	                                    <th><?php _e('Nama Customer'); ?></th>
 										
-										<th></th>
+										
+										<th><?php _e('Related Data'); ?></th>
 										<th class="text-right"></th>
 	                                </tr>
 	                            </thead>
@@ -33,15 +35,18 @@
 		                                <tr>
 		                                    <td><?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>'><?php echo $client['id']; ?></a><?php } else echo $client['id']; ?></td>
 		                                    <td><?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>'><?php echo $client['name']; ?></a><?php } else echo $client['name']; ?></td>
-		                                    <td><?php if(in_array("manageClient",$perms)) { ?><a href='?route=customers/manage&id=<?php echo $client['id']; ?>'><?php echo getSingleValue("tabel_customer","nama_customer",$client['id_customer']); ?></a><?php } else echo $client['name']; ?></td>
+		                                    <td><?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>'><?php echo $client['kode_merchant']; ?></a><?php } else echo $client['kode_merchant']; ?></td>											
+											<td><?php if(in_array("manageClient",$perms)) { ?><a href='?route=customers/manage&id=<?php echo $client['id']; ?>'><?php echo getSingleValue("tabel_customer","nama_customer",$client['id_customer']); ?></a><?php } else echo $client['name']; ?></td>
 
 											<td>
-												<span class='label label-lite-blue'><?php echo countTableFiltered("assets","clientid",$client['id']); ?> <?php _e('Assets'); ?></span>&nbsp;
-												<span class='label label-lite-green'><?php echo countTableFiltered("licenses","clientid",$client['id']); ?> <?php _e('Licenses'); ?></span>&nbsp;
-												<span class='label label-lite-yellow'><?php echo countTableFiltered("projects","clientid",$client['id']); ?> <?php _e('Projects'); ?></span>&nbsp;
-												<span class='label label-lite-purple'><?php echo countTableFiltered("people","clientid",$client['id']); ?> <?php _e('Users'); ?></span>&nbsp;
-												<span class='label label-lite-gray'><?php echo countTableFiltered("tickets","clientid",$client['id']); ?> <?php _e('Tickets'); ?></span>&nbsp;
-												<span class='label label-lite-gray'><?php echo countTableFiltered("issues","clientid",$client['id']); ?> <?php _e('Issues'); ?></span>
+												<span class='label label-lite-blue'><?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>&section=assets'><?php echo countTableFiltered("assets","clientid",$client['id']); ?><?php _e(' Assets'); ?></a><?php } else echo countTableFiltered("assets","clientid",$client['id']);?></span>&nbsp;
+												<!-- <span class='label label-lite-green'><?php echo countTableFiltered("licenses","clientid",$client['id']); ?> <?php _e('Licenses'); ?></span>&nbsp;
+												<span class='label label-lite-yellow'><?php echo countTableFiltered("projects","clientid",$client['id']); ?> <?php _e('Projects'); ?></span>&nbsp; -->
+												<!-- <span class='label label-lite-purple'><?php echo countTableFiltered("people","clientid",$client['id']); ?> <?php _e('Users'); ?></span>&nbsp; -->
+												<span class='label label-lite-gray'><?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>&section=tickets'><?php echo countTableFiltered("tickets","clientid",$client['id']); ?><?php _e(' Ticket'); ?></a><?php } else echo countTableFiltered("tickets","clientid",$client['id']);?></span>&nbsp;
+
+												<!-- <span class='label label-lite-gray'><?php echo countTableFiltered("tickets","clientid",$client['id']); ?> <?php _e('Tickets'); ?></span>&nbsp; -->
+												<!-- <span class='label label-lite-gray'><?php echo countTableFiltered("issues","clientid",$client['id']); ?> <?php _e('Issues'); ?></span> -->
 											</td>
 
 

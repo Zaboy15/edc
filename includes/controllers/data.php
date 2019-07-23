@@ -793,7 +793,7 @@ if ($route == "customers/customers") {
 if ($route == "clients") {
 	isAuthorized("viewClients");
 	$clients = getTable("clients");
-	$pageTitle = __("Clients");
+	$pageTitle = __("Merchant");
 }
 
 if ($route == "clients/manage") {
@@ -958,19 +958,19 @@ if ($route == "system/customfields") {
 
 # Import
 if ($route == "system/import") {
-	isAuthorized("manageSettings");
+	isAuthorized("viewSystem");
 	$pageTitle = __("Import");
 }
 
 if ($route == "system/import/assetsSample") {
-	isAuthorized("manageSettings");
+	isAuthorized("viewSystem");
 
 	Import::assetsSample();
 
 }
 
 if ($route == "system/import/licensesSample") {
-	isAuthorized("manageSettings");
+	isAuthorized("viewSystem");
 
 	Import::licensesSample();
 

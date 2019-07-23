@@ -297,7 +297,7 @@
                   </ul>
               </li>
               <?php } ?>
-
+              
               <?php if(in_array("viewSystem",$perms)) { ?>
               <li class="treeview<?php if(strpos($route,'system/') !== false) echo ' active'; ?>">
                   <a href="#">
@@ -310,7 +310,7 @@
                       <?php if(in_array("manageApiKeys",$perms)) { ?><li <?php if($route == "system/apikeys") echo 'class="active"'; ?>><a href="?route=system/apikeys"><i class="fa fa-angle-double-right"></i> <?php _e('API Keys'); ?></a></li><?php } ?>
                       <?php if(in_array("viewCustomFields",$perms)) { ?><li <?php if($route == "system/customfields") echo 'class="active"'; ?>><a href="?route=system/customfields"><i class="fa fa-angle-double-right"></i> <?php _e('Custom Fields'); ?></a></li><?php } ?>
 
-                      <?php if(in_array("manageSettings",$perms)) { ?><li <?php if($route == "system/import") echo 'class="active"'; ?>><a href="?route=system/import"><i class="fa fa-angle-double-right"></i> <?php _e('Import'); ?></a></li><?php } ?>
+                      <?php if(in_array("viewSystem",$perms)) { ?><li <?php if($route == "system/import") echo 'class="active"'; ?>><a href="?route=system/import"><i class="fa fa-angle-double-right"></i> <?php _e('Import'); ?></a></li><?php } ?>
 
                       <?php if(in_array("viewLogs",$perms)) { ?><li <?php if($route == "system/logs") echo 'class="active"'; ?>><a href="?route=system/logs"><i class="fa fa-angle-double-right"></i> <?php _e('Logs'); ?></a></li><?php } ?>
                       <?php if(in_array("manageSettings",$perms)) { ?><li <?php if($route == "system/settings") echo 'class="active"'; ?>><a href="?route=system/settings"><i class="fa fa-angle-double-right"></i> <?php _e('Settings'); ?></a></li><?php } ?>
