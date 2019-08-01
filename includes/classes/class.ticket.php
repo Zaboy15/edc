@@ -23,7 +23,7 @@ class Ticket extends App {
         if(isset($data['notes'])) $notes = $data['notes']; else $notes = "";
 
     	$ticketid = $database->insert("tickets", [
-    		"ticket" => $random,
+    		"ticket" => getRandom(),
             "departmentid" => $data['departmentid'],
     		"clientid" => $data['clientid'],
     		"userid" => $userid,

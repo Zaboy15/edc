@@ -174,6 +174,11 @@ switch ($request_method) {
 
 
 switch ($request_resource) {
+
+    case 'spk': ## DONE ##d
+        require $scriptpath . '/api/resources/spk.php';
+    break;
+
     case 'clients': ## DONE ##d
         require $scriptpath . '/api/resources/clients.php';
     break;

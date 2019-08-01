@@ -35,7 +35,7 @@
            <div class="small-box bg-green">
              <div class="inner">
                <h3><?php echo $sumLicenses; ?></h3>
-               <p><?php _e('Customers'); ?></p>
+               <p><?php _e('ITFS'); ?></p>
              </div>
              <div class="icon">
                <i class="fa fa-certificate"></i>
@@ -49,7 +49,7 @@
            <div class="small-box bg-yellow">
              <div class="inner">
                <h3><?php echo $sumProjects; ?></h3>
-               <p><?php _e('Active Ticket'); ?></p>
+               <p><?php _e('Projects'); ?></p>
              </div>
              <div class="icon">
                <i class="fa fa-rocket"></i>
@@ -92,7 +92,7 @@
 
 
 	<div class="row">
- 	   <div class="col-md-8">
+ 	   <div class="col-md-4">
 		   <!-- <?php if(in_array("viewIssues",$perms)) { ?>
 			   <?php if($isAdmin) { ?>
 				   
@@ -104,7 +104,7 @@
 						  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 						</div>
 		              </div>
-		              
+		             
 		              <div class="box-body">
 							<?php if(empty($myIssues)) echo __("There are no issues assigned to you."); ?>
 							<ul class="todo-list" id="myIssues">
@@ -127,14 +127,14 @@
 								<?php } ?>
 							</ul>
 		              </div>
-		            
+		             
 		              <div class="box-footer clearfix no-border">
 						  <?php if(in_array("addIssue",$perms)) { ?>
 		                		<a onClick='showM("?modal=issues/add&reroute=dashboard&routeid=&section=");return false' data-toggle="modal" class="btn btn-primary btn-sm pull-right btn-flat"><?php _e('NEW ISSUE'); ?></a>
 						  <?php } ?>
 					  </div>
 		            </div>
-		           
+		            
 				<?php } ?>
 
 				<?php if(!$isAdmin) { ?>
@@ -170,19 +170,19 @@
 	 							<?php } ?>
 	 						</ul>
 	 	              </div>
-	 	             
+	 	              
 	 	              <div class="box-footer clearfix no-border">
 	 					  <?php if(in_array("addIssue",$perms)) { ?>
 	 	                		<a onClick='showM("index.php?modal=issues/add&reroute=dashboard&routeid=&section=");return false' data-toggle="modal" class="btn btn-primary btn-sm pull-right btn-flat"><?php _e('NEW ISSUE'); ?></a>
 	 					  <?php } ?>
 	 				  </div>
 	 	            </div>
-	 	            
+	 	           
 
 				<?php } ?>
 			<?php } ?> -->
 
-			<?php if(in_array("viewTickets",$perms)) { ?>
+			<!-- <?php if(in_array("viewTickets",$perms)) { ?>
 	             <div class="box box-primary">
 	               <div class="box-header">
 	                 <i class="fa fa-tag"></i>
@@ -191,7 +191,7 @@
 					   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 					 </div>
 	               </div>
-	               <!-- /.box-header -->
+	              
 	               <div class="box-body">
 	                 <ul class="todo-list presort">
 						<?php if(empty($openTickets)) echo __("There are no opened tickets."); ?>
@@ -199,7 +199,7 @@
 	 		                  <li data-date="<?php echo Ticket::lastReplyStamp($ticket['id']); ?>">
 	 		                    <span class="text"><a href='?route=tickets/manage&id=<?php echo $ticket['id']; ?>'>#<?php echo $ticket['ticket']; ?> <?php echo $ticket['subject']; ?></a></span>
 
-	 		                    <!-- Emphasis label -->
+	 		                   
 								<?php if($ticket['status'] == "Open") echo "<small class='badge bg-green'>".__('Open')."</small>"; ?>
 								<?php if($ticket['status'] == "In Progress") echo "<small class='badge bg-navy'>".__('In Progress')."</small>"; ?>
 								<?php if($ticket['status'] == "Answered") echo "<small class='badge bg-teal'>".__('Answered')."</small>"; ?>
@@ -208,7 +208,7 @@
 
 								<small><?php echo Ticket::lastReply($ticket['id']); ?></small>
 
-	 		                    <!-- General tools such as edit or delete-->
+	 		                  
 	 		                    <div class="tools">
 									<?php if(in_array("manageTicket",$perms)) { ?><a href='?route=tickets/manage&id=<?php echo $ticket['id']; ?>' class='btn-right text-dark'><i class='fa fa-eye'></i></a>&nbsp;<?php } ?>
 									<?php if(in_array("editTicket",$perms)) { ?><a href='#' onClick='showM("index.php?modal=tickets/edit&reroute=dashboard&routeid=&id=<?php echo $ticket['id']; ?>&section=");return false' class='btn-right text-dark'><i class='fa fa-edit'></i></a>&nbsp;<?php } ?>
@@ -233,16 +233,16 @@
 					 <?php } ?>
 
 	               </div>
-	               <!-- /.box-body -->
+	               
 	               <div class="box-footer clearfix no-border">
 	                 <?php if(in_array("addTicket",$perms)) { ?><a onClick='showM("index.php?modal=tickets/add&reroute=dashboard&routeid=&section=");return false' data-toggle="modal" class="btn btn-primary btn-sm pull-right btn-flat"><?php _e('NEW TICKET'); ?></a><?php } ?>
 	               </div>
 	             </div>
-	             <!-- /.box -->
-			<?php } ?>
+	             
+			<?php } ?> -->
 
 			 <!-- BAR CHART -->
-  			<div class="box box-primary">
+  			<!-- <div class="box box-primary">
   			  <div class="box-header with-border">
 				  <i class="fa fa-clock-o"></i>
   				<h3 class="box-title"><?php _e('Worked Hours'); ?></h3>
@@ -256,9 +256,154 @@
   				  <canvas id="Client6Chart" style="height:265px"></canvas>
   				</div>
   			  </div>
-  			  <!-- /.box-body -->
-  			</div>
-  			<!-- /.box -->
+  			  
+  			</div> -->
+			  
+			  <?php if(in_array("viewAssets",$perms)) { ?>
+				<!-- DONUT CHART -->
+				 <div class="box box-primary">
+				   <div class="box-header with-border">
+					 <h3 class="box-title"><?php _e('SPK by Installation'); ?></h3>
+					 <div class="box-tools pull-right">
+						 
+					   	<button type="button" class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						<div class="pull-right"><a href="?route=spk/all" class="btn btn-primary btn-sm btn-flat"><?php _e('Detail'); ?></a></div>
+					
+					</div>
+				   </div>
+				   <div class="box-body">
+					   <div class="row">
+						 <div class="col-lg-6">
+						   <div class="chart-responsive">
+							 <canvas id="pieChart2" height=""></canvas>
+						   </div>
+						   <!-- ./chart-responsive -->
+						 </div>
+						 <!-- /.col -->
+						 <div class="col-lg-6">
+						   <div id="js-legend2" class="chart-legend">
+	 
+						   </div>
+						 </div>
+						 <!-- /.col -->
+					   </div>
+					   <!-- /.row -->
+				   </div>
+				   <!-- /.box-body -->
+				 </div>
+				 <!-- /.box -->
+				 <?php } ?>
+				 <?php if(in_array("viewAssets",$perms)) { ?>
+					<!-- DONUT CHART -->
+					 <div class="box box-primary">
+					   <div class="box-header with-border">
+						 <h3 class="box-title"><?php _e('SPK by Reinit'); ?></h3>
+						 <div class="box-tools pull-right">
+								
+								<button type="button" class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+								<div class="pull-right"><a href="?route=spk/all" class="btn btn-primary btn-sm btn-flat"><?php _e('Detail'); ?></a></div>
+						  
+						 </div>
+					   </div>
+					   <div class="box-body">
+						   <div class="row">
+							 <div class="col-lg-6">
+							   <div class="chart-responsive">
+								 <canvas id="pieChart3" height=""></canvas>
+							   </div>
+							   <!-- ./chart-responsive -->
+							 </div>
+							 <!-- /.col -->
+							 <div class="col-lg-6">
+							   <div id="js-legend3" class="chart-legend">
+		 
+							   </div>
+							 </div>
+							 <!-- /.col -->
+						   </div>
+						   <!-- /.row -->
+					   </div>
+					   <!-- /.box-body -->
+					 </div>
+					 <!-- /.box -->
+					 <?php } ?>
+
+
+
+
+	   </div>
+
+	   <div class="col-md-4">
+			<?php if(in_array("viewAssets",$perms)) { ?>
+				<!-- DONUT CHART -->
+				 <div class="box box-primary">
+				   <div class="box-header with-border">
+					 <h3 class="box-title"><?php _e('SPK by Replacement'); ?></h3>
+					 <div class="box-tools pull-right">
+					
+							<button type="button" class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							<div class="pull-right"><a href="?route=spk/all" class="btn btn-primary btn-sm btn-flat"><?php _e('Detail'); ?></a></div>
+						
+					</div>
+				   </div>
+				   <div class="box-body">
+					   <div class="row">
+						 <div class="col-lg-6">
+						   <div class="chart-responsive">
+							 <canvas id="pieChart5" height=""></canvas>
+						   </div>
+						   <!-- ./chart-responsive -->
+						 </div>
+						 <!-- /.col -->
+						 <div class="col-lg-6">
+						   <div id="js-legend5" class="chart-legend">
+	 
+						   </div>
+						 </div>
+						 <!-- /.col -->
+					   </div>
+					   <!-- /.row -->
+				   </div>
+				   <!-- /.box-body -->
+				 </div>
+				 <!-- /.box -->
+				 <?php } ?>
+
+
+				 <?php if(in_array("viewAssets",$perms)) { ?>
+					<!-- DONUT CHART -->
+					 <div class="box box-primary">
+					   <div class="box-header with-border">
+						 <h3 class="box-title"><?php _e('Case by Status'); ?></h3>
+						 <div class="box-tools pull-right">
+						  
+								<button type="button" class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+								<div class="pull-right"><a href="?route=spk/all" class="btn btn-primary btn-sm btn-flat"><?php _e('Detail'); ?></a></div>
+							
+						</div>
+					   </div>
+					   <div class="box-body">
+						   <div class="row">
+							 <div class="col-lg-6">
+							   <div class="chart-responsive">
+								 <canvas id="pieChart6" height=""></canvas>
+							   </div>
+							   <!-- ./chart-responsive -->
+							 </div>
+							 <!-- /.col -->
+							 <div class="col-lg-6">
+							   <div id="js-legend6" class="chart-legend">
+		 
+							   </div>
+							 </div>
+							 <!-- /.col -->
+						   </div>
+						   <!-- /.row -->
+					   </div>
+					   <!-- /.box-body -->
+					 </div>
+					 <!-- /.box -->
+					 <?php } ?>
 	   </div>
 
 	   <div class="col-md-4">
@@ -266,9 +411,12 @@
 		   <!-- DONUT CHART -->
 			<div class="box box-primary">
 			  <div class="box-header with-border">
-				<h3 class="box-title"><?php _e('Assets by Category'); ?></h3>
+				<h3 class="box-title"><?php _e('SPK by Withdraw'); ?></h3>
 				<div class="box-tools pull-right">
-				  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				
+						<button type="button" class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+						<div class="pull-right"><a href="?route=spk/all" class="btn btn-primary btn-sm btn-flat"><?php _e('Detail'); ?></a></div>
+					
 				</div>
 			  </div>
 			  <div class="box-body">
@@ -294,7 +442,43 @@
 			<!-- /.box -->
 			<?php } ?>
 
+
 			<?php if(in_array("viewAssets",$perms)) { ?>
+				<!-- DONUT CHART -->
+				 <div class="box box-primary">
+				   <div class="box-header with-border">
+					 <h3 class="box-title"><?php _e('PM by Status'); ?></h3>
+					 <div class="box-tools pull-right">
+					
+							<button type="button" class="btn btn-box-tool pull-right" data-widget="collapse"><i class="fa fa-minus"></i></button>
+							<div class="pull-right"><a href="?route=spk/all" class="btn btn-primary btn-sm btn-flat"><?php _e('Detail'); ?></a></div>
+						
+					</div>
+				   </div>
+				   <div class="box-body">
+					   <div class="row">
+						 <div class="col-lg-6">
+						   <div class="chart-responsive">
+							 <canvas id="pieChart4" height=""></canvas>
+						   </div>
+						   <!-- ./chart-responsive -->
+						 </div>
+						 <!-- /.col -->
+						 <div class="col-lg-6">
+						   <div id="js-legend4" class="chart-legend">
+	 
+						   </div>
+						 </div>
+						 <!-- /.col -->
+					   </div>
+					   <!-- /.row -->
+				   </div>
+				   <!-- /.box-body -->
+				 </div>
+				 <!-- /.box -->
+				 <?php } ?>
+
+			<?php if(in_array("viewAssets2",$perms)) { ?>
 		   <!-- ASSETS LIST -->
             <div class="box box-info">
               <div class="box-header with-border">
@@ -315,7 +499,7 @@
 					   </div>
                     <div class="product-info">
 						<?php if(in_array("manageAsset",$perms)) { ?>
-                      		<a href="?route=inventory/assets/manage&id=<?php echo $asset['id']; ?>" class="product-title"><?php echo $asset['name']; ?><span class='label pull-right' style='background-color:#FFF;color:<?php echo getSingleValue("assetcategories","color",$asset['categoryid']); ?>;border:1px solid <?php echo getSingleValue("assetcategories","color",$asset['categoryid']); ?>'><?php echo getSingleValue("assetcategories","name",$asset['categoryid']); ?></span></a>
+                      		<a href="?route=inventory/assets/manage&id=<?php echo $asset['id']; ?>" class="product-title"><?php echo $asset['tag']; ?><span class='label pull-right' style='background-color:#FFF;color:<?php echo getSingleValue("assetcategories","color",$asset['categoryid']); ?>;border:1px solid <?php echo getSingleValue("assetcategories","color",$asset['categoryid']); ?>'><?php echo getSingleValue("assetcategories","name",$asset['categoryid']); ?></span></a>
 						<?php } ?>
 						<?php if(!in_array("manageAsset",$perms)) { ?>
                       		<a href="#" class="product-title"><?php echo $asset['tag']; ?><span class='label pull-right' style='background-color:#FFF;color:<?php echo getSingleValue("assetcategories","color",$asset['categoryid']); ?>;border:1px solid <?php echo getSingleValue("assetcategories","color",$asset['categoryid']); ?>'><?php echo getSingleValue("assetcategories","name",$asset['categoryid']); ?></span></a>
@@ -335,8 +519,8 @@
             <!-- /.box -->
 			<?php } ?>
 
-			<!-- <?php if(in_array("viewLicenses",$perms)) { ?>
-			
+			<?php if(in_array("viewLicenses2",$perms)) { ?>
+			<!-- LICENSES LIST -->
              <div class="box box-success">
                <div class="box-header with-border">
                  <h3 class="box-title"><?php _e('Recently Added Licenses'); ?></h3>
@@ -345,7 +529,7 @@
   				 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
   			   </div>
                </div>
-              
+               <!-- /.box-header -->
                <div class="box-body">
                  <ul class="products-list product-list-in-box">
 					 <?php if(empty($recentLicenses)) echo __("There are no licenses to display."); ?>
@@ -367,14 +551,14 @@
  				<?php } ?>
                  </ul>
                </div>
-              
+               <!-- /.box-body -->
                <div class="box-footer text-center">
                  <a href="?route=inventory/licenses" class="uppercase"><?php _e('View All Licenses'); ?></a>
                </div>
-               
+               <!-- /.box-footer -->
              </div>
-            
-			 <?php } ?> -->
+             <!-- /.box -->
+			 <?php } ?>
 	   </div>
    </div>
 
@@ -398,47 +582,47 @@
 
 <script>
 	  $(function () {
-	    var areaChartData = {
-	      labels: ["<?php echo $last6F[0]; ?>", "<?php echo $last6F[1]; ?>", "<?php echo $last6F[2]; ?>", "<?php echo $last6F[3]; ?>", "<?php echo $last6F[4]; ?>", "<?php echo $last6F[5]; ?>"],
-	      datasets: [
-	        {
-	          fillColor: "rgba(60,141,188,0.9)",
-	          data: [
-				  	<?php if($isAdmin) echo workHoursByMonth($last6YM[0]); if(!$isAdmin) echo workHoursByMonth($last6YM[0],$liu['clientid']); ?>,
-			  		<?php if($isAdmin) echo workHoursByMonth($last6YM[1]); if(!$isAdmin) echo workHoursByMonth($last6YM[1],$liu['clientid']); ?>,
-					<?php if($isAdmin) echo workHoursByMonth($last6YM[2]); if(!$isAdmin) echo workHoursByMonth($last6YM[2],$liu['clientid']); ?>,
-					<?php if($isAdmin) echo workHoursByMonth($last6YM[3]); if(!$isAdmin) echo workHoursByMonth($last6YM[3],$liu['clientid']); ?>,
-					<?php if($isAdmin) echo workHoursByMonth($last6YM[4]); if(!$isAdmin) echo workHoursByMonth($last6YM[4],$liu['clientid']); ?>,
-					<?php if($isAdmin) echo workHoursByMonth($last6YM[5]); if(!$isAdmin) echo workHoursByMonth($last6YM[5],$liu['clientid']); ?>
-				]
-	        }
-	      ]
-	    };
+	    // var areaChartData = {
+	    //   labels: ["<?php echo $last6F[0]; ?>", "<?php echo $last6F[1]; ?>", "<?php echo $last6F[2]; ?>", "<?php echo $last6F[3]; ?>", "<?php echo $last6F[4]; ?>", "<?php echo $last6F[5]; ?>"],
+	    //   datasets: [
+	    //     {
+	    //       fillColor: "rgba(60,141,188,0.9)",
+	    //       data: [
+		// 		  	<?php if($isAdmin) echo workHoursByMonth($last6YM[0]); if(!$isAdmin) echo workHoursByMonth($last6YM[0],$liu['clientid']); ?>,
+		// 	  		<?php if($isAdmin) echo workHoursByMonth($last6YM[1]); if(!$isAdmin) echo workHoursByMonth($last6YM[1],$liu['clientid']); ?>,
+		// 			<?php if($isAdmin) echo workHoursByMonth($last6YM[2]); if(!$isAdmin) echo workHoursByMonth($last6YM[2],$liu['clientid']); ?>,
+		// 			<?php if($isAdmin) echo workHoursByMonth($last6YM[3]); if(!$isAdmin) echo workHoursByMonth($last6YM[3],$liu['clientid']); ?>,
+		// 			<?php if($isAdmin) echo workHoursByMonth($last6YM[4]); if(!$isAdmin) echo workHoursByMonth($last6YM[4],$liu['clientid']); ?>,
+		// 			<?php if($isAdmin) echo workHoursByMonth($last6YM[5]); if(!$isAdmin) echo workHoursByMonth($last6YM[5],$liu['clientid']); ?>
+		// 		]
+	    //     }
+	    //   ]
+	    // };
 
-	    //-------------
-	    //- WORKED HOURS BAR CHART -
-	    //-------------
-	    var barChartCanvas = $("#Client6Chart").get(0).getContext("2d");
-	    var barChart = new Chart(barChartCanvas);
-	    var barChartData = areaChartData;
+	    // //-------------
+	    // //- WORKED HOURS BAR CHART -
+	    // //-------------
+	    // var barChartCanvas = $("#Client6Chart").get(0).getContext("2d");
+	    // var barChart = new Chart(barChartCanvas);
+	    // var barChartData = areaChartData;
 
-	    var barChartOptions = {
-	      scaleBeginAtZero: true,
-	      scaleShowGridLines: true,
-	      scaleGridLineColor: "rgba(0,0,0,.05)",
-	      scaleGridLineWidth: 1,
-	      scaleShowHorizontalLines: true,
-	      scaleShowVerticalLines: true,
-	      barShowStroke: true,
-	      barStrokeWidth: 2,
-	      barValueSpacing: 5,
-	      barDatasetSpacing: 1,
-	      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-	      responsive: true,
-	      maintainAspectRatio: true
-	    };
-	    barChartOptions.datasetFill = false;
-	    barChart.Bar(barChartData, barChartOptions);
+	    // var barChartOptions = {
+	    //   scaleBeginAtZero: true,
+	    //   scaleShowGridLines: true,
+	    //   scaleGridLineColor: "rgba(0,0,0,.05)",
+	    //   scaleGridLineWidth: 1,
+	    //   scaleShowHorizontalLines: true,
+	    //   scaleShowVerticalLines: true,
+	    //   barShowStroke: true,
+	    //   barStrokeWidth: 2,
+	    //   barValueSpacing: 5,
+	    //   barDatasetSpacing: 1,
+	    //   legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+	    //   responsive: true,
+	    //   maintainAspectRatio: true
+	    // };
+	    // barChartOptions.datasetFill = false;
+	    // barChart.Bar(barChartData, barChartOptions);
 	  });
 
 
@@ -471,5 +655,65 @@
 	  var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
 	  var pieChart = new Chart(pieChartCanvas).Doughnut(PieData, pieOptions);
 	  document.getElementById('js-legend').innerHTML = pieChart.generateLegend();
+
+	//   var PieData2 = [
+	//   		<?php foreach($spk as $spks) { ?>
+	//   			{
+	//   			//   value: <?php if($isAdmin) echo countAssetsByCategory($category['id']); if(!$isAdmin) echo countAssetsByCategory($category['id'],$liu['clientid']); ?>,
+	//   			  value: <?php echo countspkbyWo($spks['id']); ?>,
+	//   			//   color: "<?php echo $spk['color']; ?>",
+	//   			  label: "<?php echo $spks['wo_activity']; ?>"
+	//   			},
+	//   		<?php } ?>
+    //   ];
+
+	var PieData2 = [
+        {
+            value: <?php echo $sumspkinstall; ?>,
+    	color:"#0a0fff",
+        label: "Done"
+    },
+    {
+        value: <?php echo $sumspkinstall2; ?>,
+        color:"#53ff28",
+            label: "Open"
+    },
+    {
+        value: <?php echo $sumspkinstall3; ?>,
+        color:"#ff0d00",
+            label: "Inprogress"
+    }];
+      var pieOptions2 = {
+	        segmentShowStroke: true,
+	        segmentStrokeColor: "#fff",
+	        segmentStrokeWidth: 1,
+	        percentageInnerCutout: 50,
+	        animationSteps: 100,
+	        animationEasing: "easeOutBounce",
+	        animateRotate: true,
+	        animateScale: true,
+	        responsive: true,
+			maintainAspectRatio: false
+	  };
+
+	  var pieChartCanvas2 = $("#pieChart2").get(0).getContext("2d");
+	  var pieChart2 = new Chart(pieChartCanvas2).Doughnut(PieData2, pieOptions2);
+	  document.getElementById('js-legend2').innerHTML = pieChart2.generateLegend();
+
+	  var pieChartCanvas3 = $("#pieChart3").get(0).getContext("2d");
+	  var pieChart3 = new Chart(pieChartCanvas3).Doughnut(PieData2, pieOptions2);
+	  document.getElementById('js-legend3').innerHTML = pieChart3.generateLegend();
+
+	  var pieChartCanvas4 = $("#pieChart4").get(0).getContext("2d");
+	  var pieChart4 = new Chart(pieChartCanvas4).Doughnut(PieData2, pieOptions2);
+	  document.getElementById('js-legend4').innerHTML = pieChart4.generateLegend();
+
+	  var pieChartCanvas5 = $("#pieChart5").get(0).getContext("2d");
+	  var pieChart5 = new Chart(pieChartCanvas5).Doughnut(PieData2, pieOptions2);
+	  document.getElementById('js-legend5').innerHTML = pieChart5.generateLegend();
+
+	  var pieChartCanvas6 = $("#pieChart6").get(0).getContext("2d");
+	  var pieChart6 = new Chart(pieChartCanvas6).Doughnut(PieData2, pieOptions2);
+	  document.getElementById('js-legend6').innerHTML = pieChart6.generateLegend();
 
 </script>

@@ -252,6 +252,16 @@ if ($route == "dashboard") {
 		$sumClients = countTable("clients");
 		$sumUsers = countTableFiltered("people","type","user");
 		$categories = getTable("assetcategories");
+		$spk = getTable("spk");
+
+		$sumspkinstall = countTableFiltered("spk","spk_status","Done");
+		$sumspkinstall2 = countTableFiltered("spk","spk_status","Open");
+		$sumspkinstall3 = countTableFiltered("spk","spk_status","Inprogress");
+
+		
+        // $sumspkinstallstatus = $database->count("tickets",["AND" => ["closeby"=> "VISIT","open_ticket[<>]" => [$tgl_pertama, $tgl_terakhir]]]);
+        // $sumremote = $database->count("tickets",["AND" => ["closeby"=> "REMOTE","open_ticket[<>]" => [$tgl_pertama, $tgl_terakhir]]]);
+
 		$myIssues = $database->select("issues", "*", [ "AND" => ["status[!]" => "Done", "adminid" => $liu['id']] ]);
 		$activeIssues = $database->select("issues", "*", [ "status[!]" => "Done" ]);
 
@@ -515,6 +525,45 @@ if ($route == "submitticket") {
 	$departments = getTable("tickets_departments");
 
 }
+
+//SPK
+
+if ($route == "spk/all") {
+	isAuthorized("viewSPK");
+	if($isAdmin) {
+		$spk = $database->select("spk", "*", ["ORDER" => ["id" => "DESC"]]);
+	}
+	else {
+		$tickets = $database->select("tickets", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"]]);
+	}
+	$pageTitle = __("All SPK");
+}
+
+if ($route == "spk/manage") {
+	isAuthorized("manageTicket");
+	$spk = getRowById("spk",$_GET['id']);
+	$filesimage = getTableFiltered("files","spkid",$_GET['id'],"image_spk",1);
+	$files = getTableFiltered("files","spkid",$_GET['id']);
+	isOwner($spk['clientid']);
+
+	// $replies = getTableFiltered("tickets_replies", "ticketid", $_GET['id'], "", "", "*", "id", "DESC");
+	$comments = getTableFiltered("comments","ticketid",$_GET['id'],"","","*","timestamp","ASC");
+	$rules = getTableFiltered("tickets_rules","ticketid",$_GET['id']);
+	$pageTitle = __("#") . $ticket['ticket'];
+
+
+	$hpconfig = HTMLPurifier_Config::createDefault();
+	$hpconfig->set('HTML.AllowedAttributes', 'src, height, width, alt');
+	$hpconfig->set('URI.AllowedSchemes', array('http' => true, 'https' => true, 'mailto' => true, 'ftp' => true, 'nntp' => true, 'news' => true, 'callto' => true, 'data' => true));
+
+
+	$purifier = new HTMLPurifier($hpconfig);
+
+	require($scriptpath . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'washtml.php');
+
+
+}
+
 
 
 // ISSUES
@@ -966,6 +1015,20 @@ if ($route == "system/import/assetsSample") {
 	isAuthorized("viewSystem");
 
 	Import::assetsSample();
+
+}
+
+if ($route == "system/import/assetscategoriesSample") {
+	isAuthorized("viewSystem");
+
+	Import::assetscategoriesSample();
+
+}
+
+if ($route == "system/import/spkdataSample") {
+	isAuthorized("viewSystem");
+
+	Import::spkdataSample();
 
 }
 

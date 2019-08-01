@@ -31,7 +31,7 @@
 									<?php foreach ($customer as $customer) { ?>
 		                                <tr>
 		                                    <td><?php echo $customer['id_cust']; ?></td>
-		                                    <td><?php if(in_array("manageClient",$perms)) { ?><a href='?route=customer/manage&id=<?php echo $customer['id']; ?>'><?php echo $customer['nama_customer']; ?></a><?php } else echo $customer['nama_customer']; ?></td>
+		                                    <td><?php echo $customer['nama_customer']; ?></td>
 		                                    <td><?php echo $customer['cost_center']; ?></td>
 
 											<!-- <td>
@@ -47,7 +47,7 @@
 											<td>
 												<div class='pull-right'>
 													<div class="btn-group">
-														<?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a><?php } ?>
+														<!-- <?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a><?php } ?> -->
 														<?php if(in_array("editClient",$perms)) { ?><a href='#' onClick='showM("index.php?modal=customers/edit&reroute=customers/customers&id=<?php echo $customer['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
 														<?php if(in_array("deleteClient",$perms)) { ?><a href='#' onClick='showM("index.php?modal=customers/delete&reroute=customers/customers&id=<?php echo $customer['id']; ?>");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?>
 													</div>

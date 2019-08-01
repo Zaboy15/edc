@@ -222,6 +222,12 @@ function getConfigValue($name) { //return config value from database
 	return $database->get("config", "value", ["name" => $name]);
 }
 
+function getRandom(){
+	$random = rand(100000,999999);
+	while($database->has("tickets", [ "ticket" => $random ])) { $random = rand(100000,999999); }
+	return $random;
+}
+
 function deleteRowById($table,$id) { //detete row(s) by id
 	global $database;
     $database->delete($table, [ "id" => $id ]);
@@ -877,6 +883,17 @@ function countAssetsByCategory($categoryid,$clientid=0) {
 			"clientid" => $clientid
 		]]);
 	}
+
+	return $items;
+
+}
+
+function countspkbyWo($spks) {
+	global $database;
+	$items = 0;
+	$items = $database->count("spk", "*", [
+		"wo_activity" => $spks
+	]);
 
 	return $items;
 

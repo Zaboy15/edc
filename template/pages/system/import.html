@@ -49,41 +49,45 @@
 				</div>
 			</div>
 
+			
+
 			<div class="col-md-6">
-				<div class="box box-primary">
-					<form role="form" method="post" enctype="multipart/form-data">
-
-						<div class="box-header">
-							<h3 class="box-title"><?php _e('Import Merchant'); ?></h3>
-						</div>
-						<div class="box-body">
-
-						
-							<div class="form-group">
-								<label for="file"><?php _e('CSV File'); ?></label>
-								<input type="file" id="file" name="file" required>
-								<p class="help-block"><?php _e('Max upload file size on your server is'); ?> <?php echo ini_get('upload_max_filesize'); ?>.</p>
+					<div class="box box-primary">
+						<form role="form" method="post" enctype="multipart/form-data">
+	
+							<div class="box-header">
+								<h3 class="box-title"><?php _e('Import SPK'); ?></h3>
 							</div>
-
-
+							<div class="box-body">
+	
 							
-
-
-						</div>
-
-						<div class="box-footer text-right">
-							<input type="hidden" name="action" value="importLicenses">
-
-							<input type="hidden" name="route" value="system/import">
-							<input type="hidden" name="routeid" value="">
-							<input type="hidden" name="section" value="">
-
-							<a class="btn btn-default" href="?route=system/import/licensesSample" target="_blank"><i class="fa fa-download fa-fw"></i><?php _e('Download Sample File'); ?></a>
-							<button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> <?php _e('Import'); ?></button>
-						</div>
-					</form>
+								<div class="form-group">
+									<label for="file"><?php _e('CSV File'); ?></label>
+									<input type="file" id="file" name="file" required>
+									<p class="help-block"><?php _e('Max upload file size on your server is'); ?> <?php echo ini_get('upload_max_filesize'); ?>.</p>
+								</div>
+	
+	
+								
+	
+	
+							</div>
+	
+							<div class="box-footer text-right">
+								<input type="hidden" name="action" value="importSpk">
+	
+								<input type="hidden" name="route" value="system/import">
+								<input type="hidden" name="routeid" value="">
+								<input type="hidden" name="section" value="">
+	
+								<a class="btn btn-default" href="?route=system/import/licensesSample" target="_blank"><i class="fa fa-download fa-fw"></i><?php _e('Download Sample File'); ?></a>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> <?php _e('Import'); ?></button>
+							</div>
+						</form>
+					</div>
 				</div>
-			</div>
+
+			
 
 
 

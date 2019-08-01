@@ -110,7 +110,7 @@
 									<li>
 										<!-- timeline icon -->
 										<?php if ($reply['peopleid'] > 0) { ?>
-											<img src="<?php echo getGravatar(getSingleValue("people","email",$reply['peopleid']),"32"); ?>" class="img-circle timeline-image" style="height:32px;width:32px;" />
+											<img src="template/assets/gravatar.png" class="img-circle timeline-image" style="height:32px;width:32px;" />
 										<?php } ?>
 										<?php if ($reply['peopleid'] == 0) { ?>
 											<img src="<?php echo getGravatar($ticket['email'],"32"); ?>" class="img-circle timeline-image" style="height:32px;width:32px;" />

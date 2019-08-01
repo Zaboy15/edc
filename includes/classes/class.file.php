@@ -30,7 +30,9 @@ class File extends App {
                 				"projectid" => $data['projectid'],
                 				"assetid" => $data['assetid'],
                 				"ticketreplyid" => $data['ticketreplyid'],
-                				"name" => $data['name'],
+								"name" => $data['name'],
+								"spkid" => $data['spkid'],
+								"image_spk" => $data['image_spk'],
                 				"file" => $filename
                 			]);
                 			$status == 9500;

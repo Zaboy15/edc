@@ -473,6 +473,14 @@ switch($_POST['action']) {
 		$status = Import::assets($_POST, $_FILES);
 	break;
 
+	case "importAssetscategories":
+		$status = Import::assetscategory($_POST, $_FILES);
+	break;
+
+	case "importSpk":
+		$status = Import::spk($_POST, $_FILES);
+	break;
+
 	case "importLicenses":
 		$status = Import::licenses($_POST, $_FILES);
 	break;
