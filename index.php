@@ -58,7 +58,7 @@ if(!isset($_GET['modal']) && !isset($_GET['qa'])) {
     if($route == "signin" || $route == "forgot" || $route == "submitticket") {
         require($scriptpath . DIRECTORY_SEPARATOR . 'template'. DIRECTORY_SEPARATOR . $route . '.html');
     }
-    elseif($route == "pdf" || $route == "system/import/assetsSample" || $route == "system/import/licensesSample") {
+    elseif($route == "pdf" || $route == "system/import/assetsSample" || $route == "system/import/licensesSample"|| $route == "system/import/sampledataSPK") {
         // do nothing if pdf
     }
     // load header + page + footer

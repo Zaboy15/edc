@@ -157,6 +157,13 @@ class Import extends App {
 
 			$lineindex++;
 		}
+		
+		if ($lastid == "0") { return "11"; }
+        else {
+            
+    		logSystem("Import Added - ID: " . $ticketid);
+    		return "10";
+        }
 
 
     }
@@ -323,7 +330,7 @@ class Import extends App {
 	}
 
 	
-	public static function licensesSample() {
+	public static function sampledataSPK() {
 		global $database;
 
 		$customfields = getTable("licenses_customfields");

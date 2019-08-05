@@ -1025,10 +1025,10 @@ if ($route == "system/import/assetscategoriesSample") {
 
 }
 
-if ($route == "system/import/spkdataSample") {
+if ($route == "system/import/sampledataSPK") {
 	isAuthorized("viewSystem");
 
-	Import::spkdataSample();
+	Import::sampledataSPK();
 
 }
 
