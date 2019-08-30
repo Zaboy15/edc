@@ -172,6 +172,14 @@ switch($_GET['modal']) {
         if($isAdmin) { $users = getTableFiltered("people","type","user"); } else { $users = getTableFiltered("people","type","user","clientid",$liu['clientid']); }
         break;
 
+    case "pemeriksaan/add":
+
+        break;
+
+    case "pemeriksaan/edit":
+        $pemeriksaan = getRowPemeriksaan("tabel_pemeriksaan",$_GET['idspk']);
+        break;
+
 
     // escalation rules
     case "escalationrules/add":

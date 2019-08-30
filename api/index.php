@@ -183,6 +183,10 @@ switch ($request_resource) {
         require $scriptpath . '/api/resources/clients.php';
     break;
 
+    case 'customer': ## DONE ##d
+        require $scriptpath . '/api/resources/customer.php';
+    break;
+
     case 'assets': ## DONE ##
         require $scriptpath . '/api/resources/assets.php';
     break;

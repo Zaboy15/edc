@@ -541,6 +541,7 @@ if ($route == "spk/all") {
 
 if ($route == "spk/manage") {
 	isAuthorized("manageTicket");
+	$pemeriksaan = countTableFiltered("tabel_pemeriksaan","idspk",$_GET['id']);
 	$spk = getRowById("spk",$_GET['id']);
 	$filesimage = getTableFiltered("files","spkid",$_GET['id'],"image_spk",1);
 	$files = getTableFiltered("files","spkid",$_GET['id']);

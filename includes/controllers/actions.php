@@ -102,11 +102,23 @@ switch($_POST['action']) {
 		isAuthorized("deleteComment"); $status = Comment::delete($_POST['id']);
 		break;
 
+	//pemeriksaan
+
+	case "addPemeriksaanEDC":
+		isAuthorized("addTicket"); $status = Pemeriksaan::addPemeriksaanEDC($_POST);
+		break;
+
+	case "editPemeriksaanEDC":
+		isAuthorized("addTicket"); $status = Pemeriksaan::editPemeriksaanEDC($_POST);
+		break;
+
 
 	// tickets
 	case "addTicket":
 		isAuthorized("addTicket"); $status = Ticket::add($_POST);
 		break;
+	
+		
 
 	case "addPublicTicket":
 		if(getConfigValue("recaptcha") == "true") {

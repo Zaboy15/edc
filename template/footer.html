@@ -92,10 +92,12 @@
 					"pageLength": <?php echo getConfigValue("table_records"); ?>,
 					"dom": '<"top"f>rt<"bottom"><"row dt-margin"<"col-md-6"i><"col-md-6"p><"col-md-12"B>><"clear">',
 					"buttons":  [ 'copy', 'csv', 'excel', 'pdf', 'print' ],
+					"ordering": true,
 					"stateSave": true,
 					"fixedHeader": true,
 					"oLanguage": {
-						"sSearch": "<i class='fa fa-search text-gray dTsearch'></i>",
+						"slengthMenu": "Display _MENU_ records per page",
+						"sSearch": "",
 						"sEmptyTable": "<?php _e('No entries to show'); ?>",
 						"sZeroRecords": "<?php _e('Nothing found'); ?>",
 						"sInfo": "<?php _e('Showing'); ?> _START_ <?php _e('to'); ?> _END_ <?php _e('of'); ?> _TOTAL_ <?php _e('entries'); ?>",
@@ -109,6 +111,22 @@
 					},
 					"columnDefs": [ { "orderable": false, "targets": -1 } ] }
 				);
+
+				$("#dataTabelTest").dataTable({
+					"oLanguage": {
+						
+						"sEmptyTable": "<?php _e('No entries to show'); ?>",
+						"sZeroRecords": "<?php _e('Nothing found'); ?>",
+						"sInfo": "<?php _e('Showing'); ?> _START_ <?php _e('to'); ?> _END_ <?php _e('of'); ?> _TOTAL_ <?php _e('entries'); ?>",
+						"sInfoEmpty": "",
+						"oPaginate": {
+							"sNext": "<?php _e('Next'); ?>",
+							"sPrevious": "<?php _e('Previous'); ?>",
+							"sFirst": "<?php _e('First Page'); ?>",
+							"sLast": "<?php _e('Last Page'); ?>"
+						}
+					},
+				});
 				$("#dataTablesFullDesc, #dataTablesFullDesc2").dataTable( {
 					"order": [[ 0, "desc" ]],
 					"pageLength": <?php echo getConfigValue("table_records"); ?>,

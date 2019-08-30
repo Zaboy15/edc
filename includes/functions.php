@@ -181,6 +181,12 @@ function getRowById($table,$id) { //return associative array from one row by id
 	return $row;
 }
 
+function getRowPemeriksaan($table,$id) { //return associative array from one row by id
+	global $database;
+	$row = $database->get($table, "*", ["idspk" => $id]);
+	return $row;
+}
+
 function getSingleValue($table,$column,$id) { //returns single value from table row by id
 	global $database;
 	$value = $database->get($table, $column, ["id" => $id]);

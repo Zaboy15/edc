@@ -21,21 +21,25 @@
 						<div class="btn-group pull-right" style="padding:6px;">
 							<?php if(in_array("viewPReplies",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Insert Predefined Reply'); ?>' onClick='showM("?modal=preplies/insert");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-arrow-right fw"></i> <?php _e('Predefined Reply'); ?></button><?php } ?>
 							<?php if(in_array("editTicket",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Edit Ticket'); ?>' onClick='showM("?modal=tickets/edit&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>&section=");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-edit"></i></button><?php } ?>
-							<?php if(in_array("addComment",$perms)) { ?><a data-toggle='tooltip' title='<?php _e('New Comment'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=comments/add&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&clientid=<?php echo $ticket['clientid']; ?>&projectid=0&ticketid=<?php echo $ticket['id']; ?>&section=comments");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a><?php } ?>
-							<?php if(in_array("manageTicketRules",$perms)) { ?><a data-toggle='tooltip' title='<?php _e('New Rule'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=escalationrules/add&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&ticketid=<?php echo $ticket['id']; ?>&section=rules");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-level-up'></i></a><?php } ?>
+							<?php if($pemeriksaan == 0) { ?>
+							<a data-toggle='tooltip' title='<?php _e('Tambah Pemeriksaan Wajib'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=pemeriksaan/add&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&idspk=<?php echo $spk['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a>
+							<?php } ?>
+							<?php if($pemeriksaan >= 1) { ?>
+								<a data-toggle='tooltip' title='<?php _e('Ubah Pemeriksaan Wajib'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=pemeriksaan/edit&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&idspk=<?php echo $spk['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a>
+								<?php } ?>
 							
-							<?php if($isAdmin) { ?><a data-toggle='tooltip' title='<?php _e('Assign to me'); ?>' href="?qa=ticketAssignToMe&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-thumb-tack"></i></a><?php } ?>
+							<!-- <?php if($isAdmin) { ?><a data-toggle='tooltip' title='<?php _e('Assign to me'); ?>' href="?qa=ticketAssignToMe&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-thumb-tack"></i></a><?php } ?> -->
 
-							<?php if($ticket['status'] != "Closed") { ?>
+							<!-- <?php if($spk['status'] != "Closed") { ?>
 								<a data-toggle='tooltip' title='<?php _e('Close Ticket'); ?>' href="?qa=ticketClose&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-close"></i></a>
 							<?php } ?>
 							<?php if($isAdmin) { ?>
-								<?php if($ticket['status'] == "Closed") { ?>
+								<?php if($spk['status'] == "Closed") { ?>
 									<a data-toggle='tooltip' title='<?php _e('Reopen Ticket'); ?>' href="?qa=ticketReopen&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-retweet"></i></a>
 								<?php } ?>
-							<?php } ?>
+							<?php } ?> -->
 
-							<?php if(in_array("deleteTicket",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Delete Ticket'); ?>' onClick='showM("index.php?modal=tickets/delete&reroute=tickets/active&routeid=&section=&id=<?php echo $ticket['id']; ?>");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-trash text-red"></i></button><?php } ?>
+							<!-- <?php if(in_array("deleteTicket",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Delete Ticket'); ?>' onClick='showM("index.php?modal=tickets/delete&reroute=tickets/active&routeid=&section=&id=<?php echo $ticket['id']; ?>");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-trash text-red"></i></button><?php } ?> -->
 							<div class="btn-group">
 									<button type="button" class="btn btn-primary btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
 										<?php _e('More'); ?> <span class="caret"></span>
