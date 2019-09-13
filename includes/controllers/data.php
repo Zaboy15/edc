@@ -1019,6 +1019,13 @@ if ($route == "system/import/assetsSample") {
 
 }
 
+if ($route == "system/import/merchantSample") {
+	isAuthorized("viewSystem");
+
+	Import::merchantSample();
+
+}
+
 if ($route == "system/import/assetscategoriesSample") {
 	isAuthorized("viewSystem");
 

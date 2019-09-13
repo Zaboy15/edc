@@ -96,6 +96,48 @@ switch($_GET['qa']) {
         else echo _e("File does not exist.");
 	break;
 
+	case "merchantData":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("assets", "*", [ "AND" => [
+					"clientid" => $filterid,
+					"OR" => [
+						"tag[~]" => $searchstring,
+						"name[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("assets", "*", [ "OR" => [
+					"tag[~]" => $searchstring,
+					"name[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("assets", "*", [ "clientid" => $filterid ]);
+			} else {
+				$items = $database->select("assets", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['name'] . " " . $item['name'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
 
 	case "assetsSelect":
 		$filterid = $_GET['filterid'];

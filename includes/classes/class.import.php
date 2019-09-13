@@ -3,7 +3,73 @@
 class Import extends App {
 
 
-    public static function assets($data, $file) {
+    // public static function assets($data, $file) {
+    // 	global $database;
+		
+	// 	// $customfields = getTable("assets_customfields");
+	// 	// $customfieldsdata = array();
+		
+	// 	$csv = fopen($file["file"]["tmp_name"],"r");
+	// 	$filename = pathinfo($file['file']['name'], PATHINFO_FILENAME);
+	// 	$lineindex = 0;
+
+
+	// 	while( ($item = fgetcsv($csv, 0, ",", '"') ) !== FALSE ) {
+			
+	// 		if($lineindex == 0) { 
+	// 			//skip first line
+	// 			$lineindex++; 
+	// 			continue; 
+	// 		}
+
+	// 		$clientid = self::dataMatcher("client", $item[0]);
+
+	// 		$categoryid = self::dataMatcher("asset_category", $item[1], $clientid);
+	// 		$adminid = self::dataMatcher("admin", $item[2], $clientid);
+	// 		$userid = self::dataMatcher("user", $item[3], $clientid);
+	// 		$manufacturerid = self::dataMatcher("manufacturer", $item[4], $clientid);
+	// 		$modelid = self::dataMatcher("model", $item[5], $clientid);
+	// 		$supplierid = self::dataMatcher("supplier", $item[6], $clientid);
+	// 		$statusid = self::dataMatcher("status", $item[7], $clientid);
+	// 		$tag = self::dataMatcher("asset_tag", $item[10], $clientid);
+	// 		$locationid = self::dataMatcher("location", $item[14], $clientid);
+
+	// 		// $itemindex = 15;
+	// 		// foreach ($customfields as $customfield) {
+	// 		// 	if(isset($item[$itemindex])) {
+	// 		// 		$customfieldsdata[$customfield['id']] = $item[$itemindex];
+	// 		// 	}
+	// 		// 	$itemindex++;
+	// 		// }
+
+	// 		$lastid = $database->insert("assets", [
+	// 			"categoryid" => $categoryid,
+	// 			"adminid" => $adminid,
+	// 			"clientid" => $clientid,
+	// 			"userid" => $userid,
+	// 			"manufacturerid" => $manufacturerid,
+	// 			"modelid" => $modelid,
+	// 			"supplierid" => $supplierid,
+	// 			"statusid" => $statusid,
+	// 			"purchase_date" => dateDb($item[8]),
+	// 			"warranty_months" => $item[9],
+	// 			"tag" => $tag,
+	// 			"name" => $item[11],
+	// 			"serial" => $item[12],
+	// 			"notes" => $item[13],
+	// 			"locationid" => $locationid,
+	// 			// "customfields" => serialize($customfieldsdata),
+	
+	// 		]);
+
+
+	// 		$lineindex++;
+	// 	}
+
+
+	// }
+
+	public static function assets($data, $file) {
     	global $database;
 		
 		// $customfields = getTable("assets_customfields");
@@ -22,17 +88,10 @@ class Import extends App {
 				continue; 
 			}
 
-			$clientid = self::dataMatcher("client", $item[0]);
+			$clientid = self::dataMatcher("merchant", $item[0]);
 
-			$categoryid = self::dataMatcher("asset_category", $item[1], $clientid);
-			$adminid = self::dataMatcher("admin", $item[2], $clientid);
-			$userid = self::dataMatcher("user", $item[3], $clientid);
-			$manufacturerid = self::dataMatcher("manufacturer", $item[4], $clientid);
-			$modelid = self::dataMatcher("model", $item[5], $clientid);
-			$supplierid = self::dataMatcher("supplier", $item[6], $clientid);
-			$statusid = self::dataMatcher("status", $item[7], $clientid);
-			$tag = self::dataMatcher("asset_tag", $item[10], $clientid);
-			$locationid = self::dataMatcher("location", $item[14], $clientid);
+			// $categoryid = self::dataMatcher("asset_category", $item[10], $clientid);
+			$tag = self::dataMatcher("asset_tag", $item[11], $clientid);
 
 			// $itemindex = 15;
 			// foreach ($customfields as $customfield) {
@@ -43,28 +102,79 @@ class Import extends App {
 			// }
 
 			$lastid = $database->insert("assets", [
-				"categoryid" => $categoryid,
-				"adminid" => $adminid,
-				"clientid" => $clientid,
-				"userid" => $userid,
-				"manufacturerid" => $manufacturerid,
-				"modelid" => $modelid,
-				"supplierid" => $supplierid,
-				"statusid" => $statusid,
-				"purchase_date" => dateDb($item[8]),
-				"warranty_months" => $item[9],
-				"tag" => $tag,
-				"name" => $item[11],
-				"serial" => $item[12],
-				"notes" => $item[13],
-				"locationid" => $locationid,
+
 				// "customfields" => serialize($customfieldsdata),
-	
+				"clientid" => $clientid,
+				"midtid" => $item[1],
+				"m_tid" => $item[2],
+				"csi" => $item[3],
+				"tid" => $item[4],
+				"communication_line" => $item[5],
+				"edc_type" => $item[6],
+				"sn_simcard" => $item[7],
+				"operator_sim" => $item[8],
+				"categoryid" => $item[10],
+				"serial" => $item[9],
+				"name" => $item[9],
+				"tag" => $tag,
+
 			]);
 
 
 			$lineindex++;
 		}
+
+
+	}
+
+
+	public static function importMerchant($data, $file) {
+    	global $database;
+		
+		// $customfields = getTable("assets_customfields");
+		// $customfieldsdata = array();
+		
+		$csv = fopen($file["file"]["tmp_name"],"r");
+		$filename = pathinfo($file['file']['name'], PATHINFO_FILENAME);
+		$lineindex = 0;
+
+
+		while( ($item = fgetcsv($csv, 0, ",", '"') ) !== FALSE ) {
+			
+			if($lineindex == 0) { 
+				//skip first line
+				$lineindex++; 
+				continue; 
+			}
+
+
+			$cekticket = countTableFiltered("clients", "mid", $mid[1]);
+			if ($cekticket > 0) {
+				echo "gagal";
+			} else {
+			$lastid = $database->insert("clients", [
+				// "customfields" => serialize($customfieldsdata),
+				"id_customer" => $item[0],//0
+				"mid" => $item[1],//1
+				"name" => $item[2],//2
+				"pic" => $item[3],//3
+				"phone_pic" => $item[4],//4
+				"alamat" => $item[5],//5
+				"alamat1" => $item[6],//6
+				"alamat2" => $item[7],//7
+				"kota" => $item[8],//8
+				"mid3" => $item[9],//9
+				"mid4" => $item[10],//10
+				"mid5" => $item[11],//11
+				"mid6" => $item[12],//12
+				"mid7" => $item[13],//13
+				"status"=> $item[14],//14
+			]);
+
+
+			$lineindex++;
+		}
+	}
 
 
 	}
@@ -261,10 +371,51 @@ class Import extends App {
 
 	// }
 
+	// public static function assetsSample() {
+	// 	global $database;
+
+	// 	$customfields = getTable("assets_customfields");
+		
+	// 	header('Content-Type: application/excel');
+	// 	header('Content-Disposition: attachment; filename="sample.csv"');
+		
+	// 	$output = fopen('php://output', 'w');
+
+	// 	$header = [
+	// 		"Client", // 0
+	// 		"Category", // 1###
+	// 		"Asset Admin Email Address", // 2
+	// 		"Asset User Email Address", // 3
+	// 		"Manufacturer", //4
+	// 		"Model", //5
+	// 		"Supplier", //6
+	// 		"Status", //7
+	// 		"Purchase Date", //8
+	// 		"Warranty Months", //9
+	// 		"Tag", //10 ###
+	// 		"Name", //11 ###
+	// 		"Serial", //12
+	// 		"Notes", //13
+	// 		"Location", //14
+	// 	];
+
+	// 	foreach ($customfields as $customfield) {
+	// 		array_push($header, $customfield['name']);
+    //     }
+	
+	
+	// 	fputcsv($output, $header, ",");
+
+
+
+	// 	fclose($output);
+
+	// }
+
 	public static function assetsSample() {
 		global $database;
 
-		$customfields = getTable("assets_customfields");
+		// $customfields = getTable("assets_customfields");
 		
 		header('Content-Type: application/excel');
 		header('Content-Disposition: attachment; filename="sample.csv"');
@@ -272,26 +423,65 @@ class Import extends App {
 		$output = fopen('php://output', 'w');
 
 		$header = [
-			"Client", // 0
-			"Category", // 1###
-			"Asset Admin Email Address", // 2
-			"Asset User Email Address", // 3
-			"Manufacturer", //4
-			"Model", //5
-			"Supplier", //6
-			"Status", //7
-			"Purchase Date", //8
-			"Warranty Months", //9
-			"Tag", //10 ###
-			"Name", //11 ###
-			"Serial", //12
-			"Notes", //13
-			"Location", //14
+			"mid", // 0
+			"midtid", // 1###
+			"m_tid", // 2
+			"csi", // 3
+			"tid", //4
+			"communication_line", //5
+			"edc_type", //6
+			"sn_simcard", //7
+			"operator_sim", //8
+			"serial", //9 ###
+			"categoryid", //10
+			"tag", //11 ###
+
 		];
 
-		foreach ($customfields as $customfield) {
-			array_push($header, $customfield['name']);
-        }
+		// foreach ($customfields as $customfield) {
+		// 	array_push($header, $customfield['name']);
+        // }
+	
+	
+		fputcsv($output, $header, ",");
+
+
+
+		fclose($output);
+
+	}
+
+	public static function merchantSample() {
+		global $database;
+
+		// $customfields = getTable("assets_customfields");
+		
+		header('Content-Type: application/excel');
+		header('Content-Disposition: attachment; filename="sample.csv"');
+		
+		$output = fopen('php://output', 'w');
+
+		$header = [
+			"id_customer", // 0
+			"mid", // 1###
+			"name", // 2
+			"pic", // 3
+			"phone_pic", //4
+			"alamat", //5
+			"alamat1", //6
+			"alamat2", //7
+			"kota", //8
+			"mid3", //9
+			"mid4", //10 ###
+			"mid5", //11 ###
+			"mid6", //12
+			"mid7", //13
+			"status", //14
+		];
+
+		// foreach ($customfields as $customfield) {
+		// 	array_push($header, $customfield['name']);
+        // }
 	
 	
 		fputcsv($output, $header, ",");
@@ -477,6 +667,11 @@ class Import extends App {
 					"notes" => "",
 				]);
 			}
+		}
+
+		if($type == "merchant") {
+			$client = $database->get("clients", "*", ["mid" => $value]);
+			$result = $client['id']; 
 		}
 
 

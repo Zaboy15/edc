@@ -489,6 +489,10 @@ switch($_POST['action']) {
 		$status = Import::assets($_POST, $_FILES);
 	break;
 
+	case "importMerchant":
+		$status = Import::importMerchant($_POST, $_FILES);
+	break;
+
 	case "importAssetscategories":
 		$status = Import::assetscategory($_POST, $_FILES);
 	break;
