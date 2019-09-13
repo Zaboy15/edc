@@ -117,6 +117,10 @@ switch($_POST['action']) {
 	case "addTicket":
 		isAuthorized("addTicket"); $status = Ticket::add($_POST);
 		break;
+
+	case "editSPK":
+		isAuthorized("editTicket"); $status = Spk::edit($_POST);
+		break;
 	
 		
 

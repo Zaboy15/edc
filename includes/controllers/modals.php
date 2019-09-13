@@ -171,6 +171,16 @@ switch($_GET['modal']) {
         $admins = getTableFiltered("people","type","admin");
         if($isAdmin) { $users = getTableFiltered("people","type","user"); } else { $users = getTableFiltered("people","type","user","clientid",$liu['clientid']); }
         break;
+    
+    case "spk/edit":
+        $spkdata = getRowById("spk",$_GET['id']);
+       
+        $contacts = getTable("contacts");
+        $merchant = getTable("clients");
+        $departments = getTable("tickets_departments");
+        $adminspk = getTableFiltered("people","type","admin");
+        
+        break;    
 
     case "pemeriksaan/add":
 

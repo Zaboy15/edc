@@ -161,43 +161,28 @@ class Spk extends App {
 
     public static function edit($data) {
     	global $database;
-    	if(empty($data['ccs'])) $ccs = ""; else $ccs = serialize($data['ccs']);
+ 
+            $database->update("spk", [
+                "id_merchant" => $data['id_merchant'],
+                "spk_number" => $data['spk_number'],
+                "inc_cimb" => $data['inc_cimb'],
+                "id_itfs" => $data['id_itfs'],
+                "reported_time" => $data['reported_time'],
+                "received_time" => $data['received_time'],
+                "wo_activity" => $data['wo_activity'],
+                // "reason_code" => $data['reason_code'],
+                // "supply_kertas" => $data['supply_kertas'],
+                "c_date_wo" => $data['c_date_wo'],
+                "spk_status" => $data['spk_status'],
+                // "wo_remarks" => $data['wo_remarks'],
+                "id_sn_edc" => $data['id_sn_edc'],
+                "id_sn_simcard" => $data['id_sn_simcard'],
+                "remarks_spk" => $data['remarks_spk'],
 
-
-
-        if(isset($data['notes'])) {
-            $database->update("tickets", [
-                "departmentid" => $data['departmentid'],
-                "clientid" => $data['clientid'],
-                "userid" => $data['userid'],
-                "adminid" => $data['adminid'],
-                "assetid" => $data['assetid'],
-                "projectid" => $data['projectid'],
-                "email" => $data['email'],
-                "subject" => $data['subject'],
-                "status" => $data['status'],
-                "priority" => $data['priority'],
-                "ccs" => $ccs,
-                "notes" => $data['notes'],
+                
             ], [ "id" => $data['id'] ]);
-        } else {
-            $database->update("tickets", [
-                "departmentid" => $data['departmentid'],
-                "clientid" => $data['clientid'],
-                "userid" => $data['userid'],
-                "adminid" => $data['adminid'],
-                "assetid" => $data['assetid'],
-                "projectid" => $data['projectid'],
-                "email" => $data['email'],
-                "subject" => $data['subject'],
-                "status" => $data['status'],
-                "priority" => $data['priority'],
-                "ccs" => $ccs,
 
-            ], [ "id" => $data['id'] ]);
-        }
-
-    	logSystem("Ticket Edited - ID: " . $data['id']);
+    	logSystem("SPK Edited - ID: " . $data['id']);
     	return "20";
     	}
 
