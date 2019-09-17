@@ -64,7 +64,7 @@
 
 						<?php if(!empty($clients)) { ?>
 							<div class="row">
-								<div class="col-xs-12"><h3><?php _e('Clients'); ?></h3></div>
+								<div class="col-xs-12"><h3><?php _e('Merchants'); ?></h3></div>
 								<?php foreach($clients as $client) { ?>
 									<div class="col-xs-3"><div class="callout callout-gray">
 					                  <h4><?php if(in_array("manageClient",$perms)) { ?><a href="?route=clients/manage&id=<?php echo $client['id']; ?>">ID: <?php echo $client['id']; ?></a><?php } else echo $client['id']; ?></h4>
