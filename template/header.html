@@ -286,6 +286,14 @@
               </li>
               <?php } ?>
 
+              <?php if(in_array("viewKB",$perms)) { ?>
+                <li <?php if(strpos($route,'maps') !== false) echo 'class="active"'; ?>>
+                    <a href="?route=maps">
+                        <i class="fa fa-map fa-fw"></i> <span><?php _e('Maps ITFS'); ?></span>
+                    </a>
+                </li>
+                <?php } ?>
+
               <!-- <?php if(in_array("viewMonitoring",$perms)) { ?>
               <li <?php if(strpos($route,'monitoring') !== false) echo 'class="active"'; ?>>
                   <a href="?route=monitoring">
