@@ -68,7 +68,8 @@
 								<?php foreach($clients as $client) { ?>
 									<div class="col-xs-3"><div class="callout callout-gray">
 					                  <h4><?php if(in_array("manageClient",$perms)) { ?><a href="?route=clients/manage&id=<?php echo $client['id']; ?>">ID: <?php echo $client['id']; ?></a><?php } else echo $client['id']; ?></h4>
-					                  <p><?php echo $client['name']; ?></p>
+									  <p><?php echo $client['name']; ?></p>
+									  <p><?php echo $client['mid']; ?></p>
 					                </div></div>
 								<?php } ?>
 							</div>
