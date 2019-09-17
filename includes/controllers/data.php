@@ -174,7 +174,8 @@ if ($route == "search") {
 	]]);
 
 	$clients = $database->select("clients", "*", [ "OR" => [
-		"name[~]" => $_GET['q']
+		"name[~]" => $_GET['q'],
+		"mid[~]" => $_GET['q']
 	]]);
 
 	$tickets = $database->select("tickets", "*", [ "OR" => [
