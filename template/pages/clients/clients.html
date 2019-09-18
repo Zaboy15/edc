@@ -2,8 +2,8 @@
 <aside class="right-side">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-			<h1 class="pull-left"><?php _e('Assets'); ?><small> <?php _e('Manage Assets'); ?></small></h1>
-			<div class="pull-right"><?php if(in_array("addAsset",$perms)) { ?><a class="btn btn-primary btn-sm btn-flat" href="?route=inventory/assets/create"><?php _e('NEW ASSET'); ?></a><?php } ?></div>
+			<h1 class="pull-left"><?php _e('Merchant'); ?><small> <?php _e('Manage Merchant'); ?></small></h1>
+			<div class="pull-right"><?php if(in_array("addClient",$perms)) { ?><a onClick='showM("index.php?modal=clients/add&reroute=clients");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('NEW MERCHANT'); ?></a><?php } ?></div>
 			<div style="clear:both"></div>
 	</section>
 	<!-- Main content -->
@@ -22,13 +22,11 @@
 								<thead>
 									<tr>
 											<th>ID</th>
-										<th>Client</th>
-										<th>Serial Number</th>
-										<th>MIDTID</th>
-										<th>M TID</th>
-										<th>CSI</th>
-										<th>TID</th>
-
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Position</th>
+										<th>Office</th>
+										<th>Start Date</th>
 									</tr>
 								</thead>
 								
@@ -47,7 +45,7 @@ $(document).ready(function() {
 	var table = $('#example').DataTable( {
 	        "processing": true,
 	        "serverSide": true,
-	        "ajax": "includes/controllers/sspedcassets.php",
+	        "ajax": "includes/controllers/sspclients.php",
 			"columnDefs": [ {
              "targets": -1,
              "data": null,
@@ -58,11 +56,11 @@ $(document).ready(function() {
 	    } );
 		$('#example tbody').on( 'click', '.tblEdit', function () {
          var data = table.row( $(this).parents('tr') ).data();
-         window.location.href = "?route=inventory/assets/manage&id="+ data[0]+"section=edit"; 
+         showM("index.php?modal=clients/edit&reroute=clients&id="+ data[0]); 
      } );
 	 $('#example tbody').on( 'click', '.tblDelete', function () {
          var data = table.row( $(this).parents('tr') ).data();
-         showM("index.php?modal=assets/delete&reroute=inventory/assets&routeid=&id="+ data[0]); 
+         showM("index.php?modal=clients/delete&reroute=clients&id="+ data[0]); 
      } );
     
     } );

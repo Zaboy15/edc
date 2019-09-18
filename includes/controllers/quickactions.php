@@ -101,37 +101,19 @@ switch($_GET['qa']) {
 		$searchstring = "";
 		if(isset($_GET['q'])) $searchstring = $_GET['q'];
 
-		if($searchstring != "") {
-			if($filterid != 0) {
-				$items = $database->select("assets", "*", [ "AND" => [
-					"clientid" => $filterid,
-					"OR" => [
-						"tag[~]" => $searchstring,
-						"name[~]" => $searchstring
-					]
-				]]);
-			} else {
-				$items = $database->select("assets", "*", [ "OR" => [
-					"tag[~]" => $searchstring,
-					"name[~]" => $searchstring
-				]]);
-			}
-		} else {
-			if($filterid != 0) {
-				$items = $database->select("assets", "*", [ "clientid" => $filterid ]);
-			} else {
-				$items = $database->select("assets", "*");
-			}
-		}
+		
+		$items = $database->select("clients", "*");
 
 		$results = array();
-		$results[0]['id'] = 0;
-		$results[0]['text'] = __('None');
 
 		$i = 1;
 		foreach($items as $item) {
 			$results[$i]['id'] = $item['id'];
-			$results[$i]['text'] = $item['name'] . " " . $item['name'];
+			$results[$i]['mid'] = $item['mid'];
+			$results[$i]['name'] = $item['name'];
+			$results[$i]['alamat'] = $item['alamat'];
+			$results[$i]['status'] = $item['status'];
+			$results[$i]['kota'] = $item['kota'];
 			$i++;
 		}
 
