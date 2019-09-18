@@ -3,6 +3,6 @@
  * Informasi untuk koneksi database
  */
 $dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = 'Pg@sc0m.1';
+$dbuser = 'u4580489_dev';
+$dbpass = 'P@ssw0rdmyteacher';
 $dbname = 'u4580489_edc';
