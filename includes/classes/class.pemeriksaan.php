@@ -76,7 +76,7 @@ class Pemeriksaan extends App {
     	$pemeriksaanid = $database->insert("tabel_pemeriksaan", [
     		"idticket" => 0,
     		"idspk" => $data['idspk'],
-            "seal_sim" => $seal_sim,
+            "seal_sim" => $data['seal_sim'],
             "seal_edc" => $seal_edc,
             "simcard" => $simcard,
             "transaksi_sale" => $transaksi_sale,
