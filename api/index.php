@@ -178,7 +178,9 @@ switch ($request_resource) {
     case 'spk': ## DONE ##d
         require $scriptpath . '/api/resources/spk.php';
     break;
-
+    case 'pemeriksaan': ## DONE ##d
+        require $scriptpath . '/api/resources/pemeriksaan.php';
+    break;
     case 'clients': ## DONE ##d
         require $scriptpath . '/api/resources/clients.php';
     break;

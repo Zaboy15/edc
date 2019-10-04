@@ -10,9 +10,9 @@ switch ($request_method) {
         isAuthorizedApi("viewTickets");
 
         if(empty($filters)) {
-            $result = $database->select("spk", "*");
+            $result = $database->select("tabel_pemeriksaan", "*");
         } else {
-            $result = $database->select("spk", "*", [ "AND" => $filters, "ORDER" => ["id" => "DESC"] ]);
+            $result = $database->select("tabel_pemeriksaan", "*", [ "AND" => $filters, "ORDER" => ["id" => "DESC"] ]);
         }
 
         $i=0;
@@ -27,7 +27,7 @@ switch ($request_method) {
     case 'add':
         isAuthorizedApi("addTicket");
 
-        $status = Spk::add($data);
+        $status = Pemeriksaan::add($data);
 
         if($status == 10) $response = [ "status" => 1, "status_message" => "Success! Item has been added successfully." ];
         else $response = [ "status" => 2, "status_message" => "Error! Unable to add item." ];
