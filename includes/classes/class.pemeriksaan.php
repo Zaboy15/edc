@@ -58,37 +58,37 @@ class Pemeriksaan extends App {
     public static function addAPI($data) {
         global $database;
         
-        // if($data['seal_edc'] == false) $seal_edc = "false"; else $seal_edc = "true";
-        // if($data['seal_sim'] == false) $seal_sim = "false"; else $seal_sim = "true";
-        // if($data['simcard'] == false) $simcard = "false"; else $simcard = "true";
-        // if($data['transaksi_sale'] == false) $transaksi_sale = "false"; else $transaksi_sale = "true";
-        // if($data['transaksi_settlement'] == false) $transaksi_settlement = "false"; else $transaksi_settlement = "true";
-        // if($data['transaksi_emv'] == false) $transaksi_emv = "false"; else $transaksi_emv = "true";
-        // if($data['transaksi_void'] == false) $transaksi_void = "false"; else $transaksi_void = "true";
-        // if($data['transaksi_cicilan'] == false) $transaksi_cicilan = "false"; else $transaksi_cicilan = "true";
-        // if($data['printer_test'] == false) $printer_test = "false"; else $printer_test = "true";
-        // if($data['lcd'] == false) $lcd = "false"; else $lcd = "true";
-        // if($data['keypad'] == false) $keypad = "false"; else $keypad = "true";
-        // if($data['swipe_reader'] == false) $swipe_reader = "false"; else $swipe_reader = "true";
-        // if($data['chip_reader'] == false) $chip_reader = "false"; else $chip_reader = "true";
+        if($data['seal_edc'] == false) $seal_edc = "false"; else $seal_edc = "true";
+        if($data['seal_sim'] == false) $seal_sim = "false"; else $seal_sim = "true";
+        if($data['simcard'] == false) $simcard = "false"; else $simcard = "true";
+        if($data['transaksi_sale'] == false) $transaksi_sale = "false"; else $transaksi_sale = "true";
+        if($data['transaksi_settlement'] == false) $transaksi_settlement = "false"; else $transaksi_settlement = "true";
+        if($data['transaksi_emv'] == false) $transaksi_emv = "false"; else $transaksi_emv = "true";
+        if($data['transaksi_void'] == false) $transaksi_void = "false"; else $transaksi_void = "true";
+        if($data['transaksi_cicilan'] == false) $transaksi_cicilan = "false"; else $transaksi_cicilan = "true";
+        if($data['printer_test'] == false) $printer_test = "false"; else $printer_test = "true";
+        if($data['lcd'] == false) $lcd = "false"; else $lcd = "true";
+        if($data['keypad'] == false) $keypad = "false"; else $keypad = "true";
+        if($data['swipe_reader'] == false) $swipe_reader = "false"; else $swipe_reader = "true";
+        if($data['chip_reader'] == false) $chip_reader = "false"; else $chip_reader = "true";
 
     
     	$pemeriksaanid = $database->insert("tabel_pemeriksaan", [
     		"idticket" => 0,
     		"idspk" => $data['idspk'],
-            "seal_sim" => $data['seal_sim'],
-            "seal_edc" => $data['seal_edc'],
-            "simcard" => $data['simcard'],
-            "transaksi_sale" => $data['transaksi_seal'],
-            "transaksi_settlement" => $data['transaksi_settlement'],
-            "transaksi_emv" => $data['transaksi_emv'],
-            "transaksi_void" => $data['transaksi_void'],
-            "transaksi_cicilan" => $data['transaksi_cicilan'],
-            "printer_test" => $data['printer_test'],
-            "lcd" => $data['lcd'],
-            "keypad" => $data['keypad'],
-            "swipe_reader" => $data['swipe_reader'],
-            "chip_reader" => $data['chip_reader']
+            "seal_sim" => $seal_sim,
+            "seal_edc" => $seal_edc,
+            "simcard" => $simcard,
+            "transaksi_sale" => $transaksi_sale,
+            "transaksi_settlement" => $transaksi_settlement,
+            "transaksi_emv" => $transaksi_emv,
+            "transaksi_void" => $transaksi_void,
+            "transaksi_cicilan" => $transaksi_cicilan,
+            "printer_test" => $printer_test,
+            "lcd" => $lcd,
+            "keypad" => $keypad,
+            "swipe_reader" => $swipe_reader,
+            "chip_reader" => $chip_reader
             
 
     	]);
