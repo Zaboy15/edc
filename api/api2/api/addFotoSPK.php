@@ -3,6 +3,8 @@ require "../config/connection.php";
 if ($_SERVER['REQUEST_METHOD']=="POST"){
     $response = array();
     $spkid = $_POST['spkid'];
+    $image_spk = $_POST['image_spk'];
+
 
     $image = date('dmYHis').str_replace(" ","",basename($_FILES['file']['name']));
     $destination_dir = "../../../uploads/";
@@ -10,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     move_uploaded_file($_FILES['file']['tmp_name'],$imagePath);
     
         # code...
-        $insert = "INSERT INTO files VALUE(NULL,'0','0','0','0','$image','$image','$spkid','0','0')";
+        $insert = "INSERT INTO files VALUE(NULL,'0','0','0','0','$image','$image','$spkid',$image_spk,'0')";
     if (mysqli_query($con,$insert)) {
         # code...
         $response['value']=1;
