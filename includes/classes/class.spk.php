@@ -159,7 +159,7 @@ class Spk extends App {
     		return "10"; }
     }
 
-    public static function edit($data) {
+    public static function editAPI($data) {
     	global $database;
  
             $database->update("spk", [
