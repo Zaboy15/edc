@@ -56,7 +56,9 @@ class Staff extends App {
     			"layout" => $data['layout'],
     			"notes" => $data['notes'],
     			"signature" => $data['signature'],
-    			"lang" => $data['lang'],
+				"lang" => $data['lang'],
+    			"tokenfcm" => $data['tokenfcm'],
+				
     			"ticketsnotification" => $data['ticketsnotification'],
 
     			],["id" => $data['id']]);
@@ -78,7 +80,9 @@ class Staff extends App {
     			"layout" => $data['layout'],
     			"notes" => $data['notes'],
     			"signature" => $data['signature'],
-    			"lang" => $data['lang'],
+				"lang" => $data['lang'],
+    			"tokenfcm" => $data['tokenfcm'],
+				
     			"ticketsnotification" => $data['ticketsnotification'],
 
     			],["id" => $data['id']]);
