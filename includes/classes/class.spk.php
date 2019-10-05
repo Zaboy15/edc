@@ -159,6 +159,33 @@ class Spk extends App {
     		return "10"; }
     }
 
+    public static function edit($data) {
+    	global $database;
+ 
+            $database->update("spk", [
+                "id_merchant" => $data['id_merchant'],
+                "spk_number" => $data['spk_number'],
+                "inc_cimb" => $data['inc_cimb'],
+                "id_itfs" => $data['id_itfs'],
+                "reported_time" => $data['reported_time'],
+                "received_time" => $data['received_time'],
+                "wo_activity" => $data['wo_activity'],
+                // "reason_code" => $data['reason_code'],
+                // "supply_kertas" => $data['supply_kertas'],
+                "c_date_wo" => $data['c_date_wo'],
+                "spk_status" => $data['spk_status'],
+                // "wo_remarks" => $data['wo_remarks'],
+                "id_sn_edc" => $data['id_sn_edc'],
+                "id_sn_simcard" => $data['id_sn_simcard'],
+                "remarks_spk" => $data['remarks_spk'],
+
+                
+            ], [ "id" => $data['id'] ]);
+
+    	logSystem("SPK Edited - ID: " . $data['id']);
+    	return "20";
+    	}
+
     public static function editAPI($data) {
     	global $database;
  
