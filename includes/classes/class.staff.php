@@ -90,6 +90,20 @@ class Staff extends App {
     		return "20";
     		}
 
+	}
+	
+	public static function editToken($data) {
+    	global $database;
+    	
+    		$database->update("people", [
+    			"tokenfcm" => $data['tokenfcm'],
+
+    			],["id" => $data['id']]);
+    		logSystem("Token FCM Account Update - ID: " . $data['id']);
+    		return "20";
+    		
+    	
+
     }
 
     public static function delete($id) {
