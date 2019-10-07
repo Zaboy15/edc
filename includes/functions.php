@@ -501,6 +501,7 @@ function signInApi($email,$password) //login and set session
 		}
 	}
 
+
 function resetConfirmation($email) //set password resetkey and send confirmation email for password reset
 	{
 		global $database;
