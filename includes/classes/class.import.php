@@ -251,10 +251,10 @@ class Import extends App {
 			
 			$lastid = $database->insert("spk", [
 				"ticket_spk" => $random,
-				// "id_merchant" => $id_merchant,
+				"id_merchant" => $id_merchant,
 				"spk_number" => $item[9],
 				"inc_cimb" => $item[10],
-				// "id_itfs" => $id_itfs,
+				"id_itfs" => $id_itfs,
 				"reported_time" => $item[12],
 				"received_time" => $item[13],
 				"wo_activity" => $item[14],
