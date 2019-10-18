@@ -833,6 +833,18 @@ if ($route == "reports/licenses") {
 	$pageTitle = __("Licenses (Detailed List)");
 }
 
+if ($route == "reports/efkm") {
+	isAuthorized("viewTickets");
+	// $pemeriksaan = countTableFiltered("tabel_pemeriksaan","idspk",$_GET['id']);
+	$pemeriksaan = getRowPemeriksaan("tabel_pemeriksaan",$_GET['id']);
+	$spk = getRowById("spk",$_GET['id']);
+	$filesimage = getTableFiltered("files","spkid",$_GET['id'],"image_spk",1);
+	$files = getTableFiltered("files","spkid",$_GET['id']);
+	
+	
+	$pageTitle = __("Data E-FKM");
+}
+
 
 if ($route == "customers/customers") {
 	isAuthorized("viewClients");
@@ -1041,6 +1053,12 @@ if ($route == "system/import/sampledataSPK") {
 
 }
 
+if ($route == "system/import/samplestaff") {
+	isAuthorized("viewSystem");
+
+	Import::samplestaff();
+
+}
 if ($route == "system/import/licensesSample") {
 	isAuthorized("viewSystem");
 

@@ -501,6 +501,10 @@ switch($_POST['action']) {
 		$status = Import::spk($_POST, $_FILES);
 	break;
 
+	case "importStaff":
+		$status = Import::importstaff($_POST, $_FILES);
+	break;
+
 	case "importLicenses":
 		$status = Import::licenses($_POST, $_FILES);
 	break;

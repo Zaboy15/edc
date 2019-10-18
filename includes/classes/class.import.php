@@ -179,6 +179,64 @@ class Import extends App {
 
 	}
 
+	
+	public static function importstaff($data, $file) {
+    	global $database;
+		
+		// $customfields = getTable("assets_customfields");
+		// $customfieldsdata = array();
+		
+		$csv = fopen($file["file"]["tmp_name"],"r");
+		$filename = pathinfo($file['file']['name'], PATHINFO_FILENAME);
+		$lineindex = 0;
+
+
+		while( ($item = fgetcsv($csv, 0, ",", '"') ) !== FALSE ) {
+			
+			if($lineindex == 0) { 
+				//skip first line
+				$lineindex++; 
+				continue; 
+			}
+
+
+			$cekstaff = countTableFiltered("people", "email", $item[2]);
+			if ($cekstaff > 0) {
+				echo "gagal";
+			} else {
+			$lastid = $database->insert("people", [
+				// "customfields" => serialize($customfieldsdata),
+				"roleid" => $item[0],//0
+				"name" => $item[1],//1
+				"email" => $item[2],//2
+				"password" => sha1($item[3]),//3
+				"mobile" => $item[4],//4
+				"nik" => $item[5],//5
+				"type" => "admin",
+    			"clientid" => "0",
+            	"ldap_user" => "",
+    			"title" => "",
+    			"mobile" => "",
+				"theme" => "skin-blue",
+				"sidebar" => "opened",
+				"layout" => "",
+				"notes" => "",
+				"signature" => "",
+				"sessionid" => "",
+				"resetkey" => "",
+				"autorefresh" => 0,
+				"lang" => getConfigValue("default_lang"),
+				"ticketsnotification" => 1,
+				
+			]);
+
+
+			$lineindex++;
+		}
+	}
+
+
+	}
 
 	public static function assetscategory($data, $file) {
     	global $database;
@@ -557,6 +615,33 @@ class Import extends App {
 		foreach ($customfields as $customfield) {
 			array_push($header, $customfield['name']);
         }
+	
+		fputcsv($output, $header, ",");
+
+		fclose($output);
+	}
+	public static function samplestaff() {
+		global $database;
+
+
+		
+		header('Content-Type: application/excel');
+		header('Content-Disposition: attachment; filename="samplestaff.csv"');
+		
+		$output = fopen('php://output', 'w');
+
+		$header = [
+
+			"role", //0
+			"nama", //1
+			"email", //2
+			"password", //3
+			"mobile", //4
+			"nik", //5
+			
+		];
+
+		
 	
 		fputcsv($output, $header, ",");
 
