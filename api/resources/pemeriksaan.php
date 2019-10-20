@@ -15,11 +15,6 @@ switch ($request_method) {
             $result = $database->select("tabel_pemeriksaan", "*", [ "AND" => $filters, "ORDER" => ["id" => "DESC"] ]);
         }
 
-        $i=0;
-        foreach($result as $item) {
-            $result[$i]['ccs'] = unserialize($item['ccs']);
-            $i++;
-        }
 
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];
     break;
@@ -36,7 +31,7 @@ switch ($request_method) {
     case 'edit':
         isAuthorizedApi("editTicket");
 
-        $status = Spk::edit($data);
+        $status = Pemeriksaan::editPemeriksaanEDCAPI($data);
 
         if($status == 20) $response = [ "status" => 1, "status_message" => "Success! Item has been updated successfully." ];
         else $response = [ "status" => 2, "status_message" => "Error! Unable to update item." ];
