@@ -262,7 +262,7 @@ class Pemeriksaan extends App {
                     "chip_reader" => $chip_reader,
     
     
-                ], [ "idspk" => $data['idspk'] ]);
+                ]);
             
     
             logSystem("Ticket Edited - ID: " . $data['id']);
