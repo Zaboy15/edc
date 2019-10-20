@@ -1,7 +1,7 @@
 <?php $config = array(
     "database_type"=>"mysql",
     "database_name"=>"u4580489_edc",
-    "server"=>"156.67.215.151",
+    "server"=>"localhost",
     "username"=>"u4580489_dev",
     "password"=>"P@ssw0rdmyteacher",
     "charset"=>"utf8",
