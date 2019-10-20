@@ -545,7 +545,7 @@ if ($route == "spk/manage") {
 	$pemeriksaan = countTableFiltered("tabel_pemeriksaan","idspk",$_GET['id']);
 	$spk = getRowById("spk",$_GET['id']);
 	$filesimage = getTableFiltered("files","spkid",$_GET['id'],"image_spk",1);
-	$filesimagesignature = getTableFiltered("files","spkid",$_GET['id'],"image_spk",2);
+	$filesimagesignaturemanage = getTableFiltered("files","spkid",$_GET['id'],"image_spk",2);
 	$files = getTableFiltered("files","spkid",$_GET['id']);
 	isOwner($spk['clientid']);
 
