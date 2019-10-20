@@ -234,7 +234,7 @@ class Pemeriksaan extends App {
             if($data['seal_edc'] == false) $seal_edc = "false"; else $seal_edc = "true";
             if($data['seal_sim'] == false) $seal_sim = "false"; else $seal_sim = "true";
             if($data['simcard'] == false) $simcard = "false"; else $simcard = "true";
-            if($data['transaksi_sale'] == false) $transaksi_sale = "false"; else $transaksi_sale = "true";
+            if($data['transaksi_sale'] == false) $transaksi_sale = "false"; else $transaksi_sale = "false";
             if($data['transaksi_settlement'] == false) $transaksi_settlement = "false"; else $transaksi_settlement = "true";
             if($data['transaksi_emv'] == false) $transaksi_emv = "false"; else $transaksi_emv = "true";
             if($data['transaksi_void'] == false) $transaksi_void = "false"; else $transaksi_void = "true";
