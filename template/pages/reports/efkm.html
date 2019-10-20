@@ -137,6 +137,19 @@
 							</div>
 						</div>
 
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title"><?php _e('Foto Dokumentasi'); ?></h3>
+							</div><!-- /.box-header -->
+							<div class="box-body">
+					<?php foreach ($filesimagesignature as $filesimagesignature) { ?>
+						<div class="col-md-3 col-xs-6">
+							<img class="img-responsive img-thumbnail" src="?qa=download&id=<?php echo $filesimagesignature['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+						</div>
+						<?php } ?>
+
+					</div>
+
 				
 						
 			</div>

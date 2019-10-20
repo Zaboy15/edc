@@ -839,6 +839,8 @@ if ($route == "reports/efkm") {
 	$pemeriksaan = getRowPemeriksaan("tabel_pemeriksaan",$_GET['id']);
 	$spk = getRowById("spk",$_GET['id']);
 	$filesimage = getTableFiltered("files","spkid",$_GET['id'],"image_spk",1);
+	$filesimagesignature = getTableFiltered("files","spkid",$_GET['id'],"image_spk",2);
+
 	$files = getTableFiltered("files","spkid",$_GET['id']);
 	
 	
