@@ -104,6 +104,27 @@ class Staff extends App {
     		
     	
 
+	}
+	
+	public static function editLocation($data) {
+    	global $database;
+    	
+    		$database->update("people", [
+    			"last_location" => $data['last_location'],
+
+				],["id" => $data['id']]);
+			
+			$database->insert("location_itfs", [
+				"staffid" => $data['staffid'],
+				"latlong" => $data['latlong'],
+				"timestamp" => $data['timestamp'],
+	
+				]);
+    		logSystem("Location Account Update - ID: " . $data['id']);
+    		return "20";
+    		
+    	
+
     }
 
     public static function delete($id) {
