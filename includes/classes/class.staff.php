@@ -117,7 +117,6 @@ class Staff extends App {
 			$database->insert("location_itfs", [
 				"staffid" => $data['staffid'],
 				"latlong" => $data['latlong'],
-				"timestamp" => $data['timestamp'],
 	
 				]);
     		logSystem("Location Account Update - ID: " . $data['id']);
