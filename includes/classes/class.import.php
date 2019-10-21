@@ -328,7 +328,7 @@ class Import extends App {
 		
 		if ($lastid == "0") { return "11"; }
         else {
-            
+            Notification::notifFCM($peopleid,"test","isi test");            
     		logSystem("Import Added - ID: " . $ticketid);
     		return "10";
         }
