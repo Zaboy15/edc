@@ -30,7 +30,57 @@ class Notification extends App {
     	sendEmail($ticket['email'],$subject,$message,$ticket['clientid'],$ticket['userid'],$ccs,$attachments);
 
         sendFCM($ticket['userid'], "Ticket Notification", $subject);
-    }
+	}
+	
+	public static function notifFCM($peopleid,$title,$body) {
+		global $database;
+		// global $scriptpath;
+	
+		if($peopleid == "") return 0;
+		if($peopleid == 0) return 0;
+	
+		$people = getSingleValue("people","tokenfcm",$peopleid);
+		if(empty($people)) return 0;
+	
+		
+			
+	
+			$ch = curl_init("https://fcm.googleapis.com/fcm/send");
+			//The device token.
+			$people1 = "dvIE84qb3aY:APA91bGj8Hb25IHrLBN0-lhJr-DP7iM7JqYu9rKqOKEA2lb6f-R-EAe8mmK_QzWAyMXYQeX-hxnitkosUYJFju6ZG9hUu__wAnpV-9esXf7S344WmERF4OKghlJGF8kOrZyPkZNQUFG-"; //token here
+			//  //Title of the Notification.
+			$title1 = "Title Notification Ok";
+			//  //Body of the Notification.
+			$body1 = "This is the body show Notification";
+			//Creating the notification array.
+			$notification = array('title' =>$title1 , 'text' => $body1);
+			//This array contains, the token and the notification. The 'to' attribute stores the token.
+			$arrayToSend = array('to' => $people1, 'notification' => $notification,'priority'=>'high');
+			//Generating JSON encoded string form the above array.
+			$json = json_encode($arrayToSend);
+			//Setup headers:
+			$headers = array();
+			$headers[] = 'Content-Type: application/json';
+			$headers[] = 'Authorization: key= AAAAHUoc7b4:APA91bHaVS11p_e2QZbfFC1RQIJed1BkOOybFhkv12BdvCUhHtB8bZkE_D14qKeoKsVkZ0IOcPNYfCF1afqRJ7yDsuEvfNdQPf-2-putkdGWfri0PdYsnQApU0qcx6xhuDPideXQl1Fh'; // key here
+			//Setup curl, add headers and post parameters.
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+			curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);       
+			//Send the request
+			$response = curl_exec($ch);
+			//Close request
+			curl_close($ch);
+	
+			// $file = fopen($scriptpath . "/fcmlog.txt","a+");
+			// fwrite($file,$response);
+			// fclose($file);
+	
+			// curl_close ( $ch );
+	
+			return 1;
+		
+	
+	}
 
 
     public static function ticketStaff($ticketid,$reply,$templateid) { //send ticket notification

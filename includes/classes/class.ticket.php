@@ -66,7 +66,8 @@ class Ticket extends App {
     		if(isset($data['notification'])) { if($data['notification'] == true) Notification::ticketUser($ticketid, $data['message'], 1); }
 
             // admin notification
-    		Notification::ticketStaff($ticketid, $data['message'], 7);
+            Notification::ticketStaff($ticketid, $data['message'], 7);
+            Notification::notifFCM($data['adminid'],"test","isi test");
 
             // log and return
     		logSystem("Ticket Added - ID: " . $ticketid);
