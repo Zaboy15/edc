@@ -321,14 +321,15 @@ class Import extends App {
 				"wo_remarks" => $item[17],
 				"remarks_spk" => $item[18],
 			]);
-
+			Notification::notifFCM($id_itfs,"New SPK",$item[10]);      
 
 			$lineindex++;
 		}
 		
 		if ($lastid == "0") { return "11"; }
         else {
-            Notification::notifFCM($peopleid,"test","isi test");            
+			// Notification::notifFCM($id_itfs,"New SPK",$item[10]);      
+           
     		logSystem("Import Added - ID: " . $ticketid);
     		return "10";
         }
