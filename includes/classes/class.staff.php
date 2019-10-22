@@ -41,7 +41,14 @@ class Staff extends App {
 
     public static function edit($data) {
     	global $database;
-    	$email = strtolower($data['email']);
+		$email = strtolower($data['email']);
+		
+		$customfields = getTable("staff_customfields");
+        $customfieldsdata = array();
+
+        foreach ($customfields as $customfield) {
+            $customfieldsdata[$customfield['id']] = $data[$customfield['id']];
+        }
 
     	if ($data['password'] == "") {
     		$database->update("people", [
@@ -58,7 +65,7 @@ class Staff extends App {
     			"signature" => $data['signature'],
 				"lang" => $data['lang'],
     			"tokenfcm" => $data['tokenfcm'],
-				
+				"customfields" => serialize($customfieldsdata),
     			"ticketsnotification" => $data['ticketsnotification'],
 
     			],["id" => $data['id']]);
@@ -82,7 +89,7 @@ class Staff extends App {
     			"signature" => $data['signature'],
 				"lang" => $data['lang'],
     			"tokenfcm" => $data['tokenfcm'],
-				
+				"customfields" => serialize($customfieldsdata),
     			"ticketsnotification" => $data['ticketsnotification'],
 
     			],["id" => $data['id']]);
