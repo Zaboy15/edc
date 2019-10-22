@@ -896,6 +896,7 @@ if ($route == "people/staff") { isAuthorized("viewStaff");  $admins = getTableFi
 if ($route == "people/staff/edit") {
 	isAuthorized("editStaff");
 	$admin = getRowById("people",$_GET['id']);
+	$customfields = getTable("staff_customfields");
 	$languages = getTable("languages");
 	$roles = getTableFiltered("roles","type","admin");
 	$pageTitle = __("Edit Staff");
@@ -1019,6 +1020,8 @@ if ($route == "system/customfields") {
 	isAuthorized("viewCustomFields");
 	$assets_customfields = getTable("assets_customfields");
 	$licenses_customfields = getTable("licenses_customfields");
+	$staff_customfields = getTable("staff_customfields");
+
 	$pageTitle = __("Custom Fields");
 }
 

@@ -448,12 +448,24 @@ switch($_POST['action']) {
 		isAuthorized("addCustomField"); $status = CustomField::addAssetCF($_POST);
 	break;
 
+	case "addStaffCF":
+		isAuthorized("addCustomField"); $status = CustomField::addStaffCF($_POST);
+	break;
+
 	case "editAssetCF":
 		isAuthorized("editCustomField"); $status = CustomField::editAssetCF($_POST);
 	break;
 
+	case "editStaffCF":
+		isAuthorized("editCustomField"); $status = CustomField::editStaffCF($_POST);
+	break;
+
 	case "deleteAssetCF":
 		isAuthorized("deleteCustomField"); $status = CustomField::deleteAssetCF($_POST['id']);
+	break;
+
+	case "deleteStaffCF":
+		isAuthorized("deleteCustomField"); $status = CustomField::deleteStaffCF($_POST['id']);
 	break;
 
 

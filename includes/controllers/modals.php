@@ -305,6 +305,10 @@ switch($_GET['modal']) {
         $assetcf = getRowById("assets_customfields",$_GET['id']);
     break;
 
+    case "staffcf/edit":
+        $staffcf = getRowById("staff_customfields",$_GET['id']);
+    break;
+
     // licenses custom fields
     case "licensescf/edit":
         $licensecf = getRowById("licenses_customfields",$_GET['id']);

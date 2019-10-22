@@ -137,6 +137,37 @@
 												<textarea class="form-control" id="signature" rows="3" name="signature"><?php echo $admin['signature']; ?></textarea>
 											</div>
 
+											<?php foreach($customfields as $customfield) { ?>
+												
+													<div class="form-group">
+														<label><?php echo $customfield['name'] ?></label>
+		
+														<?php if($customfield['type'] == "Text Box") { ?>
+															<input type="text" class="form-control" name="<?php echo $customfield['id'] ?>" value="<?php echo $customdata[$customfield['id']] ?>">
+														<?php } ?>
+		
+														<?php if($customfield['type'] == "Text Area") { ?>
+															<textarea class="form-control" name="<?php echo $customfield['id'] ?>"><?php echo $customdata[$customfield['id']]; ?></textarea>
+														<?php } ?>
+		
+														<?php if($customfield['type'] == "Dropdown") { $options = explode(",",$customfield['options']); ?>
+															<select class="form-control select2 select2-hidden-accessible" name="<?php echo $customfield['id']; ?>" style="width: 100%;" tabindex="-1" aria-hidden="true">
+																<?php foreach ($options as $option) { ?>
+		
+																	<option value='<?php echo $option; ?>' <?php if( $option == $customdata[$customfield['id']] ) echo "selected"; ?> ><?php echo $option; ?></option>
+		
+																<?php } ?>
+															</select>
+														<?php } ?>
+		
+														<?php if($customfield['description'] != "") { ?>
+															<p class="help-block"><?php echo $customfield['description'] ?></p>
+														<?php } ?>
+													</div>
+												
+		
+											<?php } ?>
+
 										</div>
 									</div>
 
