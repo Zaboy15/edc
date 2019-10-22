@@ -392,7 +392,7 @@ if ($route == "inventory/licenses/manage") {
 	isOwner($license['clientid']);
 
 	$customdata = unserialize($license['customfields']);
-
+	$customfields = getTable("licenses_customfields");
 	$categories = getTable("licensecategories");
 	$labels = getTable("labels");
 	$clients = getTable("clients");
@@ -400,7 +400,7 @@ if ($route == "inventory/licenses/manage") {
 	$assets = getTable("assets");
 	$suppliers = getTable("suppliers");
 
-	$customfields = getTable("licenses_customfields");
+	
 
 	$pageTitle = $license['tag'];
 	}
@@ -896,9 +896,12 @@ if ($route == "people/staff") { isAuthorized("viewStaff");  $admins = getTableFi
 if ($route == "people/staff/edit") {
 	isAuthorized("editStaff");
 	$admin = getRowById("people",$_GET['id']);
-	$customfields = getTable("staff_customfields");
+	
 	$languages = getTable("languages");
 	$roles = getTableFiltered("roles","type","admin");
+	$customdata = unserialize($admin['customfields']);
+	$customfields = getTable("staff_customfields");
+	
 	$pageTitle = __("Edit Staff");
 }
 
