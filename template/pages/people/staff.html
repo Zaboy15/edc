@@ -26,7 +26,14 @@
 												if(getConfigValue("ldap_enable") == "false") _e('Email');
 											?>
 										</th>
-										<th><?php _e('Title'); ?></th>
+										<th><?php _e('No HP'); ?></th>
+										<th><?php _e('NIK'); ?></th>
+										<th><?php _e('Area'); ?></th>
+										<th><?php _e('Alamat Engineer'); ?></th>
+										<th><?php _e('No KTP'); ?></th>
+
+
+
 										<th><?php _e('Role'); ?></th>
 										<th class="text-right"></th>
 	                                </tr>
@@ -50,8 +57,13 @@
 											}
 
 										echo "</td>";
+										echo "<td>".$admin['mobile']."</td>";
+										echo "<td>".$admin['nik']."</td>";
+										echo "<td>".$admin['area']."</td>";
+										echo "<td>".$admin['alamat']."</td>";
+										echo "<td>".$admin['ktp']."</td>";
 
-										echo "<td>".$admin['title']."</td>";
+
 										echo "<td>".getSingleValue("roles","name",$admin['roleid'])."</td>";
 										echo "<td><div class='pull-right btn-group'>";
 											if(in_array("editStaff",$perms)) echo "<a href='?route=people/staff/edit&id=".$admin['id']."' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a>";
