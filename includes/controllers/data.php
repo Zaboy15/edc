@@ -892,7 +892,10 @@ if ($route == "clients/manage") {
 
 
 // STAFF
-if ($route == "people/staff") { isAuthorized("viewStaff");  $admins = getTableFiltered("people","type","admin"); $pageTitle = __("Staff"); }
+if ($route == "people/staff") { isAuthorized("viewStaff");
+	$admins = getTableFiltered("people","type","admin");
+	$customfields = getTable("staff_customfields");
+	$pageTitle = __("Staff"); }
 if ($route == "people/staff/edit") {
 	isAuthorized("editStaff");
 	$admin = getRowById("people",$_GET['id']);
