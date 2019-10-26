@@ -20,12 +20,7 @@
 	                                <tr>
 	                                    <th><?php _e('ID'); ?></th>
 	                                    <th><?php _e('Name'); ?></th>
-										<th>
-											<?php
-												if(getConfigValue("ldap_enable") == "true") _e('Email & LDAP User');
-												if(getConfigValue("ldap_enable") == "false") _e('Email');
-											?>
-										</th>
+					
 										<th><?php _e('No HP'); ?></th>
 										<th><?php _e('NIK'); ?></th>
 										<th><?php _e('Area'); ?></th>
@@ -42,44 +37,38 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>
+									
+
 									<?php
-									foreach ($admins as $admin) {
-	                                echo "<tr>";
-	                                    echo "<td>".$admin['id']."</td>";
-	                                    echo "<td>".$admin['name']."</td>";
-	                              
+									foreach ($admins as $admin) { ?>
+										<tr>
+										<td><?php echo $admin['id'];?></td>
+										<td><?php echo $admin['name'];?></td>
+										<td><?php echo $admin['mobile'];?></td>
+										<td><?php echo $admin['nik'];?></td>
+										<td><?php echo $admin['area'];?></td>
+										<td><?php echo $admin['alamat'];?></td>
+										<td><?php echo $admin['ktp'];?></td>
+										<td><?php echo getSingleValue('roles','name',$admin['roleid']); ?></td>
+										<?php foreach($customfields as $customfield) { $customdata = unserialize($asset['customfields']); ?>
+										<td>
+											<?php if(isset($customdata[$customfield['id']])) echo $customdata[$customfield['id']]; ?>
+										</td>
+									<?php } ?>
 
-										echo "<td>";
-											echo $admin['email'];
-											if(getConfigValue("ldap_enable") == "true") {
-												if($admin['ldap_user'] != "") {
-													echo "<br>";
-													_e('LDAP User: ');
-													echo $admin['ldap_user'];
-												}
-											}
+									<td>
+											<div class='pull-right'>
+												<div class="btn-group">
+														<?php if(in_array("editStaff",$perms)) { ?><a href='?route=people/staff/edit&id=<?php echo $admin['id']; ?>&section=edit' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+														<?php if(in_array("deleteStaff",$perms)) { ?><a href='#' onClick='showM("?modal=staff/delete&reroute=people/staff&routeid=&id=<?php echo $admin['id']; ?>&section=");return false' class='btn btn-flat btn-danger btn-sm' ><i class='fa fa-trash-o fa-fw'></i><?php _e('Delete'); ?></a><?php } ?>
+	
+												</div>
+											</div>
+										</td>
 
-										echo "</td>";
-										echo "<td>".$admin['mobile']."</td>";
-										echo "<td>".$admin['nik']."</td>";
-										echo "<td>".$admin['area']."</td>";
-										echo "<td>".$admin['alamat']."</td>";
-										echo "<td>".$admin['ktp']."</td>";
-
-
-										echo "<td>".getSingleValue("roles","name",$admin['roleid'])."</td>";
-										foreach($customfields as $customfield) { $customdata = unserialize($asset['customfields']);
-												echo"<td>".
-													 if(isset($customdata[$customfield['id']])) echo $customdata[$customfield['id']];
-												."</td>";
 										
-										echo "<td><div class='pull-right btn-group'>";
-											if(in_array("editStaff",$perms)) echo "<a href='?route=people/staff/edit&id=".$admin['id']."' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a>";
-											if(in_array("deleteStaff",$perms)) echo "<a href='#' onClick='showM(\"index.php?modal=staff/delete&reroute=people/staff&id=".$admin['id']."\");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a>";
-										echo "</div></td>";
-	                                echo "</tr>";
-									}
-									?>
+										</tr>
+										<?php } ?>
 								</tbody>
 							</table>
 						</div>
