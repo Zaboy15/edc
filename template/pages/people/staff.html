@@ -68,6 +68,10 @@
 
 
 										echo "<td>".getSingleValue("roles","name",$admin['roleid'])."</td>";
+										foreach($customfields as $customfield) { $customdata = unserialize($asset['customfields']);
+												echo"<td>".
+													 if(isset($customdata[$customfield['id']])) echo $customdata[$customfield['id']];
+												."</td>";
 										
 										echo "<td><div class='pull-right btn-group'>";
 											if(in_array("editStaff",$perms)) echo "<a href='?route=people/staff/edit&id=".$admin['id']."' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a>";
