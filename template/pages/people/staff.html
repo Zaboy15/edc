@@ -50,7 +50,7 @@
 										<td><?php echo $admin['alamat'];?></td>
 										<td><?php echo $admin['ktp'];?></td>
 										<td><?php echo getSingleValue('roles','name',$admin['roleid']); ?></td>
-										<?php foreach($customfields as $customfield) { $customdata = unserialize($asset['customfields']); ?>
+										<?php foreach($customfields as $customfield) { $customdata = unserialize($admin['customfields']); ?>
 										<td>
 											<?php if(isset($customdata[$customfield['id']])) echo $customdata[$customfield['id']]; ?>
 										</td>
