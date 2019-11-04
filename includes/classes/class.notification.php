@@ -47,9 +47,9 @@ class Notification extends App {
 	
 			$ch = curl_init("https://fcm.googleapis.com/fcm/send");
 			//The device token.
-			// $people1 = "dvIE84qb3aY:APA91bGj8Hb25IHrLBN0-lhJr-DP7iM7JqYu9rKqOKEA2lb6f-R-EAe8mmK_QzWAyMXYQeX-hxnitkosUYJFju6ZG9hUu__wAnpV-9esXf7S344WmERF4OKghlJGF8kOrZyPkZNQUFG-"; //token here
+			$people1 = "f6DWcgGPyug:APA91bEd_9iDvqNuOIczmTpZIF2qlNVt3vlzwtGzetx56K5aIx-MM3z59eAZeeiPS-EADRXGrclf4xTYti8G1UWh5f-lVBuA9wq7rmsqt_oKwwDidyvKb6xXd3W3zyoBg4AQCltuRoCK"; //token here
 			//  //Title of the Notification.
-			// $title1 = "Title Notification Ok";
+			// $title1 = "Title Notification";
 			//  //Body of the Notification.
 			// $body1 = "This is the body show Notification";
 			//Creating the notification array.

@@ -66,8 +66,8 @@ class Ticket extends App {
     		if(isset($data['notification'])) { if($data['notification'] == true) Notification::ticketUser($ticketid, $data['message'], 1); }
 
             // admin notification
-            Notification::ticketStaff($ticketid, $data['message'], 7);
-            
+            // Notification::ticketStaff($ticketid, $data['message'], 7);
+             Notification::notifFCM($data['adminid'],"New Ticket",$data['subject']);
 
             // log and return
     		logSystem("Ticket Added - ID: " . $ticketid);
@@ -156,7 +156,7 @@ class Ticket extends App {
             // send admin notification if guest ticket
             if($peopleid == "0") Notification::ticketStaff($data['ticketid'],$data['message'],8);
             
-            Notification::notifFCM($peopleid,"test","isi test");
+            // Notification::notifFCM($peopleid,"test","isi test");
 
     		logSystem("Ticket Reply Added - ID: " . $lastid);
     		return "10"; }
