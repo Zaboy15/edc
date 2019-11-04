@@ -67,7 +67,7 @@ class Ticket extends App {
 
             // admin notification
             // Notification::ticketStaff($ticketid, $data['message'], 7);
-             Notification::notifFCM($data['adminid'],"New Ticket",$data['subject']);
+             Notification::notifFCM($data['adminid'],"New Ticket"."-".$data['ticket'],$data['subject']);
 
             // log and return
     		logSystem("Ticket Added - ID: " . $ticketid);
