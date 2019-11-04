@@ -16,16 +16,16 @@ class Ticket extends App {
             $userid = $data['userid'];
         }
 
-
         $random = rand(100000,999999);
         while($database->has("tickets", [ "ticket" => $random ])) { $random = rand(100000,999999); }
 
         if(isset($data['notes'])) $notes = $data['notes']; else $notes = "";
 
     	$ticketid = $database->insert("tickets", [
-    		"ticket" => getRandom(),
-            "departmentid" => $data['departmentid'],
-    		"clientid" => $data['clientid'],
+    		"ticket" => $random,
+            "departmentid" => 0,
+            "clientid" => $data['clientid'],
+    		"idcustomer" => $data['idcustomer'],
     		"userid" => $userid,
     		"adminid" => $data['adminid'],
     		"assetid" => $data['assetid'],

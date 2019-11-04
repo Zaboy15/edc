@@ -12,31 +12,34 @@
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="departmentid"><?php _e('Department'); ?></label>
-                <select class="form-control select2 select2-hidden-accessible" id="departmentid" name="departmentid" style="width: 100%;" tabindex="-1" aria-hidden="true">
-
-                    <?php foreach ($departments as $department) { ?>
-                        <option value='<?php echo $department['id']; ?>'><?php echo $department['name']; ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-        </div>
+        
 
         <div class="col-md-6">
             <?php if($isAdmin) { ?>
                 <div class="form-group">
-                    <label for="clientid"><?php _e('Client'); ?></label>
-                    <select class="form-control select2 select2-hidden-accessible" id="clientid" name="clientid" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    <label for="idcustomer"><?php _e('Customer'); ?></label>
+                    <select class="form-control select2 select2-hidden-accessible" id="idcustomer" name="idcustomer" style="width: 100%;" tabindex="-1" aria-hidden="true">
                         <option value="0"><?php _e('None'); ?></option>
-                        <?php foreach ($clients as $client) { ?>
-                            <option value='<?php echo $client['id']; ?>' <?php if(isset($_GET['clientid'])) { if($_GET['clientid'] == $client['id']) echo "selected"; }  ?>><?php echo $client['name']; ?></option>
+                        <?php foreach ($customertable as $customertable) { ?>
+                            <option value='<?php echo $customertable['id']; ?>' <?php if(isset($_GET['clientid'])) { if($_GET['clientid'] == $customertable['id']) echo "selected"; }  ?>><?php echo $customertable['nama_customer']; ?></option>
                         <?php } ?>
                     </select>
                 </div>
             <?php } ?>
-            <?php if(!$isAdmin) { ?><input type="hidden" name="clientid" value="<?php echo $liu['clientid']; ?>"><?php } ?>
+            
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="clientid"><?php _e('Cabang'); ?></label>
+                <select class="form-control cabangSelect select2-hidden-accessible" id="clientid" name="clientid" style="width: 100%;">
+                    <?php if(isset($_GET['assetid'])) { ?>
+                        <option value="<?php echo $_GET['assetid']; ?>"><?php echo getSingleValue("assets","tag",$_GET['assetid']) ; ?> <?php echo getSingleValue("assets","name",$_GET['assetid']) ; ?></option>
+                    <?php } else { ?>
+                        <option value="0"><?php _e('None'); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
         </div>
 
 
@@ -193,9 +196,37 @@
             clientid = $("#clientid").val();
         });
 
+        $("#idcustomer").on("change", function (e) {
+            idcustomer = $("#idcustomer").val();
+        });
+
         <?php if(!$isAdmin) { ?>
             clientid = <?php echo $liu['clientid']; ?>;
         <?php } ?>
+
+        $('.cabangSelect').select2({
+    		ajax: {
+    			url: "index.php",
+    			dataType: 'json',
+    			data: function (params) {
+    			  return {
+    				q: params.term, // search term
+    				qa: 'cabangSelect',
+                    filterid: idcustomer
+    			  };
+    			},
+    			processResults: function (data,params) {
+    				return {
+    					results: $.map(data, function(obj) {
+    						return { id: obj.id, text: obj.text };
+    					})
+    				};
+    			},
+    			//cache: true,
+    	    },
+    	    
+    		placeholder: "<?php _e('Please Select'); ?>",
+    	});
 
     	$('.assetsSelect').select2({
     		ajax: {
@@ -217,7 +248,7 @@
     			},
     			//cache: true,
     	    },
-    	    minimumInputLength: 3,
+    	   
     		placeholder: "<?php _e('Please Select'); ?>",
     	});
 

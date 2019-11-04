@@ -318,6 +318,18 @@
 									<td><?php echo $ticket['email']; ?></td>
 								</tr>
 								<tr>
+									<td><b><?php _e('Customer'); ?></b></td>
+									<td>
+										<?php
+											if($ticket['idcustomer'] == 0)
+												echo "<span class='text-muted'>".__("None")."</span>";
+											else {
+												 echo getSingleValue('tabel_customer','nama_customer',$ticket['idcustomer']);
+											}
+										?>
+									</td>
+								</tr>
+								<tr>
 									<td><b><?php _e('Client'); ?></b></td>
 									<td>
 										<?php

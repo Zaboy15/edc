@@ -156,6 +156,8 @@ switch($_GET['modal']) {
         $contacts = getTable("contacts");
         if($isAdmin) { $assets = getTable("assets"); } else { $assets = getTableFiltered("assets","clientid",$liu['clientid']); }
         $clients = getTable("clients");
+        $customertable = getTable("tabel_customer");
+
         $departments = getTable("tickets_departments");
         $admins = getTableFiltered("people","type","admin");
         if($isAdmin) { $users = getTableFiltered("people","type","user"); } else { $users = getTableFiltered("people","type","user","clientid",$liu['clientid']); }

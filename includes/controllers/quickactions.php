@@ -120,6 +120,50 @@ switch($_GET['qa']) {
 		echo json_encode($results);
 	break;
 
+	case "cabangSelect":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("clients", "*", [ "AND" => [
+					"id_customer" => $filterid,
+					"OR" => [
+						"mid[~]" => $searchstring,
+						"idcabang[~]" => $searchstring,
+						"name[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("clients", "*", [ "OR" => [
+					"mid[~]" => $searchstring,
+					"idcabang[~]" => $searchstring,
+					"name[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("clients", "*", [ "id_customer" => $filterid ]);
+			} else {
+				$items = $database->select("clients", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['name'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
 
 	case "assetsSelect":
 		$filterid = $_GET['filterid'];
@@ -156,7 +200,7 @@ switch($_GET['qa']) {
 		$i = 1;
 		foreach($items as $item) {
 			$results[$i]['id'] = $item['id'];
-			$results[$i]['text'] = $item['tag'] . " " . $item['name'];
+			$results[$i]['text'] = $item['midtid'] . " " . $item['serial'];
 			$i++;
 		}
 
