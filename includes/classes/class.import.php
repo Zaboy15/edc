@@ -302,26 +302,32 @@ class Import extends App {
 			// 	}
 			// 	$itemindex++;
 			// }
-
-			$random = rand(100000,999999);
-			$random = "SPK".$random;
-        	while($database->has("spk", [ "ticket_spk" => $random ])) { $random = rand(100000,999999); }
+			$spknumber = $database->get("spk", "*", ["spk_number" => $item[9]]);
+			if(!empty($spknumber)) { 
+				return "11";
+			}
+			else{
+				$random = rand(100000,999999);
+				$random = "SPK".$random;
+				while($database->has("spk", [ "ticket_spk" => $random ])) { $random = rand(100000,999999); }
+				
+				$lastid = $database->insert("spk", [
+					"ticket_spk" => $random,
+					"id_merchant" => $id_merchant,
+					"spk_number" => $item[9],
+					"inc_cimb" => $item[10],
+					"id_itfs" => $id_itfs,
+					"reported_time" => $item[12],
+					"received_time" => $item[13],
+					"wo_activity" => $item[14],
+					"reason_code" => $item[15],
+					"spk_status" => $item[16],
+					"wo_remarks" => $item[17],
+					"remarks_spk" => $item[18],
+				]);
+				Notification::notifFCM($id_itfs,"New SPK",$item[10]);      
+			}
 			
-			$lastid = $database->insert("spk", [
-				"ticket_spk" => $random,
-				"id_merchant" => $id_merchant,
-				"spk_number" => $item[9],
-				"inc_cimb" => $item[10],
-				"id_itfs" => $id_itfs,
-				"reported_time" => $item[12],
-				"received_time" => $item[13],
-				"wo_activity" => $item[14],
-				"reason_code" => $item[15],
-				"spk_status" => $item[16],
-				"wo_remarks" => $item[17],
-				"remarks_spk" => $item[18],
-			]);
-			Notification::notifFCM($id_itfs,"New SPK",$item[10]);      
 
 			$lineindex++;
 		}

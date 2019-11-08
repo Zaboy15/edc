@@ -74,10 +74,10 @@
 											</td>
 											<td>
 												<?php if($spk['spk_status'] == "1") echo "<span class='badge bg-green'>".__("Open")."</span>"; ?>
-												<?php if($ticket['status'] == "In Progress") echo "<span class='badge bg-navy'>".__("In Progress")."</span>"; ?>
-												<?php if($ticket['status'] == "Answered") echo "<span class='badge bg-teal'>".__("Answered")."</span>"; ?>
-												<?php if($ticket['status'] == "Reopened") echo "<span class='badge bg-orange'>".__("Reopened")."</span>"; ?>
-												<?php if($ticket['status'] == "Closed") echo "<span class='badge bg-gray'>".__("Closed")."</span>"; ?>
+												<?php if($spk['spk_status'] == "In Progress") echo "<span class='badge bg-navy'>".__("In Progress")."</span>"; ?>
+												<?php if($spk['spk_status'] == "Open Pending") echo "<span class='badge bg-orange'>".__("Open Pending")."</span>"; ?>
+												<?php if($spk['spk_status'] == "Open Import") echo "<span class='badge bg-gray'>".__("Open Import")."</span>"; ?>												
+												<?php if($spk['spk_status'] == "Closed Complete") echo "<span class='badge bg-gray'>".__("Closed Complete")."</span>"; ?>
 											</td>
 											<td><span style="display:none"><?php echo Spk::lastReplyStamp($spk['id']); ?></span><?php echo Spk::lastReply($spk['id']); ?></td>
 											<td>

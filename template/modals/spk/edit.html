@@ -21,6 +21,8 @@
                     <option value="REINIT" <?php if($spkdata['wo_activity'] == "REINIT") echo "selected"; ?>><?php _e('REINIT'); ?></option>
                     <option value="REPLACEMENT" <?php if($spkdata['wo_activity'] == "REPLACEMENT") echo "selected"; ?>><?php _e('REPLACEMENT'); ?></option>
                     <option value="WITHDRAW" <?php if($spkdata['wo_activity'] == "WITHDRAW") echo "selected"; ?>><?php _e('WITHDRAW'); ?></option>
+                    <option value="QR CODE" <?php if($spkdata['wo_activity'] == "QR CODE") echo "selected"; ?>><?php _e('QR CODE'); ?></option>
+                    <option value="ACRYLYIC" <?php if($spkdata['wo_activity'] == "ACRYLIC") echo "selected"; ?>><?php _e('ACRYLIC'); ?></option>
                 
                 </select>
             </div>
@@ -151,10 +153,8 @@
                         <label for="spk_status">Status *</label>
                         <select class="form-control select2" id="spk_status" name="spk_status" style="width: 100%;">
                             <option value="In Progress" <?php if($spkdata['spk_status'] == "In Progress") echo "selected"; ?>><?php _e('In Progress'); ?></option>
-                            <option value="Answered" <?php if($spkdata['spk_status'] == "Answered") echo "selected"; ?>><?php _e('Answered'); ?></option>
-                            <option value="Reopened" <?php if($spkdata['spk_status'] == "Reopened") echo "selected"; ?>><?php _e('Reopened'); ?></option>
-                            <option value="Closed" <?php if($spkdata['spk_status'] == "Closed") echo "selected"; ?>><?php _e('Closed'); ?></option>
-                            <option value="Open Import" <?php if($spkdata['spk_status'] == "Open Import") echo "selected"; ?>><?php _e('Open Import'); ?></option>
+                            <option value="Closed Complete" <?php if($spkdata['spk_status'] == "Closed") echo "selected"; ?>><?php _e('Closed Complete'); ?></option>
+                            <option value="Open Pending" <?php if($spkdata['spk_status'] == "Open Pending") echo "selected"; ?>><?php _e('Open Pending'); ?></option>
                         
                         </select>
                     </div>
