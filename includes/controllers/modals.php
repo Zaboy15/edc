@@ -99,6 +99,16 @@ switch($_GET['modal']) {
     case "customers/edit":
         $customers = getRowById("tabel_customer",$_GET['id']);
         break;
+
+    case "pmedc/edit":
+        $tabelpm = getRowById("tabel_pm",$_GET['id']);
+        $customer = getTable("tabel_customer");
+        $admins = getTableFiltered("people","type","admin");
+        $namamerchant = getSingleValue("clients","name",$tabelpm['merchantid']);
+        $serialedc = getSingleValue("assets","serial",$tabelpm['assetid']);
+
+        break;
+
     // clients
     case "clients/edit":
         $client = getRowById("clients",$_GET['id']);
@@ -106,6 +116,7 @@ switch($_GET['modal']) {
 
         break;
 
+        
     case "clients/add":
         $customer = getTable("tabel_customer");
         break;

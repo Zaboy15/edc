@@ -35,7 +35,7 @@
 										echo "</td>";
 	                                    echo "<td>".$role['name']."</td>";
 										echo "<td>";
-										if($role['id'] != 1) {
+										if($role['id'] != 0) {
 											echo "<div class='pull-right btn-group'>";
 
 														if(in_array("editRole",$perms)) echo "<a href='?route=people/roles/edit&id=".$role['id']."' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a>";

@@ -294,6 +294,14 @@
                 </li>
                 <?php } ?>
 
+                <?php if(in_array("viewBatchPM",$perms)) { ?>
+                    <li <?php if(strpos($route,'pmedc') !== false) echo 'class="active"'; ?>>
+                        <a href="?route=pmedc">
+                            <i class="fa fa-deviantart fa-fw"></i> <span><?php _e('PM EDC'); ?></span>
+                        </a>
+                    </li>
+                    <?php } ?>
+
               <!-- <?php if(in_array("viewMonitoring",$perms)) { ?>
               <li <?php if(strpos($route,'monitoring') !== false) echo 'class="active"'; ?>>
                   <a href="?route=monitoring">

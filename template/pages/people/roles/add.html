@@ -123,6 +123,14 @@
 								</div>
 
 								<div class="clearfix"></div>
+								<div class="col-md-3">
+										<h4><?php _e('PM EDC NIAGA'); ?></h4>
+										<div class="checkbox"><label><input type="checkbox" name="perms[]" value="addBatchPM" <?php if(in_array("addBatchPM",$roleperms)) echo "checked"; ?> > <?php _e('Add Batch PM'); ?></label></div>
+										<div class="checkbox"><label><input type="checkbox" name="perms[]" value="editBatchPM" <?php if(in_array("editBatchPM",$roleperms)) echo "checked"; ?> > <?php _e('Edit'); ?></label></div>
+										<div class="checkbox"><label><input type="checkbox" name="perms[]" value="deleteBatchPM" <?php if(in_array("deleteBatchPM",$roleperms)) echo "checked"; ?> > <?php _e('Delete'); ?></label></div>
+										<div class="checkbox"><label><input type="checkbox" name="perms[]" value="assignBatchPM" <?php if(in_array("assignBatchPM",$roleperms)) echo "checked"; ?> > <?php _e('Allow Account Selection'); ?></label></div>
+										<div class="checkbox"><label><input type="checkbox" name="perms[]" value="viewBatchPM" <?php if(in_array("viewBatchPM",$roleperms)) echo "checked"; ?> > <?php _e('View PM Menu'); ?></label></div>
+									</div>
 
 								<div class="col-md-3">
 									<h4><?php _e('Comments'); ?></h4>

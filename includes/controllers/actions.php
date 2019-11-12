@@ -535,6 +535,21 @@ switch($_POST['action']) {
 		$status = Ticket::deleteRule($_POST['id']);
 	break;
 
+	case "addBatchPM":
+		isAuthorized("addBatchPM");
+		$status = PMBatch::add($_POST);
+		break;
+	
+	case "editBatchPM":
+		isAuthorized("editBatchPM");
+		$status = PMBatch::edit($_POST);
+		break;	
+	
+	case "deleteBatchPM":
+		isAuthorized("deleteBatchPM");
+		$status = PMBatch::delete($_POST);
+		break;	
+
 
 	// predefined replies
 	case "addPReply":
