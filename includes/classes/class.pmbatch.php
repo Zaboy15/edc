@@ -46,7 +46,22 @@ class PMBatch extends App {
         $database->delete("tabel_pm", [ "id" => $id ]);
     	logSystem("PM Deleted - ID: " . $id);
     	return "30";
-    	}
+        }
+        
+    public static function editAPI($data) {
+    	global $database;
+    	$database->update("tabel_pm", [
+                    "adminid" => $data['adminid'],
+                    "status" => $data['status'],
+                    "kondisi_edc" => $data['kondisi_edc'],
+                    "detail_edc" => $data['detail_edc'],
+                    "request_merchant" => $data['request_merchant'],
+                    "kondisi_merchant" => $data['kondisi_merchant']
+                    
+        ], [ "id" => $data['id'] ]);
+    	logSystem("PM Edited - ID: " . $data['id']);
+    	return "20";
+    	}    
 
 
 }
