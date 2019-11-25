@@ -114,6 +114,23 @@ switch ($request_method) {
         }
     break;
 
+    case 'editAPI':
+        if(isset($_POST['data'])) {
+            if(is_array($_POST['data'])) {
+                $data = $_POST['data'];
+            } else {
+                $response = [ "status" => 909, "status_message" => "'data' Error! Expected array, string given." ];
+                echo json_encode($response);
+                exit;
+            }
+
+        } else {
+            $response = [ "status" => 910, "status_message" => "'data' array missing." ];
+            echo json_encode($response);
+            exit;
+        }
+    break;
+
     case 'editToken':
         if(isset($_POST['data'])) {
             if(is_array($_POST['data'])) {
