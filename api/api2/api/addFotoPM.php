@@ -3,7 +3,7 @@ require "../config/connection.php";
 if ($_SERVER['REQUEST_METHOD']=="POST"){
     $response = array();
     $pmid = $_POST['pmid'];
-    // $image_spk = $_POST['image_spk'];
+    $type_foto = $_POST['type_foto'];
 
 
     $image = date('dmYHis').str_replace(" ","",basename($_FILES['file']['name']));
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     move_uploaded_file($_FILES['file']['tmp_name'],$imagePath);
     
         # code...
-        $insert = "INSERT INTO files VALUE(NULL,'0','0','0','0','$image','$image','0','0','0',$pmid)";
+        $insert = "INSERT INTO files VALUE(NULL,'0','0','0','0','$image','$image','0','0','0',$pmid,$type_foto)";
     if (mysqli_query($con,$insert)) {
         # code...
         $response['value']=1;
