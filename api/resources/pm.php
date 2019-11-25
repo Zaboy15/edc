@@ -27,7 +27,7 @@ switch ($request_method) {
         else $response = [ "status" => 2, "status_message" => "Error! Unable to add item." ];
     break;
 
-    case 'edit':
+    case 'editAPI':
         isAuthorizedApi("editBatchPM");
 
         $status = PMBatch::editAPI($data);
