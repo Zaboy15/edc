@@ -52,11 +52,12 @@ class PMBatch extends App {
     	global $database;
     	$database->update("tabel_pm", [
                     "adminid" => $data['adminid'],
+                    "tgl_pm" => $data['tgl_pm'],
                     "status" => $data['status'],
                     "kondisi_edc" => $data['kondisi_edc'],
                     "detail_edc" => $data['detail_edc'],
                     "request_merchant" => $data['request_merchant'],
-                    "kondisi_merchant" => $data['kondisi_merchant']
+                    "kondisi_merchant" => $data['kondisi_merchant'],
                     
         ], [ "id" => $data['id'] ]);
     	logSystem("PM Edited - ID: " . $data['id']);
