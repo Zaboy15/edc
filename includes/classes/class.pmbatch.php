@@ -54,6 +54,7 @@ class PMBatch extends App {
                     "adminid" => $data['adminid'],
                     "tgl_pm" => $data['tgl_pm'],
                     "status" => $data['status'],
+                    "note" => $data['note'],
                     "kondisi_edc" => $data['kondisi_edc'],
                     "detail_edc" => $data['detail_edc'],
                     "request_merchant" => $data['request_merchant'],
