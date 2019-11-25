@@ -7,10 +7,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 
 
 
-    $imagestruk = date('dmYHis').str_replace(" ","",basename($_FILES['foto_struk']['name']));
+    $image = date('dmYHis').str_replace(" ","",basename($_FILES['foto_struk']['name']));
     $destination_dir = "../../../uploads/";
-    $imagePathstruk = $destination_dir.$imagestruk;
-    move_uploaded_file($_FILES['foto_struk']['tmp_name'],$imagePathstruk);
+    $imagePath = $destination_dir.$image;
+    move_uploaded_file($_FILES['foto_struk']['tmp_name'],$imagePath);
     
         # code...
         $insert = "UPDATE tabel_pm SET foto_struk = '$imagestruk' WHERE id = '$pmid'";
