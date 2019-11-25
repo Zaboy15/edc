@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     move_uploaded_file($_FILES['file']['tmp_name'],$imagePath);
     
         # code...
-        $insert = "UPDATE tabel_pm SET foto_mesin = '$imagePath' WHERE id = '$pmid'";
+        $insert = "UPDATE tabel_pm SET foto_mesin = '$image' WHERE id = '$pmid'";
     if (mysqli_query($con,$insert)) {
         # code...
         $response['value']=1;
