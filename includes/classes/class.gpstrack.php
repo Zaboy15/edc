@@ -38,7 +38,7 @@ class GPSTrack extends App {
             "latitude" => $data['latitude'],
             "longtitude" => $data['longtitude'],
             "adminid" => $asset['adminid'],
-            "nama" => $asset['nama'],
+            "nama" => "test",
            ]
         );
 
