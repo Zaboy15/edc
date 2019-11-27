@@ -18,7 +18,7 @@ switch ($request_method) {
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];
     break;
 
-    case 'add':
+    case 'edit':
         isAuthorizedApi("addTicket");
 
         $status = GPSTrack::add($data);
