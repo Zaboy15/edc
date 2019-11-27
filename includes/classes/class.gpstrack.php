@@ -37,7 +37,7 @@ class GPSTrack extends App {
         $database->insert("log_location", [
             "latitude" => $data['latitude'],
             "longtitude" => $data['longtitude'],
-            "adminid" => $asset['adminid'],
+            "adminid" => $data['id'],
             "nama" => "test",
            ]
         );
