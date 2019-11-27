@@ -34,9 +34,75 @@
 						<script
 							src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 							</script>
-						<script
-							src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&sensor=false"></script>
-						<script>
+						<!-- <script
+							src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&sensor=false"></script> -->
+							<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&callback=initMap"
+    async defer></script>
+							<script>
+								
+							function initMap() {
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: new google.maps.LatLng(-6.117664,106.906349),
+          zoom: 12
+        });
+        var infoWindow = new google.maps.InfoWindow;
+
+          downloadUrl('http://localhost/edcmip/api/api2/api/location.php', function(data) {
+
+            var markers=JSON.parse(data.responseText);
+
+           var markerbaru = markers.forEach(function(element) {          
+                var id = element.id;
+                var name = element.name;
+                var nik = element.nik;
+                var point = new google.maps.LatLng(
+                    parseFloat(element.latitude),
+                    parseFloat(element.longtitude));
+
+                var infowincontent = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.textContent = nik
+                infowincontent.appendChild(strong);
+                infowincontent.appendChild(document.createElement('br'));
+
+                var text = document.createElement('text');
+                text.textContent = name
+                infowincontent.appendChild(text);
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: point
+                });
+                marker.addListener('click', function() {
+                  infoWindow.setContent(infowincontent);
+                  infoWindow.open(map, marker);
+                });
+            });
+            
+          });
+        }
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+	  var markerCluster = new MarkerClusterer(map, markerbaru,
+									{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+
+      function doNothing() {}
+	  </script>
+
+						<!-- <script>
 							var map;
 							function initialize() {
 								var mapOptions = {
@@ -67,39 +133,9 @@
 
 
 
-								var polylines = [];
+								
 
-								// var beaches = [
-								// 	['Bondi Beach', -6.159768, 106.813096, 4],
-								// 	['Coogee Beach', -6.158936, 106.816787, 5],
-								// 	['Cronulla Beach', -6.155747, 106.817924, 3],
-								// 	['Manly Beach', -6.152494, 106.816915, 2],
-								// 	['Maroubra Beach', -6.047458, 106.090496, 1],
-								// 	['Maroubra Beach', -1.359390488567894, 103.3242174517395, 1],
-									
-								// ];
-
-								for (var i = 0; i < beaches.length; i++) {
-									var beach = beaches[i];
-									polylines.push(new google.maps.LatLng(beach[1], beach[2]));
-								}
-								var flightPlanCoordinates = [
-									{ lat: -6.159768, lng: 106.813096 },
-									{ lat: -6.158936, lng: 106.816787 },
-									{ lat: -6.155747, lng: 106.817924 },
-									{ lat: -6.152494, lng: 106.816915 },
-									{ lat: -6.047458, lng: 106.090496 }
-								];
-
-								var flightPath = new google.maps.Polyline({
-									path: polylines,
-									geodesic: true,
-									strokeColor: '#42f4b3',
-									strokeOpacity: 1.0,
-									strokeWeight: 2
-								});
-
-								flightPath.setMap(map);
+								
 
 							}
 							var icons = {
@@ -121,7 +157,7 @@
 							]
 							google.maps.event.addDomListener(window, 'load', initialize);
 
-						</script>
+						</script> -->
 
 						<section id="map-canvas" ng-controller="GoogleMaps">
 							<div ui-map="myMap" ui-options="mapOptions" class="google-map"></div>
