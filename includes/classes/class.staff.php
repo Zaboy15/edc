@@ -114,30 +114,28 @@ class Staff extends App {
 	}
 
 	
-	
 	public static function editLocation($data) {
     	global $database;
-    	$nama = getSingleValue("people","nama",$data['id']);
+    	
     		$database->update("people", [
 				"latitude" => $data['latitude'],
-    			"logtitude" => $data['logtitude'],
+    			"longtitude" => $data['longtitude'],
 				
 
 				],["id" => $data['id']]);
 			
-			// $database->insert("log_location", [
-			// 	"adminid" => $data['id'],
-			// 	"nama" => $nama,
-			// 	"latitude" => $data['latitude'],
-    		// 	"logtitude" => $data['logtitude'],
-	
-			// 	]);
+			$nama = getSingleValue("people","name",$data['id']);	
+			$lastid = $database->insert("log_location", [
+					"latitude" => $data['latitude'],
+					"longtitude" =>  $data['longtitude'],
+					"nama" => $nama,
+			]);
     		logSystem("Location Account Update - ID: " . $data['id']);
     		return "20";
     		
     	
 
-    }
+	}
 
     public static function delete($id) {
     	global $database;
