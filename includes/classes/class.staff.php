@@ -125,13 +125,13 @@ class Staff extends App {
 
 				],["id" => $data['id']]);
 			
-			$database->insert("log_location", [
-				"adminid" => $data['id'],
-				"nama" => $nama,
-				"latitude" => $data['latitude'],
-    			"logtitude" => $data['logtitude'],
+			// $database->insert("log_location", [
+			// 	"adminid" => $data['id'],
+			// 	"nama" => $nama,
+			// 	"latitude" => $data['latitude'],
+    		// 	"logtitude" => $data['logtitude'],
 	
-				]);
+			// 	]);
     		logSystem("Location Account Update - ID: " . $data['id']);
     		return "20";
     		
