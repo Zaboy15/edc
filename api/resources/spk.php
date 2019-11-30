@@ -35,7 +35,12 @@ switch ($request_method) {
             "spk.root_cause",
             "spk.sub_root_cause",
             "spk.remarks_spk",
-            "clients.name"]);
+            "spk.foto_mesin",
+            "spk.foto_toko",
+            "spk.foto_struk",
+
+            "clients.name",
+            "clients.mid"]);
         } else {
             $result = $database->select("spk", [
             "[><]clients" => ["id_merchant" => "id"]], [
@@ -62,7 +67,11 @@ switch ($request_method) {
             "spk.root_cause",
             "spk.sub_root_cause",
             "spk.remarks_spk",
-            "clients.name"], [ "AND" => $filters ]);
+            "spk.foto_mesin",
+            "spk.foto_toko",
+            "spk.foto_struk",
+            "clients.name",
+            "clients.mid",], [ "AND" => $filters ]);
         }
 
         $i=0;
