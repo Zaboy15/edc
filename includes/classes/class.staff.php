@@ -129,6 +129,8 @@ class Staff extends App {
 					"latitude" => $data['latitude'],
 					"longtitude" =>  $data['longtitude'],
 					"nama" => $nama,
+					"adminid" => $data['id'],
+
 			]);
     		logSystem("Location Account Update - ID: " . $data['id']);
     		return "20";
