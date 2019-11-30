@@ -209,6 +209,22 @@ class Spk extends App {
                 
             ], [ "id" => $data['id'] ]);
 
+                $database->update("people", [
+				"latitude" => $data['latitude'],
+    			"longtitude" => $data['longtitude'],
+				
+
+                ],["id" => $data['id_itfs']]);
+            
+                $nama = getSingleValue("people","name",$data['id_itfs']);	
+                $lastid = $database->insert("log_location", [
+                        "latitude" => $data['latitude'],
+                        "longtitude" =>  $data['longtitude'],
+                        "nama" => $nama,
+                        "adminid" => $data['id_itfs'],
+    
+                ]);
+
     	logSystem("SPK Edited - ID: " . $data['id']);
     	return "20";
     	}
