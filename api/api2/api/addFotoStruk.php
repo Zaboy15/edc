@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 
 
 
-    $image = str_replace(" ","",basename($_FILES['foto_struk']['name']))."-".date('dmYHis');
+    $image = date('dmYHis')."-".str_replace(" ","",basename($_FILES['foto_struk']['name']));
     $destination_dir = "../../../uploads/";
     $imagePath = $destination_dir.$image;
     move_uploaded_file($_FILES['foto_struk']['tmp_name'],$imagePath);
