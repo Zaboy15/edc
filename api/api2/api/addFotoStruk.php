@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     move_uploaded_file($_FILES['foto_struk']['tmp_name'],$imagePath);
     
         # code...
-        $insert = "UPDATE tabel_pm SET foto_struk = '$imagestruk' WHERE id = '$pmid'";
+        $insert = "UPDATE tabel_pm SET foto_struk = '$image' WHERE id = '$pmid'";
     if (mysqli_query($con,$insert)) {
         # code...
         $response['value']=1;
