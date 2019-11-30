@@ -38,6 +38,8 @@ switch ($request_method) {
             "spk.foto_mesin",
             "spk.foto_toko",
             "spk.foto_struk",
+            "spk.sign",
+
 
             "clients.name",
             "clients.mid"]);
@@ -70,6 +72,8 @@ switch ($request_method) {
             "spk.foto_mesin",
             "spk.foto_toko",
             "spk.foto_struk",
+            "spk.sign",
+
             "clients.name",
             "clients.mid",], [ "AND" => $filters ]);
         }
