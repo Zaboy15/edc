@@ -12,7 +12,7 @@ switch ($request_method) {
         if(empty($filters)) {
             $result = $database->select("tickets_replies", "*");
         } else {
-            $result = $database->select("tickets_replies", "*", [ "AND" => $filters ]);
+            $result = $database->select("tickets_replies", "*", [ "AND" => $filters , "ORDER" => ["id" => "DESC"]]);
         }
 
         $i=0;
