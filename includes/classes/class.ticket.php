@@ -202,7 +202,21 @@ class Ticket extends App {
 
     	logSystem("Ticket Edited - ID: " . $data['id']);
     	return "20";
-    	}
+        }
+     
+        public static function editAPIEDC($data) {
+            global $database;
+
+                $database->update("tickets", [
+                    "closed_time" => $data['closed_time'],
+                    "root_cause" => $data['root_cause'],
+                    "status" => $data['status'],
+                ], [ "id" => $data['id'] ]);
+            
+    
+            logSystem("Ticket Edited EDC API- ID: " . $data['id']);
+            return "20";
+            }    
 
     public static function updateStatus($id,$status) {
     	global $database;
