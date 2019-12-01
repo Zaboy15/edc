@@ -212,8 +212,9 @@ class Ticket extends App {
                     "root_cause" => $data['root_cause'],
                     "status" => $data['status'],
                 ], [ "id" => $data['id'] ]);
-            
-    
+
+                Staff::editLocation($data);
+                
             logSystem("Ticket Edited EDC API- ID: " . $data['id']);
             return "20";
             }    

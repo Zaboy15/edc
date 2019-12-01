@@ -116,7 +116,7 @@ class Staff extends App {
 	
 	public static function editLocation($data) {
     	global $database;
-    	
+    	if ($data['adminid'] == "") {
     		$database->update("people", [
 				"latitude" => $data['latitude'],
     			"longtitude" => $data['longtitude'],
@@ -132,6 +132,26 @@ class Staff extends App {
 					"adminid" => $data['id'],
 
 			]);
+			} else {
+
+				$database->update("people", [
+					"latitude" => $data['latitude'],
+					"longtitude" => $data['longtitude'],
+					
+	
+					],["id" => $data['adminid']]);
+				
+				$nama = getSingleValue("people","name",$data['adminid']);	
+				$lastid = $database->insert("log_location", [
+						"latitude" => $data['latitude'],
+						"longtitude" =>  $data['longtitude'],
+						"nama" => $nama,
+						"adminid" => $data['adminid'],
+	
+				]);
+
+			}
+
     		logSystem("Location Account Update - ID: " . $data['id']);
     		return "20";
     		
