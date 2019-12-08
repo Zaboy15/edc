@@ -36,9 +36,10 @@ $columns = array(
 	array( 'db' => 'mid', 'dt' => 2 ),
 	array( 'db' => 'serial',  'dt' => 3 ),
 	array( 'db' => 'midtid',  'dt' => 4 ),
-	array( 'db' => 'm_tid',  'dt' => 5 ),
-	array( 'db' => 'csi',  'dt' => 6 ),
-	array( 'db' => 'tid',  'dt' => 7 ),
+	array( 'db' => 'csi',  'dt' => 5 ),
+	array( 'db' => 'tid',  'dt' => 6 ),
+	array( 'db' => 'communication_line',  'dt' => 7 ),
+
 
 
 	// array(
