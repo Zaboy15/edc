@@ -1,0 +1,19 @@
+CREATE ALGORITHM = UNDEFINED VIEW `tabelassetedc` AS SELECT
+    `b`.`id` AS `id`,
+    `a`.`mid` AS `mid`,
+    `a`.`name` AS `name`,
+    `b`.`midtid` AS `midtid`,
+    `b`.`tid` AS `tid`,
+    `b`.`csi` AS `csi`,
+    `b`.`categoryid` AS `categoryid`,
+    `b`.`serial` AS `serial`,
+    `b`.`communication_line` AS `communication_line`,
+    `b`.`sn_simcard` AS `sn_simcard`,
+    `b`.`operator_sim` AS `operator_sim`
+FROM
+    `u4580489_edc`.`clients` `a`
+JOIN `u4580489_edc`.`assets` `b`
+ON
+    (`a`.`id` = `b`.`clientid`)
+WHERE
+    `b`.`categoryid` = 6

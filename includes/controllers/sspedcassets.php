@@ -21,7 +21,7 @@ require ('../../configserverside.php');
  */
 
 // DB table to use
-$table = 'assets';
+$table = 'tabelassetedc';
 
 // Table's primary key
 $primaryKey = 'id';
@@ -32,12 +32,13 @@ $primaryKey = 'id';
 // parameter names
 $columns = array(
 	array( 'db' => 'id', 'dt' => 0 ),
-	array( 'db' => 'clientid', 'dt' => 1 ),
-	array( 'db' => 'serial',  'dt' => 2 ),
-	array( 'db' => 'midtid',  'dt' => 3 ),
-	array( 'db' => 'm_tid',  'dt' => 4 ),
-	array( 'db' => 'csi',  'dt' => 5 ),
-	array( 'db' => 'tid',  'dt' => 6 ),
+	array( 'db' => 'name', 'dt' => 1 ),
+	array( 'db' => 'mid', 'dt' => 2 ),
+	array( 'db' => 'serial',  'dt' => 3 ),
+	array( 'db' => 'midtid',  'dt' => 4 ),
+	array( 'db' => 'm_tid',  'dt' => 5 ),
+	array( 'db' => 'csi',  'dt' => 6 ),
+	array( 'db' => 'tid',  'dt' => 7 ),
 
 
 	// array(
