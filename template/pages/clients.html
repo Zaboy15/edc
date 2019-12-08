@@ -49,14 +49,14 @@ $(document).ready(function() {
 			"columnDefs": [ {
              "targets": -1,
              "data": null,
-             "defaultContent": "<button class='btn btn-success btn-xs tblView'>View</button><button class='btn btn-success btn-xs tblEdit'>Edit</button><button class='btn btn-danger btn-xs tblDelete'>Delete</button>"
+             "defaultContent": "<button class='btn btn-primary btn-xs tblView'>View</button><button class='btn btn-success btn-xs tblEdit'>Edit</button><button class='btn btn-danger btn-xs tblDelete'>Delete</button>"
          	}]
 			
             
 	    } );
 		$('#example tbody').on( 'click', '.tblView', function () {
          var data = table.row( $(this).parents('tr') ).data();
-		 window.location.href = "?route=inventory/clients/manage&id="+ data[0]; 
+		 window.location.href = "?route=clients/manage&id="+ data[0]; 
      } );
 		$('#example tbody').on( 'click', '.tblEdit', function () {
          var data = table.row( $(this).parents('tr') ).data();
