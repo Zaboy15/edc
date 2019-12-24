@@ -105,6 +105,7 @@ class Import extends App {
 
 				// "customfields" => serialize($customfieldsdata),
 				"clientid" => $clientid,
+				"mid" => $item[0],
 				"midtid" => $item[1],
 				"m_tid" => $item[2],
 				"csi" => $item[3],
@@ -294,6 +295,12 @@ class Import extends App {
 			// $id_merchant = self::dataMatcher("id_merchant", $item[0],$item[0],$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8]);
 			$id_merchant = self::dataMatcher("id_merchant", $item[0],0,$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8]);			
 			$id_itfs = self::dataMatcher("id_itfs", $item[11],$id_merchant);
+			$max = $database->max("assets", "id");
+			$tag = $max+1;
+			// $tag = self::dataMatcher("asset_tag", $item[23], $id_merchant);
+			// $idedc = self::dataMatcher("edc", $item[19],$id_merchant,$item[20]);
+			$idedc = self::dataMatcher("edc", $item[19],$id_merchant,$item[20],$item[21],$item[22],$item[0],$item[1],$item[2],$item[3],$tag);
+
 
 			// $itemindex = 27;
 			// foreach ($customfields as $customfield) {
@@ -317,6 +324,7 @@ class Import extends App {
 					"spk_number" => $item[9],
 					"inc_cimb" => $item[10],
 					"id_itfs" => $id_itfs,
+					"id_sn_edc" => $idedc,
 					"reported_time" => $item[12],
 					"received_time" => $item[13],
 					"wo_activity" => $item[14],
@@ -687,7 +695,7 @@ class Import extends App {
 	}
 
 
-	private static function dataMatcher($type, $value, $clientid=0, $tid, $midtid, $csi, $nama_merchant, $nama_pic, $pic_phone, $alamat, $kode_merchant ) {
+	private static function dataMatcher($type, $value, $clientid=0, $tid, $midtid, $csi, $nama_merchant, $nama_pic, $pic_phone, $alamat, $kode_merchant) {
 		global $database;
 		$result = 0;
 
@@ -742,10 +750,28 @@ class Import extends App {
 			}
 		}
 
-
-
-
-
+		if($type == "edc") {
+			$idedc = $database->get("assets", "*", ["serial" => $value]);
+			if(!empty($idedc)) { $result = $idedc['id']; }
+			else {
+				$result = $database->insert("assets", [
+				"categoryid" => 6,
+    			"clientid" => $clientid,
+    			"tag" => $kode_merchant,
+    			"name" => $value,
+				"serial" => $value,
+				"operator_sim" => $tid,
+				"communication_line" => $midtid,
+				"sn_simcard" => $csi,
+				"mid" => $nama_merchant,
+				"m_tid" => $nama_merchant,
+				"tid" => $nama_pic,
+				"midtid" => $pic_phone,
+				"csi" => $alamat,
+				"edc_type" => 19,
+				]);
+			}
+		}
 
 		if($type == "client") {
 			$client = $database->get("clients", "*", ["name" => $value]);

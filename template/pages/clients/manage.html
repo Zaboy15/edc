@@ -26,7 +26,7 @@
 						  <?php if(in_array("viewCredentials",$perms)) { ?><li <?php if ($section == "credentials") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=credentials"><?php _e('Credentials'); ?></a></li><?php } ?>
 						  <!-- <?php if(in_array("viewUsers",$perms)) { ?><li <?php if ($section == "users") echo 'class="active"'; ?>><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=users"><?php _e('Users'); ?></a></li><?php } ?> -->
 						  <?php if(in_array("viewFiles",$perms)) { ?><li <?php if ($section == "files") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=files"><?php _e('Files'); ?></a></li><?php } ?>
-						  <?php if(in_array("viewTime",$perms)) { ?><li <?php if ($section == "timelog") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=timelog"><?php _e('Time Log'); ?></a></li><?php } ?>
+						  <!-- <?php if(in_array("viewTime",$perms)) { ?><li <?php if ($section == "timelog") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=timelog"><?php _e('Time Log'); ?></a></li><?php } ?> -->
 						  <li <?php if ($section == "notes") echo 'class="active"'; ?> ><a href="?route=clients/manage&id=<?php echo $client['id']; ?>&section=notes"><?php _e('Notes'); ?></a></li>
 
 						  <div class="btn-group pull-right" style="padding:6px;">
@@ -361,10 +361,13 @@
 												<th><?php _e('Tag'); ?></th>
 												<th><?php _e('Category'); ?></th>
 												<th><?php _e('Asset Name'); ?></th>
-												<th><?php _e('Model'); ?></th>
+												<th><?php _e('MIDTID'); ?></th>
+												<th><?php _e('TID'); ?></th>
+												<th><?php _e('CSI'); ?></th>
+
 												<th><?php _e('Serial Number'); ?></th>
-												<th><?php _e('Related Entities'); ?></th>
-												<th><?php _e('Status'); ?></th>
+												
+												<!-- <th><?php _e('Status'); ?></th> -->
 												<th class="text-right" style="width:60px;"></th>
 											</tr>
 										</thead>
@@ -375,19 +378,14 @@
 													<td><?php if(in_array("manageAsset",$perms)) { ?><a href='?route=inventory/assets/manage&id=<?php echo $asset['id']; ?>'><?php echo $asset['tag']; ?></a><?php } else echo $asset['tag']; ?></td>
 													<td><span class='label' style='background-color:#FFF;color:<?php echo getSingleValue("assetcategories","color",$asset['categoryid']); ?>;border:1px solid <?php echo getSingleValue("assetcategories","color",$asset['categoryid']); ?>'><?php echo getSingleValue("assetcategories","name",$asset['categoryid']); ?></span></td>
 													<td><?php if(in_array("manageAsset",$perms)) { ?><a href='?route=inventory/assets/manage&id=<?php echo $asset['id']; ?>'><?php echo $asset['name']; ?></a><?php } else echo $asset['name']; ?></td>
-													<td><?php echo getSingleValue("manufacturers","name",$asset['manufacturerid']); ?> <?php echo getSingleValue("models","name",$asset['modelid']); ?></td>
+													<td><?php echo $asset['midtid']; ?></td>
+													<td><?php echo $asset['tid']; ?></td>
+													<td><?php echo $asset['csi']; ?></td>
+													
 													<td><?php echo $asset['serial']; ?></td>
-													<td>
+													
 
-
-														<?php if($asset['userid'] != 0) { ?>
-															<a href='<?php if(in_array("editUser",$perms)) { ?>?route=people/users/edit&id=<?php echo $asset['userid']; ?><?php } else echo "#"; ?>'>
-																<span class='label' style="background-color:#FFF;color:#001F3F;border:1px solid #001F3F;"><i class='fa fa-user fa-fw'></i> <?php echo getSingleValue("people","name",$asset['userid']); ?></span>
-															</a>
-														<?php } ?>
-													</td>
-
-													<td><span class='badge' style='background-color:<?php echo getSingleValue("labels","color",$asset['statusid']); ?>'><?php echo getSingleValue("labels","name",$asset['statusid']); ?></span></td>
+													<!-- <td><span class='badge' style='background-color:<?php echo getSingleValue("labels","color",$asset['statusid']); ?>'><?php echo getSingleValue("labels","name",$asset['statusid']); ?></span></td> -->
 													<td>
 														<div class='pull-right'>
 															<div class="btn-group">

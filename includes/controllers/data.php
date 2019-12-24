@@ -228,7 +228,9 @@ if ($route == "search") {
 if($isAdmin) {
 	$arTicketsCount = $database->count("tickets", ["status" => ["Open","Reopened"]] );
 	$activeTicketsCount = $database->count("tickets", ["status[!]" => "Closed"] );
-	$allTicketsCount = $database->count("tickets" );
+	$allSPKCount = $database->count("spk");
+	$allMySPKCount = $database->count("spk",["spk_status[!]" => "Closed","id_itfs" => $liu['id']]);
+
 
 	$overdueIssuesCount = $database->count("issues", [ "AND" => ["status[!]" => "Done", "duedate[<]" => date("Y-m-d") , "duedate[!]" => ""] ]);
 	$activeIssuesCount = $database->count("issues", [ "status[!]" => "Done" ] );
@@ -469,6 +471,7 @@ if ($route == "projects/manage") {
 if ($route == "tickets/ar") {
 	isAuthorized("viewTickets");
 	if($isAdmin) {
+		
 		$tickets = $database->select("tickets", "*", ["status" => ["Open","Reopened"], "ORDER" => ["id" => "DESC"]]);
 	}
 	else {
@@ -529,15 +532,28 @@ if ($route == "submitticket") {
 
 //SPK
 
+if ($route == "spk/myspk") {
+	isAuthorized("viewSPK");
+	if($isAdmin) {
+		
+		$spk = $database->select("spk", "*", ["AND" => ["spk_status[!]" => "Closed", "id_itfs" => $liu['id']], "ORDER" => ["id" => "DESC"]]);
+
+	}
+	else {
+		$spk = $database->select("tickets", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"]]);
+	}
+	$pageTitle = __("All SPK");
+}
+
 if ($route == "spk/all") {
 	isAuthorized("viewSPK");
 	if($isAdmin) {
 		$spk = $database->select("spk", "*", ["ORDER" => ["id" => "DESC"]]);
 	}
 	else {
-		$tickets = $database->select("tickets", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"]]);
+		$tickets = $database->select("spk", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"]]);
 	}
-	$pageTitle = __("All SPK");
+	$pageTitle = __("My SPK");
 }
 
 if ($route == "spk/manage") {
