@@ -624,6 +624,12 @@ class Import extends App {
 			"spk_status", //16
 			"wo_remarks", //17
 			"remarks_spk", //18
+			"serial", //19
+			"operator_sim", //20
+			"communication_line",//21
+			"sn_simcard", //22
+			"tag", //23
+
 			
 		];
 
