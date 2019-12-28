@@ -18,7 +18,7 @@
 	                	<li <?php if ($section == "") echo 'class="active"'; ?> ><a href="#tab-spk-detail" data-toggle="tab" class="spk-tab-button"><?php _e('SPK Detail '); ?></a></li>
 						  <!-- <?php if(in_array("viewFiles",$perms)) { ?><li <?php if ($section == "files") echo 'class="active"'; ?> ><a href="?route=spk/manage&id=<?php echo $spk['id']; ?>&section=files"><?php _e('Foto & Signature'); ?></a></li><?php } ?> -->
 						  <div class="btn-group pull-right" style="padding:6px;">
-							<?php if(in_array("viewPReplies",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Insert Predefined Reply'); ?>' onClick='showM("?modal=preplies/insert");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-arrow-right fw"></i> <?php _e('Predefined Reply'); ?></button><?php } ?>
+							<!-- <?php if(in_array("viewPReplies",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Insert Predefined Reply'); ?>' onClick='showM("?modal=preplies/insert");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-arrow-right fw"></i> <?php _e('Predefined Reply'); ?></button><?php } ?> -->
 							<?php if(in_array("editTicket",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Edit SPK'); ?>' onClick='showM("?modal=spk/edit&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&id=<?php echo $spk['id']; ?>&section=");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-edit"></i></button><?php } ?>
 							
 							<?php if($pemeriksaan == 0) { ?>
