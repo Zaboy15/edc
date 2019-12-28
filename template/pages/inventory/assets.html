@@ -48,8 +48,12 @@
 $(document).ready(function() {
 	var table = $('#example').DataTable( {
 	        "processing": true,
+			"lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
 	        "serverSide": true,
-	        "ajax": "includes/controllers/sspedcassets.php",
+			
+			"dom": '<"top"f>lrt<"bottom"><"row dt-margin"<"col-md-6"i><"col-md-6"p><"col-md-12"B>><"clear">',
+			"buttons":  [ 'copy', 'csv', 'excel', 'pdf', 'print' ],
+			"ajax": "includes/controllers/sspedcassets.php",
 			"columnDefs": [ {
              "targets": -1,
              "data": null,

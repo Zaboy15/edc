@@ -56,10 +56,12 @@
             <?php if($isAdmin) { ?>
                 <div class="form-group">
                     <label for="id_merchant"><?php _e('Merchant'); ?></label>
-                    <select class="form-control select2 select2-hidden-accessible" id="id_merchant" name="id_merchant" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option value="0"><?php _e('None'); ?></option>
-                        <?php foreach ($merchant as $merchant) { ?>
-                            <option value='<?php echo $merchant['id']; ?>' <?php if($spkdata['id_merchant'] == $merchant['id']) echo "selected"; ?>><?php echo $merchant['name']; ?></option>
+                    <select class="form-control merchantSelect select2-hidden-accessible" id="id_merchant" name="id_merchant" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        
+                        <?php if($spkdata['id_merchant'] != 0) { ?>
+                            <option value="<?php echo $spkdata['id_merchant']; ?>"><?php echo getSingleValue("clients","name",$spkdata['id_merchant']) ; ?></option>
+                        <?php } else { ?>
+                            <option value="0"><?php _e('None'); ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -244,6 +246,30 @@
 			//cache: true,
 	    },
 	    minimumInputLength: 0,
+		placeholder: "<?php _e('Please Select'); ?>",
+	});
+
+    $('.merchantSelect').select2({
+		ajax: {
+			url: "index.php",
+			dataType: 'json',
+			data: function (params) {
+			  return {
+				q: params.term, // search term
+				qa: 'merchantSelect'
+                
+			  };
+			},
+			processResults: function (data,params) {
+				return {
+					results: $.map(data, function(obj) {
+						return { id: obj.id, text: obj.text };
+					})
+				};
+			},
+			//cache: true,
+	    },
+	    minimumInputLength: 3,
 		placeholder: "<?php _e('Please Select'); ?>",
 	});
 

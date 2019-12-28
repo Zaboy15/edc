@@ -137,8 +137,8 @@ switch($_GET['qa']) {
 				]]);
 			} else {
 				$items = $database->select("clients", "*", [ "OR" => [
-					"mid[~]" => $searchstring,
-					"idcabang[~]" => $searchstring,
+					// "mid[~]" => $searchstring,
+					// "idcabang[~]" => $searchstring,
 					"name[~]" => $searchstring
 				]]);
 			}
@@ -163,6 +163,8 @@ switch($_GET['qa']) {
 
 		echo json_encode($results);
 	break;
+
+	
 
 
 	case "assetsSelect":
@@ -201,6 +203,48 @@ switch($_GET['qa']) {
 		foreach($items as $item) {
 			$results[$i]['id'] = $item['id'];
 			$results[$i]['text'] = $item['midtid'] . " " . $item['serial'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
+	case "merchantSelect":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("clients", "*", [ "AND" => [
+					"id_customer" => $filterid,
+					"OR" => [
+						"mid[~]" => $searchstring,
+						"name[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("clients", "*", [ "OR" => [
+					"mid[~]" => $searchstring,
+					"name[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("clients", "*", [ "id_customer" => $filterid ]);
+			} else {
+				$items = $database->select("clients", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['name'] . " " . $item['mid'];
 			$i++;
 		}
 
