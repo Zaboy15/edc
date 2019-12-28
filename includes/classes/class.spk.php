@@ -7,69 +7,41 @@ class Spk extends App {
 
     public static function add($data) {
     	global $database;
-    	if(empty($data['ccs'])) $ccs = ""; else $ccs = serialize($data['ccs']);
-
-        if(!isset($data['userid'])) {
-            $userid = $database->get("people","id", [ "email" => strtolower($data['email']) ]);
-            if($userid == "") $userid = 0;
-        } else {
-            $userid = $data['userid'];
-        }
-
-
+    	
         $random = rand(100000,999999);
-        while($database->has("tickets", [ "ticket" => $random ])) { $random = rand(100000,999999); }
+        $random = "SPK".$random;
+        while($database->has("spk", [ "ticket_spk" => $random ])) { $random = rand(100000,999999); }
+        
 
         if(isset($data['notes'])) $notes = $data['notes']; else $notes = "";
 
-    	$ticketid = $database->insert("tickets", [
-    		"ticket" => $random,
-            "departmentid" => $data['departmentid'],
-    		"clientid" => $data['clientid'],
-    		"userid" => $userid,
-    		"adminid" => $data['adminid'],
-    		"assetid" => $data['assetid'],
-            "projectid" => $data['projectid'],
-    		"email" => strtolower($data['email']),
-    		"subject" => $data['subject'],
-    		"status" => "Open",
-    		"priority" => $data['priority'],
-    		"timestamp" => date('Y-m-d H:i:s'),
-    		"notes" => $notes,
-    		"ccs" => $ccs,
-            "timespent" => 0
+    	$ticketid = $database->insert("spk", [
+    		"ticket_spk" => $random,
+            "inc_cimb" => $data['inc_cimb'],
+    		"spk_number" => $data['spk_number'],
+    		"wo_activity" => $data['wo_activity'],
+    		"wo_remarks" => $data['wo_remarks'],
+            "id_merchant" => $data['id_merchant'],
+    		"id_sn_edc" => $data['id_sn_edc'],
+    		"spk_status" => "Open Pending",
+    		"id_itfs" => $data['id_itfs'],
+    		"reported_time" => date('Y-m-d H:i:s'),
+    		
     	]);
+    	
 
-    	if($data['adminid'] != "0") $peopleid = $data['adminid']; else $peopleid = $userid;
-
-    	$lastid = $database->insert("tickets_replies", [
-    		"ticketid" => $ticketid,
-    		"peopleid" => $peopleid,
-    		"message" => $data['message'],
-    		"timestamp" => date('Y-m-d H:i:s')
-    	]);
-
-        if(isset($_FILES["file"]["name"][0])) {
-            if(!empty($_FILES["file"]["name"][0])) {
-                $file_data = array();
-                $file_data['clientid'] = 0;
-                $file_data['projectid'] = 0;
-                $file_data['assetid'] = 0;
-                $file_data['ticketreplyid'] = $lastid;
-                File::upload($file_data,$_FILES);
-            }
-        }
+        
 
     	if ($lastid == "0") { return "11"; }
         else {
             // user notification
-    		if(isset($data['notification'])) { if($data['notification'] == true) Notification::ticketUser($ticketid, $data['message'], 1); }
+    		// if(isset($data['notification'])) { if($data['notification'] == true) Notification::ticketUser($ticketid, $data['message'], 1); }
 
             // admin notification
-    		Notification::ticketStaff($ticketid, $data['message'], 7);
+    		// Notification::ticketStaff($ticketid, $data['message'], 7);
 
             // log and return
-    		logSystem("Ticket Added - ID: " . $ticketid);
+    		logSystem("SPK Added by Web - ID: " . $ticketid);
     		return "10";
         }
 
@@ -258,11 +230,11 @@ class Spk extends App {
 
     public static function delete($id) {
     	global $database;
-        File::delete_ticket_files($id);
+        
 
-        $database->delete("tickets", [ "id" => $id ]);
-    	$database->delete("tickets_replies", [ "ticketid" => $id ]);
-    	logSystem("Ticket Deleted - ID: " . $id);
+        $database->delete("spk", [ "id" => $id ]);
+    	
+    	logSystem("SPK Deleted by Web - ID: " . $id);
     	return "30";
     }
 
