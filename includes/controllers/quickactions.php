@@ -66,7 +66,58 @@ switch($_GET['qa']) {
         else echo _e("File does not exist.");
 	break;
 
-	case "imagespk":
+	case "signspk":
+        $file = getRowById("spk",$_GET['id']);
+        $targetfile = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . $file['sign'];
+        if (file_exists($targetfile)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . $file['file'] . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($targetfile));
+            readfile($targetfile);
+            exit;
+            }
+        else echo _e("File does not exist.");
+	break;
+
+	case "fototoko":
+        $file = getRowById("spk",$_GET['id']);
+        $targetfile = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . $file['foto_toko'];
+        if (file_exists($targetfile)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . $file['file'] . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($targetfile));
+            readfile($targetfile);
+            exit;
+            }
+        else echo _e("File does not exist.");
+	break;
+
+	case "fotostruk":
+        $file = getRowById("spk",$_GET['id']);
+        $targetfile = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . $file['foto_struk'];
+        if (file_exists($targetfile)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . $file['file'] . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($targetfile));
+            readfile($targetfile);
+            exit;
+            }
+        else echo _e("File does not exist.");
+	break;
+
+	case "fotomesin":
         $file = getRowById("spk",$_GET['id']);
         $targetfile = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . $file['foto_mesin'];
         if (file_exists($targetfile)) {
