@@ -142,11 +142,11 @@
 								<h3 class="box-title"><?php _e('Tanda Tangan User'); ?></h3>
 							</div><!-- /.box-header -->
 							<div class="box-body">
-					<?php foreach ($filesimagesignature as $filesimagesignature) { ?>
+					
 						<div class="col-md-12 col-xs-6">
-							<img class="img-responsive img-thumbnail" src="?qa=download&id=<?php echo $filesimagesignature['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+							<img class="img-responsive img-thumbnail" src="?qa=signspk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
 						</div>
-						<?php } ?>
+						
 
 					</div>
 
@@ -161,11 +161,14 @@
 										<h3 class="box-title"><?php _e('Foto Dokumentasi'); ?></h3>
 									</div><!-- /.box-header -->
 									<div class="box-body">
-							<?php foreach ($filesimage as $filesimage) { ?>
+							
 								<div class="col-md-3 col-xs-6">
-									<img class="img-responsive img-thumbnail" src="?qa=download&id=<?php echo $filesimage['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+									<img class="img-responsive img-thumbnail" src="?qa=fotomesin&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+									<img class="img-responsive img-thumbnail" src="?qa=fototoko&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+									<img class="img-responsive img-thumbnail" src="?qa=fotostruk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+								
 								</div>
-								<?php } ?>
+								
 
 							</div>
 						</div>
