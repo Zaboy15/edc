@@ -77,7 +77,7 @@ switch ($request_method) {
             "clients.name",
             "clients.mid",], [ "AND" => [
                 "OR" => $filters, 
-                "spk.spk_status[!]" => "Closed"]]);
+                "spk.spk_status[!]" => "Close Complete"]]);
         }
 
         $i=0;
