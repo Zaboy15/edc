@@ -75,7 +75,9 @@ switch ($request_method) {
             "spk.sign",
 
             "clients.name",
-            "clients.mid",], [ "AND" => $filters ]);
+            "clients.mid",], [ "AND" => [
+                "OR" => $filters, 
+                "spk.spk_status[!]" => "Closed"]]);
         }
 
         $i=0;
