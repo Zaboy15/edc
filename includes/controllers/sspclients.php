@@ -36,7 +36,7 @@ $columns = array(
 	array( 'db' => 'name',  'dt' => 2 ),
 	array( 'db' => 'alamat',  'dt' => 3 ),
 	array( 'db' => 'pic',  'dt' => 4 ),
-	array( 'db' => 'pic_phone',  'dt' => 5 ),
+	array( 'db' => 'phone_pic',  'dt' => 5 ),
 	array( 'db' => 'status',  'dt' => 6 ),
 
 	
