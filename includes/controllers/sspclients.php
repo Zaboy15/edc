@@ -35,8 +35,11 @@ $columns = array(
 	array( 'db' => 'mid', 'dt' => 1 ),
 	array( 'db' => 'name',  'dt' => 2 ),
 	array( 'db' => 'alamat',  'dt' => 3 ),
-	array( 'db' => 'status',  'dt' => 4 ),
-	array( 'db' => 'kota',  'dt' => 5 ),
+	array( 'db' => 'pic',  'dt' => 4 ),
+	array( 'db' => 'pic_phone',  'dt' => 5 ),
+	array( 'db' => 'status',  'dt' => 6 ),
+
+	
 
 	// array(
 	//        'db'        => 'start_date',

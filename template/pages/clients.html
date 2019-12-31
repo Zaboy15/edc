@@ -21,11 +21,15 @@
 	                        <table id="example" class="table table-striped table-hover table-bordered">
 								<thead>
 									<tr>
-											<th>ID</th>
+										<th>ID</th>
 										<th>MID</th>
 										<th>Nama Merchant</th>
 										<th>Alamat</th>
+										<th>PIC Name</th>
+										<th>PIC Phone</th>
 										<th>Status</th>
+
+
 										<th></th>
 									</tr>
 								</thead>
@@ -43,6 +47,8 @@
 
 $(document).ready(function() {
 	var table = $('#example').DataTable( {
+			"lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+			"dom": '<"top"f>lrt<"bottom"><"row dt-margin"<"col-md-6"i><"col-md-6"p><"col-md-12"B>><"clear">',
 	        "processing": true,
 	        "serverSide": true,
 	        "ajax": "includes/controllers/sspclients.php",
