@@ -230,6 +230,10 @@ switch ($request_resource) {
         require $scriptpath . '/api/resources/spk.php';
     break;
 
+    case 'kode': ## DONE ##d
+        require $scriptpath . '/api/resources/kode.php';
+    break;
+
     case 'ticketsedc': ## DONE ##d
         require $scriptpath . '/api/resources/ticketsedc.php';
     break;

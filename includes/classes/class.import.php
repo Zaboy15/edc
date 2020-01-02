@@ -332,8 +332,21 @@ class Import extends App {
 					"spk_status" => $item[16],
 					"wo_remarks" => $item[17],
 					"remarks_spk" => $item[18],
+					"received_date_sticker" => $item[24],
+					"target_spk" => $item[25],
+					"target_bank" => $item[26],
+					"city" => $item[27],
+					"service_point" => $item[28],
+					"bts" => $item[29],
+					"mmc_desc" => $item[30],
+					"month" => $item[31],
+					"year" => $item[32],
+					"day" => $item[33],
+					"aging" => $item[34],
+
+
 				]);
-				Notification::notifFCM($id_itfs,"New SPK",$item[10]);      
+				Notification::notifFCM($id_itfs,"New SPK",$random);      
 			}
 			
 

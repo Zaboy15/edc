@@ -67,12 +67,12 @@
 													<tr>
 														<td><b><?php _e('Status'); ?></b></td>
 														<td>
-															<?php if($spk['spk_status'] == "Open Import") echo "<span class='badge bg-green'>".__("Open Import")."</span>"; ?>
+															<?php if($spk['spk_status'] == "Open - Pending") echo "<span class='badge bg-green'>".__("Open - Pending")."</span>"; ?>
 															<?php if($spk['spk_status'] == "Open") echo "<span class='badge bg-green'>".__("Open")."</span>"; ?>
 															<?php if($spk['spk_status'] == "In Progress") echo "<span class='badge bg-navy'>".__("In Progress")."</span>"; ?>
-															<?php if($spk['spk_status'] == "Answered") echo "<span class='badge bg-teal'>".__("Answered")."</span>"; ?>
-															<?php if($spk['spk_status'] == "Reopened") echo "<span class='badge bg-orange'>".__("Reopened")."</span>"; ?>
-															<?php if($spk['spk_status'] == "Closed") echo "<span class='badge bg-gray'>".__("Closed")."</span>"; ?>
+															<?php if($spk['spk_status'] == "File Belum Di Terima") echo "<span class='badge bg-teal'>".__("File Belum Di Terima")."</span>"; ?>
+															<?php if($spk['spk_status'] == "Cancel") echo "<span class='badge bg-orange'>".__("Cancel")."</span>"; ?>
+															<?php if($spk['spk_status'] == "Closed - Completed") echo "<span class='badge bg-gray'>".__("Closed - Completed")."</span>"; ?>
 														</td>
 													</tr>
 													<tr>
@@ -87,14 +87,55 @@
 														<td><b><?php _e('WO Activity'); ?></b></td>
 														<td><?php echo $spk['wo_activity']; ?></td>
 													</tr>
+
 													<tr>
-														<td><b><?php _e('INC Cimb'); ?></b></td>
-														<td><?php echo $spk['inc_cimb']; ?></td>
+														<td><b><?php _e('WO Remarks'); ?></b></td>
+														<td><?php echo $spk['wo_remarks']; ?></td>
 													</tr>
+													
 													<tr>
 														<td><b><?php _e('Merchant'); ?></b></td>
 														<td><?php echo "<a href='?route=clients/manage&id=".$spk['id_merchant']."'>".getSingleValue('clients','name',$spk['id_merchant']); ?></td>
 													</tr>
+
+													<tr>
+														<td><b><?php _e('PIC Merchant'); ?></b></td>
+														<td><?php echo getSingleValue('clients','pic',$spk['id_merchant']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('PIC Phone'); ?></b></td>
+														<td><?php echo getSingleValue('clients','phone_pic',$spk['id_merchant']); ?></td>
+													</tr>
+
+													<tr>
+														<td><b><?php _e('Alamat'); ?></b></td>
+														<td><?php echo getSingleValue('clients','alamat',$spk['id_merchant']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('Kota'); ?></b></td>
+														<td><?php echo $spk['city']; ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('Service Point'); ?></b></td>
+														<td><?php echo $spk['service_point']; ?></td>
+													</tr>
+													
+
+													<tr>
+														<td><b><?php _e('MID'); ?></b></td>
+														<td><?php echo getSingleValue('clients','mid',$spk['id_merchant']); ?></td>
+													</tr>
+
+													<!-- <tr>
+														<td><b><?php _e('MID'); ?></b></td>
+														<td><?php echo getSingleValue('clients','mid',$spk['id_merchant']); ?></td>
+													</tr> -->
+
+													<tr>
+														<td><b><?php _e('MIDTID'); ?></b></td>
+														<td><?php echo getSingleValue('clients','midtid',$spk['id_merchant']); ?></td>
+													</tr>
+													
 													<tr>
 														<td><b><?php _e('ITFS'); ?></b></td>
 														<td><?php echo getSingleValue('people','name',$spk['id_itfs']); ?></td>
@@ -106,6 +147,16 @@
 													<tr>
 														<td><b><?php _e('Received Time'); ?></b></td>
 														<td><?php echo dateTimeDisplay($spk['received_time']); ?></td>
+													</tr>
+												
+													<tr>
+														<td><b><?php _e('Received Date Sticker'); ?></b></td>
+														<td><?php echo dateTimeDisplay($spk['received_date_sticker']); ?></td>
+													</tr>
+
+													<tr>
+														<td><b><?php _e('Target Date SPK'); ?></b></td>
+														<td><?php echo dateTimeDisplay($spk['received_date_sticker']); ?></td>
 													</tr>
 													<tr>
 														<td><b><?php _e('Completed WO'); ?></b></td>
@@ -119,18 +170,7 @@
 														<td><b><?php _e('SIMCARD'); ?></b></td>
 														<td><?php echo "<a href='?route=inventory/assets/manage&id=".$spk['id_sn_simcard']."'>".getSingleValue('assets','serial',$spk['id_sn_simcard']); ?></td>
 													</tr>
-													<tr>
-														<td><b><?php _e('Test Credit'); ?></b></td>
-														<td><?php echo $spk['test_credit']; ?></td>
-													</tr>
-													<tr>
-														<td><b><?php _e('Test Prepaid'); ?></b></td>
-														<td><?php echo $spk['test_prepaid']; ?></td>
-													</tr>
-													<tr>
-														<td><b><?php _e('Test Debit'); ?></b></td>
-														<td><?php echo $spk['test_debit']; ?></td>
-													</tr>
+													
 											
 												</tbody>
 											</table>
@@ -168,10 +208,17 @@
 											<h3 class="box-title"><?php _e('Tanda Tangan User'); ?></h3>
 										</div><!-- /.box-header -->
 										<div class="box-body">
-								
+									<?php if(!empty($spk['sign'])) { ?>
 									<div class="col-md-12 col-xs-6">
 										<img class="img-responsive img-thumbnail" src="?qa=signspk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
 									</div>
+									<?php } ?>	
+
+									<?php if(empty($spk['sign'])) { ?>
+									<div class="col-md-12 col-xs-6">
+										<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+									</div>
+									<?php } ?>	
 									
 			
 								</div>
@@ -187,12 +234,30 @@
 										<h3 class="box-title"><?php _e('Dokumentasi'); ?></h3>
 									</div><!-- /.box-header -->
 									<div class="box-body">
-							
+										
+											
 								<div class="col-md-12 col-xs-6">
+									<?php if(!empty($spk['foto_mesin'])) { ?>
 									<img class="img-responsive img-thumbnail" src="?qa=fotomesin&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
-									<img class="img-responsive img-thumbnail" src="?qa=fototoko&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
-									<img class="img-responsive img-thumbnail" src="?qa=fotostruk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
-								
+									<?php } ?>
+									<?php if(empty($spk['foto_mesin'])) { ?>
+										<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+
+										<?php } ?>	
+										<?php if(!empty($spk['foto_toko'])) { ?>
+										<img class="img-responsive img-thumbnail" src="?qa=fototoko&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+										<?php } ?>	
+										<?php if(empty($spk['foto_toko'])) { ?>
+											<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+	
+											<?php } ?>
+											<?php if(!empty($spk['foto_struk'])) { ?>	
+										<img class="img-responsive img-thumbnail" src="?qa=fotostruk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+										<?php } ?>	
+										<?php if(empty($spk['foto_struk'])) { ?>
+											<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+	
+											<?php } ?>
 								</div>
 								
 		
