@@ -642,6 +642,18 @@ class Import extends App {
 			"communication_line",//21
 			"sn_simcard", //22
 			"tag", //23
+			"receive_date_sticker",//24
+			"target_spk",//25
+			"target_bank",//26
+			"city",//27
+			"service_point",//28
+			"bts",//29
+			"mmc_desc",//30
+			"month", //31
+			"year", //32
+			"day", //33
+			"aging", //34
+
 
 			
 		];
