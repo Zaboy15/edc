@@ -133,6 +133,15 @@ switch ($request_method) {
         else $response = [ "status" => 2, "status_message" => "Error! Unable to update item." ];
     break;
 
+    case 'editAPI':
+        isAuthorizedApi("editTicket");
+
+        $status = Spk::editAPI($data);
+
+        if($status == 20) $response = [ "status" => 1, "status_message" => "Success! Item has been updated successfully." ];
+        else $response = [ "status" => 2, "status_message" => "Error! Unable to update item." ];
+    break;
+
     case 'delete':
         isAuthorizedApi("deleteTicket");
 
