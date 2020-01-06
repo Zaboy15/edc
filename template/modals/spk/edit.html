@@ -68,6 +68,9 @@
             <?php } ?>
             <?php if(!$isAdmin) { ?><input type="hidden" name="id_merchant" value="<?php echo $spkdata['id_merchant']; ?>"><?php } ?>
         </div>
+
+
+        
     </div>
 
     <div class="row">
@@ -155,12 +158,14 @@
                         <label for="spk_status">Status *</label>
                         <select class="form-control select2" id="spk_status" name="spk_status" style="width: 100%;">
                             <option value="In Progress" <?php if($spkdata['spk_status'] == "In Progress") echo "selected"; ?>><?php _e('In Progress'); ?></option>
-                            <option value="Closed Complete" <?php if($spkdata['spk_status'] == "Closed") echo "selected"; ?>><?php _e('Closed Complete'); ?></option>
-                            <option value="Open Pending" <?php if($spkdata['spk_status'] == "Open Pending") echo "selected"; ?>><?php _e('Open Pending'); ?></option>
+                            <option value="Closed - Completed" <?php if($spkdata['spk_status'] == "Closed") echo "selected"; ?>><?php _e('Closed Complete'); ?></option>
+                            <option value="Open - Pending" <?php if($spkdata['spk_status'] == "Open Pending") echo "selected"; ?>><?php _e('Open Pending'); ?></option>
                         
                         </select>
                     </div>
                 </div>
+
+                
 
         <!-- <div class="col-md-6">
             <div class="form-group">

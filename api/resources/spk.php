@@ -39,9 +39,24 @@ switch ($request_method) {
             "spk.foto_toko",
             "spk.foto_struk",
             "spk.sign",
-
-
+            "spk.target_spk",
+            "spk.target_bank",
+            "spk.city",
+            "spk.service_point",
+            "spk.provinsi",
+            "spk.mmc_desc",
+            "spk.received_date_sticker",
+            "spk.month",
+            "spk.year",
+            "spk.day",
+            "spk.aging",
+            "spk.mid",
+            "spk.midtid",
+            "spk.tid",
             "clients.name",
+            "clients.alamat",
+            "clients.pic",
+            "clients.phone_pic",
             "clients.mid"]);
         } else {
             $result = $database->select("spk", [
@@ -72,19 +87,30 @@ switch ($request_method) {
             "spk.foto_mesin",
             "spk.foto_toko",
             "spk.foto_struk",
+            "spk.received_date_sticker",
             "spk.sign",
-
+            "spk.target_spk",
+            "spk.target_bank",
+            "spk.city",
+            "spk.service_point",
+            "spk.provinsi",
+            "spk.mmc_desc",
+            "spk.month",
+            "spk.year",
+            "spk.day",
+            "spk.aging",
+            "spk.mid",
+            "spk.midtid",
+            "spk.tid",
+            "clients.alamat",
+            "clients.pic",
+            "clients.phone_pic",
             "clients.name",
             "clients.mid",], [ "AND" => [
                 "OR" => $filters, 
-                "spk.spk_status[!]" => "Close Complete"]]);
+                "spk.spk_status[!]" => "Closed - Completed"]]);
         }
 
-        $i=0;
-        foreach($result as $item) {
-            $result[$i]['ccs'] = unserialize($item['ccs']);
-            $i++;
-        }
 
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];
     break;
