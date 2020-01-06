@@ -164,7 +164,7 @@ class Spk extends App {
             $database->update("spk", [
                 "id_merchant" => $data['id_merchant'],
                 "spk_number" => $data['spk_number'],
-                "inc_cimb" => $data['inc_cimb'],
+                // "inc_cimb" => $data['inc_cimb'],
                 "id_itfs" => $data['id_itfs'],
                 "reported_time" => $data['reported_time'],
                 "received_time" => $data['received_time'],
