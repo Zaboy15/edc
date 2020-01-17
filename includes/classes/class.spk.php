@@ -165,7 +165,7 @@ class Spk extends App {
                 "id_itfs" => $data['id_itfs'],
                 "c_date_wo" => $data['c_date_wo'],
                 "spk_status" => $data['spk_status'],
-                "remarks_spk" => $data['remarks_spk'],
+                "wo_remarks" => $data['wo_remarks'],
 
                 
             ], [ "id" => $data['id'] ]);
