@@ -744,6 +744,8 @@ class Import extends App {
 				$result = $database->insert("clients", [
 					"name" => $nama_merchant,
 					"mid" => $value,
+					"id_customer" => 2,
+
 					// "tid" => $tid,
 					// "csi" => $csi,
 					// "midtid" => $midtid,
