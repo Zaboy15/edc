@@ -343,7 +343,7 @@ class Import extends App {
 					"year" => $item[32],
 					"day" => $item[33],
 					"aging" => $item[34],
-					"mid" => $item[0],
+					"mid" => $item[35],
 					"midtid" => $item[2],
 					"tid" => $item[1],
 					
@@ -658,6 +658,7 @@ class Import extends App {
 			"year", //32
 			"day", //33
 			"aging", //34
+			"mid_qr", //35
 
 
 			
