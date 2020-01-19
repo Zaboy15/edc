@@ -149,7 +149,7 @@ class Spk extends App {
                 // "wo_remarks" => $data['wo_remarks'],
                 "id_sn_edc" => $data['id_sn_edc'],
                 "id_sn_simcard" => $data['id_sn_simcard'],
-                "remarks_spk" => $data['remarks_spk'],
+                "wo_remarks" => $data['wo_remarks'],
 
                 
             ], [ "id" => $data['id'] ]);
