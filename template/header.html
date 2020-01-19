@@ -203,7 +203,7 @@
                   <ul class="treeview-menu">
                        <?php if(in_array("viewAssets",$perms)) { ?><li <?php if(strpos($route,'inventory/assets') !== false) echo 'class="active"'; ?>><a href="?route=inventory/assets"><i class="fa fa-desktop"></i> <?php _e('Assets'); ?></a></li><?php } ?>
                        <?php if(in_array("viewLicenses",$perms)) { ?><li <?php if(strpos($route,'inventory/licenses') !== false) echo 'class="active"'; ?>><a href="?route=inventory/licenses"><i class="fa fa-certificate"></i> <?php _e('Licenses'); ?></a></li><?php } ?>
-                       <?php if(in_array("viewCredentials",$perms)) { ?><li <?php if(strpos($route,'inventory/credentials') !== false) echo 'class="active"'; ?>><a href="?route=inventory/credentials"><i class="fa fa-asterisk"></i> <?php _e('Credentials'); ?></a></li><?php } ?>
+                       <!-- <?php if(in_array("viewCredentials",$perms)) { ?><li <?php if(strpos($route,'inventory/credentials') !== false) echo 'class="active"'; ?>><a href="?route=inventory/credentials"><i class="fa fa-asterisk"></i> <?php _e('Credentials'); ?></a></li><?php } ?> -->
 
                        <?php if(in_array("manageData",$perms)) { ?>
                             <li class="treeview<?php if(strpos($route,'inventory/attributes') !== false) echo ' active'; ?>">
