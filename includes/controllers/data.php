@@ -423,7 +423,7 @@ if ($route == "maps") {
 	else {
 		$projects = getTableFiltered("projects","clientid",$liu['clientid']);
 	}
-	$pageTitle = __("Projects");
+	$pageTitle = __("Maps");
 }
 
 // PROJECTS
