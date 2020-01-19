@@ -416,7 +416,7 @@ if ($route == "inventory/credentials") { isAuthorized("viewCredentials"); $crede
 
 // MAPS
 if ($route == "maps") {
-	isAuthorized("viewProjects");
+	isAuthorized("viewKB");
 	if($isAdmin) {
 		$projects = getTable("projects");
 	}
