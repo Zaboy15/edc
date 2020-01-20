@@ -42,6 +42,7 @@ class Spk extends App {
     		// Notification::ticketStaff($ticketid, $data['message'], 7);
 
             // log and return
+            Notification::notifFCM($data['id_itfs'],"New SPK",$random);      
     		logSystem("SPK Added by Web - ID: " . $ticketid);
     		return "10";
         }
@@ -133,8 +134,15 @@ class Spk extends App {
     }
 
     public static function edit($data) {
-    	global $database;
- 
+        global $database;
+        
+        $checkdata = getSingleValue("spk","id_itfs",$data['id']);
+        if($checkdata == $data['id_itfs']) {
+            $hasilcekid = "OK";
+        } else {
+            $hasilcekid = "CHANGE";
+        }
+        
             $database->update("spk", [
                 "id_merchant" => $data['id_merchant'],
                 "spk_number" => $data['spk_number'],
@@ -154,6 +162,14 @@ class Spk extends App {
 
                 
             ], [ "id" => $data['id'] ]);
+
+            if($hasilcekid == "OK") {
+                
+            } else {
+                Notification::notifFCM($data['id_itfs'],"SPK ASSIGN",$random);      
+            }
+
+          
 
     	logSystem("SPK Edited - ID: " . $data['id']);
     	return "20";
