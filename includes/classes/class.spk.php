@@ -166,7 +166,7 @@ class Spk extends App {
             if($hasilcekid == "OK") {
                 
             } else {
-                Notification::notifFCM($data['id_itfs'],"SPK ASSIGN",$random);      
+                Notification::notifFCM($data['id_itfs'],"SPK ASSIGN",$data['spk_number']);      
             }
 
           
