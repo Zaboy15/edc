@@ -351,20 +351,13 @@ class Import extends App {
 
 
 				]);
-				Notification::notifFCM($id_itfs,"New SPK",$random);      
+				Notification::notifFCM($id_itfs,"New SPK",$random);
+				return "11";      
 			}
 			
 
 			$lineindex++;
 		}
-		
-		if ($lastid == "0") { return "11"; }
-        else {
-			// Notification::notifFCM($id_itfs,"New SPK",$item[10]);      
-           
-    		logSystem("Import Added - ID: " . $ticketid);
-    		return "10";
-        }
 
 
     }
