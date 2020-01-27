@@ -249,29 +249,29 @@ else {
 // DASHBOARD
 if ($route == "dashboard") {
 	if($isAdmin) {
-		$sumAssets = countTable("assets");
-		$sumLicenses = countTable("licenses");
-		$sumProjects = countTable("projects");
-		$sumClients = countTable("clients");
-		$sumUsers = countTableFiltered("people","type","user");
-		$categories = getTable("assetcategories");
-		$spk = getTable("spk");
+		// $sumAssets = countTable("assets");
+		// $sumLicenses = countTable("licenses");
+		// $sumProjects = countTable("projects");
+		// $sumClients = countTable("clients");
+		// $sumUsers = countTableFiltered("people","type","user");
+		// $categories = getTable("assetcategories");
+		// $spk = getTable("spk");
 
-		$sumspkinstall = countTableFiltered("spk","spk_status","Done");
-		$sumspkinstall2 = countTableFiltered("spk","spk_status","Open");
-		$sumspkinstall3 = countTableFiltered("spk","spk_status","Inprogress");
+		// $sumspkinstall = countTableFiltered("spk","spk_status","Done");
+		// $sumspkinstall2 = countTableFiltered("spk","spk_status","Open");
+		// $sumspkinstall3 = countTableFiltered("spk","spk_status","Inprogress");
 
 		
         // $sumspkinstallstatus = $database->count("tickets",["AND" => ["closeby"=> "VISIT","open_ticket[<>]" => [$tgl_pertama, $tgl_terakhir]]]);
         // $sumremote = $database->count("tickets",["AND" => ["closeby"=> "REMOTE","open_ticket[<>]" => [$tgl_pertama, $tgl_terakhir]]]);
 
-		$myIssues = $database->select("issues", "*", [ "AND" => ["status[!]" => "Done", "adminid" => $liu['id']] ]);
-		$activeIssues = $database->select("issues", "*", [ "status[!]" => "Done" ]);
+		// $myIssues = $database->select("issues", "*", [ "AND" => ["status[!]" => "Done", "adminid" => $liu['id']] ]);
+		// $activeIssues = $database->select("issues", "*", [ "status[!]" => "Done" ]);
 
-		$openTickets = $database->select("tickets", "*", [ "status[!]" => "Closed", "ORDER" => ["id" => "DESC"] ]);
+		// $openTickets = $database->select("tickets", "*", [ "status[!]" => "Closed", "ORDER" => ["id" => "DESC"] ]);
 
-		$recentAssets = $database->select("assets", "*", [ "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
-		$recentLicenses = $database->select("licenses", "*", [ "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
+		// $recentAssets = $database->select("assets", "*", [ "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
+		// $recentLicenses = $database->select("licenses", "*", [ "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
 	}
 	else {
 		$sumAssets = countTableFiltered("assets","clientid",$liu['clientid']);
