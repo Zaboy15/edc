@@ -351,7 +351,7 @@ class Import extends App {
 
 
 				]);
-				// Notification::notifFCM($id_itfs,"New SPK",$random);
+				Notification::notifFCM($id_itfs,"New SPK",$random);
 				return "10";      
 			}
 			
