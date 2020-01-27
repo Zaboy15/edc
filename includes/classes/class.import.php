@@ -311,7 +311,7 @@ class Import extends App {
 			// }
 			$spknumber = $database->get("spk", "*", ["spk_number" => $item[9]]);
 			if(!empty($spknumber)) { 
-				return "11";
+				return "51";
 			}
 			else{
 				$random = rand(100000,999999);
