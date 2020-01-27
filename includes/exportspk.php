@@ -78,11 +78,11 @@ FROM
       (
           (
               `u4580489_edc`.`spk` `a`
-          JOIN `u4580489_edc`.`assets` `b`
+          LEFT JOIN `u4580489_edc`.`assets` `b`
           ON
               ((`a`.`id_sn_edc` = `b`.`id`))
           )
-      JOIN `u4580489_edc`.`clients` `c`
+      LEFT JOIN `u4580489_edc`.`clients` `c`
       ON
           ((`a`.`id_merchant` = `c`.`id`))
       )
