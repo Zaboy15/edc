@@ -352,12 +352,14 @@ class Import extends App {
 
 				]);
 				Notification::notifFCM($id_itfs,"New SPK",$random);
-				return "10";      
+				     
 			}
 			
 
 			$lineindex++;
 		}
+
+		return "10"; 
 
 
     }
