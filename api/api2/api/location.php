@@ -2,7 +2,7 @@
 require "../config/connection.php";
 
     $response = array();
-    $sql = mysqli_query($con,"SELECT * from people where id = 1");
+    $sql = mysqli_query($con,"SELECT * from people");
     while ($a = mysqli_fetch_array($sql)){
         $b['id'] = $a['id'];
         $b['nik'] = $a['nik'];
