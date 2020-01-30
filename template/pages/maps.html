@@ -48,7 +48,6 @@
         var infoWindow = new google.maps.InfoWindow;
 
           downloadUrl('https://dev.orang-it.com/edc/api/api2/api/location.php', function(data) {
-			// downloadUrl('http://localhost/edcmip/api/api2/api/location.php', function(data) {
 
             var markers=JSON.parse(data.responseText);
 
