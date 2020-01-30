@@ -3,10 +3,6 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1 class="pull-left"><?php _e('Maps'); ?><small> <?php _e('Manage'); ?></small></h1>
-		<!-- <div class="pull-right"><?php if(in_array("addProject",$perms)) { ?><a
-				onClick='showM("index.php?modal=projects/add&reroute=projects&routeid=&section=");return false'
-				data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><?php _e('NEW Marker'); ?></a><?php } ?>
-		</div> -->
 		<div style="clear:both"></div>
 	</section>
 	<!-- Main content -->
@@ -47,7 +43,7 @@
         });
         var infoWindow = new google.maps.InfoWindow;
 
-          downloadUrl('https://orang-it.com/dev/edc/api/api2/api/location.php', function(data) {
+          downloadUrl('http://dev.orang-it.com/edc/api/api2/api/location.php', function(data) {
 			// downloadUrl('http://localhost/edcmip/api/api2/api/location.php', function(data) {
 
             var markers=JSON.parse(data.responseText);
