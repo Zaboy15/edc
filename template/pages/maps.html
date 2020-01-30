@@ -38,8 +38,6 @@
 							src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&sensor=false"></script> -->
 							<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&callback=initMap"
 	async defer></script>
-	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu9ZdsaktlQ7PG3PUcCB-5atCSArDSM1A&callback=initMap"
-    async defer></script> -->
 							<script>
 								
 							function initMap() {
@@ -49,7 +47,7 @@
         });
         var infoWindow = new google.maps.InfoWindow;
 
-          downloadUrl('https://orang-it.com/dev/edc/api/api2/api/location.php', function(data) {
+          downloadUrl('https://dev.orang-it.com/edc/api/api2/api/location.php', function(data) {
 			// downloadUrl('http://localhost/edcmip/api/api2/api/location.php', function(data) {
 
             var markers=JSON.parse(data.responseText);
