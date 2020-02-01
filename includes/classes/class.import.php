@@ -270,6 +270,71 @@ class Import extends App {
 
 
 	}
+
+	public static function editspk($data, $file) {
+    	global $database;
+		
+		// $customfields = getTable("assets_customfields");
+		// $customfieldsdata = array();
+		
+		$csv = fopen($file["file"]["tmp_name"],"r");
+		$filename = pathinfo($file['file']['name'], PATHINFO_FILENAME);
+		$lineindex = 0;
+
+
+		while( ($item = fgetcsv($csv, 0, ",", '"') ) !== FALSE ) {
+			
+			if($lineindex == 0) { 
+				//skip first line
+				$lineindex++; 
+				continue; 
+			}
+
+			
+			$id_spk = self::dataMatcher("id_spk", $item[9],0);
+			// $id_merchant = self::dataMatcher("id_merchant", $item[0],$item[0],$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8]);
+			$id_merchant = self::dataMatcher("id_merchant", $item[0],0,$item[1],$item[2],$item[3],$item[4],$item[5],$item[6],$item[7],$item[8]);			
+			// $id_itfs = self::dataMatcher("id_itfs", $item[1],0);
+			$id_itfs = self::dataMatcher("id_itfs", $item[11],$id_merchant);
+			$max = $database->max("assets", "id");
+			$tag = $max+1;
+			// $tag = self::dataMatcher("asset_tag", $item[23], $id_merchant);
+			// $idedc = self::dataMatcher("edc", $item[19],$id_merchant,$item[20]);
+			$idedc = self::dataMatcher("edc", $item[19],$id_merchant,$item[20],$item[21],$item[22],$item[0],$item[1],$item[2],$item[3],$tag);
+
+
+			// $itemindex = 27;
+			// foreach ($customfields as $customfield) {
+			// 	if(isset($item[$itemindex])) {
+			// 		$customfieldsdata[$customfield['id']] = $item[$itemindex];
+			// 	}
+			// 	$itemindex++;
+			// }
+			// $spknumber = $database->get("spk", "*", ["spk_number" => $item[9]]);
+			if(!empty($spknumber)) { 
+				return "51";
+			}
+			else{ $lastid = $database->update("spk", [
+					"id_itfs" => $id_itfs,
+					"id_sn_edc" => $idedc,
+					"id_merchant" => $id_merchant,
+				], [ "id" => $id_spk]);
+
+				// Notification::notifFCM($id_itfs,"Update SPK",$random);
+				     
+			
+				
+			}
+
+			$lineindex++;
+		}
+
+		return "10"; 
+
+		
+
+
+    }
 	
 	public static function spk($data, $file) {
     	global $database;
@@ -605,6 +670,65 @@ class Import extends App {
 
 	}
 
+	public static function sampleUpdateSPK() {
+		global $database;
+
+		$customfields = getTable("licenses_customfields");
+		
+		header('Content-Type: application/excel');
+		header('Content-Disposition: attachment; filename="sample.csv"');
+		
+		$output = fopen('php://output', 'w');
+
+		$header = [
+
+			"mid", //0
+			"tid", //1
+			"midtid", //2
+			"csi", //3
+			"nama_merchant", //4
+			"nama_pic", //5
+			"pic_phone", //6
+			"alamat", //7
+			"kode merchant", //8
+			"spk_number", //9
+			"inc_cimb", //10
+			"email", //11
+			"reported_time", //12
+			"received_time", //13
+			"wo_activity", //14
+			"reason_code", //15
+			"spk_status", //16
+			"wo_remarks", //17
+			"remarks_spk", //18
+			"serial", //19
+			"operator_sim", //20
+			"communication_line",//21
+			"sn_simcard", //22
+			"tag", //23
+			"receive_date_sticker",//24
+			"target_spk",//25
+			"target_bank",//26
+			"city",//27
+			"service_point",//28
+			"bts",//29
+			"mmc_desc",//30
+			"month", //31
+			"year", //32
+			"day", //33
+			"aging", //34
+			"mid_qr", //35
+
+
+			
+		];
+
+	
+		fputcsv($output, $header, ",");
+
+		fclose($output);
+	}
+
 	
 	public static function sampledataSPK() {
 		global $database;
@@ -730,6 +854,16 @@ class Import extends App {
 	private static function dataMatcher($type, $value, $clientid=0, $tid, $midtid, $csi, $nama_merchant, $nama_pic, $pic_phone, $alamat, $kode_merchant) {
 		global $database;
 		$result = 0;
+
+
+		if($type == "id_spk") {
+			$id = $database->get("spk", "*", ["spk_number" => $value]);
+
+			if(!empty($id)) { $result = $id['id']; }
+			else {
+				
+			}
+		}
 
 		if($type == "id_merchant") {
 			$mid = $database->get("clients", "*", ["mid" => $value]);

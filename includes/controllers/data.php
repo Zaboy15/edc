@@ -1081,6 +1081,13 @@ if ($route == "system/import/sampledataSPK") {
 
 }
 
+if ($route == "system/import/sampleUpdateSPK") {
+	isAuthorized("viewSystem");
+
+	Import::sampleUpdateSPK();
+
+}
+
 if ($route == "system/import/samplestaff") {
 	isAuthorized("viewSystem");
 
