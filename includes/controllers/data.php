@@ -293,12 +293,7 @@ if ($route == "dashboard") {
 // ASSETS
 if ($route == "inventory/assets") {
 	isAuthorized("viewAssets");
-	if($isAdmin) {
-		$assets = getTable("assets");
-	}
-	else {
-		$assets = getTableFiltered("assets","clientid",$liu['clientid']);
-	}
+	
 	$pageTitle = __("Assets");
 }
 
@@ -547,12 +542,6 @@ if ($route == "spk/myspk") {
 
 if ($route == "spk/all") {
 	isAuthorized("viewSPK");
-	if($isAdmin) {
-		$spk = $database->select("spk", "*", ["ORDER" => ["id" => "DESC"]]);
-	}
-	else {
-		$tickets = $database->select("spk", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"]]);
-	}
 	$pageTitle = __("My SPK");
 }
 
@@ -874,7 +863,7 @@ if ($route == "customers/customers") {
 // CLIENTS
 if ($route == "clients") {
 	isAuthorized("viewClients");
-	$clients = getTable("clients");
+	
 	$pageTitle = __("Merchant");
 }
 
