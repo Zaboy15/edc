@@ -29,7 +29,12 @@
 								<?php } ?>
 							
 							<?php if($isAdmin) { ?><a data-toggle='tooltip' title='<?php _e('E-FKM'); ?>' href="?route=reports/efkm&id=<?php echo $spk['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-thumb-tack"></i></a><?php } ?>
-
+							<?php if($isAdmin) { ?><a data-toggle='tooltip' title='<?php _e('E-FKM'); ?>' href="signature/my_sign.php&id_spk=<?php echo $spk['id']; ?>&spk_number=<?php echo $spk['spk_number'];?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-thumb-tack"></i></a><?php } ?>
+							<form action="signature/my_sign.php" method="post">
+								<input type="hidden" name="id_spk" value="<?php echo $spk['id'];?>">
+								<input type="hidden" name="spk_number" value="<?php echo $spk['spk_number'];?>">
+								<input type="submit">
+							</form>
 							<!-- <?php if($spk['status'] != "Closed") { ?>
 								<a data-toggle='tooltip' title='<?php _e('Close Ticket'); ?>' href="?qa=ticketClose&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-close"></i></a>
 							<?php } ?>

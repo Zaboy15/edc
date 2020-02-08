@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>jQuery Signature Pad & Canvas Image</title>
+		<title>Signature Customer</title>
 		<link href="./css/jquery.signaturepad.css" rel="stylesheet">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="./js/numeric-1.2.6.min.js"></script> 
@@ -51,7 +51,20 @@
 	</head>
 	<body>
 
-		<h2>Learn Infinity | jQuery Signature Pad & Canvas Image</h2>
+		<h2>Signature Customer</h2>
+		<?php 
+		if(isset($_POST['id_spk']) == null){
+			$id_spk = 0;
+			$spk_number = 0;
+		} else {
+			// $id_spk = $_POST['id_spk'];
+			$spk_number = $_POST['spk_number'];
+			// echo $id_spk;
+			echo $spk_number;
+		}
+
+		// $id_spk = 4;
+		?>
 		
 		<div id="signArea" >
 			<h2 class="tag-ingo">Put signature below,</h2>
@@ -87,10 +100,11 @@
 					onrendered: function (canvas) {
 						var canvas_img_data = canvas.toDataURL('image/png');
 						var img_data = canvas_img_data.replace(/^data:image\/(png|jpg);base64,/, "");
+						var spk_number = <?php echo $spk_number;?>;
 						//ajax call to save image inside folder
 						$.ajax({
 							url: 'save_sign.php',
-							data: { img_data:img_data },
+							data: { img_data:img_data ,spk_number:spk_number },
 							type: 'post',
 							dataType: 'json',
 							success: function (response) {
