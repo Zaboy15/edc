@@ -21,7 +21,7 @@ require ('../../configserverside.php');
  */
 
 // DB table to use
-$table = 'tabelspknew';
+$table = 'tabelspkall';
 
 // Table's primary key
 $primaryKey = 'id';
