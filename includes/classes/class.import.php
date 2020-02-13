@@ -90,7 +90,7 @@ class Import extends App {
 
 			$clientid = self::dataMatcher("merchant", $item[0]);
 
-			// $categoryid = self::dataMatcher("asset_category", $item[10], $clientid);
+			// $categoryid = self::edataMatcher("asset_category", $item[10], $clientid);
 			$tag = self::dataMatcher("asset_tag", $item[11], $clientid);
 
 			// $itemindex = 15;
@@ -318,9 +318,11 @@ class Import extends App {
 					"id_itfs" => $id_itfs,
 					"id_sn_edc" => $idedc,
 					"id_merchant" => $id_merchant,
+					
+
 				], [ "id" => $id_spk]);
 
-				// Notification::notifFCM($id_itfs,"Update SPK",$random);
+				Notification::notifFCM($id_itfs,"Update SPK",$item[9]);
 				     
 			
 				
