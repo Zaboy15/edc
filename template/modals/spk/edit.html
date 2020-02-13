@@ -158,8 +158,8 @@
                         <label for="spk_status">Status *</label>
                         <select class="form-control select2" id="spk_status" name="spk_status" style="width: 100%;">
                             <option value="In Progress" <?php if($spkdata['spk_status'] == "In Progress") echo "selected"; ?>><?php _e('In Progress'); ?></option>
-                            <option value="Closed - Completed" <?php if($spkdata['spk_status'] == "Closed") echo "selected"; ?>><?php _e('Closed Complete'); ?></option>
-                            <option value="Open - Pending" <?php if($spkdata['spk_status'] == "Open Pending") echo "selected"; ?>><?php _e('Open Pending'); ?></option>
+                            <option value="Close - Completed" <?php if($spkdata['spk_status'] == "Close - Completed") echo "selected"; ?>><?php _e('Close - Complete'); ?></option>
+                            <option value="Open - Pending" <?php if($spkdata['spk_status'] == "Open - Pending") echo "selected"; ?>><?php _e('Open - Pending'); ?></option>
                         
                         </select>
                     </div>
