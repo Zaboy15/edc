@@ -12,7 +12,9 @@ switch ($request_method) {
         if(empty($filters)) {
             $result = $database->count("spk","*");
         } else {
-            $result = $database->count("spk", "*",[ "AND" => $filters ]);
+            $result = $database->count("spk", "*",[ "AND" => [
+                "OR" => $filters, 
+                "spk_status[!]" => "Close - Completed"]]);
         }
 
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];
