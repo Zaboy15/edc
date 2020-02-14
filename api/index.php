@@ -226,6 +226,10 @@ switch ($request_method) {
 
 switch ($request_resource) {
 
+    case 'count_spk': ## DONE ##d
+        require $scriptpath . '/api/resources/count_spk.php';
+    break;
+
     case 'spk': ## DONE ##d
         require $scriptpath . '/api/resources/spk.php';
     break;
