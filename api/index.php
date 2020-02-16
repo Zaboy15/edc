@@ -230,6 +230,14 @@ switch ($request_resource) {
         require $scriptpath . '/api/resources/count_spk.php';
     break;
 
+    case 'count_pm': ## DONE ##d
+        require $scriptpath . '/api/resources/count_pm.php';
+    break;
+
+    case 'count_ticket': ## DONE ##d
+        require $scriptpath . '/api/resources/count_ticket.php';
+    break;
+
     case 'spk': ## DONE ##d
         require $scriptpath . '/api/resources/spk.php';
     break;

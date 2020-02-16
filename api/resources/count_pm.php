@@ -10,11 +10,11 @@ switch ($request_method) {
         isAuthorizedApi("viewBatchPM");
 
         if(empty($filters)) {
-            $result = $database->count("spk","*");
+            $result = $database->count("tabel_pm","*");
         } else {
-            $result = $database->count("spk", "*",[ "AND" => [
+            $result = $database->count("tabel_pm", "*",[ "AND" => [
                 "OR" => $filters, 
-                "spk_status[!]" => ["Closed - Completed","Close - Completed"]]]);
+                "status[!]" => "Closed - Completed"]]);
         }
 
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];
