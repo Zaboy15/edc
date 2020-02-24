@@ -72,7 +72,7 @@ switch($_GET['qa']) {
         if (file_exists($targetfile)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . $file['file'] . '"');
+            header('Content-Disposition: attachment; filename="' . $file['sign'] . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
@@ -89,7 +89,7 @@ switch($_GET['qa']) {
         if (file_exists($targetfile)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . $file['file'] . '"');
+            header('Content-Disposition: attachment; filename="' . $file['foto_toko'] . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
@@ -106,7 +106,7 @@ switch($_GET['qa']) {
         if (file_exists($targetfile)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . $file['file'] . '"');
+            header('Content-Disposition: attachment; filename="' . $file['foto_struk'] . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
@@ -118,12 +118,12 @@ switch($_GET['qa']) {
 	break;
 
 	case "fotomesin":
-        $file = getRowById("spk",$_GET['id']);
-        $targetfile = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . $file['foto_mesin'];
+        $fotomesin = getRowById("spk",$_GET['id']);
+        $targetfile = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . $fotomesin['foto_mesin'];
         if (file_exists($targetfile)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . $file['file'] . '"');
+            header('Content-Disposition: attachment; filename="' . $fotomesin['foto_mesin'] . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');

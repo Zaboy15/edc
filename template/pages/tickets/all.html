@@ -22,10 +22,9 @@
 
 										<th><?php _e('Ticket #'); ?></th>
 										<th><?php _e('Subject'); ?></th>
-										<th><?php _e('Submitter'); ?></th>
+										<th><?php _e('Customer'); ?></th>
 										<th><?php _e('Assigned To'); ?></th>
 										<th><?php _e('Related Entities'); ?></th>
-										<th><?php _e('Department'); ?></th>
 										<th><?php _e('Status'); ?></th>
 										<th><?php _e('Last Reply'); ?></th>
 										<th class="text-right"></th>
@@ -44,10 +43,12 @@
 											<td><?php if(in_array("manageTicket",$perms)) { ?><a href='?route=tickets/manage&id=<?php echo $ticket['id']; ?>'><?php echo $ticket['subject']; ?></a><?php } else echo $ticket['subject']; ?></td>
 											<td>
 												<?php
-													if($ticket['userid'] != 0) echo getSingleValue("people","name",$ticket['userid']);
-													else echo $ticket['email'];
+													if($ticket['idcustomer'] != 0) echo getSingleValue("tabel_customer","nama_customer",$ticket['idcustomer']);
+													elseif($ticket['departmentid'] == 0) echo '<span class="text-muted">' . __('None') . '</span>';
+													else echo '<span class="text-muted">' . __('None') . '</span>';
 												?>
 											</td>
+											
 											<td>
 												<?php if($ticket['adminid'] != 0) { ?>
 													
@@ -73,13 +74,7 @@
 													</a>
 												<?php } ?>
 											</td>
-											<td>
-												<?php
-													if($ticket['departmentid'] != 0) echo getSingleValue("tickets_departments","name",$ticket['departmentid']);
-													elseif($ticket['departmentid'] == 0) echo '<span class="text-muted">' . __('None') . '</span>';
-													else echo '<span class="text-muted">' . __('None') . '</span>';
-												?>
-											</td>
+											
 											<td>
 												<?php if($ticket['status'] == "Open") echo "<span class='badge bg-green'>".__("Open")."</span>"; ?>
 												<?php if($ticket['status'] == "In Progress") echo "<span class='badge bg-navy'>".__("In Progress")."</span>"; ?>

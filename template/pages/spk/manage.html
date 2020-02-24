@@ -248,25 +248,34 @@
 											
 								<div class="col-md-12 col-xs-6">
 									<?php if(!empty($spk['foto_mesin'])) { ?>
-									<img class="img-responsive img-thumbnail" src="?qa=fotomesin&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+										<div class="col-md-6">
+											<img class="img-responsive img-thumbnail" src="?qa=fotomesin&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+											<a href="<?php echo "?qa=fotomesin&id=" . $spk['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+											</div>
 									<?php } ?>
 									<?php if(empty($spk['foto_mesin'])) { ?>
 										<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
-
 										<?php } ?>	
 										<?php if(!empty($spk['foto_toko'])) { ?>
-										<img class="img-responsive img-thumbnail" src="?qa=fototoko&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+											<div class="col-md-6">
+												<img class="img-responsive img-thumbnail" src="?qa=fototoko&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+												<a href="<?php echo "?qa=fototoko&id=" . $spk['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+											</div>
 										<?php } ?>	
 										<?php if(empty($spk['foto_toko'])) { ?>
 											<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
-	
 											<?php } ?>
 											<?php if(!empty($spk['foto_struk'])) { ?>	
-										<img class="img-responsive img-thumbnail" src="?qa=fotostruk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+										<div class="col-md-6">
+											<img class="img-responsive img-thumbnail" src="?qa=fotostruk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+											<a href="<?php echo "?qa=fotostruk&id=" . $spk['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+										</div>
+										
 										<?php } ?>	
 										<?php if(empty($spk['foto_struk'])) { ?>
+											
 											<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
-	
+											
 											<?php } ?>
 								</div>
 								
