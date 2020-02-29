@@ -1036,6 +1036,13 @@ if ($route == "system/customfields") {
 	$pageTitle = __("Custom Fields");
 }
 
+if ($route == "export/exportDataSPK") {
+	isAuthorized("viewSystem");
+
+	Export::exportDataSPK($_GET);
+
+}
+
 # Import
 if ($route == "system/import") {
 	isAuthorized("viewSystem");

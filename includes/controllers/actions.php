@@ -498,7 +498,12 @@ switch($_POST['action']) {
 
 	case "deleteRole":
 		isAuthorized("deleteRole"); $status = Role::delete($_POST['id']);
-    break;
+	break;
+	
+
+	case "exportDataSPK":
+		isAuthorized("addRole"); $status = Export::exportDataSPK($_POST);
+	break;
 
 
 	// import

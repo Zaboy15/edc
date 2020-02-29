@@ -13,8 +13,8 @@
 		<?php endif; ?>
 		<div class="row">
 			<div class="col-md-6">
-				<div class="box box-primary">
-          			<div class="box-header with-border"><h3 class="box-title"><?php _e('Timesheet'); ?></h3></div><!-- /.box-header -->
+				<!-- <div class="box box-primary">
+          			<div class="box-header with-border"><h3 class="box-title"><?php _e('Timesheet'); ?></h3></div>
 					<form role="form" method="get" action="" target="_blank">
 	                    <div class="box-body">
 							<p><?php _e('Generate a report with all the tasks in the selected period.'); ?></p>
@@ -49,10 +49,38 @@
 						</div>
 						<div class="box-footer"><button type="submit" class="btn btn-primary btn-flat"><?php _e('Generate'); ?></button></div>
 					</form>
-				</div>
+				</div> -->
 
 				<div class="box box-primary">
-          			<div class="box-header with-border"><h3 class="box-title"><?php _e('Timesheet With Summary'); ?></h3></div><!-- /.box-header -->
+					<div class="box-header with-border"><h3 class="box-title"><?php _e('Report SPK by Date'); ?></h3></div><!-- /.box-header -->
+				  <form role="form" method="get" action="" target="_blank">
+					  <div class="box-body">
+						  <p><?php _e('Generate a report with all the tasks in the selected period and a summary of all SPK.'); ?></p>
+						  
+						  <div class="form-group">
+							  <label for="startDate"><?php _e('Start Date'); ?></label>
+							  <div class="input-group">
+								  <input type="text" class="form-control" id="startDate" name="startDate" required>
+								  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							  </div>
+						  </div>
+						  <div class="form-group">
+							  <label for="endDate"><?php _e('End Date'); ?></label>
+							  <div class="input-group">
+								  <input type="text" class="form-control" id="endDate" name="endDate" required>
+								  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							  </div>
+						  </div>
+						  <input type="hidden" name="report" value="exportDataSPK">
+							<input type="hidden" name="route" value="export/exportDataSPK">
+						  
+					  </div>
+					  <div class="box-footer"><button type="submit" class="btn btn-primary btn-flat"><?php _e('Generate'); ?></button></div>
+				  </form>
+			  </div>
+
+				<!-- <div class="box box-primary">
+          			<div class="box-header with-border"><h3 class="box-title"><?php _e('Timesheet With Summary'); ?></h3></div>
 					<form role="form" method="get" action="" target="_blank">
 	                    <div class="box-body">
 							<p><?php _e('Generate a report with all the tasks in the selected period and a summary of all assets and licenses.'); ?></p>
@@ -86,7 +114,7 @@
 						</div>
 						<div class="box-footer"><button type="submit" class="btn btn-primary btn-flat"><?php _e('Generate'); ?></button></div>
 					</form>
-				</div>
+				</div> -->
 
 				<div class="box box-primary">
 					<div class="box-header with-border"><h3 class="box-title"><?php _e('Tickets Report'); ?></h3></div><!-- /.box-header -->
@@ -128,8 +156,8 @@
 			</div>
 
 			<div class="col-md-6">
-				<div class="box box-primary">
-          			<div class="box-header with-border"><h3 class="box-title"><?php _e('Client Summary'); ?></h3></div><!-- /.box-header -->
+				<!-- <div class="box box-primary">
+          			<div class="box-header with-border"><h3 class="box-title"><?php _e('Client Summary'); ?></h3></div>
 					<form role="form" method="get" action="" target="_blank">
 	                    <div class="box-body">
 							<p><?php _e('Generate a report with a summary of all assets and licenses assigned to a client.'); ?></p>
@@ -153,7 +181,7 @@
 
 
 				<div class="box box-primary">
-					<div class="box-header with-border"><h3 class="box-title"><?php _e('User Summary'); ?></h3></div><!-- /.box-header -->
+					<div class="box-header with-border"><h3 class="box-title"><?php _e('User Summary'); ?></h3></div>
 					<form role="form" method="get" action="" target="_blank">
 						<div class="box-body">
 							<p><?php _e('Generate a report with a summary of all assets assigned to a user.'); ?></p>
@@ -173,7 +201,7 @@
 						</div>
 						<div class="box-footer"><button type="submit" class="btn btn-primary btn-flat"><?php _e('Generate'); ?></button></div>
 					</form>
-				</div>
+				</div> -->
 
 				<div class="box box-primary">
 					<div class="box-header with-border"><h3 class="box-title"><?php _e('Other Reports'); ?></h3></div><!-- /.box-header -->
