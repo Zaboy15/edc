@@ -5,7 +5,7 @@ class Export extends App {
     public static function exportDataSPK($data) {
         global $database;
         $startdate = dateDb($data['startDate']) . " 00:00:00";
-		$enddate = dateDb($data['endDate']) . " 00:00:00";
+		$enddate = dateDb($data['endDate']) . " 23:59:59";
         $spk = $database->select("spk", [
             "[>]clients" => ["id_merchant" => "id"],
             "[>]people" => ["id_itfs" => "id"],
@@ -56,10 +56,10 @@ class Export extends App {
             "clients.pic",
             "clients.phone_pic",
             "clients.name(namamerchant)",
-            "clients.mid(midmerchant)",],["c_date_wo[<>]" => ["2020-02-01 00:00:00","2020-02-29 00:00:00"]]);
+            "clients.mid(midmerchant)",],["c_date_wo[<>]" => [$startdate,$enddate]]);
         
 		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment; filename="reporspk.csv"');
+		header('Content-Disposition: attachment; filename="reportspk.csv"');
 		
         $output = fopen('php://output', 'w');
         $no = 1;
