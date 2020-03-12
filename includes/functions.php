@@ -13,6 +13,12 @@ function currentFileName() { //return current file name
 	return basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 }
 
+function dateDiff($date1, $date2)  //days find function
+        { 
+            $diff = strtotime($date2) - strtotime($date1); 
+            return abs(round($diff / 86400)); 
+        } 
+
 function baseURL($sub=0) { //return base url for cron jobs
 	 $requesturi = explode("?",$_SERVER["REQUEST_URI"]);
 	 $subdir =  $requesturi[0];

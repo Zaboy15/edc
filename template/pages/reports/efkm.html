@@ -58,7 +58,7 @@
 												</tr>
 												<tr>
 													<td><b><?php _e('Merchant'); ?></b></td>
-													<td><?php echo "<a href='?route=clients/manage&id=".$spk['id_merchant']."'>".getSingleValue('clients','name',$spk['id_merchant']); ?></td>
+													<td><?php echo getSingleValue('clients','name',$spk['id_merchant']); ?></td>
 												</tr>
 												<tr>
 													<td><b><?php _e('ITFS'); ?></b></td>
@@ -78,11 +78,11 @@
 												</tr>
 												<tr>
 													<td><b><?php _e('SN EDC'); ?></b></td>
-													<td><?php echo "<a href='?route=inventory/assets/manage&id=".$spk['id_sn_edc']."'>".getSingleValue('assets','serial',$spk['id_sn_edc']); ?></td>
+													<td><?php echo getSingleValue('assets','serial',$spk['id_sn_edc']); ?></td>
 												</tr>
 												<tr>
 													<td><b><?php _e('SIMCARD'); ?></b></td>
-													<td><?php echo "<a href='?route=inventory/assets/manage&id=".$spk['id_sn_simcard']."'>".getSingleValue('assets','serial',$spk['id_sn_simcard']); ?></td>
+													<td><?php echo getSingleValue('assets','serial',$spk['id_sn_simcard']); ?></td>
 												</tr>
 												<tr>
 													<td><b><?php _e('Test Credit'); ?></b></td>
