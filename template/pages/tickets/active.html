@@ -20,6 +20,7 @@
 	                            <thead>
 	                                <tr>
 										<th><?php _e('Ticket #'); ?></th>
+										<th><?php _e('Project'); ?></th>
 										<th><?php _e('Subject'); ?></th>
 										<th><?php _e('Submitter'); ?></th>
 										<th><?php _e('Assigned To'); ?></th>
@@ -39,6 +40,13 @@
 												<?php if($ticket['priority'] == "Low") echo "<i class='fa fa-flag fa-fw text-blue' data-toggle='tooltip' title='".__("Low priority")."'></i>&nbsp;"; ?>
 
 												<?php if(in_array("manageTicket",$perms)) { ?><a href='?route=tickets/manage&id=<?php echo $ticket['id']; ?>'><?php echo $ticket['ticket']; ?></a><?php } else echo $ticket['ticket']; ?>
+											</td>
+
+											<td>
+												<?php if($ticket['adminid'] != 0) { ?>
+													
+													<?php echo getSingleValue("tabel_customer","nama_customer",$ticket['idcustomer']); ?>
+												<?php } else  echo "<span class='text-muted'>".__("Nobody")."</span>"; ?>
 											</td>
 											<td><?php if(in_array("manageTicket",$perms)) { ?><a href='?route=tickets/manage&id=<?php echo $ticket['id']; ?>'><?php echo $ticket['subject']; ?></a><?php } else echo $ticket['subject']; ?></td>
 											<td>

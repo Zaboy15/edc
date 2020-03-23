@@ -498,6 +498,7 @@ if ($route == "tickets/all") {
 if ($route == "tickets/manage") {
 	isAuthorized("manageTicket");
 	$ticket = getRowById("tickets",$_GET['id']);
+	$pemeriksaan = countTableFiltered("tabel_pemeriksaan","idticket",$_GET['id']);
 
 	isOwner($ticket['clientid']);
 

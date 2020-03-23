@@ -210,7 +210,14 @@ switch($_GET['modal']) {
         break;
 
     case "pemeriksaan/edit":
-        $pemeriksaan = getRowPemeriksaan("tabel_pemeriksaan",$_GET['idspk']);
+        if($_GET['idspk'] >=1 ){
+            $pemeriksaan = getRowPemeriksaan("tabel_pemeriksaan",$_GET['idspk'],0);
+        } elseif ($_GET['idticket'] >=1 ){
+            $pemeriksaan = getRowPemeriksaan("tabel_pemeriksaan",0,$_GET['idticket']);
+        }
+        
+        
+
         break;
 
 

@@ -187,9 +187,14 @@ function getRowById($table,$id) { //return associative array from one row by id
 	return $row;
 }
 
-function getRowPemeriksaan($table,$id) { //return associative array from one row by id
+function getRowPemeriksaan($table,$idspk,$idticket) { //return associative array from one row by id
 	global $database;
-	$row = $database->get($table, "*", ["idspk" => $id]);
+	if($idspk >=1){
+		$row = $database->get($table, "*", ["idspk" => $idspk]);
+	} elseif($idticket >=1){
+		$row = $database->get($table, "*", ["idticket" => $idticket]);
+	}
+	
 	return $row;
 }
 

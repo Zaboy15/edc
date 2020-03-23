@@ -16,16 +16,22 @@
 				<div class="nav-tabs-custom">
 	              	<ul class="nav nav-tabs">
 	                	<li <?php if ($section == "") echo 'class="active"'; ?> ><a href="#tab-ticket" data-toggle="tab" class="ticket-tab-button"><?php _e('Ticket'); ?></a></li>
-	  			  		<?php if(in_array("viewComments",$perms)) { ?><li <?php if ($section == "comments") echo 'class="active"'; ?> ><a href="#tab-comments" data-toggle="tab"><?php _e('Comments'); ?></a></li><?php } ?>
-	                	<?php if(in_array("manageTicketNotes",$perms)) { ?><li <?php if ($section == "notes") echo 'class="active"'; ?> ><a href="#tab-notes" data-toggle="tab"><?php _e('Notes'); ?></a></li><?php } ?>
-						<?php if(in_array("manageTicketRules",$perms)) { ?><li <?php if ($section == "rules") echo 'class="active"'; ?> ><a href="#tab-rules" data-toggle="tab"><?php _e('Rules'); ?></a></li><?php } ?>
+	  			  		<?php if(in_array("manageTicketNotes",$perms)) { ?><li <?php if ($section == "notes") echo 'class="active"'; ?> ><a href="#tab-notes" data-toggle="tab"><?php _e('Notes'); ?></a></li><?php } ?>
+						<?php if(in_array("viewComments",$perms)) { ?><li <?php if ($section == "foto") echo 'class="active"'; ?> ><a href="#tab-foto" data-toggle="tab"><?php _e('Foto'); ?></a></li><?php } ?>
 
 						<div class="btn-group pull-right" style="padding:6px;">
 							<?php if(in_array("viewPReplies",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Insert Predefined Reply'); ?>' onClick='showM("?modal=preplies/insert");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-arrow-right fw"></i> <?php _e('Predefined Reply'); ?></button><?php } ?>
 							<?php if(in_array("editTicket",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Edit Ticket'); ?>' onClick='showM("?modal=tickets/edit&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>&section=");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-edit"></i></button><?php } ?>
-							<?php if(in_array("addComment",$perms)) { ?><a data-toggle='tooltip' title='<?php _e('New Comment'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=comments/add&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&clientid=<?php echo $ticket['clientid']; ?>&projectid=0&ticketid=<?php echo $ticket['id']; ?>&section=comments");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a><?php } ?>
-							<?php if(in_array("manageTicketRules",$perms)) { ?><a data-toggle='tooltip' title='<?php _e('New Rule'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=escalationrules/add&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&ticketid=<?php echo $ticket['id']; ?>&section=rules");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-level-up'></i></a><?php } ?>
-
+							<!-- <?php if(in_array("addComment",$perms)) { ?><a data-toggle='tooltip' title='<?php _e('New Comment'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=comments/add&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&clientid=<?php echo $ticket['clientid']; ?>&projectid=0&ticketid=<?php echo $ticket['id']; ?>&section=comments");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a><?php } ?> -->
+							<?php if($ticket['idcustomer'] == 2){ ?>
+							<?php if($pemeriksaan == 0) { ?>
+								<a data-toggle='tooltip' title='<?php _e('Tambah Pemeriksaan Wajib'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=pemeriksaan/add&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&idticket=<?php echo $ticket['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a>
+								<?php } ?>
+								<?php if($pemeriksaan >= 1) { ?>
+									<a data-toggle='tooltip' title='<?php _e('Ubah Pemeriksaan Wajib'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=pemeriksaan/edit&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&idticket=<?php echo $ticket['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a>
+									<?php } ?>
+									<?php } ?>
+							
 							<?php if($isAdmin) { ?><a data-toggle='tooltip' title='<?php _e('Assign to me'); ?>' href="?qa=ticketAssignToMe&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-thumb-tack"></i></a><?php } ?>
 
 							<?php if($ticket['status'] != "Closed") { ?>
@@ -70,8 +76,8 @@
 									<div class="col-md-4 text-center">
 										<?php if($isAdmin) { ?>
 											<select class="form-control" id="status" name="status">
-												<option value="Answered"><?php _e('Set to Answered'); ?></option>
-												<option value="Closed"><?php _e('Set to Closed'); ?></option>
+												<option value="Open - Pending"><?php _e('Set to Open - Pending'); ?></option>
+												<option value="Close - Completed"><?php _e('Set to Close - Completed'); ?></option>
 												<option value="In Progress"><?php _e('Set to In Progress'); ?></option>
 												<option value="Reopened"><?php _e('Set to Reopened'); ?></option>
 											</select>
@@ -179,39 +185,95 @@
 						</div>
 						<!-- /.tab-pane -->
 
+						
+
 						<?php if(in_array("viewComments",$perms)) { ?>
-						<div class="tab-pane <?php if ($section == "comments") echo 'active'; ?>" id="tab-comments">
-							<?php if(!empty($comments)) { ?>
-								<ul class="timeline">
-									<?php $lastdate = "0000-00-00"; foreach($comments as $comment) { ?>
-									<?php
-										$currentdate = date('Y-m-d',strtotime($comment['timestamp']));
-										if($currentdate != $lastdate) { ?><li class="time-label"><span class="bg-gray"><?php echo dateDisplay($currentdate); ?></span></li> <?php $lastdate = $currentdate; } ?>
-									<li>
-									  	<!-- timeline icon -->
-									  	<img src="<?php echo getGravatar(getSingleValue("people","email",$comment['peopleid']),"32"); ?>" class="img-circle timeline-image" style="height:32px;width:32px;" />
-									  	<div class="timeline-item">
-									      	<span class="time"><i class="fa fa-clock-o"></i> <?php echo dateTimeDisplay($comment['timestamp']); ?></span>
-									      	<h3 class="timeline-header"><a href="#"><?php echo getSingleValue("people","name",$comment['peopleid']); ?></a> <?php echo smartDate(strtotime($comment['timestamp'])); ?></h3>
+							<div class="tab-pane <?php if ($section == "foto") echo 'active'; ?>" id="tab-foto">
+								<div class="row">
+								
+									
 
-									      	<div class="timeline-body"><?php echo $comment['comment']; ?></div>
+									<div class="col-md-12">
 
-									      	<div class="timeline-footer">
-									          	<?php if(in_array("editComment",$perms)) { ?><a onClick='showM("?modal=comments/edit&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $comment['id']; ?>&section=comments");return false' class="btn btn-success btn-xs"><?php _e('Edit'); ?></a><?php } ?>
-											  	<?php if(in_array("deleteComment",$perms)) { ?><a onClick='showM("?modal=comments/delete&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $comment['id']; ?>&section=comments");return false' class="btn btn-danger btn-xs"><?php _e('Delete'); ?></a><?php } ?>
-									      	</div>
-									  	</div>
-									</li>
-									<?php } ?>
-									<li><i class="fa fa-clock-o bg-gray"></i></li>
-								</ul>
+										<!-- PROJECT NOTES -->
+										<div class="box box-primary">
+											<div class="box-header with-border">
+												<h3 class="box-title"><?php _e('Dokumentasi'); ?></h3>
+											</div><!-- /.box-header -->
+										<div class="box-body">
+												
+													
+										<div class="col-md-12 col-xs-6">
+											<?php if(!empty($ticket['foto_mesin'])) { ?>
+												<div class="col-md-6">
+													<img class="img-responsive img-thumbnail" src="?qa=fotomesinticket&id=<?php echo $ticket['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+													<a href="<?php echo "?qa=fotomesinticket&id=" . $ticket['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+													</div>
+											<?php } ?>
+											<?php if(empty($ticket['foto_mesin'])) { ?>
+												<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+												<?php } ?>	
+												<?php if(!empty($ticket['foto_toko'])) { ?>
+													<div class="col-md-6">
+														<img class="img-responsive img-thumbnail" src="?qa=fototokoticket&id=<?php echo $ticket['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+														<a href="<?php echo "?qa=fototokoticket&id=" . $ticket['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+													</div>
+												<?php } ?>	
+												<?php if(empty($ticket['foto_toko'])) { ?>
+													<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+													<?php } ?>
+													<?php if(!empty($ticket['foto_struk'])) { ?>	
+												<div class="col-md-6">
+													<img class="img-responsive img-thumbnail" src="?qa=fotostrukticket&id=<?php echo $ticket['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+													<a href="<?php echo "?qa=fotostrukticket&id=" . $ticket['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+												</div>
+												
+												<?php } ?>	
+												<?php if(empty($ticket['foto_struk'])) { ?>
+													
+													<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+													
+													<?php } ?>
+										</div>
+										
+				
+									</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<!-- PROJECT NOTES -->
+										<div class="box box-primary">
+											<div class="box-header with-border">
+												<h3 class="box-title"><?php _e('Tanda Tangan User'); ?></h3>
+											</div><!-- /.box-header -->
+
+											<div class="box-body">
+											<?php if(!empty($ticket['sign'])) { ?>
+												<div class="col-md-12 col-xs-6">
+													<div class="col-md-6">
+													<img class="img-responsive img-thumbnail" src="?qa=signticket&id=<?php echo $ticket['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+													<a href="<?php echo "?qa=signticket&id=" . $ticket['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+												</div>
+											</div>
+											<?php } ?>	
+	
+											<?php if(empty($ticket['sign'])) { ?>
+											<div class="col-md-12 col-xs-6">
+												<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+											</div>
+											<?php } ?>	
+										
+				
+											</div>
+										</div>
+										<!--/.box -->
+									</div>
+								</div>
+								<!-- Akhir section -->
+							</div>
+							<!-- /.tab-pane -->
 							<?php } ?>
-							<?php if(empty($comments)) { ?>
-								<p><?php _e('No comments have been added.'); ?></p>
-							<?php } ?>
-						</div>
-						<!-- /.tab-pane -->
-						<?php } ?>
 
 						<?php if(in_array("manageTicketNotes",$perms)) { ?>
 						<div class="tab-pane <?php if ($section == "notes") echo 'active'; ?>" id="tab-notes">
@@ -231,46 +293,7 @@
 						<!-- /.tab-pane -->
 						<?php } ?>
 
-						<?php if(in_array("manageTicketRules",$perms)) { ?>
-						<div class="tab-pane <?php if ($section == "rules") echo 'active'; ?>" id="tab-rules">
-							<div class="table-responsive">
-								<table class="table table-striped table-hover table-bordered">
-									<thead>
-										<tr>
-											<th><?php _e('ID'); ?></th>
-											<th><?php _e('Name'); ?></th>
-											<th><?php _e('Status'); ?></th>
-											<th class="text-right"></th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										foreach ($rules as $rule) {
-										echo "<tr>";
-											echo "<td>".$rule['id']."</td>";
-											echo "<td>".$rule['name']."</td>";
-											echo "<td>";
-												if($rule['executed'] == 0) echo "<span class='badge bg-blue'>".__('Pending')."</span>";
-												if($rule['executed'] != 0) echo "<span class='badge bg-gray'>".__('Processed')."</span>";
-											echo "</td>";
-											echo "<td>";
-												echo "<div class='pull-right btn-group'>";
-												if($rule['executed'] == 0) echo "<a href='#' onClick='showM(\"?modal=escalationrules/edit&reroute=tickets/manage&routeid=".$ticket['id']."&id=".$rule['id']."&section=rules\");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a>";
-												echo "<a href='#' onClick='showM(\"?modal=escalationrules/delete&reroute=tickets/manage&routeid=".$ticket['id']."&id=".$rule['id']."&section=rules\");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a>";
-												echo "</div>";
-
-											echo "</td>";
-										echo "</tr>";
-										}
-										?>
-									</tbody>
-								</table>
-								<?php if(empty($rules)) echo "<p>" . __('No Records Found') . "</p>"; ?>
-							</div>
-
-						</div>
-						<!-- /.tab-pane -->
-						<?php } ?>
+						
 					</div>
 				</div>
 			</div>
@@ -287,11 +310,11 @@
 								<tr>
 									<td><b><?php _e('Status'); ?></b></td>
 									<td>
-										<?php if($ticket['status'] == "Open") echo "<span class='badge bg-green'>".__("Open")."</span>"; ?>
+										<?php if($ticket['status'] == "Open - Pending") echo "<span class='badge bg-green'>".__("Open - Pending")."</span>"; ?>
 										<?php if($ticket['status'] == "In Progress") echo "<span class='badge bg-navy'>".__("In Progress")."</span>"; ?>
 										<?php if($ticket['status'] == "Answered") echo "<span class='badge bg-teal'>".__("Answered")."</span>"; ?>
 										<?php if($ticket['status'] == "Reopened") echo "<span class='badge bg-orange'>".__("Reopened")."</span>"; ?>
-										<?php if($ticket['status'] == "Closed") echo "<span class='badge bg-gray'>".__("Closed")."</span>"; ?>
+										<?php if($ticket['status'] == "Close - Completed") echo "<span class='badge bg-gray'>".__("Close - Completed")."</span>"; ?>
 									</td>
 								</tr>
 								<tr>
@@ -423,7 +446,7 @@
 								</tr>
 
 								<tr>
-									<td><b><?php _e('Alamat'); ?></b></td>
+									<td><b><?php _e('TID'); ?></b></td>
 									<td>
 										<?php
 											if($ticket['clientid'] == 0)
@@ -435,33 +458,18 @@
 									</td>
 								</tr>
 								<tr>
-									<td><b><?php _e('Asset'); ?></b></td>
+									<td><b><?php _e('Serial Number'); ?></b></td>
 									<td>
 										<?php
 											if($ticket['assetid'] == 0)
 												echo "<span class='text-muted'>".__("None")."</span>";
 											else {
-												if(in_array("manageAsset",$perms))
-													echo "<a href='?route=inventory/assets/manage&id=".$ticket['assetid']."'>".getSingleValue('assets','tag',$ticket['assetid']). " " . getSingleValue('assets','name',$ticket['assetid']) . "</a>";
-												else echo getSingleValue('assets','tag',$ticket['assetid']) . " " . getSingleValue('assets','name',$ticket['assetid']);
+												echo getSingleValue('assets','serial',$ticket['assetid']);
 											}
 										?>
 									</td>
 								</tr>
-								<tr>
-									<td><b><?php _e('Project'); ?></b></td>
-									<td>
-										<?php
-											if($ticket['projectid'] == 0)
-												echo "<span class='text-muted'>".__("None")."</span>";
-											else {
-												if(in_array("manageProject",$perms))
-													echo "<a href='?route=projects/manage&id=".$ticket['projectid']."'>".getSingleValue('projects','tag',$ticket['projectid']) . " " . getSingleValue('projects','name',$ticket['projectid']) . "</a>";
-												else echo getSingleValue('projects','tag',$ticket['projectid']) . " " . getSingleValue('projects','name',$ticket['projectid']);
-											}
-										?>
-									</td>
-								</tr>
+								
 								<tr>
 									<td><b><?php _e('User'); ?></b></td>
 									<td>
