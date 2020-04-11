@@ -526,6 +526,12 @@ if ($route == "submitticket") {
 
 }
 
+if ($route == "rootcause/rootcause") {
+	isAuthorized("viewSPK");
+	$rootcause = getTable('kode_rc');
+	$pageTitle = __("My SPK");
+}
+
 //SPK
 
 if ($route == "spk/myspk") {
@@ -545,6 +551,8 @@ if ($route == "spk/all") {
 	isAuthorized("viewSPK");
 	$pageTitle = __("My SPK");
 }
+
+
 
 if ($route == "spk/manage") {
 	isAuthorized("manageTicket");

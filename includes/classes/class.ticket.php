@@ -25,11 +25,14 @@ class Ticket extends App {
     		"ticket" => $random,
             "departmentid" => 0,
             "clientid" => $data['clientid'],
-    		"idcustomer" => $data['idcustomer'],
+            "idcustomer" => $data['idcustomer'],
+    		"id_case" => $data['id_case'],
+    		"ref" => $data['ref'],
+    		"create_on" => $data['create_on'],
     		"userid" => $userid,
     		"adminid" => $data['adminid'],
     		"assetid" => $data['assetid'],
-            "projectid" => $data['projectid'],
+            // "projectid" => $data['projectid'],
     		"email" => strtolower($data['email']),
     		"subject" => $data['subject'],
     		"status" => "Open",
@@ -204,9 +207,22 @@ class Ticket extends App {
     	return "20";
         }
      
-        public static function editAPIEDC($data) {
+        public static function editAPI($data) {
             global $database;
 
+            if($data['idcustomer'] == 2){
+                
+                $database->update("tickets", [
+                    "remarks_wo" => $data['remarks_wo'],
+                    "root_cause" => $data['root_cause'],
+                    "detail_cause" => $data['detail_cause'],
+                    "collateral_qr" => $data['collateral_qr'],
+                    "status" => $data['status'],
+                ], [ "id" => $data['id'] ]);
+
+                Staff::editLocation($data);
+
+            } else {
                 $database->update("tickets", [
                     "closed_time" => $data['closed_time'],
                     "root_cause" => $data['root_cause'],
@@ -214,6 +230,9 @@ class Ticket extends App {
                 ], [ "id" => $data['id'] ]);
 
                 Staff::editLocation($data);
+            }
+
+                
                 
             logSystem("Ticket Edited EDC API- ID: " . $data['id']);
             return "20";
@@ -226,6 +245,27 @@ class Ticket extends App {
     	], [ "id" => $id ]);
     	logSystem("Ticket Status Update - ID: " . $id);
     	return "20";
+    }
+
+    public static function updateStatusAPI($data) {
+    	global $database;
+    	if($data['status'] == "Response"){
+            $database->update("tickets", [
+                "response_time" => $data['response_time'],
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update - ID: " . $data['id']);
+            return "20";
+        } else if($data['status'] == "In Progress"){
+            $database->update("tickets", [
+                "departure_time" => $data['departure_time'],
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update - ID: " . $data['id']);
+            return "20";
+        }
+
+
     }
 
     public static function assignTo($id,$adminid) {

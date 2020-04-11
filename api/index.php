@@ -242,6 +242,10 @@ switch ($request_resource) {
         require $scriptpath . '/api/resources/spk.php';
     break;
 
+    case 'rootcause': ## DONE ##d
+        require $scriptpath . '/api/resources/rootcause.php';
+    break;
+
     case 'kode': ## DONE ##d
         require $scriptpath . '/api/resources/kode.php';
     break;

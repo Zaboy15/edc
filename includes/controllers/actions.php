@@ -433,6 +433,11 @@ switch($_POST['action']) {
 		isAuthorized("deleteContact"); $status = Contact::delete($_POST['id']);
 		break;
 
+	
+	case "addRootCause":
+		isAuthorized("addClient"); $status = Utils::addRootCause($_POST);
+	break;
+
 
 	// API keys
 	case "addApiKey":

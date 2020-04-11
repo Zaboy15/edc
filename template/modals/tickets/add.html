@@ -4,24 +4,14 @@
 
 
     <div class="row">
-
-        <div class="col-md-8">
-            <div class="form-group">
-                <label for="subject"><?php _e('Subject'); ?> *</label>
-                <input type="text" class="form-control" id="subject" name="subject" value="" required>
-            </div>
-        </div>
-
-        
-
         <div class="col-md-6">
             <?php if($isAdmin) { ?>
                 <div class="form-group">
                     <label for="idcustomer"><?php _e('Customer'); ?></label>
-                    <select class="form-control select2 select2-hidden-accessible" id="idcustomer" name="idcustomer" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    <select class="form-control select2 select2-hidden-accessible" id="idcustomer" name="idcustomer" style="width: 100%;" tabindex="-1" aria-hidden="true" onchange="">
                         <option value="0"><?php _e('None'); ?></option>
                         <?php foreach ($customertable as $customertable) { ?>
-                            <option value='<?php echo $customertable['id']; ?>' <?php if(isset($_GET['clientid'])) { if($_GET['clientid'] == $customertable['id']) echo "selected"; }  ?>><?php echo $customertable['nama_customer']; ?></option>
+                            <option value='<?php echo $customertable['id']; ?>' <?php if(isset($_GET['idcustomer'])) { if($_GET['idcustomer'] == $customertable['id']) echo "selected"; }  ?>><?php echo $customertable['nama_customer']; ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -39,6 +29,33 @@
                         <option value="0"><?php _e('None'); ?></option>
                     <?php } ?>
                 </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="create_on"><?php _e('Create On'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="subject"><?php _e('Subject'); ?> *</label>
+                <input type="text" class="form-control" id="subject" name="subject" value="" required>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group" id="id_case" style="display: none;">
+                <label for="id_case" ><?php _e('ID Case'); ?> *</label>
+                <input type="text" class="form-control" name="id_case" value="" >
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" id="ref" style="display: none;">
+                <label for="ref"><?php _e('Ref'); ?> *</label>
+                <input type="text" class="form-control" name="ref" value="" required>
             </div>
         </div>
 
@@ -61,9 +78,6 @@
     </div>
 
     <div class="row">
-
-
-
         <div class="col-md-6">
             <div class="form-group">
                 <label for="assetid"><?php _e('Asset'); ?></label>
@@ -77,7 +91,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="form-group">
                 <label for="projectid"><?php _e('Project'); ?></label>
                 <select class="form-control projectsSelect select2-hidden-accessible" id="projectid" name="projectid" style="width: 100%;" tabindex="-1" aria-hidden="true">
@@ -88,7 +102,7 @@
                     <?php } ?>
                 </select>
             </div>
-        </div>
+        </div> -->
 
     </div>
 
@@ -222,7 +236,8 @@
     					})
     				};
     			},
-    			//cache: true,
+    			cache: true,
+                minimumInputLength: 3,
     	    },
     	    
     		placeholder: "<?php _e('Please Select'); ?>",
@@ -303,5 +318,30 @@
             //maximumSelectionLength: 1
         });
 
+        $(".form_datetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true
+        });
 
+
+        
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#idcustomer").change(function () {
+            var idcustomer = $("#idcustomer").val();
+            if (idcustomer == "2") {
+                document.getElementById('id_case').style.display = "block";
+                document.getElementById('ref').style.display = "block";
+                
+            } else {
+                document.getElementById('id_case').style.display = "none";
+                document.getElementById('ref').style.display = "none";
+
+            }
+        });
+    });
 </script>
