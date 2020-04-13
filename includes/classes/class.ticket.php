@@ -251,20 +251,37 @@ class Ticket extends App {
     	global $database;
     	if($data['status'] == "Response"){
             $database->update("tickets", [
-                "response_time" => $data['response_time'],
+                "response_time" => date('Y-m-d H:i:s'),
                 "status" => $data['status']
             ], [ "id" => $data['id'] ]);
-            logSystem("Ticket Status Update - ID: " . $data['id']);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
             return "20";
         } else if($data['status'] == "In Progress"){
             $database->update("tickets", [
-                "departure_time" => $data['departure_time'],
+                "departure_time" => date('Y-m-d H:i:s'),
                 "status" => $data['status']
             ], [ "id" => $data['id'] ]);
-            logSystem("Ticket Status Update - ID: " . $data['id']);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
             return "20";
         }
 
+
+    }
+
+    public static function updateRepliesApi($data){
+        global $database;
+        if($data['adminid'] != "0") $peopleid = $data['adminid']; else $peopleid = $userid;
+
+    	$lastid = $database->insert("tickets_replies", [
+    		"ticketid" => $data['id'],
+    		"peopleid" => $peopleid,
+    		"message" => "Status di ubah ke ".$data['status']." dengan waktu ".date('Y-m-d H:i:s'),
+    		"timestamp" => date('Y-m-d H:i:s')
+    	]);
 
     }
 

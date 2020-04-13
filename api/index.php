@@ -114,6 +114,23 @@ switch ($request_method) {
         }
     break;
 
+    case 'editStatus':
+        if(isset($_POST['data'])) {
+            if(is_array($_POST['data'])) {
+                $data = $_POST['data'];
+            } else {
+                $response = [ "status" => 909, "status_message" => "'data' Error! Expected array, string given." ];
+                echo json_encode($response);
+                exit;
+            }
+
+        } else {
+            $response = [ "status" => 910, "status_message" => "'data' array missing." ];
+            echo json_encode($response);
+            exit;
+        }
+    break;
+
     case 'editAPI':
         if(isset($_POST['data'])) {
             if(is_array($_POST['data'])) {
@@ -225,6 +242,10 @@ switch ($request_method) {
 
 
 switch ($request_resource) {
+
+    case 'kode_action': ## DONE ##d
+        require $scriptpath . '/api/resources/action.php';
+    break;
 
     case 'count_spk': ## DONE ##d
         require $scriptpath . '/api/resources/count_spk.php';
