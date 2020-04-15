@@ -232,11 +232,25 @@ class Ticket extends App {
                 Staff::editLocation($data);
             }
 
-                
-                
             logSystem("Ticket Edited EDC API- ID: " . $data['id']);
             return "20";
-            }    
+            }
+            
+            public static function editAPIEDC($data) {
+                global $database;
+    
+                    $database->update("tickets", [
+                        "notes" => $data['notes'],
+                        "code" => $data['code'],
+                        "root_cause" => $data['root_cause'],
+                        "collateral_qr" => $data['collateral_qr'],
+                    ], [ "id" => $data['id'] ]);
+    
+                    Staff::editLocation($data);
+                    
+                logSystem("Ticket Edited EDC API- ID: " . $data['id']);
+                return "20";
+                }
 
     public static function updateStatus($id,$status) {
     	global $database;
