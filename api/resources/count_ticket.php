@@ -14,7 +14,7 @@ switch ($request_method) {
         } else {
             $result = $database->count("tickets", "*",[ "AND" => [
                 "OR" => $filters, 
-                "status[!]" => "Closed - Completed"]]);
+                "status[!]" => "Closed"]]);
         }
 
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];
