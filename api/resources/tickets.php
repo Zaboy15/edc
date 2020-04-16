@@ -12,7 +12,7 @@ switch ($request_method) {
         if(empty($filters)) {
             $result = $database->select("tickets", "*");
         } else {
-            $result = $database->select("tickets", "*", [ "AND" => $filters, "ORDER" => ["id" => "DESC"] ]);
+            $result = $database->select("tickets", "*", [ "AND" => [ "OR" => $filters, "status[!]"=> "Close - Completed" ]]);
         }
 
         $i=0;
