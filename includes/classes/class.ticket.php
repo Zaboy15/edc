@@ -281,6 +281,30 @@ class Ticket extends App {
             Staff::editLocation($data);
             self::updateRepliesApi($data);
             return "20";
+        } else if($data['status'] == "Closed"){
+            $tanggalopen = getSingleValue("tickets","timestamp",$data['id']);
+            $tanggalopen2 = strtotime($tanggalopen);
+            $closedtime = date('Y-m-d H:i:s');
+            $closedtime2 = strtotime($closedtime);
+            $datediff = $closedtime2 - $tanggalopen2;
+
+            $hasil = round($datediff / (60 * 60 * 24));
+            if($hasil <= 1){
+                $slastatus = "Meet";
+            } else {
+                $slastatus = "Not Meet";
+            }
+            
+            $database->update("tickets", [
+                "closed_time" => $closedtime,
+                "sla" => $hasil,
+                "sla_status" => $slastatus,
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
+            return "20";
         }
 
 
