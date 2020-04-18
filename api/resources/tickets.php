@@ -12,8 +12,10 @@ switch ($request_method) {
         if(empty($filters)) {
             $result = $database->select("tickets", "*");
         } else {
-            $result = $database->select("tickets", "*", [ "AND" => [ "OR" => $filters, "status[!]"=> "Close - Completed" ]]);
-        }
+            $result = $database->select("tickets", "*", [ "AND" => [
+                "OR" => $filters, 
+                "status[!]" => "Close - Completed"]]);
+            }
 
         $i=0;
         foreach($result as $item) {
