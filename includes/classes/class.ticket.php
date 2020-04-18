@@ -281,7 +281,7 @@ class Ticket extends App {
             Staff::editLocation($data);
             self::updateRepliesApi($data);
             return "20";
-        } else if($data['status'] == "Closed"){
+        } else if($data['status'] == "Close - Completed"){
             $tanggalopen = getSingleValue("tickets","timestamp",$data['id']);
             $tanggalopen2 = strtotime($tanggalopen);
             $closedtime = date('Y-m-d H:i:s');
