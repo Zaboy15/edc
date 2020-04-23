@@ -249,17 +249,43 @@ else {
 // DASHBOARD
 if ($route == "dashboard") {
 	if($isAdmin) {
-		// $sumAssets = countTable("assets");
+		$sumAssets = countTable("assets");
 		// $sumLicenses = countTable("licenses");
-		// $sumProjects = countTable("projects");
-		// $sumClients = countTable("clients");
-		// $sumUsers = countTableFiltered("people","type","user");
+		$sumProjects = countTable("tabel_customer");
+		$sumClients = countTable("clients");
+		$sumUsers = countTableFiltered("people","type","admin");
 		// $categories = getTable("assetcategories");
 		// $spk = getTable("spk");
 
-		// $sumspkinstall = countTableFiltered("spk","spk_status","Done");
-		// $sumspkinstall2 = countTableFiltered("spk","spk_status","Open");
-		// $sumspkinstall3 = countTableFiltered("spk","spk_status","Inprogress");
+		$sumspkinstall = countTableFiltered("spk","spk_status","Close - Completed","wo_activity","INSTALLATION");
+		$sumspkinstall2 = countTableFiltered("spk","spk_status","Open - Pending","wo_activity","INSTALLATION");
+		$sumspkinstall3 = countTableFiltered("spk","spk_status","In Progress","wo_activity","INSTALLATION");
+
+
+		$sumspkreplacement = countTableFiltered("spk","spk_status","Close - Completed","wo_activity","REPLACEMENT");
+		$sumspkreplacement2 = countTableFiltered("spk","spk_status","Open - Pending","wo_activity","REPLACEMENT");
+		$sumspkreplacement3 = countTableFiltered("spk","spk_status","In Progress","wo_activity","REPLACEMENT");
+
+
+		$sumwithdraw = countTableFiltered("spk","spk_status","Close - Completed","wo_activity","WITHDRAW");
+		$sumwithdraw2 = countTableFiltered("spk","spk_status","Open - Pending","wo_activity","WITHDRAW");
+		$sumwithdraw3 = countTableFiltered("spk","spk_status","In Progress","wo_activity","WITHDRAW");
+
+
+		$sumreinit = countTableFiltered("spk","spk_status","Close - Completed","wo_activity","REINIT");
+		$sumreinit2 = countTableFiltered("spk","spk_status","Open - Pending","wo_activity","REINIT");
+		$sumreinit3 = countTableFiltered("spk","spk_status","In Progress","wo_activity","REINIT");
+
+
+		$sumcase = countTableFiltered("tickets","status","Close - Completed");
+		$sumcase2 = countTableFiltered("tickets","status","Open - Pending");
+		$sumcase3 = countTableFiltered("tickets","status","In Progress");
+
+
+		$sumpm = countTableFiltered("tabel_pm","status","Close - Completed");
+		$sumpm2 = countTableFiltered("tabel_pm","status","Open - Pending");
+		$sumpm3 = countTableFiltered("tabel_pm","status","In Progress");
+		$sumpm4 = countTableFiltered("tabel_pm","status","Not Yet");
 
 		
         // $sumspkinstallstatus = $database->count("tickets",["AND" => ["closeby"=> "VISIT","open_ticket[<>]" => [$tgl_pertama, $tgl_terakhir]]]);
@@ -274,19 +300,20 @@ if ($route == "dashboard") {
 		// $recentLicenses = $database->select("licenses", "*", [ "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
 	}
 	else {
-		$sumAssets = countTableFiltered("assets","clientid",$liu['clientid']);
-		$sumLicenses = countTableFiltered("licenses","clientid",$liu['clientid']);
-		$sumProjects = countTableFiltered("projects","clientid",$liu['clientid']);
-		$sumClients = countTable("clients");
-		$sumUsers = countTableFiltered("people","type","user","clientid",$liu['clientid']);
+	// 	$sumAssets = countTableFiltered("assets","clientid",$liu['clientid']);
+	// 	$sumLicenses = countTableFiltered("licenses","clientid",$liu['clientid']);
+	// 	$sumProjects = countTableFiltered("projects","clientid",$liu['clientid']);
+	// 	$sumClients = countTable("clients");
+	// 	$sumUsers = countTableFiltered("people","type","user","clientid",$liu['clientid']);
 
-		$categories = getTable("assetcategories");
+	// 	$categories = getTable("assetcategories");
 
-		$activeIssues = $database->select("issues", "*", [ "AND" => ["status[!]" => "Done", "clientid" => $liu['clientid']] ]);
-		$openTickets = $database->select("tickets", "*", [ "AND" => ["clientid" => $liu['clientid'], "status[!]" => "Closed"], "ORDER" => ["id" => "DESC"]] );
+	// 	$activeIssues = $database->select("issues", "*", [ "AND" => ["status[!]" => "Done", "clientid" => $liu['clientid']] ]);
+	// 	$openTickets = $database->select("tickets", "*", [ "AND" => ["clientid" => $liu['clientid'], "status[!]" => "Closed"], "ORDER" => ["id" => "DESC"]] );
 
-		$recentAssets = $database->select("assets", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
-		$recentLicenses = $database->select("licenses", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
+	// 	$recentAssets = $database->select("assets", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
+	// 	$recentLicenses = $database->select("licenses", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"], "LIMIT" => 5]);
+		
 	}
 }
 

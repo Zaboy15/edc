@@ -79,6 +79,23 @@ switch ($request_method) {
         } else $filters = array();
     break;
 
+    case 'getsearchpm':
+        if(isset($_POST['filters'])) {
+            if(is_array($_POST['filters'])) {
+                $filters = $_POST['filters'];
+                $data = $_POST['data'];
+            } else {
+                $response = [ "status" => 908, "status_message" => "'filters' Error! Expected array, string given." ];
+                echo json_encode($response);
+                exit;
+            }
+
+        } else {
+        $filters = array();
+        $data = $_POST['data'];
+        }
+    break;
+
     case 'add':
         if(isset($_POST['data'])) {
             if(is_array($_POST['data'])) {
@@ -281,6 +298,10 @@ switch ($request_resource) {
 
     case 'tabel_pm': ## DONE ##d
         require $scriptpath . '/api/resources/pm.php';
+    break;
+
+    case 'pmsearch': ## DONE ##d
+        require $scriptpath . '/api/resources/pmsearch.php';
     break;
 
     case 'pemeriksaan': ## DONE ##d

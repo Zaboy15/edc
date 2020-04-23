@@ -22,11 +22,13 @@ switch ($request_method) {
         isAuthorizedApi("viewBatchPM");
         
         if(empty($data['name'])){
-            
+            $filters['status[!]'] = 'Close - Completed';
             $result = $database->select("tabelpm", "*",[ "AND" => $filters ]);
         } else {
             $filters['name[~]'] = $data['name'];
-            
+            $filters['status[!]'] = ['Close - Completed','Closed - Data'];
+
+
             $result = $database->select("tabelpm", "*",[ "AND" => $filters ]);
         }
 
@@ -45,7 +47,7 @@ switch ($request_method) {
     case 'editAPI':
         isAuthorizedApi("editBatchPM");
 
-        $status = PMBatch::editAPI($data);
+        $status = PMBatch::editAssign($data);
 
         if($status == 20) $response = [ "status" => 1, "status_message" => "Success! Item has been updated successfully." ];
         else $response = [ "status" => 2, "status_message" => "Error! Unable to update item." ];
