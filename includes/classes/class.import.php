@@ -320,7 +320,7 @@ class Import extends App {
 					"id_merchant" => $id_merchant,
 					"spk_status" => $item[16],
 					"wo_remarks" => $item[17],
-					"c_date_wo" => dateTimeDisplay($item[36]),
+					"c_date_wo" => $item[36],
 
 
 					
