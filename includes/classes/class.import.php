@@ -318,6 +318,11 @@ class Import extends App {
 					"id_itfs" => $id_itfs,
 					"id_sn_edc" => $idedc,
 					"id_merchant" => $id_merchant,
+					"spk_status" => $item[16],
+					"wo_remarks" => $item[17],
+					"c_date_wo" => $item[36],
+
+
 					
 
 				], [ "id" => $id_spk]);
@@ -694,7 +699,7 @@ class Import extends App {
 			"nama_pic", //5
 			"pic_phone", //6
 			"alamat", //7
-			"kode merchant", //8
+			"kode_merchant", //8
 			"spk_number", //9
 			"inc_cimb", //10
 			"email", //11
@@ -722,6 +727,8 @@ class Import extends App {
 			"day", //33
 			"aging", //34
 			"mid_qr", //35
+			"c_date_wo", //36
+
 
 
 			
@@ -754,7 +761,7 @@ class Import extends App {
 			"nama_pic", //5
 			"pic_phone", //6
 			"alamat", //7
-			"kode merchant", //8
+			"kode_merchant", //8
 			"spk_number", //9
 			"inc_cimb", //10
 			"email", //11
