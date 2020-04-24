@@ -57,6 +57,16 @@
 					  <div class="box-body">
 						  <p><?php _e('Generate a report with all the tasks in the selected period and a summary of all SPK.'); ?></p>
 						  
+						<div class="form-group">
+							<label for="spk_status">Status *</label>
+							<select class="form-control select2" id="spk_status" name="spk_status" style="width: 100%;">
+								<option value=""><?php _e('None'); ?></option>
+								<option value="Open - Pending"><?php _e('Open - Pending'); ?></option>
+								<option value="In Progress"><?php _e('In Progress'); ?></option>
+								<option value="Close - Completed"><?php _e('Close - Completed'); ?></option>
+							</select>
+						</div>
+
 						  <div class="form-group">
 							  <label for="startDate"><?php _e('Start Date'); ?></label>
 							  <div class="input-group">
