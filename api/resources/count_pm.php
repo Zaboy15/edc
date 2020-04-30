@@ -14,7 +14,7 @@ switch ($request_method) {
         } else {
             $result = $database->count("tabel_pm", "*",[ "AND" => [
                 "OR" => $filters, 
-                "status[!]" => "Closed - Completed"]]);
+                "status[!]" => "Not Success"]]);
         }
 
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];
