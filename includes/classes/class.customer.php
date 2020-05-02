@@ -11,6 +11,11 @@ class Customer extends App {
             "id_cust" => $data['id_cust'],
             "nama_customer" => $data['nama_customer'],
             "cost_center" => $data['cost_center'],
+            "address" => $data['address'],
+            "phone" => $data['phone'],
+            "contact_person" => $data['contact_person'],
+            "project_manager" => $data['project_manager'],
+
         ]);
     	if ($lastid == "0") { return "11"; } else { logSystem("Customer Added - ID: " . $lastid); return "10"; }
     }
@@ -21,7 +26,11 @@ class Customer extends App {
             $database->update("tabel_customer", [
                 "id_cust" => $data['id_cust'],
                 "nama_customer" => $data['nama_customer'],
-                "cost_center" => $data['cost_center']
+                "cost_center" => $data['cost_center'],
+                "address" => $data['address'],
+                "phone" => $data['phone'],
+                "contact_person" => $data['contact_person'],
+                "project_manager" => $data['project_manager'],
             ], [ "id" => $data['id'] ]);
         
 

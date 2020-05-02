@@ -22,7 +22,12 @@
 	                                <tr>
 	                                    <th><?php _e('ID CUSTOMER'); ?></th>
 	                                    <th><?php _e('NAMA CUSTOMER'); ?></th>
-	                                    <th><?php _e('COST CENTER'); ?></th>
+										<th><?php _e('COST CENTER'); ?></th>
+	                                    <th><?php _e('ADDRESS'); ?></th>
+	                                    <th><?php _e('PHONE'); ?></th>
+	                                    <th><?php _e('CONTACT PERSON'); ?></th>
+	                                    <th><?php _e('PROJECT MANAGER'); ?></th>
+										
 										<!-- <th></th> -->
 										<th class="text-right"></th>
 	                                </tr>
@@ -32,7 +37,13 @@
 		                                <tr>
 		                                    <td><?php echo $customer['id_cust']; ?></td>
 		                                    <td><?php echo $customer['nama_customer']; ?></td>
-		                                    <td><?php echo $customer['cost_center']; ?></td>
+											<td><?php echo $customer['cost_center']; ?></td>
+		                                    <td><?php echo $customer['address']; ?></td>
+		                                    <td><?php echo $customer['phone']; ?></td>
+											<td><?php echo $customer['contact_person']; ?></td>
+		                                    <td><?php echo $customer['project_manager']; ?></td>
+											
+											
 
 											<!-- <td>
 												<span class='label label-lite-blue'><?php echo countTableFiltered("assets","clientid",$client['id']); ?> <?php _e('Assets'); ?></span>&nbsp;
