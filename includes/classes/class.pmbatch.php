@@ -53,6 +53,7 @@ class PMBatch extends App {
                     "note" => $data['note'],
                     "kondisi_edc" => $data['kondisi_edc'],
                     "detail_edc" => $data['detail_edc'],
+                    "code" => $data['code'],
                     "request_merchant" => $data['request_merchant'],
                     "kondisi_merchant" => $data['kondisi_merchant'],
                     
