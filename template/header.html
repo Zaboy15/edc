@@ -109,7 +109,7 @@
                                     <ul class="menu">
                                         <?php if(in_array("addAsset",$perms)) { ?><li><a href="?route=inventory/assets/create"><i class="fa fa-barcode text-aqua"></i> <?php _e('New Asset'); ?></a></li><?php } ?>
                                         <?php if(in_array("addLicense",$perms)) { ?><li><a href="?route=inventory/licenses/create"><i class="fa fa-certificate text-green"></i> <?php _e('New License'); ?></a></li><?php } ?>
-                                        <?php if(in_array("addClient",$perms)) { ?><li><a href="#" onClick='showM("?modal=clients/add&reroute=clients&routeid=&section=");return false' data-toggle="modal"><i class="fa fa-briefcase text-blue"></i> <?php _e('New Client'); ?></a></li><?php } ?>
+                                       <?php if(in_array("addClient",$perms)) { ?><li><a href="#" onClick='showM("?modal=clients/add&reroute=clients&routeid=&section=");return false' data-toggle="modal"><i class="fa fa-briefcase text-blue"></i> <?php _e('New Client'); ?></a></li><?php } ?>
                                         <?php if(in_array("addIssue",$perms)) { ?><li><a href="#" onClick='showM("?modal=issues/add&reroute=issues/active&routeid=&section=");return false' data-toggle="modal"><i class="fa fa-tasks text-blue"></i> <?php _e('New Issue'); ?></a></li><?php } ?>
                                         <?php if(in_array("addTicket",$perms)) { ?><li><a href="#" onClick='showM("?modal=tickets/add&reroute=tickets/ar&routeid=&section=");return false' data-toggle="modal"><i class="fa fa-tag text-blue"></i> <?php _e('New Ticket'); ?></a></li><?php } ?>
                                     </ul>
@@ -204,6 +204,8 @@
                   <ul class="treeview-menu">
                        <?php if(in_array("viewAssets",$perms)) { ?><li <?php if(strpos($route,'inventory/assets') !== false) echo 'class="active"'; ?>><a href="?route=inventory/assets"><i class="fa fa-desktop"></i> <?php _e('Assets'); ?></a></li><?php } ?>
                        <?php if(in_array("viewLicenses",$perms)) { ?><li <?php if(strpos($route,'inventory/licenses') !== false) echo 'class="active"'; ?>><a href="?route=inventory/licenses"><i class="fa fa-certificate"></i> <?php _e('Licenses'); ?></a></li><?php } ?>
+                       <?php if(in_array("viewLicenses",$perms)) { ?><li <?php if(strpos($route,'inventory/paper') !== false) echo 'class="active"'; ?>><a href="?route=inventory/paper"><i class="fa fa-clone"></i> <?php _e('Paper'); ?></a></li><?php } ?>
+                       
                        <!-- <?php if(in_array("viewCredentials",$perms)) { ?><li <?php if(strpos($route,'inventory/credentials') !== false) echo 'class="active"'; ?>><a href="?route=inventory/credentials"><i class="fa fa-asterisk"></i> <?php _e('Credentials'); ?></a></li><?php } ?> -->
 
                        <?php if(in_array("manageData",$perms)) { ?>

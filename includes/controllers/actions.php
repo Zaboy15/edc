@@ -177,6 +177,14 @@ switch($_POST['action']) {
         break;
 
 
+
+	case "addPaper":
+		isAuthorized("addLicense"); $status = Paper::addIncoming($_POST);
+		break;
+
+	case "addPaperOutgoing":
+		isAuthorized("addLicense"); $status = Paper::addOutgoing($_POST);
+		break;
 	// licenses
 	case "addLicense":
 		isAuthorized("addLicense"); $status = License::add($_POST);

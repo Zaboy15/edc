@@ -37,9 +37,68 @@ class Staff extends App {
     			logSystem("Staff Account Added - ID: " . $lastid);
     			return "10";
     		}
-    }
+	}
+	public static function edit($data) {
+    	global $database;
+		$email = strtolower($data['email']);
+		
+		$customfields = getTable("staff_customfields");
+        $customfieldsdata = array();
 
-    public static function edit($data) {
+        foreach ($customfields as $customfield) {
+            $customfieldsdata[$customfield['id']] = $data[$customfield['id']];
+        }
+
+    	if ($data['password'] == "") {
+    		$database->update("people", [
+    			"roleid" => $data['roleid'],
+    			"name" => $data['name'],
+    			"email" => $email,
+                "ldap_user" => $data['ldap_user'],
+    			"title" => $data['title'],
+    			"mobile" => $data['mobile'],
+    			"theme" => $data['theme'],
+    			"sidebar" => $data['sidebar'],
+    			"layout" => $data['layout'],
+    			"notes" => $data['notes'],
+    			"signature" => $data['signature'],
+				"lang" => $data['lang'],
+    			"tokenfcm" => $data['tokenfcm'],
+				"customfields" => serialize($customfieldsdata),
+    			"ticketsnotification" => $data['ticketsnotification'],
+
+    			],["id" => $data['id']]);
+    		logSystem("Staff Account Edited - ID: " . $data['id']);
+    		return "20";
+    		}
+    	else {
+    		$password = sha1($data['password']);
+    		$database->update("people", [
+    			"roleid" => $data['roleid'],
+    			"name" => $data['name'],
+    			"email" => $email,
+                "ldap_user" => $data['ldap_user'],
+    			"title" => $data['title'],
+    			"mobile" => $data['mobile'],
+    			"password" => $password,
+    			"theme" => $data['theme'],
+    			"sidebar" => $data['sidebar'],
+    			"layout" => $data['layout'],
+    			"notes" => $data['notes'],
+    			"signature" => $data['signature'],
+				"lang" => $data['lang'],
+    			"tokenfcm" => $data['tokenfcm'],
+				"customfields" => serialize($customfieldsdata),
+    			"ticketsnotification" => $data['ticketsnotification'],
+
+    			],["id" => $data['id']]);
+    		logSystem("Staff Account Edited - ID: " . $data['id']);
+    		return "20";
+    		}
+
+	}
+
+    public static function editAPI($data) {
     	global $database;
 		$email = strtolower($data['email']);
 		

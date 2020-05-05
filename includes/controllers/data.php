@@ -387,6 +387,32 @@ if ($route == "inventory/assets/manage") {
 	$pageTitle = $asset['tag'];
 	}
 
+if ($route == "inventory/paper") {
+	isAuthorized("addLicense");
+	$log_paper = getTable("log_paper");
+	$paper_blank = getSingleValue("tabel_paperroll","qty","2");
+	$paper_logo = getSingleValue("tabel_paperroll","qty","1");
+
+
+
+}
+if ($route == "inventory/paper/incoming_create") {
+	isAuthorized("addLicense");
+	$itfs = getTable("people");
+	
+	$typepaper = getTable("tabel_paperroll");
+
+
+}
+
+if ($route == "inventory/paper/outgoing_create") {
+	isAuthorized("addLicense");
+	$itfs = getTable("people");
+	
+	$typepaper = getTable("tabel_paperroll");
+
+
+}
 // LICENSES
 if ($route == "inventory/licenses") {
 	isAuthorized("viewLicenses");
