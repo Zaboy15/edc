@@ -1,0 +1,60 @@
+<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"><?php _e('Edit Customers'); ?></h4></div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <label for="nama_customer"><?php _e('Nama Customer'); ?> *</label>
+                <input type="text" class="form-control" id="nama_customer" name="nama_customer" value="<?php echo $customers['nama_customer']; ?>" required>
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="id_cust"><?php _e('ID Customers'); ?> *</label>
+                <input type="text" class="form-control" id="id_cust" name="id_cust" value="<?php echo $customers['id_cust']; ?>" required>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="cost_center"><?php _e('Cost Center'); ?> *</label>
+                <input type="text" class="form-control" id="cost_center" name="cost_center" value="<?php echo $customers['cost_center']; ?>" required>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="address"><?php _e('Address'); ?> *</label>
+                <input type="text" class="form-control" id="address" name="address" value="<?php echo $customers['address']; ?>" required>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="phone"><?php _e('Phone'); ?> *</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $customers['phone']; ?>" required>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="contact_person"><?php _e('Contact Person'); ?> *</label>
+                <input type="text" class="form-control" id="contact_person" name="contact_person" value="<?php echo $customers['contact_person']; ?>" required>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_manager"><?php _e('Project Manager'); ?> *</label>
+                <input type="text" class="form-control" id="project_manager" name="project_manager" value="<?php echo $customers['project_manager']; ?>" required>
+            </div>
+        </div>
+
+    </div>
+
+    <input type="hidden" name="id" value="<?php echo $customers['id']; ?>">
+    <input type="hidden" name="action" value="editCustomer">
+    <input type="hidden" name="route" value="<?php echo $_GET['reroute']; ?>">
+    <input type="hidden" name="routeid" value="">
+    <input type="hidden" name="section" value="">
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php _e('Cancel'); ?></button>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> <?php _e('Save'); ?></button>
+</div>

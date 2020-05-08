@@ -1,0 +1,123 @@
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1><?php _e('Outgoing Paper'); ?><small> <?php _e('Manage Paper'); ?></small></h1>
+		<ol class="breadcrumb"><li><a href="?route=dashboard"><i class="fa fa-dashboard"></i> <?php _e('Home'); ?></a></li><li><?php _e('Inventory'); ?></li><li><a href="?route=inventory/paper"><?php _e('Paper'); ?></a></li><li class="active"><?php _e('Create'); ?></li></ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<?php if(!empty($statusmessage)): ?>
+				<div class="row"><div class='col-md-12'><div class="alert alert-<?php print $statusmessage["type"]; ?> alert-auto" role="alert"><?php print __($statusmessage["message"]); ?></div></div></div>
+		<?php endif; ?>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box box-primary">
+          			<div class="box-header with-border">
+						<h3 class="box-title"><?php _e('Create Incoming'); ?></h3>
+					</div><!-- /.box-header -->
+                    <div class="box-body">
+						<div class="container-fluid">
+						<div class="row">
+							<form role="form" method="post">
+
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="id_type"><?php _e('Type Paper'); ?> *</label>
+												<select class="form-control select2 select2-hidden-accessible" id="id_type" name="id_type" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+													<?php foreach ($typepaper as $typepaper) { echo "<option value='".$typepaper['id']."'>".$typepaper['name']."</option>"; } ?>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="id_itfs"><?php _e('ITFS'); ?> *</label>
+												<select class="form-control select2 select2-hidden-accessible" id="id_itfs" name="id_itfs" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+													<?php foreach ($itfs as $itfs) { echo "<option value='".$itfs['id']."'>".$itfs['name']."</option>"; } ?>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="outgoing_date"><?php _e('Outgoing Date'); ?></label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="outgoing_date" name="outgoing_date">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
+											</div>
+										</div>
+
+										
+										
+									</div>
+
+
+								</div>
+
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="outgoing_qty"><?php _e('Outgoing QTY'); ?></label>
+												<div class="input-group">
+													<input type="number" class="form-control" id="outgoing_qty" name="outgoing_qty">
+													<span class="input-group-addon"><?php _e('qty'); ?></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="remarks"><?php _e('Remarks'); ?></label>
+										<textarea class="form-control summernoteLarge" rows="5" id="remarks" name="remarks"></textarea>
+									</div>
+
+									<input type="hidden" name="action" value="addPaperOutgoing">
+									<input type="hidden" name="route" value="inventory/paper">
+									<input type="hidden" name="routeid" value="">
+
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> <?php _e('Create'); ?></button>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+							</form><!-- /.form -->
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</section><!-- /.content -->
+</aside><!-- /.right-side -->
+<script type="text/javascript">
+
+        function generateTag(_this) {
+
+            var tagprefix = $(_this).find(':selected').data("tagprefix");
+			var tagsufix = '<?php echo License::nextLicenseTag(); ?>';
+
+            document.getElementById("tag").value = tagprefix + tagsufix;
+        }
+
+</script>

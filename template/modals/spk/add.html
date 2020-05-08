@@ -1,0 +1,265 @@
+<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"><?php _e('Add SPK'); ?></h4></div>
+<div class="modal-body">
+
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="inc_cimb"><?php _e('INC CIMB'); ?> *</label>
+                <input type="text" class="form-control" id="inc_cimb" name="inc_cimb" value="">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="spk_number"><?php _e('SPK Number'); ?> *</label>
+                <input type="text" class="form-control" id="spk_number" name="spk_number" value="">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="wo_activity">WO Activity *</label>
+                <select class="form-control select2" id="wo_activity" name="wo_activity" style="width: 100%;">
+                    <option value="INSTALLATION"><?php _e('INSTALLATION'); ?></option>
+                    <option value="REINIT" ><?php _e('REINIT'); ?></option>
+                    <option value="REPLACEMENT" ><?php _e('REPLACEMENT'); ?></option>
+                    <option value="WITHDRAW" ><?php _e('WITHDRAW'); ?></option>
+                    <option value="QR CODE" ><?php _e('QR CODE'); ?></option>
+                    <option value="ACRYLYIC" ><?php _e('ACRYLIC'); ?></option>
+                
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="wo_remarks"><?php _e('WO Remarks'); ?> *</label>
+                <input type="text" class="form-control" id="wo_remarks" name="wo_remarks" value="">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="remarks_spk"><?php _e('Remarks SPK'); ?> *</label>
+                <input type="text" class="form-control" id="remarks_spk" name="remarks_spk" value="">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+           
+                <div class="form-group">
+                    <label for="id_merchant"><?php _e('Merchant'); ?></label>
+                    <select class="form-control merchantSelect select2-hidden-accessible" id="id_merchant" name="id_merchant" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option value="0"><?php _e('None'); ?></option>
+                        
+                    </select>
+                </div>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="id_sn_edc"><?php _e('SN EDC'); ?></label>
+                <select class="form-control assetsSelect select2-hidden-accessible" id="id_sn_edc" name="id_sn_edc" style="width: 100%;">
+                    <?php if(isset($_GET['id_sn_edc'])) { ?>
+                        <option value="<?php echo $_GET['id_sn_edc']; ?>"><?php echo getSingleValue("assets","tag",$_GET['id_sn_edc']) ; ?> <?php echo getSingleValue("assets","name",$_GET['id_sn_edc']) ; ?></option>
+                    <?php } else { ?>
+                        <option value="0"><?php _e('None'); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <?php if(in_array("manageTicketAssignment",$perms)) { ?>
+                <div class="form-group">
+                    <label for="id_itfs"><?php _e('ITFS'); ?></label>
+                    <select class="form-control select2 select2-hidden-accessible" id="id_itfs" name="id_itfs" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option value="0"><?php _e('Nobody'); ?></option>
+                        <?php foreach ($admins as $admin) { ?>
+                            <option value='<?php echo $admin['id']; ?>' <?php if(isset($liu['id'])) { if($liu['id'] == $admin['id']) echo "selected"; }  ?>><?php echo $admin['name']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            <?php } ?>
+           
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        
+
+        
+
+        
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="reported_time"><?php _e('Reported times'); ?> *</label>
+                <input type="text" class="input-append date form_datetime" id="reported_time" name="reported_time" value="<?php echo $spkdata['reported_time']; ?>">
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    
+
+    <input type="hidden" name="action" value="addSPK">
+    <input type="hidden" name="route" value="<?php echo $_GET['reroute']; ?>">
+    <input type="hidden" name="routeid" value="<?php echo $_GET['routeid']; ?>">
+    <input type="hidden" name="section" value="<?php echo $_GET['section']; ?>">
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><i class="fa fa-times"></i> <?php _e('Cancel'); ?></button>
+    <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-check"></i> <?php _e('Create'); ?></button>
+</div>
+
+<script type="text/javascript">
+
+        $(".select2").select2();
+
+        $(".select2tag").select2({
+            tags: true,
+            maximumSelectionLength: 1
+        });
+
+        $(".select2tags").select2({
+            tags: true
+        });
+
+
+
+        $('.summernote-modal').summernote({height: 200, maximumImageFileSize: 524288, dialogsInBody: true, disableDragAndDrop: true});
+
+
+        <?php if(isset($_GET['id_merchant'])) { ?>
+            var clientid = <?php echo $_GET['id_merchant']; ?>;
+        <?php } else { ?>
+            var clientid = 0;
+        <?php } ?>
+
+
+        $("#id_merchant").on("change", function (e) {
+            clientid = $("#id_merchant").val();
+        });
+
+       
+
+    	$('.assetsSelect').select2({
+    		ajax: {
+    			url: "index.php",
+    			dataType: 'json',
+    			data: function (params) {
+    			  return {
+    				q: params.term, // search term
+    				qa: 'assetsSelect',
+                    filterid: clientid
+    			  };
+    			},
+    			processResults: function (data,params) {
+    				return {
+    					results: $.map(data, function(obj) {
+    						return { id: obj.id, text: obj.text };
+    					})
+    				};
+    			},
+    			//cache: true,
+    	    },
+    	    minimumInputLength: 0,
+    		placeholder: "<?php _e('Please Select'); ?>",
+    	});
+
+        $('.merchantSelect').select2({
+		ajax: {
+			url: "index.php",
+			dataType: 'json',
+			data: function (params) {
+			  return {
+				q: params.term, // search term
+				qa: 'merchantSelect'
+                
+			  };
+			},
+			processResults: function (data,params) {
+				return {
+					results: $.map(data, function(obj) {
+						return { id: obj.id, text: obj.text };
+					})
+				};
+			},
+			//cache: true,
+	    },
+	    minimumInputLength: 3,
+		placeholder: "<?php _e('Please Select'); ?>",
+	});
+
+        $('.projectsSelect').select2({
+            ajax: {
+                url: "index.php",
+                dataType: 'json',
+                data: function (params) {
+                  return {
+                    q: params.term, // search term
+                    qa: 'projectsSelect',
+                    filterid: clientid
+                  };
+                },
+                processResults: function (data,params) {
+                    return {
+                        results: $.map(data, function(obj) {
+                            return { id: obj.id, text: obj.text };
+                        })
+                    };
+                },
+                //cache: true,
+            },
+            minimumInputLength: 0,
+            placeholder: "<?php _e('Please Select'); ?>",
+        });
+
+
+        $('.usersSelectEmail').select2({
+            ajax: {
+                url: "index.php",
+                dataType: 'json',
+                data: function (params) {
+                  return {
+                    q: params.term, // search term
+                    qa: 'usersSelectEmail',
+                    filterid: clientid
+                  };
+                },
+                processResults: function (data,params) {
+                    return {
+                        results: $.map(data, function(obj) {
+                            return { id: obj.id, text: obj.text };
+                        })
+                    };
+                },
+                //cache: true,
+            },
+            minimumInputLength: 0,
+            placeholder: "<?php _e('Please Select'); ?>",
+            tags: true,
+            //maximumSelectionLength: 1
+        });
+
+        $(".form_datetime").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+        });
+
+
+</script>
