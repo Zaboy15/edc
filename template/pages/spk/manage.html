@@ -1,0 +1,377 @@
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1>#<?php echo $spk['spk_number']; ?> - <?php echo $spk['wo_activity']; ?></h1>
+		<ol class="breadcrumb"><li><a href="?route=dashboard"><i class="fa fa-dashboard"></i> <?php _e('Home'); ?></a></li><li><a href="#" onclick="goBack()"><?php _e('SPK'); ?></a></li><li class="active">#<?php echo $ticket['ticket']; ?></li></ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<?php if(!empty($statusmessage)): ?>
+				<div class="row"><div class='col-md-12'><div class="alert alert-<?php print $statusmessage["type"]; ?> alert-auto" role="alert"><?php print __($statusmessage["message"]); ?></div></div></div>
+		<?php endif; ?>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="nav-tabs-custom">
+	              	<ul class="nav nav-tabs">
+	                	<li <?php if ($section == "") echo 'class="active"'; ?> ><a href="#tab-spk-detail" data-toggle="tab" class="spk-tab-button"><?php _e('SPK Detail '); ?></a></li>
+						  <!-- <?php if(in_array("viewFiles",$perms)) { ?><li <?php if ($section == "files") echo 'class="active"'; ?> ><a href="?route=spk/manage&id=<?php echo $spk['id']; ?>&section=files"><?php _e('Foto & Signature'); ?></a></li><?php } ?> -->
+						  <div class="btn-group pull-right" style="padding:6px;">
+							<!-- <?php if(in_array("viewPReplies",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Insert Predefined Reply'); ?>' onClick='showM("?modal=preplies/insert");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-arrow-right fw"></i> <?php _e('Predefined Reply'); ?></button><?php } ?> -->
+							<?php if(in_array("editTicket",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Edit SPK'); ?>' onClick='showM("?modal=spk/edit&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&id=<?php echo $spk['id']; ?>&section=");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-edit"></i></button><?php } ?>
+							
+							<?php if($pemeriksaan == 0) { ?>
+							<a data-toggle='tooltip' title='<?php _e('Tambah Pemeriksaan Wajib'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=pemeriksaan/add&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&idspk=<?php echo $spk['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a>
+							<?php } ?>
+							<?php if($pemeriksaan >= 1) { ?>
+								<a data-toggle='tooltip' title='<?php _e('Ubah Pemeriksaan Wajib'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=pemeriksaan/edit&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&idspk=<?php echo $spk['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a>
+								<?php } ?>
+							
+							<?php if($isAdmin) { ?><a data-toggle='tooltip' title='<?php _e('E-FKM'); ?>' href="?route=reports/efkm&id=<?php echo $spk['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-thumb-tack"></i></a><?php } ?>
+							<?php if($isAdmin) { ?><a data-toggle='tooltip' title='<?php _e('E-FKM'); ?>' href="signature/my_sign.php&id_spk=<?php echo $spk['id']; ?>&spk_number=<?php echo $spk['spk_number'];?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-thumb-tack"></i></a><?php } ?>
+							<!-- <form action="signature/my_sign.php" method="post">
+								<input type="hidden" name="id_spk" value="<?php echo $spk['id'];?>">
+								<input type="hidden" name="spk_number" value="<?php echo $spk['spk_number'];?>">
+								<input type="submit">
+							</form> -->
+							<!-- <?php if($spk['status'] != "Closed") { ?>
+								<a data-toggle='tooltip' title='<?php _e('Close Ticket'); ?>' href="?qa=ticketClose&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-close"></i></a>
+							<?php } ?>
+							<?php if($isAdmin) { ?>
+								<?php if($spk['status'] == "Closed") { ?>
+									<a data-toggle='tooltip' title='<?php _e('Reopen Ticket'); ?>' href="?qa=ticketReopen&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $ticket['id']; ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-retweet"></i></a>
+								<?php } ?>
+							<?php } ?> -->
+
+							<!-- <?php if(in_array("deleteTicket",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Delete Ticket'); ?>' onClick='showM("index.php?modal=tickets/delete&reroute=tickets/active&routeid=&section=&id=<?php echo $ticket['id']; ?>");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-trash text-red"></i></button><?php } ?> -->
+							<!-- <div class="btn-group">
+									<button type="button" class="btn btn-primary btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+										<?php _e('More'); ?> <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu pull-right">
+											<?php if(in_array("uploadFile",$perms)) { ?><li><a href="#" onClick='showM("?modal=files/upload&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&spkid=<?php echo $spk['id']; ?>&image_spk=1&section=files");return false'><i class="fa fa-upload fa-fw"></i><?php _e('Upload File'); ?></a></li><?php } ?>
+										</ul>
+								</div> -->
+						</div>
+
+					  </ul>
+					  
+				  	<div class="tab-content">
+						<div class="tab-pane <?php if ($section == "") echo 'active'; ?>" id="tab-spk-detail">
+								<div class="row">
+									<div class="col-md-12">	
+										<div class="col-md-4">				
+										<div class="box box-primary">
+										<div class="box-header with-border">
+											<h3 class="box-title"><?php _e('SPK Details'); ?></h3>
+										</div><!-- /.box-header -->
+										<div class="box-body">
+											<table id="ticketDetailsTable" class="table table-striped table-hover">
+												<tbody>
+													<tr>
+														<td><b><?php _e('Status'); ?></b></td>
+														<td>
+															<?php if($spk['spk_status'] == "Open - Pending") echo "<span class='badge bg-green'>".__("Open - Pending")."</span>"; ?>
+															<?php if($spk['spk_status'] == "Open") echo "<span class='badge bg-green'>".__("Open")."</span>"; ?>
+															<?php if($spk['spk_status'] == "In Progress") echo "<span class='badge bg-navy'>".__("In Progress")."</span>"; ?>
+															<?php if($spk['spk_status'] == "File Belum Di Terima") echo "<span class='badge bg-teal'>".__("File Belum Di Terima")."</span>"; ?>
+															<?php if($spk['spk_status'] == "Cancel") echo "<span class='badge bg-orange'>".__("Cancel")."</span>"; ?>
+															<?php if($spk['spk_status'] == "Close - Completed") echo "<span class='badge bg-gray'>".__("Close - Completed")."</span>"; ?>
+														</td>
+													</tr>
+													<tr>
+															<td><b><?php _e('Tiket'); ?></b></td>
+															<td><?php echo $spk['ticket_spk']; ?></td>
+														</tr>
+													<tr>
+														<td><b><?php _e('SPK Number'); ?></b></td>
+														<td><?php echo $spk['spk_number']; ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('WO Activity'); ?></b></td>
+														<td><?php echo $spk['wo_activity']; ?></td>
+													</tr>
+
+													<tr>
+														<td><b><?php _e('WO Remarks'); ?></b></td>
+														<td><?php echo $spk['wo_remarks']; ?></td>
+													</tr>
+													
+													<tr>
+														<td><b><?php _e('Merchant'); ?></b></td>
+														<td><?php echo "<a href='?route=clients/manage&id=".$spk['id_merchant']."'>".getSingleValue('clients','name',$spk['id_merchant']); ?></td>
+													</tr>
+
+													<tr>
+														<td><b><?php _e('PIC Merchant'); ?></b></td>
+														<td><?php echo getSingleValue('clients','pic',$spk['id_merchant']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('PIC Phone'); ?></b></td>
+														<td><?php echo getSingleValue('clients','phone_pic',$spk['id_merchant']); ?></td>
+													</tr>
+
+													<tr>
+														<td><b><?php _e('Alamat'); ?></b></td>
+														<td><?php echo getSingleValue('clients','alamat',$spk['id_merchant']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('Kota'); ?></b></td>
+														<td><?php echo $spk['city']; ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('Service Point'); ?></b></td>
+														<td><?php echo $spk['service_point']; ?></td>
+													</tr>
+													
+
+													<tr>
+														<td><b><?php _e('MID'); ?></b></td>
+														<td><?php echo getSingleValue('clients','mid',$spk['id_merchant']); ?></td>
+													</tr>
+
+													<tr>
+														<td><b><?php _e('MID QR'); ?></b></td>
+														<td><?php echo $spk['mid']; ?></td>
+													</tr>
+
+													<!-- <tr>
+														<td><b><?php _e('MID'); ?></b></td>
+														<td><?php echo getSingleValue('clients','mid',$spk['id_merchant']); ?></td>
+													</tr> -->
+
+													<tr>
+														<td><b><?php _e('MIDTID'); ?></b></td>
+														<td><?php echo getSingleValue('clients','midtid',$spk['id_merchant']); ?></td>
+													</tr>
+													
+													<tr>
+														<td><b><?php _e('ITFS'); ?></b></td>
+														<td><?php echo getSingleValue('people','name',$spk['id_itfs']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('Reported Time'); ?></b></td>
+														<td><?php echo dateTimeDisplay($spk['reported_time']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('Received Time'); ?></b></td>
+														<td><?php echo dateTimeDisplay($spk['received_time']); ?></td>
+													</tr>
+												
+													<tr>
+														<td><b><?php _e('Received Date Sticker'); ?></b></td>
+														<td><?php echo dateTimeDisplay($spk['received_date_sticker']); ?></td>
+													</tr>
+
+													<tr>
+														<td><b><?php _e('Target Date SPK'); ?></b></td>
+														<td><?php echo dateTimeDisplay($spk['received_date_sticker']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('Completed WO'); ?></b></td>
+														<td><?php echo dateTimeDisplay($spk['c_date_wo']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('SN EDC'); ?></b></td>
+														<td><?php echo "<a href='?route=inventory/assets/manage&id=".$spk['id_sn_edc']."'>".getSingleValue('assets','serial',$spk['id_sn_edc']); ?></td>
+													</tr>
+													<tr>
+														<td><b><?php _e('SIMCARD'); ?></b></td>
+														<td><?php echo "<a href='?route=inventory/assets/manage&id=".$spk['id_sn_simcard']."'>".getSingleValue('assets','serial',$spk['id_sn_simcard']); ?></td>
+													</tr>
+													
+											
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+							
+									
+						</div>
+
+						
+						
+					<div class="row">
+							<div class="col-md-7">
+
+									<!-- PROJECT NOTES -->
+									<div class="box box-primary">
+									  <div class="box-header with-border">
+										<h3 class="box-title"><?php _e('Remark SPK'); ?></h3>
+									  </div>
+									  <!-- /.box-header -->
+									  <div class="box-body ">
+											<?php echo $spk['remarks_spk']; ?>
+									  </div>
+									  <!-- /.box-body -->
+									</div>
+									<!--/.box -->
+							</div>
+							<!-- col-md-7 -->
+							<div class="col-md-6">
+
+									<!-- PROJECT NOTES -->
+									<div class="box box-primary">
+										<div class="box-header with-border">
+											<h3 class="box-title"><?php _e('Tanda Tangan User'); ?></h3>
+										</div><!-- /.box-header -->
+										<div class="box-body">
+									<?php if(!empty($spk['sign'])) { ?>
+									<div class="col-md-12 col-xs-6">
+										<div class="col-md-6">
+										<img class="img-responsive img-thumbnail" src="?qa=signspk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+										<a href="<?php echo "?qa=signspk&id=" . $spk['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+									</div>
+									</div>
+									<?php } ?>	
+
+									<?php if(empty($spk['sign'])) { ?>
+									<div class="col-md-12 col-xs-6">
+										<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+									</div>
+									<?php } ?>	
+									
+			
+								</div>
+								</div>
+									<!--/.box -->
+							</div>
+
+							<div class="col-md-6">
+
+								<!-- PROJECT NOTES -->
+								<div class="box box-primary">
+									<div class="box-header with-border">
+										<h3 class="box-title"><?php _e('Dokumentasi'); ?></h3>
+									</div><!-- /.box-header -->
+								<div class="box-body">
+										
+											
+								<div class="col-md-12 col-xs-6">
+									<?php if(!empty($spk['foto_mesin'])) { ?>
+										<div class="col-md-6">
+											<img class="img-responsive img-thumbnail" src="?qa=fotomesin&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+											<a href="<?php echo "?qa=fotomesin&id=" . $spk['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+											</div>
+									<?php } ?>
+									<?php if(empty($spk['foto_mesin'])) { ?>
+										<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+										<?php } ?>	
+										<?php if(!empty($spk['foto_toko'])) { ?>
+											<div class="col-md-6">
+												<img class="img-responsive img-thumbnail" src="?qa=fototoko&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+												<a href="<?php echo "?qa=fototoko&id=" . $spk['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+											</div>
+										<?php } ?>	
+										<?php if(empty($spk['foto_toko'])) { ?>
+											<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+											<?php } ?>
+											<?php if(!empty($spk['foto_struk'])) { ?>	
+										<div class="col-md-6">
+											<img class="img-responsive img-thumbnail" src="?qa=fotostruk&id=<?php echo $spk['id']; ?>" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+											<a href="<?php echo "?qa=fotostruk&id=" . $spk['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;
+										</div>
+										
+										<?php } ?>	
+										<?php if(empty($spk['foto_struk'])) { ?>
+											
+											<img class="img-responsive img-thumbnail" src="template/assets/image_not_found.png" style="float:top;width: 200px; height: 200px;" class="img-responsive">
+											
+											<?php } ?>
+								</div>
+								
+		
+							</div>
+							
+							</div>
+								<!--/.box -->
+						</div>
+
+							
+							<!-- col-md-7 -->
+					</div>
+					<!-- row ke 2 -->
+
+					</div>
+					</div>
+				</div>
+						<!-- /.tab-pane -->
+						<?php if(in_array("viewFiles",$perms)) { ?>
+							<div class="tab-pane <?php if ($section == "files") echo 'active'; ?>" id="tab-files">
+								 <?php if(empty($files)) { ?>
+									 <div class="alert alert-info">
+										  <i class="icon fa fa-info"></i> <?php _e('No files have been uploaded yet!'); ?>
+									  </div>
+								 <?php } ?>
+
+								<ul class="todo-list list-inline" id="fileslist">
+									<?php foreach($files as $file) { ?>
+										<li id="" style="width:260px;margin:10px;padding:8px;height:60px;">
+											  <div class="row">
+												  <div class="col-xs-2" style="text-align:center;vertical-align:middle;height:60px;">
+													  <i class="fa fa-<?php echo File::icon($file['file']); ?>" style="font-size:36px;padding-top:3px;"></i>
+												  </div>
+												  <div class="col-xs-10">
+													  <?php echo ttruncat($file['name'],30) . "<br><small>" . ttruncat($file['file'],35) . "</small>"; ?>
+													  <div class="pull-right">
+														  <?php if(in_array("viewFiles",$perms)) { ?><a href="#" onClick='showM("?modal=files/view&reroute=clients/manage&routeid=<?php echo $client['id']; ?>&id=<?php echo $file['id']; ?>&section=files");return false' class='btn-right text-dark'><i class='fa fa-eye'></i></a>&nbsp;<?php } ?>
+														  <?php if(in_array("downloadFile",$perms)) { ?><a href="<?php echo "?qa=download&id=" . $file['id']; ?>" class='btn-right text-dark'><i class='fa fa-download'></i></a>&nbsp;<?php } ?>
+														  <?php if(in_array("deleteFile",$perms)) { ?><a href="#" onClick='showM("?modal=files/delete&reroute=clients/manage&routeid=<?php echo $client['id']; ?>&id=<?php echo $file['id']; ?>&section=files");return false' class='btn-right text-red'><i class='fa fa-trash-o'></i></a><?php } ?>
+													  </div>
+												  </div>
+											  </div>
+										</li>
+									<?php } ?>
+								</ul>
+
+							</div>
+							<!-- /.tab-pane -->
+							<?php } ?>
+						<?php if(in_array("viewComments",$perms)) { ?>
+						<div class="tab-pane <?php if ($section == "comments") echo 'active'; ?>" id="tab-comments">
+							<?php if(!empty($comments)) { ?>
+								<ul class="timeline">
+									<?php $lastdate = "0000-00-00"; foreach($comments as $comment) { ?>
+									<?php
+										$currentdate = date('Y-m-d',strtotime($comment['timestamp']));
+										if($currentdate != $lastdate) { ?><li class="time-label"><span class="bg-gray"><?php echo dateDisplay($currentdate); ?></span></li> <?php $lastdate = $currentdate; } ?>
+									<li>
+									  	<!-- timeline icon -->
+									  	<img src="<?php echo getGravatar(getSingleValue("people","email",$comment['peopleid']),"32"); ?>" class="img-circle timeline-image" style="height:32px;width:32px;" />
+									  	<div class="timeline-item">
+									      	<span class="time"><i class="fa fa-clock-o"></i> <?php echo dateTimeDisplay($comment['timestamp']); ?></span>
+									      	<h3 class="timeline-header"><a href="#"><?php echo getSingleValue("people","name",$comment['peopleid']); ?></a> <?php echo smartDate(strtotime($comment['timestamp'])); ?></h3>
+
+									      	<div class="timeline-body"><?php echo $comment['comment']; ?></div>
+
+									      	<div class="timeline-footer">
+									          	<?php if(in_array("editComment",$perms)) { ?><a onClick='showM("?modal=comments/edit&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $comment['id']; ?>&section=comments");return false' class="btn btn-success btn-xs"><?php _e('Edit'); ?></a><?php } ?>
+											  	<?php if(in_array("deleteComment",$perms)) { ?><a onClick='showM("?modal=comments/delete&reroute=tickets/manage&routeid=<?php echo $ticket['id']; ?>&id=<?php echo $comment['id']; ?>&section=comments");return false' class="btn btn-danger btn-xs"><?php _e('Delete'); ?></a><?php } ?>
+									      	</div>
+									  	</div>
+									</li>
+									<?php } ?>
+									<li><i class="fa fa-clock-o bg-gray"></i></li>
+								</ul>
+							<?php } ?>
+							<?php if(empty($comments)) { ?>
+								<p><?php _e('No comments have been added.'); ?></p>
+							<?php } ?>
+						</div>
+						<!-- /.tab-pane -->
+						<?php } ?>
+
+						
+
+						
+					</div>
+				</div>
+			</div>
+
+			
+		</div>
+
+	</section><!-- /.content -->
+</aside><!-- /.right-side -->

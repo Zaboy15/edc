@@ -1,0 +1,168 @@
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1 class="pull-left"><?php _e('Maps'); ?><small> <?php _e('Manage'); ?></small></h1>
+		<div style="clear:both"></div>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<?php if(!empty($statusmessage)): ?>
+		<div class="row">
+			<div class='col-md-12'>
+				<div class="alert alert-<?php print $statusmessage["type"]; ?> alert-auto" role="alert">
+					<?php print __($statusmessage["message"]); ?></div>
+			</div>
+		</div>
+		<?php endif; ?>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="ibox ">
+					
+					<div class="ibox-content">
+						<style>
+							#map-canvas {
+								height: 600px;
+								margin: 0px;
+								padding: 0px
+							}
+						</style>
+						<script
+							src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+							</script>
+						<!-- <script
+							src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&sensor=false"></script> -->
+							<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&callback=initMap"
+	async defer></script>
+							<script>
+								
+							function initMap() {
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: new google.maps.LatLng(-6.117664,106.906349),
+          zoom: 12
+        });
+        var infoWindow = new google.maps.InfoWindow;
+
+          downloadUrl('http://dev.orang-it.com/edc/api/api2/api/location.php', function(data) {
+			// downloadUrl('http://localhost/edcmip/api/api2/api/location.php', function(data) {
+
+            var markers=JSON.parse(data.responseText);
+
+           var markerbaru = markers.forEach(function(element) {          
+                var id = element.id;
+                var name = element.name;
+                var nik = element.nik;
+                var point = new google.maps.LatLng(
+                    parseFloat(element.latitude),
+                    parseFloat(element.longtitude));
+
+                var infowincontent = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.textContent = nik
+                infowincontent.appendChild(strong);
+                infowincontent.appendChild(document.createElement('br'));
+
+                var text = document.createElement('text');
+                text.textContent = name
+                infowincontent.appendChild(text);
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: point
+                });
+                marker.addListener('click', function() {
+                  infoWindow.setContent(infowincontent);
+                  infoWindow.open(map, marker);
+                });
+            });
+            
+          });
+        }
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+	  var markerCluster = new MarkerClusterer(map, markerbaru,
+									{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+
+      function doNothing() {}
+	  </script>
+
+						<!-- <script>
+							var map;
+							function initialize() {
+								var mapOptions = {
+									zoom: 9,
+									center: new google.maps.LatLng(-6.159768, 106.813096)
+								};
+								map = new google.maps.Map(document.getElementById('map-canvas'),
+									mapOptions);
+
+								var infoWin = new google.maps.InfoWindow();
+								var markers = locations.map(function (location, i) {
+									var marker = new google.maps.Marker({
+										position: location,
+										icon: location.icons
+
+									});
+									google.maps.event.addListener(marker, 'click', function (evt) {
+										infoWin.setContent(location.info);
+										infoWin.open(map, marker);
+									})
+									return marker;
+								});
+
+
+
+								var markerCluster = new MarkerClusterer(map, markers,
+									{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+
+
+								
+
+								
+
+							}
+							var icons = {
+								alert: {
+									icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+								},
+								green: {
+									icon: 'https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/06_1-512.png'
+								}
+							};
+
+							var locations = [
+								{ lat: -6.159768, lng: 106.813096, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
+								{ lat: -6.158936, lng: 106.816787, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
+								{ lat: -6.155747, lng: 106.817924, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
+								{ lat: -6.152494, lng: 106.816915, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
+								{ lat: -6.047458, lng: 106.090496, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png' },
+								{ lat: -6.029127, lng: 106.085926, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png' }
+							]
+							google.maps.event.addDomListener(window, 'load', initialize);
+
+						</script> -->
+
+						<section id="map-canvas" ng-controller="GoogleMaps">
+							<div ui-map="myMap" ui-options="mapOptions" class="google-map"></div>
+						</section>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section><!-- /.content -->
+</aside><!-- /.right-side -->
