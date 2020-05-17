@@ -57,6 +57,11 @@ switch($_GET['modal']) {
         $location = getRowById("locations",$_GET['id']);
         break;
 
+
+    case "providercategories/edit":
+        $category = getRowById("category_provider",$_GET['id']);
+        break;
+
     case "assetcategories/edit":
         $category = getRowById("assetcategories",$_GET['id']);
         break;

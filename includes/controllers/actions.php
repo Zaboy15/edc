@@ -8,6 +8,20 @@ $reroute = TRUE;
 
 switch($_POST['action']) {
 
+
+	//Simcard
+	case "addSimcard":
+		isAuthorized("addAsset"); $status = Simcard::add($_POST);
+	break; 
+	
+	case "editSimcard":
+		isAuthorized("editAsset"); $status = Simcard::edit($_POST);
+	break;
+	
+	case "deleteSimcard":
+		isAuthorized("deleteAsset"); $status = Simcard::delete($_POST['id']);
+    break;
+
 	// assets
 	case "addAsset":
 		isAuthorized("addAsset"); $status = Asset::add($_POST);
@@ -174,17 +188,44 @@ switch($_POST['action']) {
 
 	case "deleteCredential":
 		isAuthorized("deleteCredential"); $status = Credential::delete($_POST['id']);
-        break;
+		break;
 
+	case "addWoblerLog":
+		isAuthorized("addLicense"); $status = Wobler::addLog($_POST);
+		break;
 
+	case "deleteWobler":
+		isAuthorized("deleteLicense"); $status = Wobler::delete($_POST['id']);
+		break;	
+		
+	case "addTentcardLog":
+		isAuthorized("addLicense"); $status = Tentcard::addLog($_POST);
+		break;
+
+	case "deleteTentcard":
+		isAuthorized("deleteLicense"); $status = Tentcard::delete($_POST['id']);
+		break;	
+
+	case "addAcrylicLog":
+		isAuthorized("addLicense"); $status = Acrylic::addLog($_POST);
+		break;
+
+	case "deleteAcrylic":
+		isAuthorized("deleteLicense"); $status = Acrylic::delete($_POST['id']);
+		break;
 
 	case "addPaper":
-		isAuthorized("addLicense"); $status = Paper::addIncoming($_POST);
+		isAuthorized("addLicense"); $status = Paper::addLog($_POST);
 		break;
 
 	case "addPaperOutgoing":
 		isAuthorized("addLicense"); $status = Paper::addOutgoing($_POST);
 		break;
+
+	case "deletePaper":
+		isAuthorized("deleteLicense"); $status = Paper::delete($_POST['id']);
+		break;
+
 	// licenses
 	case "addLicense":
 		isAuthorized("addLicense"); $status = License::add($_POST);
@@ -318,6 +359,19 @@ switch($_POST['action']) {
 
 	case "deleteAssetCategory":
 		isAuthorized("manageData"); $status = Attribute::deleteAssetCategory($_POST['id']);
+		break;
+
+// Provider
+	case "addProviderCategory":
+		isAuthorized("manageData"); $status = Attribute::addProviderCategory($_POST);
+		break;
+
+	case "editProviderCategory":
+		isAuthorized("manageData"); $status = Attribute::editProviderCategory($_POST);
+		break;
+
+	case "deleteProviderCategory":
+		isAuthorized("manageData"); $status = Attribute::deleteProviderCategory($_POST['id']);
 		break;
 
 

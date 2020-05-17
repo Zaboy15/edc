@@ -317,12 +317,70 @@ if ($route == "dashboard") {
 	}
 }
 
+if ($route == "inventory/simcard/create") {
+	isAuthorized("addAsset");
+
+	$provider = getTable("category_provider");
+	$admins = getTableFiltered("people","type","admin");
+	$models = getTable("models");
+	$manufacturers = getTable("manufacturers");
+	$categories = getTable("assetcategories");
+	$labels = getTable("labels");
+	$suppliers = getTable("suppliers");
+	$customfields = getTable("assets_customfields");
+
+	$pageTitle = __("Create Asset");
+}
+
+if ($route == "inventory/simcard/manage") {
+	isAuthorized("manageAsset");
+	$simcard = getRowById("tabel_simcard",$_GET['id']);
+
+	isOwner($asset['clientid']);
+
+	$customdata = unserialize($asset['customfields']);
+
+
+	if($isAdmin) {
+		$locations = getTableFiltered("locations","clientid",$asset['clientid']);
+		$users = getTableFiltered("people","type","user","clientid",$asset['clientid']);
+	}
+	else {
+		$locations = getTableFiltered("locations","clientid",$liu['clientid']);
+		$users = getTableFiltered("people","type","user","clientid",$liu['clientid']);
+	}
+
+	$issues = getTableFiltered("issues","assetid",$_GET['id']);
+	$tickets = getTableFiltered("tickets","assetid",$_GET['id'],"","","*","id","DESC");
+	$credentials = getTableFiltered("credentials","assetid",$_GET['id']);
+	$clients = getTable("clients");
+	$admins = getTableFiltered("people","type","admin");
+	$models = getTable("models");
+	$manufacturers = getTable("manufacturers");
+	$categories = getTable("assetcategories");
+	$labels = getTable("labels");
+	$licenses = getTable("licenses");
+	$suppliers = getTable("suppliers");
+	$files = getTableFiltered("files","assetid",$_GET['id']);
+	$timelog = getTableFiltered("timelog","assetid",$_GET['id']);
+
+	$customfields = getTable("assets_customfields");
+
+	$pageTitle = $asset['tag'];
+}
+
+
 // ASSETS
+
+
 if ($route == "inventory/assets") {
 	isAuthorized("viewAssets");
 	
 	$pageTitle = __("Assets");
 }
+
+
+
 
 if ($route == "inventory/assets/create") {
 	isAuthorized("addAsset");
@@ -385,34 +443,83 @@ if ($route == "inventory/assets/manage") {
 	$customfields = getTable("assets_customfields");
 
 	$pageTitle = $asset['tag'];
-	}
+}
+
+if ($route == "inventory/wobler") {
+	isAuthorized("addLicense");
+	$log_wobler = getTable("log_wobler");
+	$wobler = getSingleValue("tabel_consumable","qty","5");
+
+
+}
+
+if ($route == "inventory/wobler/create") {
+	isAuthorized("addLicense");
+	$itfs = getTable("people");
+	$acrylic_type = getTableFiltered("tabel_consumable","type","Wobler");
+
+	
+
+
+}
+
+
+if ($route == "inventory/tentcard") {
+	isAuthorized("addLicense");
+	$log_tentcard = getTable("log_tentcard");
+	$tentcard = getSingleValue("tabel_consumable","qty","4");
+
+
+}
+
+if ($route == "inventory/tentcard/create") {
+	isAuthorized("addLicense");
+	$itfs = getTable("people");
+	$acrylic_type = getTableFiltered("tabel_consumable","type","Tent Card");
+
+	
+
+
+}
+
+if ($route == "inventory/acrylic") {
+	isAuthorized("addLicense");
+	$log_acrylic = getTable("log_acrylic");
+	$acrylic = getSingleValue("tabel_consumable","qty","3");
+
+
+}
+
+if ($route == "inventory/acrylic/create") {
+	isAuthorized("addLicense");
+	$itfs = getTable("people");
+	$acrylic_type = getTableFiltered("tabel_consumable","type","Acrylic");
+
+	
+
+
+}
+
+
 
 if ($route == "inventory/paper") {
 	isAuthorized("addLicense");
 	$log_paper = getTable("log_paper");
-	$paper_blank = getSingleValue("tabel_paperroll","qty","2");
-	$paper_logo = getSingleValue("tabel_paperroll","qty","1");
+	$paper_blank = getSingleValue("tabel_consumable","qty","2");
+	$paper_logo = getSingleValue("tabel_consumable","qty","1");
 
 
 
 }
-if ($route == "inventory/paper/incoming_create") {
+if ($route == "inventory/paper/create") {
 	isAuthorized("addLicense");
 	$itfs = getTable("people");
-	
-	$typepaper = getTable("tabel_paperroll");
+	$typepaper = getTableFiltered("tabel_consumable","type","Paper Roll");
 
-
-}
-
-if ($route == "inventory/paper/outgoing_create") {
-	isAuthorized("addLicense");
-	$itfs = getTable("people");
-	
-	$typepaper = getTable("tabel_paperroll");
 
 
 }
+
 // LICENSES
 if ($route == "inventory/licenses") {
 	isAuthorized("viewLicenses");
@@ -1029,6 +1136,10 @@ if ($route == "inventory/attributes/labels") { isAuthorized("manageData"); $labe
 
 // ASSET CATEGORIES
 if ($route == "inventory/attributes/assetcategories") { isAuthorized("manageData"); $categories = getTable("assetcategories"); $pageTitle = __("Asset Categories"); }
+
+// PROVIDER CATEGORIES
+if ($route == "inventory/attributes/providercategories") { isAuthorized("manageData"); $categories = getTable("category_provider"); $pageTitle = __("Provider Categories"); }
+
 
 
 // LICENSE CATEGORIES

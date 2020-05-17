@@ -2,8 +2,8 @@
 <aside class="right-side">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1><?php _e('Incoming Paper'); ?><small> <?php _e('Manage Paper'); ?></small></h1>
-		<ol class="breadcrumb"><li><a href="?route=dashboard"><i class="fa fa-dashboard"></i> <?php _e('Home'); ?></a></li><li><?php _e('Inventory'); ?></li><li><a href="?route=inventory/paper"><?php _e('Paper'); ?></a></li><li class="active"><?php _e('Create'); ?></li></ol>
+		<h1><?php _e('Incoming Acrylic'); ?><small> <?php _e('Manage Acrylic'); ?></small></h1>
+		<ol class="breadcrumb"><li><a href="?route=dashboard"><i class="fa fa-dashboard"></i> <?php _e('Home'); ?></a></li><li><?php _e('Inventory'); ?></li><li><a href="?route=inventory/acrylic"><?php _e('Acrylic'); ?></a></li><li class="active"><?php _e('Create'); ?></li></ol>
 	</section>
 
 	<!-- Main content -->
@@ -26,9 +26,19 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="id_type"><?php _e('Type Paper'); ?> *</label>
+												<label for="id_type"><?php _e('Type Acrylic'); ?> *</label>
 												<select class="form-control select2 select2-hidden-accessible" id="id_type" name="id_type" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-													<?php foreach ($typepaper as $typepaper) { echo "<option value='".$typepaper['id']."'>".$typepaper['name']."</option>"; } ?>
+													<?php foreach ($acrylic_type as $acrylic_type) { echo "<option value='".$acrylic_type['id']."'>".$acrylic_type['name']."</option>"; } ?>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="status"><?php _e('Status'); ?> *</label>
+												<select class="form-control select2" id="status" name="status" style="width: 100%;">
+													<option value="Incoming"><?php _e('Incoming'); ?></option>
+													<option value="Outgoing"><?php _e('Outgoing'); ?></option>
 												</select>
 											</div>
 										</div>
@@ -44,9 +54,9 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="incoming_date"><?php _e('Incoming Date'); ?></label>
+												<label for="date"><?php _e('Date'); ?></label>
 												<div class="input-group">
-													<input type="text" class="form-control" id="incoming_date" name="incoming_date">
+													<input type="text" class="form-control" id="date" name="date">
 													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 												</div>
 											</div>
@@ -63,9 +73,9 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="incoming_qty"><?php _e('Incoming QTY'); ?></label>
+												<label for="qty"><?php _e('QTY'); ?></label>
 												<div class="input-group">
-													<input type="number" class="form-control" id="incoming_qty" name="incoming_qty">
+													<input type="number" class="form-control" id="qty" name="qty">
 													<span class="input-group-addon"><?php _e('qty'); ?></span>
 												</div>
 											</div>
@@ -79,8 +89,8 @@
 										<textarea class="form-control summernoteLarge" rows="5" id="remarks" name="remarks"></textarea>
 									</div>
 
-									<input type="hidden" name="action" value="addPaper">
-									<input type="hidden" name="route" value="inventory/paper">
+									<input type="hidden" name="action" value="addAcrylicLog">
+									<input type="hidden" name="route" value="inventory/acrylic">
 									<input type="hidden" name="routeid" value="">
 
 									<div class="form-group">

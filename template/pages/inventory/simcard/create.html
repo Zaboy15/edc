@@ -1,0 +1,148 @@
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<h1><?php _e('Assets'); ?><small> <?php _e('Manage assets'); ?></small></h1>
+		<ol class="breadcrumb"><li><a href="?route=dashboard"><i class="fa fa-dashboard"></i> <?php _e('Home'); ?></a></li><li><?php _e('Inventory'); ?></li><li><a href="?route=inventory/assets"><?php _e('Assets'); ?></a></li><li class="active"><?php _e('Create'); ?></li></ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<?php if(!empty($statusmessage)): ?>
+				<div class="row"><div class='col-md-12'><div class="alert alert-<?php print $statusmessage["type"]; ?> alert-auto" role="alert"><?php print __($statusmessage["message"]); ?></div></div></div>
+		<?php endif; ?>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box box-primary">
+          			<div class="box-header with-border"><h3 class="box-title"><?php _e('Create New Asset'); ?></h3></div><!-- /.box-header -->
+                    <div class="box-body">
+						<div class="container-fluid">
+						<div class="row">
+							<form role="form" method="post" class="">
+
+								<div class="col-md-6">
+									
+									<div class="row">
+										
+
+										<div class="col-md-8">
+											<div class="form-group">
+												<label for="data_sim"><?php _e('Data Sim Vendor'); ?> *</label>
+												<input type="text" class="form-control" id="data_sim" name="data_sim" required>
+											</div>
+										</div>
+
+
+										<div class="col-md-4">
+											<div class="form-group">
+												<label for="provider"><?php _e('Provider'); ?> *</label>
+												<select class="form-control select2tag select2-hidden-accessible" id="provider" name="provider" style="width: 100%;" tabindex="-1" aria-hidden="true" multiple>
+													<?php foreach ($provider as $provider) { echo "<option value='".$provider['id']."'>".$provider['name']."</option>"; } ?>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-md-12"></div>
+
+										<div class="col-md-4">
+											<div class="form-group">
+												<label for="status"><?php _e('Status'); ?> *</label>
+												<select class="form-control select2 select2-hidden-accessible" id="status" name="status" style="width: 100%;" tabindex="-1" aria-hidden="true">
+													<option value='Backup'>Backup</option>
+													<option value='Deployed To EDC'>Deployed To EDC</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-md-4">
+											<?php if($isAdmin) { ?>
+												<div class="form-group">
+													<label for="id_itfs"><?php _e('ITFS'); ?></label>
+													<select class="form-control select2 select2-hidden-accessible" id="id_itfs" name="id_itfs" style="width: 100%;" tabindex="-1" aria-hidden="true">
+														<option value="0"><?php _e('None'); ?></option>
+														<?php foreach ($admins as $admin) { echo "<option value='".$admin['id']."'>".$admin['name']."</option>"; } ?>
+													</select>
+												</div>
+											<?php } ?>
+											<?php if(!$isAdmin) { ?><input type="hidden" name="adminid" value="0"><?php } ?>
+										</div>
+
+										<div class="col-md-4">
+											<?php if($isAdmin) { ?>
+												<div class="form-group">
+													<label for="pic"><?php _e('PIC'); ?></label>
+													<select class="form-control select2 select2-hidden-accessible" id="pic" name="pic" style="width: 100%;" tabindex="-1" aria-hidden="true">
+														<option value="0"><?php _e('None'); ?></option>
+														<?php foreach ($admins as $admin) { echo "<option value='".$admin['id']."'>".$admin['name']."</option>"; } ?>
+													</select>
+												</div>
+											<?php } ?>
+											<?php if(!$isAdmin) { ?><input type="hidden" name="adminid" value="0"><?php } ?>
+										</div>
+
+									</div>
+
+
+
+								</div>
+
+								<div class="col-md-6">
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="date_incoming"><?php _e('Incoming Date'); ?></label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="date_incoming" name="date_incoming">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="date_outgoing"><?php _e('Outgoing Date'); ?></label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="date_outgoing" name="date_outgoing">
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="remarks"><?php _e('Remarks'); ?></label>
+										<textarea class="form-control summernoteLarge" id="remarks" name="remarks"></textarea>
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> <?php _e('Create'); ?></button>
+									</div>
+								</div>
+
+								<input type="hidden" name="action" value="addSimcard">
+								<input type="hidden" name="route" value="inventory/simcard">
+								<input type="hidden" name="routeid" value="">
+
+
+							</form><!-- /.form -->
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- /.content -->
+</aside><!-- /.right-side -->
+
+<script type="text/javascript">
+
+       
+
+</script>

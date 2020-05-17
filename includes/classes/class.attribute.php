@@ -28,6 +28,28 @@ class Attribute extends App {
     	}
 
 
+	// Provider Type
+	public static function addProviderCategory($data) {
+		global $database;
+		if(!isset($data['color'])) $data['color'] = "#167cc1";
+		$lastid = $database->insert("category_provider", [ "name" => $data['name'], "color" => $data['color'], "remarks" => $data['remarks'] ]);
+		if ($lastid == "0") { return "11"; } else {logSystem("Provider Category Added - ID: " . $lastid);  return "10"; }
+		}
+
+	public static function editProviderCategory($data) {
+		global $database;
+		if(!isset($data['color'])) $data['color'] = "#167cc1";
+		$database->update("category_provider", [ "name" => $data['name'], "color" => $data['color'],"remarks" => $data['remarks'] ], [ "id" => $data['id'] ]);
+		logSystem("Provider Category Edited - ID: " . $data['id']);
+		return "20";
+		}
+
+	public static function deleteProviderCategory($id) {
+		global $database;
+		$database->delete("category_provider", [ "id" => $id ]);
+		logSystem("Provider Category Deleted - ID: " . $id);
+		return "30";
+		}
 
     // ----------------------------------------------------------------------------------------------
     // LICENSE TYPES

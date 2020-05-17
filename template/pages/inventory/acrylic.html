@@ -2,9 +2,9 @@
 <aside class="right-side">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-			<h1 class="pull-left"><?php _e('Paper'); ?><small> <?php _e('Manage Paper Roll'); ?></small></h1>
-			<div class="pull-right"><?php if(in_array("addLicense",$perms)) { ?><a class="btn btn-primary btn-sm btn-flat" href="?route=inventory/paper/create"><?php _e('NEW LOG'); ?></a><?php } ?></div>
-
+			<h1 class="pull-left"><?php _e('Acrylic'); ?><small> <?php _e('Manage Acrylic'); ?></small></h1>
+			<div class="pull-right"><?php if(in_array("addLicense",$perms)) { ?><a class="btn btn-success btn-sm btn-flat" href="?route=inventory/acrylic/create"><?php _e('NEW LOG'); ?></a><?php } ?></div>
+			
 			<div style="clear:both"></div>
 	</section>
 	<!-- Main content -->
@@ -14,8 +14,8 @@
 			  <!-- small box -->
 			  <div class="small-box bg-blue">
 				<div class="inner">
-				  <h3><?php echo $paper_logo; ?></h3>
-				  <p><?php _e('Paper Roll Logo'); ?></p>
+				  <h3><?php echo $acrylic; ?></h3>
+				  <p><?php _e('Acrylic Stock'); ?></p>
 				</div>
 				<div class="icon">
 				  <i class="fa fa-desktop"></i>
@@ -23,18 +23,18 @@
 				</div>
 			</div>
 			<!-- ./col -->
-			<div class="col-lg-3 col-xs-6">
-			  <!-- small box -->
+			<!-- <div class="col-lg-3 col-xs-6">
+			 
 			  <div class="small-box bg-green">
 				<div class="inner">
 				  <h3><?php echo $paper_blank; ?></h3>
-				  <p><?php _e('Paper Roll Blank'); ?></p>
+				  <p><?php _e('Acrylic Outgoing'); ?></p>
 				</div>
 				<div class="icon">
 				  <i class="fa fa-certificate"></i>
 				</div>
 				</div>
-			</div>
+			</div> -->
 			<!-- ./col -->
 			
 			<!-- ./col -->
@@ -53,10 +53,10 @@
 	                        <table id="dataTablesFull" class="table table-striped table-hover table-bordered">
 	                            <thead>
 	                                <tr>
+										<th><?php _e('TICKET ACRYLIC'); ?></th>
 										<th><?php _e('STATUS'); ?></th>
-										<th><?php _e('TICKET PAPER'); ?></th>
-										<th><?php _e('INCOMING QTY'); ?></th>
-										<th><?php _e('INCOMING DATE'); ?></th>
+										<th><?php _e('QTY'); ?></th>
+										<th><?php _e('DATE'); ?></th>
 										<th><?php _e('ITFS'); ?></th>
 										<th><?php _e('REMARKS'); ?></th>
 										<th class="text-right"></th>
@@ -65,21 +65,22 @@
 	                            </thead>
 	                            <tbody>
 									<?php
-									foreach ($log_paper as $log_paper) { ?>
+									foreach ($log_acrylic as $log_acrylic) { ?>
 		                                <tr>
-											<td><?php echo $log_paper['status']; ?></td>
-											<td><?php echo $log_paper['ticket_paper']; ?></td>
-											<td><?php echo $log_paper['qty']; ?></td>
-											<td><?php echo $log_paper['date']; ?></td>
-											<td><?php echo getSingleValue("people","name",$log_paper['id_itfs']); ?></td>
-											<td><?php echo $log_paper['remarks']; ?></td>
+											<td><?php echo $log_acrylic['ticket_acrylic']; ?></td>
+											<td><?php echo $log_acrylic['status']; ?></td>
+											<td><?php echo $log_acrylic['qty']; ?></td>
+											<td><?php echo $log_acrylic['date']; ?></td>
+											<td><?php echo getSingleValue("people","name",$log_acrylic['id_itfs']); ?></td>
+											<td><?php echo $log_acrylic['remarks']; ?></td>
 											<td>
 												<div class='pull-right'>
 													<div class="btn-group">
-														<?php if(in_array("deleteLicense",$perms)) { ?>	<a href='#' onClick='showM("?modal=paper/delete&reroute=inventory/paper&routeid=&id=<?php echo $log_paper['id']; ?>&section=");return false' ><i class='fa fa-trash-o fa-fw'></i><?php _e('Delete'); ?></a><?php } ?>
+														<?php if(in_array("deleteLicense",$perms)) { ?>	<a href='#' onClick='showM("?modal=acrylic/delete&reroute=inventory/acrylic&routeid=&id=<?php echo $log_acrylic['id']; ?>&section=");return false' ><i class='fa fa-trash-o fa-fw'></i><?php _e('Delete'); ?></a><?php } ?>
 													</div>
 												</div>
 											</td>
+
 											
 		                                </tr>
 									<?php } ?>
