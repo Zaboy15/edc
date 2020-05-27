@@ -18,147 +18,12 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="ibox ">
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 					
 					<div class="ibox-content">
-						<style>
-							#map-canvas {
-								height: 600px;
-								margin: 0px;
-								padding: 0px
-							}
-						</style>
-						<script
-							src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-							</script>
-						<!-- <script
-							src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&sensor=false"></script> -->
-							<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn-y1lpOrgUUtAzARgPH9ah37uarvHS84&callback=initMap"
-	async defer></script>
-							<script>
-								
-							function initMap() {
-        var map = new google.maps.Map(document.getElementById('map-canvas'), {
-          center: new google.maps.LatLng(-6.117664,106.906349),
-          zoom: 12
-        });
-        var infoWindow = new google.maps.InfoWindow;
-
-          downloadUrl('http://dev.orang-it.com/edc/api/api2/api/location.php', function(data) {
-			// downloadUrl('http://localhost/edcmip/api/api2/api/location.php', function(data) {
-
-            var markers=JSON.parse(data.responseText);
-
-           var markerbaru = markers.forEach(function(element) {          
-                var id = element.id;
-                var name = element.name;
-                var nik = element.nik;
-                var point = new google.maps.LatLng(
-                    parseFloat(element.latitude),
-                    parseFloat(element.longtitude));
-
-                var infowincontent = document.createElement('div');
-                var strong = document.createElement('strong');
-                strong.textContent = nik
-                infowincontent.appendChild(strong);
-                infowincontent.appendChild(document.createElement('br'));
-
-                var text = document.createElement('text');
-                text.textContent = name
-                infowincontent.appendChild(text);
-                var marker = new google.maps.Marker({
-                  map: map,
-                  position: point
-                });
-                marker.addListener('click', function() {
-                  infoWindow.setContent(infowincontent);
-                  infoWindow.open(map, marker);
-                });
-            });
-            
-          });
-        }
-      function downloadUrl(url, callback) {
-        var request = window.ActiveXObject ?
-            new ActiveXObject('Microsoft.XMLHTTP') :
-            new XMLHttpRequest;
-
-        request.onreadystatechange = function() {
-          if (request.readyState == 4) {
-            request.onreadystatechange = doNothing;
-            callback(request, request.status);
-          }
-        };
-
-        request.open('GET', url, true);
-        request.send(null);
-      }
-	  var markerCluster = new MarkerClusterer(map, markerbaru,
-									{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-
-
-      function doNothing() {}
-	  </script>
-
-						<!-- <script>
-							var map;
-							function initialize() {
-								var mapOptions = {
-									zoom: 9,
-									center: new google.maps.LatLng(-6.159768, 106.813096)
-								};
-								map = new google.maps.Map(document.getElementById('map-canvas'),
-									mapOptions);
-
-								var infoWin = new google.maps.InfoWindow();
-								var markers = locations.map(function (location, i) {
-									var marker = new google.maps.Marker({
-										position: location,
-										icon: location.icons
-
-									});
-									google.maps.event.addListener(marker, 'click', function (evt) {
-										infoWin.setContent(location.info);
-										infoWin.open(map, marker);
-									})
-									return marker;
-								});
-
-
-
-								var markerCluster = new MarkerClusterer(map, markers,
-									{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-
-
-
-								
-
-								
-
-							}
-							var icons = {
-								alert: {
-									icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-								},
-								green: {
-									icon: 'https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/06_1-512.png'
-								}
-							};
-
-							var locations = [
-								{ lat: -6.159768, lng: 106.813096, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
-								{ lat: -6.158936, lng: 106.816787, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
-								{ lat: -6.155747, lng: 106.817924, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
-								{ lat: -6.152494, lng: 106.816915, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' },
-								{ lat: -6.047458, lng: 106.090496, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png' },
-								{ lat: -6.029127, lng: 106.085926, info: "marker1", icons: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png' }
-							]
-							google.maps.event.addDomListener(window, 'load', initialize);
-
-						</script> -->
-
-						<section id="map-canvas" ng-controller="GoogleMaps">
-							<div ui-map="myMap" ui-options="mapOptions" class="google-map"></div>
-						</section>
+						<section id="mapid" ng-controller="GoogleMaps">
+					<div id="mapid" style="width: 600px; height: 500px"></div>
+							</section>
 					</div>
 				</div>
 
@@ -166,3 +31,48 @@
 		</div>
 	</section><!-- /.content -->
 </aside><!-- /.right-side -->
+
+<script>
+	L.Map = L.Map.extend({
+    openPopup: function(popup) {
+        //        this.closePopup();  // just comment this
+        this._popup = popup;
+
+        return this.addLayer(popup).fire('popupopen', {
+            popup: this._popup
+        });
+    }
+});
+
+	var mymap = L.map('mapid').setView([-6.190819, 106.829507], 13);
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemFrYXJpbyIsImEiOiJja2FqMWpkOGMwNmt0MnBwZnVuZmNsbjlkIn0.UFe2HrBG43aUrMZquwpPbw', {
+	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	maxZoom: 18,
+	id: 'mapbox/streets-v11',
+	tileSize: 512,
+	zoomOffset: -1,
+	accessToken: 'pk.eyJ1IjoiemFrYXJpbyIsImEiOiJja2FqMWpkOGMwNmt0MnBwZnVuZmNsbjlkIn0.UFe2HrBG43aUrMZquwpPbw'
+	}).addTo(mymap);
+	var markers;
+	$.ajax({
+        type:'GET',
+        url: 'api/api2/api/location.php',
+        success: function (data){
+		var markers = JSON.parse(data);
+	for ( var i=0; i < markers.length; ++i ) 
+	{
+		
+		
+	L.marker( [markers[i].latitude, markers[i].longtitude] )
+	.addTo(mymap)
+	.bindPopup(markers[i].name + ", "+markers[i].nik);
+	
+
+	}
+        }
+    });
+	
+
+
+</script>

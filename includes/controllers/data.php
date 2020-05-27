@@ -572,12 +572,7 @@ if ($route == "inventory/credentials") { isAuthorized("viewCredentials"); $crede
 // MAPS
 if ($route == "maps") {
 	isAuthorized("viewKB");
-	if($isAdmin) {
-		$projects = getTable("projects");
-	}
-	else {
-		$projects = getTableFiltered("projects","clientid",$liu['clientid']);
-	}
+	$maps = getTable("people");
 	$pageTitle = __("Maps");
 }
 

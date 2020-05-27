@@ -2,7 +2,7 @@
 require "../config/connection.php";
 
     $response = array();
-    $sql = mysqli_query($con,"SELECT * from people");
+    $sql = mysqli_query($con,"SELECT * from people WHERE latitude != '' AND longtitude != ''");
     while ($a = mysqli_fetch_array($sql)){
         $b['id'] = $a['id'];
         $b['nik'] = $a['nik'];

@@ -232,6 +232,26 @@ switch($_GET['qa']) {
         else echo _e("File does not exist.");
 	break;
 
+	case "locationData":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+		$items = $database->select("people", "*");
+		$results = array();
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['nik'] = $item['nik'];
+			$results[$i]['name'] = $item['name'];
+			$results[$i]['latitude'] = $item['latitude'];
+			$results[$i]['longtitude'] = $item['longtitude'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
 	case "merchantData":
 		$filterid = $_GET['filterid'];
 		$searchstring = "";
@@ -294,6 +314,90 @@ switch($_GET['qa']) {
 		foreach($items as $item) {
 			$results[$i]['id'] = $item['id'];
 			$results[$i]['text'] = $item['name'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
+	case "simcardSelect":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("tabel_simcard", "*", [ "AND" => [
+					"id" => $filterid,
+					"OR" => [
+						"data_sim[~]" => $searchstring,
+						"provider[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("tabel_simcard", "*", [ "OR" => [
+					"data_sim[~]" => $searchstring,
+					"provider[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("tabel_simcard", "*", [ "id" => $filterid ]);
+			} else {
+				$items = $database->select("tabel_simcard", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['data_sim'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
+	case "clientSelect":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("clients", "*", [ "AND" => [
+					"id" => $filterid,
+					"OR" => [
+						"name[~]" => $searchstring,
+						"mid[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("clients", "*", [ "OR" => [
+					"name[~]" => $searchstring,
+					"mid[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("clients", "*", [ "id" => $filterid ]);
+			} else {
+				$items = $database->select("clients", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['name']." - ".$item['mid'];
 			$i++;
 		}
 

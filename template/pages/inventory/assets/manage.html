@@ -110,9 +110,16 @@
 											<td><?php echo $asset['serial']; ?></td>
 										</tr>
 
+										
+
 										<tr>
 											<td><b><?php _e('Name'); ?></b></td>
 											<td><?php echo $asset['name']; ?></td>
+										</tr>
+
+										<tr>
+											<td><b><?php _e('Simcard'); ?></b></td>
+											<td><?php echo getSingleValue("tabel_simcard","data_sim",$asset['sn_simcard']); ?></td>
 										</tr>
 										<!-- <tr>
 											<td><b><?php _e('Asset Admin'); ?></b></td>
@@ -576,23 +583,38 @@
 								<div class="row">
 
 									<div class="col-md-12">
-										<?php if($isAdmin) { ?>
+									
 											<div class="form-group">
 												<label for="clientid"><?php _e('Client'); ?></label>
-												<select class="form-control select2 select2-hidden-accessible" id="clientid" name="clientid" style="width: 100%;" tabindex="-1" aria-hidden="true">
-													<option value="0"><?php _e('None'); ?></option>
-													<?php foreach ($clients as $client) { echo "<option value='".$client['id']."'"; if($asset['clientid']==$client['id']) echo " selected"; echo ">".$client['name']."</option>"; } ?>
+												<select class="form-control clientSelect select2-hidden-accessible" id="clientid" name="clientid" style="width: 100%;" tabindex="-1" aria-hidden="true">
+													
+													<?php if($asset['clientid'] != 0) { ?>
+														<option value="<?php echo $asset['clientid']; ?>"><?php echo getSingleValue("clients","name",$asset['clientid']) ; ?></option>
+													<?php } else { ?>
+														<option value="0"><?php _e('None'); ?></option>
+													<?php } ?>
+													</select>
+											</div>
+										</div>
+
+									<div class="col-md-12">
+											<div class="form-group">
+												<label for="sn_simcard"><?php _e('Simcard'); ?></label>
+												<select class="form-control simcardSelect select2-hidden-accessible" id="sn_simcard" name="sn_simcard" style="width: 100%;" tabindex="-1" aria-hidden="true">
+													<?php if($asset['sn_simcard'] != 0) { ?>
+														<option value="<?php echo $asset['sn_simcard']; ?>"><?php echo getSingleValue("tabel_simcard","data_sim",$asset['sn_simcard']) ; ?></option>
+													<?php } else { ?>
+														<option value="0"><?php _e('None'); ?></option>
+													<?php } ?>
 												</select>
 											</div>
-										<?php } ?>
-										<?php if(!$isAdmin) { ?><input type="hidden" name="clientid" value="<?php echo $liu['clientid']; ?>"><?php } ?>
 									</div>
 
 
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="tag"><?php _e('Asset Tag'); ?> *</label>
-											<input type="text" class="form-control" id="tag" name="tag" value="<?php echo $asset['tag']; ?>" required>
+											<input type="text" class="form-control" id="tag" name="tag" value="<?php echo $asset['tag']; ?>" >
 										</div>
 									</div>
 
@@ -724,6 +746,8 @@
 										</div>
 									</div>
 
+									
+
 
 									<?php foreach($customfields as $customfield) { ?>
 										<div class="col-md-12">
@@ -801,3 +825,8 @@
 		</div>
 	</section><!-- /.content -->
 </aside><!-- /.right-side -->
+
+<script type="text/javascript">
+
+	
+</script>

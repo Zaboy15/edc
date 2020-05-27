@@ -146,7 +146,9 @@ class Asset extends App {
     	$database->update("assets", [
             "categoryid" => $categoryid,
     		"adminid" => $data['adminid'],
-    		"clientid" => $data['clientid'],
+            "clientid" => $data['clientid'],
+    		"sn_simcard" => $data['sn_simcard'],
+            
     		"userid" => $data['userid'],
             "manufacturerid" => $manufacturerid,
     		"modelid" => $modelid,
