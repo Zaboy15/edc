@@ -511,6 +511,12 @@ if ($route == "inventory/paper") {
 
 
 }
+
+if ($route == "whatsapp/whatsapp") {
+	isAuthorized("viewSPK");
+	$whatsapp = getTable("whatsapp");
+
+}
 if ($route == "inventory/paper/create") {
 	isAuthorized("addLicense");
 	$itfs = getTable("people");
