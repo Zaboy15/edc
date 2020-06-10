@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     if (mysqli_query($con,$insert)) {
         # code...
         $response['value']=1;
-        $response['reply']= "Berhasil Ditambahkan";
+        $response['reply']= "Terima Kasih atas informasi nya .";
         echo json_encode($response);
     } else {
         # code...
