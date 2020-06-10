@@ -11,12 +11,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         $insert = "INSERT INTO whatsapp VALUE(NULL,'$app','$sender','$message',NULL)";
     if (mysqli_query($con,$insert)) {
         # code...
-        $response['value']=1;
         $response['reply']= "Terima Kasih atas informasi nya .";
         echo json_encode($response);
     } else {
         # code...
-        $response['value']=0;
         $response['reply']= "Gagal Ditambahkan";
         echo json_encode($response);
 
