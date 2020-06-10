@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 
 
         # code...
-        $insert = "INSERT INTO whatsapp VALUE(NULL,$app,$sender,$message,NULL)";
+        $insert = "INSERT INTO whatsapp VALUE(NULL,'$app','$sender','$message',NULL)";
     if (mysqli_query($con,$insert)) {
         # code...
         $response['value']=1;
