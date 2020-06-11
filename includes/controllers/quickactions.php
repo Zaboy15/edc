@@ -7,6 +7,11 @@
 
 switch($_GET['qa']) {
 
+	case "deleteWhatsapp":
+        Ticket::deleteWhatsapp();
+        header("Location:?route=whatsapp/whatsapp");
+        break;
+
 	case "ticketClose":
         Ticket::updateStatus($_GET['id'],"Closed");
         header("Location:?route=".$_GET['reroute']."&id=".$_GET['routeid']);

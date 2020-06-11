@@ -4,6 +4,9 @@
 	<section class="content-header">
 			<h1 class="pull-left"><?php _e('Whatsapp'); ?><small> <?php _e('Manage whatsapp'); ?></small></h1>
 			<!-- <div class="pull-right"><?php if(in_array("addClient",$perms)) { ?><a onClick='showM("index.php?modal=customers/add&reroute=customers/customers");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Customers'); ?></a><?php } ?></div> -->
+			<?php if($isAdmin) { ?><a data-toggle='tooltip' title='<?php _e('Delete All'); ?>' href="?qa=deleteWhatsapp" class="btn btn-default btn-sm btn-flat"><i class="fa fa-trash-o"></i></a><?php } ?>
+			
+			
 			<div style="clear:both"></div>
 	</section>
 	<!-- Main content -->

@@ -351,6 +351,16 @@ class Ticket extends App {
     	return "30";
     }
 
+
+    public static function deleteWhatsapp() {
+    	global $database;
+
+        $database->delete("whatsapp", "*");
+    	
+    	logSystem("WA Deleted");
+    	return "30";
+    }
+
     public static function lastReply($id) {
     	global $database;
     	$maxdate = $database->max("tickets_replies", "timestamp", ["ticketid" => $id]);
