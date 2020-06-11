@@ -355,7 +355,7 @@ class Ticket extends App {
     public static function deleteWhatsapp() {
     	global $database;
 
-        $database->delete("whatsapp", "*");
+        $database->query("TRUNCATE TABLE whatsapp")->fetchAll();
     	
     	logSystem("WA Deleted");
     	return "30";
