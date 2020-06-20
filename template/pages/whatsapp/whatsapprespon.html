@@ -1,0 +1,101 @@
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+			<h1 class="pull-left"><?php _e('Whatsapp'); ?><small> <?php _e('Manage whatsapp Respon'); ?></small></h1>
+			<div class="pull-right"><?php if(in_array("addTicket",$perms)) { ?><a onClick='showM("index.php?modal=whatsapp/respon_add&reroute=whatsapp/whatsapprespon");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Whatsapp Respon'); ?></a><?php } ?></div>
+			<!-- <div class="pull-right"><a data-toggle='tooltip' class="btn btn-primary btn-flat btn-sm" title='<?php _e('Delete All  '); ?>' href="?qa=deleteWhatsapp"><?php _e('Delete All'); ?></a></div> -->
+			
+			
+			<div style="clear:both"></div>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<?php if(!empty($statusmessage)): ?>
+				<div class="row"><div class='col-md-12'><div class="alert alert-<?php print $statusmessage["type"]; ?> alert-auto" role="alert"><?php print __($statusmessage["message"]); ?></div></div></div>
+		<?php endif; ?>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box box-primary">
+					<form role="form" method="post" class="">
+                    <div class="box-body">
+						<div class="table-responsive">
+	                        <table id="dataTablesFull" class="table table-striped table-hover table-bordered">
+	                            <thead>
+	                                <tr>
+										
+										<th><?php _e('');?></th>
+	                                    <th><?php _e('ID'); ?></th>
+	                                    <th><?php _e('NAMA'); ?></th>
+										<th><?php _e('RESPON'); ?></th>
+										
+										
+										
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+									<?php foreach ($whatsapprespon as $whatsapprespon) { ?>
+		                                <tr>
+											<div class="form-group">
+											<td align="center" bgcolor="#FFFFFF"><input name="checkbox[]" type="checkbox" id="checkbox[]" value=<?php echo $whatsapprespon['id']; ?>></td>
+										</div>
+											<td><?php echo $whatsapprespon['id']; ?></td>
+		                                    <td><?php echo $whatsapprespon['nama']; ?></td>
+		                                    <td><?php echo $whatsapprespon['respon_text']; ?></td>
+											
+
+											<td>
+												<div class='pull-right'>
+													<div class="btn-group">
+												
+
+														<?php if(in_array("editTicket",$perms)) { ?><a href='#' onClick='showM("index.php?modal=whatsapp/respon_edit&reroute=whatsapp/whatsapprespon&id=<?php echo $whatsapprespon['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+														
+													</div>
+												</div>
+											</td>
+
+
+											
+		                                </tr>
+									<?php } ?>
+								</tbody>
+								<div class='pull-left'>
+								
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary"><i class="fa fa-trash-o"></i> <?php _e('Delete'); ?></button>
+									</div>
+								
+							</div>
+							</table>
+
+								<input type="hidden" name="action" value="deleteWhatsappRespon">
+								<input type="hidden" name="route" value="whatsapp/whatsapp">
+								<input type="hidden" name="routeid" value="">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- /.content -->
+</aside><!-- /.right-side -->
+
+<?php
+	//cek apakah tombol delete diklik
+	if($delete){
+		$jml = count($_POST['checkbox']);		//menghitung berapa data yang dicentang
+		if($jml > 0){		//jika ada data yang dicentang
+			for($i=0;$i<$count;$i++){
+				echo $checkbox[$i];
+			}
+			if($result){	//jika data berhasil dihapus
+				echo '<script language="javascript">alert("Berhasil menghapus '.$jml.' data"); document.location="index.php";</script>';
+			}else{		//jika gagal menghapus data
+				echo 'Gagal';
+			}
+		}else{		//jika tidak ada yang dicentang
+			echo 'Pilih data yang ingin dihapus!';
+		}
+	}
+	?>

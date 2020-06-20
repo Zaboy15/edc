@@ -517,6 +517,12 @@ if ($route == "whatsapp/whatsapp") {
 	$whatsapp = getTable("whatsapp");
 
 }
+
+if ($route == "whatsapp/whatsapprespon") {
+	isAuthorized("viewSPK");
+	$whatsapprespon = getTable("whatsapp_field");
+
+}
 if ($route == "inventory/paper/create") {
 	isAuthorized("addLicense");
 	$itfs = getTable("people");

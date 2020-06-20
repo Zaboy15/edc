@@ -5,13 +5,14 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     $app = $_POST['app'];
     $sender = $_POST['sender'];
     $message = $_POST['message'];
-
+    $getrespon = mysqli_fetch_assoc(mysqli_query($con, "SELECT respon_text FROM whatsapp WHERE id = 2"));
+    $respon = $getrespon['respon_text'];
 
         # code...
         $insert = "INSERT INTO whatsapp VALUE(NULL,'$app','$sender','$message',NULL)";
     if (mysqli_query($con,$insert)) {
         # code...
-        $response['reply']= "Terima kasih sudah me response. Mohon maaf atas keterbatasan kami dalam membalas satu persatu memerlukan waktu. Mohon kesediannya menunggu ya kak.";
+        $response['reply']= $respon;
         echo json_encode($response);
     } else {
         # code...

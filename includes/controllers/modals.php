@@ -199,6 +199,11 @@ switch($_GET['modal']) {
         $adminspk = getTableFiltered("people","type","admin");
         
         break;
+
+    case "whatsapp/respon_edit":
+        $whatsapprespon = getRowById("whatsapp_field",$_GET['id']);
+        
+        break;
     case "spk/add":
             $contacts = getTable("contacts");
             if($isAdmin) { $assets = getTable("assets"); } else { $assets = getTableFiltered("assets","clientid",$liu['clientid']); }

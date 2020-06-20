@@ -20,6 +20,10 @@ switch($_POST['action']) {
 	
 	case "deleteSimcard":
 		isAuthorized("deleteAsset"); $status = Simcard::delete($_POST['id']);
+	break;
+	
+	case "deleteWhatsappMulti":
+		isAuthorized("addAsset"); $status = Whatsapp::delete($_POST);
     break;
 
 	// assets
@@ -452,7 +456,15 @@ switch($_POST['action']) {
 
 	case "deleteLocation":
 		isAuthorized("manageData"); $status = Attribute::deleteLocation($_POST['id']);
-        break;
+		break;
+		
+	case "addWhatsappRespon":
+		isAuthorized("addTicket"); $status = Whatsapp::addRespon($_POST);
+		break;
+
+	case "editWhatsappRespon":
+		isAuthorized("addTicket"); $status = Whatsapp::editRespon($_POST);
+		break;
 
 	// asset models
 	case "addModel":
