@@ -105,6 +105,16 @@
 								</div>
 
 								<div class="col-md-3">
+									<h4><?php _e('Whatsapp Responder'); ?></h4>
+									<div class="checkbox"><label><input type="checkbox" name="perms[]" value="addWhatsapp" <?php if(in_array("addWhatsapp",$roleperms)) echo "checked"; ?> > <?php _e('Add'); ?></label></div>
+									<div class="checkbox"><label><input type="checkbox" name="perms[]" value="editWhatsapp" <?php if(in_array("editWhatsapp",$roleperms)) echo "checked"; ?> > <?php _e('Edit'); ?></label></div>
+									<div class="checkbox"><label><input type="checkbox" name="perms[]" value="deleteWhatsapp" <?php if(in_array("deleteWhatsapp",$roleperms)) echo "checked"; ?> > <?php _e('Delete'); ?></label></div>
+									<div class="checkbox"><label><input type="checkbox" name="perms[]" value="editWhatsappResponder" <?php if(in_array("editWhatsappResponder",$roleperms)) echo "checked"; ?> > <?php _e('Edit Responder'); ?></label></div>
+									<div class="checkbox"><label><input type="checkbox" name="perms[]" value="addWhatsappResponder" <?php if(in_array("addWhatsappResponder",$roleperms)) echo "checked"; ?> > <?php _e('Add Responder'); ?></label></div>
+									<div class="checkbox"><label><input type="checkbox" name="perms[]" value="viewWhatsapp" <?php if(in_array("viewWhatsapp",$roleperms)) echo "checked"; ?> > <?php _e('View Whatsapp'); ?></label></div>
+								</div>
+
+								<div class="col-md-3">
 									<h4><?php _e('SPK'); ?></h4>
 									<div class="checkbox"><label><input type="checkbox" name="perms[]" value="addSPK" <?php if(in_array("addSPK",$roleperms)) echo "checked"; ?> > <?php _e('Add'); ?></label></div>
 									<div class="checkbox"><label><input type="checkbox" name="perms[]" value="editSPK" <?php if(in_array("editSPK",$roleperms)) echo "checked"; ?> > <?php _e('Edit'); ?></label></div>

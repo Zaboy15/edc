@@ -39,6 +39,47 @@ class Whatsapp extends App {
         }
         return "30";
     }
+
+    public static function deleteWhatsappOne($id) {
+    	global $database;
+        
+
+        $database->delete("whatsapp", [ "id" => $id ]);
+    	logSystem("WA Deleted - ID: " . $id);
+    	return "30";
+    }
+
+
+    public static function deleteWhatsapp() {
+    	global $database;
+
+        $database->query("TRUNCATE TABLE whatsapp")->fetchAll();
+    	
+    	logSystem("WA Deleted");
+    	return "30";
+    }
+
+    public static function deleteWhatsapp2() {
+    	global $database;
+
+        $database->query("TRUNCATE TABLE whatsapp_2")->fetchAll();
+    	
+    	logSystem("WA 2 Deleted");
+    	return "30";
+    }
+
+    public static function delete2($data) {
+        global $database;
+
+        $total = count($data['checkbox']);
+
+        for($i=0; $i<$total; $i++) {
+        $database->delete("whatsapp_2", [ "id" => $data['checkbox'][$i] ]);
+    	logSystem("Whatsapp Deleted - ID: " . $data['checkbox'][$i]);
+    	
+        }
+        return "30";
+    }
 }
 
 

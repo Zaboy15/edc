@@ -8,14 +8,14 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     $sender = $_POST['sender'];
     $message = $_POST['message'];
 
-    $sql = mysqli_query($con,"SELECT respon_text FROM whatsapp_field WHERE id = 1");
+    $sql = mysqli_query($con,"SELECT respon_text FROM whatsapp_field WHERE id = 2");
     while ($a = mysqli_fetch_array($sql)){
         $responsetext = $a['respon_text'];
     }
     
 
         # code...
-        $insert = "INSERT INTO whatsapp VALUE(NULL,'$app','$sender','$message',NULL)";
+        $insert = "INSERT INTO whatsapp_2 VALUE(NULL,'$app','$sender','$message',NULL)";
     if (mysqli_query($con,$insert)) {
         # code...
         $response['reply']= $responsetext;

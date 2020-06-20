@@ -8,13 +8,18 @@
 switch($_GET['qa']) {
 
 	case "deleteWhatsapp":
-        Ticket::deleteWhatsapp();
+        Whatsapp::deleteWhatsapp();
         header("Location:?route=whatsapp/whatsapp");
 		break;
 		
 	case "deleteWhatsappOne":
-		Ticket::deleteWhatsappOne($_GET['id']);
+		Whatsapp::deleteWhatsappOne($_GET['id']);
 		header("Location:?route=whatsapp/whatsapp");
+		break;
+
+	case "deleteWhatsapp2":
+		Whatsapp::deleteWhatsapp2($_GET['id']);
+		header("Location:?route=whatsapp/whatsapp2");
 		break;
 
 	case "ticketClose":

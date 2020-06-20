@@ -513,8 +513,14 @@ if ($route == "inventory/paper") {
 }
 
 if ($route == "whatsapp/whatsapp") {
-	isAuthorized("viewSPK");
+	isAuthorized("viewWhatsapp");
 	$whatsapp = getTable("whatsapp");
+
+}
+
+if ($route == "whatsapp/whatsapp2") {
+	isAuthorized("viewWhatsapp");
+	$whatsapp = getTable("whatsapp_2");
 
 }
 

@@ -23,8 +23,20 @@ switch($_POST['action']) {
 	break;
 	
 	case "deleteWhatsappMulti":
-		isAuthorized("addAsset"); $status = Whatsapp::delete($_POST);
-    break;
+		isAuthorized("deleteWhatsapp"); $status = Whatsapp::delete($_POST);
+	break;
+	
+	case "deleteWhatsappMulti2":
+		isAuthorized("deleteWhatsapp"); $status = Whatsapp::delete2($_POST);
+	break;
+	
+	case "addWhatsappRespon":
+		isAuthorized("addWhatsappResponder"); $status = Whatsapp::addRespon($_POST);
+		break;
+
+	case "editWhatsappRespon":
+		isAuthorized("editWhatsappResponder"); $status = Whatsapp::editRespon($_POST);
+		break;
 
 	// assets
 	case "addAsset":
@@ -458,13 +470,7 @@ switch($_POST['action']) {
 		isAuthorized("manageData"); $status = Attribute::deleteLocation($_POST['id']);
 		break;
 		
-	case "addWhatsappRespon":
-		isAuthorized("addTicket"); $status = Whatsapp::addRespon($_POST);
-		break;
-
-	case "editWhatsappRespon":
-		isAuthorized("addTicket"); $status = Whatsapp::editRespon($_POST);
-		break;
+	
 
 	// asset models
 	case "addModel":
