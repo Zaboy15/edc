@@ -29,6 +29,10 @@ switch($_POST['action']) {
 	case "deleteWhatsappMulti2":
 		isAuthorized("deleteWhatsapp"); $status = Whatsapp::delete2($_POST);
 	break;
+
+	case "deleteWhatsappRespon":
+		isAuthorized("deleteWhatsapp"); $status = Whatsapp::deleteWhatsappRespon($_POST);
+	break;
 	
 	case "addWhatsappRespon":
 		isAuthorized("addWhatsappResponder"); $status = Whatsapp::addRespon($_POST);

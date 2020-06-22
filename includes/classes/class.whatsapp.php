@@ -80,6 +80,19 @@ class Whatsapp extends App {
         }
         return "30";
     }
+
+    public static function deleteWhatsappRespon($data) {
+        global $database;
+
+        $total = count($data['checkbox']);
+
+        for($i=0; $i<$total; $i++) {
+        $database->delete("whatsapp_field", [ "id" => $data['checkbox'][$i] ]);
+    	logSystem("Whatsapp Deleted - ID: " . $data['checkbox'][$i]);
+    	
+        }
+        return "30";
+    }
 }
 
 
