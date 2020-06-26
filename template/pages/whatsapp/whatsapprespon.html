@@ -3,7 +3,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 			<h1 class="pull-left"><?php _e('Whatsapp'); ?><small> <?php _e('Manage whatsapp Respon'); ?></small></h1>
-			<div class="pull-right"><?php if(in_array("addTicket",$perms)) { ?><a onClick='showM("index.php?modal=whatsapp/respon_add&reroute=whatsapp/whatsapprespon");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Whatsapp Respon'); ?></a><?php } ?></div>
+			<!-- <div class="pull-right"><?php if(in_array("addTicket",$perms)) { ?><a onClick='showM("index.php?modal=whatsapp/respon_add&reroute=whatsapp/whatsapprespon");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Whatsapp Respon'); ?></a><?php } ?></div> -->
 			<!-- <div class="pull-right"><a data-toggle='tooltip' class="btn btn-primary btn-flat btn-sm" title='<?php _e('Delete All  '); ?>' href="?qa=deleteWhatsapp"><?php _e('Delete All'); ?></a></div> -->
 			
 			
@@ -24,7 +24,7 @@
 	                            <thead>
 	                                <tr>
 										
-										<th><?php _e('');?></th>
+										<!-- <th><?php _e('');?></th> -->
 	                                    <th><?php _e('ID'); ?></th>
 	                                    <th><?php _e('NAMA'); ?></th>
 										<th><?php _e('RESPON'); ?></th>
@@ -36,9 +36,9 @@
 	                            <tbody>
 									<?php foreach ($whatsapprespon as $whatsapprespon) { ?>
 		                                <tr>
-											<div class="form-group">
+											<!-- <div class="form-group">
 											<td align="center" bgcolor="#FFFFFF"><input name="checkbox[]" type="checkbox" id="checkbox[]" value=<?php echo $whatsapprespon['id']; ?>></td>
-										</div>
+										</div> -->
 											<td><?php echo $whatsapprespon['id']; ?></td>
 		                                    <td><?php echo $whatsapprespon['nama']; ?></td>
 		                                    <td><?php echo $whatsapprespon['respon_text']; ?></td>
@@ -49,7 +49,7 @@
 													<div class="btn-group">
 												
 
-														<?php if(in_array("editTicket",$perms)) { ?><a href='#' onClick='showM("index.php?modal=whatsapp/respon_edit&reroute=whatsapp/whatsapprespon&id=<?php echo $whatsapprespon['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+														<?php if(in_array("editWhatsapp",$perms)) { ?><a href='#' onClick='showM("index.php?modal=whatsapp/respon_edit&reroute=whatsapp/whatsapprespon&id=<?php echo $whatsapprespon['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
 														
 													</div>
 												</div>
