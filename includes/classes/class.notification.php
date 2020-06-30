@@ -67,7 +67,7 @@ class Notification extends App {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 			curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);       
 			//Send the request
-			$response = curl_exec($ch);
+			curl_exec($ch);
 			//Close request
 			curl_close($ch);
 	
