@@ -194,7 +194,6 @@ switch($_GET['modal']) {
         $spkdata = getRowById("spk",$_GET['id']);
        
         $contacts = getTable("contacts");
-        $merchant = getTable("clients");
         $departments = getTable("tickets_departments");
         $adminspk = getTableFiltered("people","type","admin");
         
