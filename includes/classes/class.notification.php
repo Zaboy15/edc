@@ -65,7 +65,8 @@ class Notification extends App {
 			//Setup curl, add headers and post parameters.
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-			curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);       
+			curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);      
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
 			//Send the request
 			curl_exec($ch);
 			//Close request
