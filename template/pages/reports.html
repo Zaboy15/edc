@@ -131,7 +131,7 @@
 					<form role="form" method="get" action="" target="_blank">
 						<div class="box-body">
 							<p><?php _e('Generate a report with all the tickets opened in the selected period.'); ?></p>
-							<?php if($isAdmin) { ?>
+							<!-- <?php if($isAdmin) { ?>
 								<div class="form-group">
 									<label for="clientid" class="control-label"><?php _e('Client'); ?></label>
 									<select class="form-control select2 select2-hidden-accessible" id="clientid" name="clientid" style="width: 100%;" tabindex="-1" aria-hidden="true">
@@ -139,7 +139,7 @@
 										<?php foreach ($clients as $client) { echo "<option value='".$client['id']."'>".$client['name']."</option>"; } ?>
 									</select>
 								</div>
-							<?php } ?>
+							<?php } ?> -->
 							<?php if(!$isAdmin) { ?> <input type="hidden" name="clientid" value="<?php echo $liu['clientid']; ?>"> <?php } ?>
 
 							<div class="form-group">

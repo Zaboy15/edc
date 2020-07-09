@@ -886,7 +886,7 @@ if ($route == "monitoring/manage") {
 // REPORTS
 if ($route == "reports") {
 	isAuthorized("viewReports");
-	$clients = getTable("clients");
+	// $clients = getTable("clients");
 	$admins = getTableFiltered("people","type","admin");
 	$users = getTableFiltered("people","type","user");
 	$pageTitle = __("Reports");
