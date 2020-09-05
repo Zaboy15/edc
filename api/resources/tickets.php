@@ -16,9 +16,12 @@ switch ($request_method) {
 
             $result = $database->select("tickets", "*", [ "AND" => $filters , "ORDER" => ["id" => "DESC"]]);
         }
+
+        
+        
         $i=0;
         foreach($result as $item) {
-            $result[$i]['ccs'] = unserialize($item['ccs']);
+            if(empty($result['ccs'])) $result[$i]['ccs'] = ""; else $result[$i]['ccs'] = unserialize($data['ccs']);
             $i++;
         }
 

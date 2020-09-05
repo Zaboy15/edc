@@ -15,6 +15,8 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         $response['email']= $result['email'];
         $response['name']= $result['name'];
         $response['id']= $result['id'];
+        $response['project']= unserialize($result['project']);
+
         echo json_encode($response);
     } else {
         $response['value']=2;

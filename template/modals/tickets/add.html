@@ -20,14 +20,9 @@
         </div>
 
         <div class="col-md-6">
-            <div class="form-group">
+            <div class="form-group" >
                 <label for="clientid"><?php _e('Cabang'); ?></label>
-                <select class="form-control cabangSelect select2-hidden-accessible" id="clientid" name="clientid" style="width: 100%;">
-                    <?php if(isset($_GET['assetid'])) { ?>
-                        <option value="<?php echo $_GET['assetid']; ?>"><?php echo getSingleValue("assets","tag",$_GET['assetid']) ; ?> <?php echo getSingleValue("assets","name",$_GET['assetid']) ; ?></option>
-                    <?php } else { ?>
-                        <option value="0"><?php _e('None'); ?></option>
-                    <?php } ?>
+                <select class="form-control cabangSelect select2-hidden-accessible" id="clientid" name="clientid"style="width: 100%;"  >
                 </select>
             </div>
         </div>
@@ -35,6 +30,46 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="create_on"><?php _e('Create On'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="create_on"><?php _e('Response Time'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="create_on"><?php _e('Part Receive'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="create_on"><?php _e('Departure Time'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="create_on"><?php _e('Arrival Time'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="create_on"><?php _e('Start Working'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="create_on"><?php _e('Close Time'); ?> *</label>
                 <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
             </div>
         </div>
@@ -62,9 +97,9 @@
 
         <div class="col-md-6">
             <?php if(in_array("manageTicketAssignment",$perms)) { ?>
-                <div class="form-group">
+                <div class="form-group" id="adminid" name="adminid" >
                     <label for="adminid"><?php _e('Assign To'); ?></label>
-                    <select class="form-control select2 select2-hidden-accessible" id="adminid" name="adminid" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                         <option value="0"><?php _e('Nobody'); ?></option>
                         <?php foreach ($admins as $admin) { ?>
                             <option value='<?php echo $admin['id']; ?>' <?php if(isset($liu['id'])) { if($liu['id'] == $admin['id']) echo "selected"; }  ?>><?php echo $admin['name']; ?></option>
@@ -222,6 +257,7 @@
     		ajax: {
     			url: "index.php",
     			dataType: 'json',
+                delay: 50,
     			data: function (params) {
     			  return {
     				q: params.term, // search term
@@ -237,9 +273,9 @@
     				};
     			},
     			cache: true,
-                minimumInputLength: 3,
+                
     	    },
-    	    
+    	    minimumInputLength: 3,
     		placeholder: "<?php _e('Please Select'); ?>",
     	});
 
@@ -247,6 +283,7 @@
     		ajax: {
     			url: "index.php",
     			dataType: 'json',
+                delay: 50,
     			data: function (params) {
     			  return {
     				q: params.term, // search term
@@ -333,11 +370,13 @@
     $(document).ready(function () {
         $("#idcustomer").change(function () {
             var idcustomer = $("#idcustomer").val();
+            
             if (idcustomer == "2") {
                 document.getElementById('id_case').style.display = "block";
                 document.getElementById('ref').style.display = "block";
-                
+                document.getElementById('adminid').style.display = "block";
             } else {
+                document.getElementById('adminid').style.display = "none";
                 document.getElementById('id_case').style.display = "none";
                 document.getElementById('ref').style.display = "none";
 

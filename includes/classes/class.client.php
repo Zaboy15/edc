@@ -9,7 +9,7 @@ class Client extends App {
     	global $database;
     	$lastid = $database->insert("clients", [
             "name" => $data['name'],
-            "kode_merchant" => $data['kode_merchant'],
+            "branch_code" => $data['branch_code'],
             "alamat" => $data['alamat'],
             "pic" => $data['pic'],
             "phone_pic" => $data['phone_pic'],
@@ -18,7 +18,7 @@ class Client extends App {
             "asset_tag_prefix" => $data['asset_tag_prefix'],
             "license_tag_prefix" => $data['license_tag_prefix'],
             "id_customer" => $data['id_customer'],
-            "notes" => "",
+            
         ]);
     	if ($lastid == "0") { return "11"; } else { logSystem("Client Added - ID: " . $lastid); return "10"; }
     }

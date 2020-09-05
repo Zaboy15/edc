@@ -11,7 +11,17 @@ switch ($request_method) {
 
         $filters['type'] = 'admin';
         $result = $database->select("people", "*", [ "AND" => $filters ]);
+        $i=0;
+        foreach($result as $item) {
+            $result[$i]['project'] = unserialize($item['project']);
+            $i++;
+        }
 
+        $s=0;
+        foreach($result as $item1) {
+            $result[$s]['customfields'] = unserialize($item1['customfields']);
+            $s++;
+        }
 
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];
     break;

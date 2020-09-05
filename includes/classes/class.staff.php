@@ -5,7 +5,8 @@ class Staff extends App {
     public static function add($data) {
     	global $database;
     	$email = strtolower($data['email']);
-    	$count = $database->count("people",["email" => $email]);
+		$count = $database->count("people",["email" => $email]);
+		if(empty($data['project'])) $project = ""; else $project = serialize($data['project']);
     	if ($count == "1") { return "11"; }
 
 
@@ -19,7 +20,8 @@ class Staff extends App {
             "ldap_user" => $data['ldap_user'],
     		"title" => $data['title'],
     		"mobile" => $data['mobile'],
-    		"password" => $password,
+			"password" => $password,
+			"project" => $project,
     		"theme" => "skin-blue",
     		"sidebar" => "opened",
     		"layout" => "",
@@ -39,7 +41,9 @@ class Staff extends App {
     		}
 	}
 	public static function edit($data) {
-    	global $database;
+		global $database;
+		if(empty($data['project'])) $project = ""; else $project = serialize($data['project']);
+		
 		$email = strtolower($data['email']);
 		
 		$customfields = getTable("staff_customfields");
@@ -63,6 +67,7 @@ class Staff extends App {
     			"notes" => $data['notes'],
     			"signature" => $data['signature'],
 				"lang" => $data['lang'],
+				"project" => $project,
     			"tokenfcm" => $data['tokenfcm'],
 				"customfields" => serialize($customfieldsdata),
     			"ticketsnotification" => $data['ticketsnotification'],
@@ -76,7 +81,8 @@ class Staff extends App {
     		$database->update("people", [
     			"roleid" => $data['roleid'],
     			"name" => $data['name'],
-    			"email" => $email,
+				"email" => $email,
+				"project" => $project,
                 "ldap_user" => $data['ldap_user'],
     			"title" => $data['title'],
     			"mobile" => $data['mobile'],

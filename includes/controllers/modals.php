@@ -171,7 +171,7 @@ switch($_GET['modal']) {
     case "tickets/add":
         $contacts = getTable("contacts");
         if($isAdmin) { $assets = getTable("assets"); } else { $assets = getTableFiltered("assets","clientid",$liu['clientid']); }
-        $clients = getTable("clients");
+        
         $customertable = getTable("tabel_customer");
 
         $departments = getTable("tickets_departments");
@@ -184,7 +184,6 @@ switch($_GET['modal']) {
         $ccs = array(); if($ticket['ccs'] != "") $ccs = unserialize($ticket['ccs']);
         $contacts = getTable("contacts");
         if($isAdmin) { $assets = getTable("assets"); } else { $assets = getTableFiltered("assets","clientid",$liu['clientid']); }
-        $clients = getTable("clients");
         $departments = getTable("tickets_departments");
         $admins = getTableFiltered("people","type","admin");
         if($isAdmin) { $users = getTableFiltered("people","type","user"); } else { $users = getTableFiltered("people","type","user","clientid",$liu['clientid']); }

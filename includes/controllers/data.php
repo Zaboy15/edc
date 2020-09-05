@@ -1086,6 +1086,7 @@ if ($route == "people/staff") { isAuthorized("viewStaff");
 if ($route == "people/staff/edit") {
 	isAuthorized("editStaff");
 	$admin = getRowById("people",$_GET['id']);
+	$project = getTable("tabel_customer");
 	
 	$languages = getTable("languages");
 	$roles = getTableFiltered("roles","type","admin");

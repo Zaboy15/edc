@@ -85,6 +85,15 @@
 
 										</div>
 
+										<div class="col-md-4">
+											<div class="form-group">
+												<label for="project"><?php _e('Project'); ?> *</label>
+												<select class="form-control select2 select2-hidden-accessible" id="project" name="project[]" style="width: 100%;" tabindex="-1" aria-hidden="true" multiple>
+													<?php foreach ($project as $project) { echo "<option value='".$project['id']."'"; if($admin['project']==$project['id']) echo " selected"; echo ">".$project['nama_customer']."</option>"; } ?>
+												</select>
+											</div>
+										</div>
+
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="mobile"><?php _e('Mobile Number'); ?></label>

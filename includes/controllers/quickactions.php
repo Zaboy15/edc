@@ -302,14 +302,11 @@ switch($_GET['qa']) {
 					"id_customer" => $filterid,
 					"OR" => [
 						"mid[~]" => $searchstring,
-						"idcabang[~]" => $searchstring,
 						"name[~]" => $searchstring
 					]
 				]]);
 			} else {
 				$items = $database->select("clients", "*", [ "OR" => [
-					// "mid[~]" => $searchstring,
-					// "idcabang[~]" => $searchstring,
 					"name[~]" => $searchstring
 				]]);
 			}
