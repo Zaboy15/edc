@@ -291,6 +291,130 @@ switch($_GET['qa']) {
 		echo json_encode($results);
 	break;
 
+	case "category1Select":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("category_1", "*", [ "AND" => [
+					"id_customer" => $filterid,
+					"OR" => [
+						"name[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("category_1", "*", [ "OR" => [
+					"name[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("category_1", "*", [ "id_customer" => $filterid ]);
+			} else {
+				$items = $database->select("category_1", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['name'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
+	case "category2Select":
+		$filterid = $_GET['filterid'];
+		$categoryid = $_GET['categoryid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("category_2", "*", [ "AND" => [
+					"id_customer" => $filterid,
+					"OR" => [
+						"id_category_1" => $filterid,
+						"name[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("category_2", "*", [ "OR" => [
+					"name[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("category_2", "*", [ "id_customer" => $filterid ]);
+			} else {
+				$items = $database->select("category_2", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['name'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
+	case "category3Select":
+		$filterid = $_GET['filterid'];
+		$categoryid = $_GET['categoryid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("category_3", "*", [ "AND" => [
+					"id_customer" => $filterid,
+					"OR" => [
+						"id_category_2" => $categoryid,
+						"name[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("category_3", "*", [ "OR" => [
+					"name[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("category_3", "*", [ "id_customer" => $filterid ]);
+			} else {
+				$items = $database->select("category_3", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['name'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
 	case "statusSelect":
 		$filterid = $_GET['filterid'];
 		$searchstring = "";
@@ -305,7 +429,7 @@ switch($_GET['qa']) {
 					]
 				]]);
 			} else {
-				$items = $database->select("clients", "*", [ "OR" => [
+				$items = $database->select("status_tickets", "*", [ "OR" => [
 					"name[~]" => $searchstring
 				]]);
 			}

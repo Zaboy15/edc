@@ -22,7 +22,7 @@
         <div class="col-md-3">
             <div class="form-group" id="clientid" name="clientid" style="display:none;" >
                 <label for="clientid"><?php _e('Cabang'); ?></label>
-                <select class="form-control cabangSelect select2-hidden-accessible" style="width: 100%;"  >
+                <select class="form-control cabangSelect select2-hidden-accessible" id="clientid" name="clientid" style="width: 100%;"  >
                 </select>
             </div>
         </div>
@@ -35,6 +35,65 @@
                 </select>
             </div>
         </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <?php if(in_array("manageTicketAssignment",$perms)) { ?>
+                <div class="form-group" >
+                    <label for="adminid"><?php _e('Assign To'); ?></label>
+                    <select class="form-control select2 select2-hidden-accessible" id="adminid" name="adminid" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                        <option value="0"><?php _e('Nobody'); ?></option>
+                        <?php foreach ($admins as $admin) { ?>
+                            <option value='<?php echo $admin['id']; ?>' <?php if(isset($liu['id'])) { if($liu['id'] == $admin['id']) echo "selected"; }  ?>><?php echo $admin['name']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            <?php } ?>
+            <?php if(!in_array("manageTicketAssignment",$perms)) { ?><input type="hidden" name="adminid" value="0"><?php } ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="customer_ticket"><?php _e('Customer Ticket'); ?> *</label>
+                <input type="text" class="form-control" id="customer_ticket" name="customer_ticket" value="" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="subject"><?php _e('Subject'); ?> *</label>
+                <input type="text" class="form-control" id="subject" name="subject" value="" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="description"><?php _e('Description Problem'); ?> *</label>
+                <input type="text" class="form-control" id="description" name="description" value="">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="serial_number"><?php _e('Serial Number'); ?> *</label>
+                <input type="text" class="form-control" id="serial_number" name="serial_number" value="">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="action"><?php _e('Action'); ?> *</label>
+                <input type="text" class="form-control" id="action" name="action" value="">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="notes"><?php _e('Notes'); ?> *</label>
+                <input type="text" class="form-control" id="notes" name="notes" value="">
+            </div>
+        </div>
+        
     </div>
     <div class="row">
 
@@ -73,50 +132,15 @@
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="create_on"><?php _e('Start Working'); ?> *</label>
-                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
+                <label for="start_working"><?php _e('Start Working'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="start_working" name="start_working" value="">
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="create_on"><?php _e('Close Time'); ?> *</label>
-                <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
-            </div>
-        </div>
-
-        
-
-        
-
-        
-
-
-        
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <?php if(in_array("manageTicketAssignment",$perms)) { ?>
-                <div class="form-group" id="adminid" name="adminid" >
-                    <label for="adminid"><?php _e('Assign To'); ?></label>
-                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option value="0"><?php _e('Nobody'); ?></option>
-                        <?php foreach ($admins as $admin) { ?>
-                            <option value='<?php echo $admin['id']; ?>' <?php if(isset($liu['id'])) { if($liu['id'] == $admin['id']) echo "selected"; }  ?>><?php echo $admin['name']; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            <?php } ?>
-            <?php if(!in_array("manageTicketAssignment",$perms)) { ?><input type="hidden" name="adminid" value="0"><?php } ?>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="subject"><?php _e('Subject'); ?> *</label>
-                <input type="text" class="form-control" id="subject" name="subject" value="" required>
+                <label for="closed_time"><?php _e('Close Time'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="closed_time" name="closed_time" value="">
             </div>
         </div>
     </div>
@@ -173,6 +197,31 @@
 
     <div class="row">
         <div class="col-md-4">
+            <div class="form-group" id="category_1" name="category_1" style="display: none;" >
+                <label for="category_1"><?php _e('Category 1'); ?></label>
+                <select class="form-control category1Select select2-hidden-accessible" id="category_1" name="category_1" style="width: 100%;"  >
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" id="category_2" name="category_2" style="display: none;" >
+                <label for="category_2"><?php _e('Category 2'); ?></label>
+                <select class="form-control category2Select select2-hidden-accessible" id="category_2" name="category_2" style="width: 100%;"  >
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group" id="category_3" name="category_3" style="display: none;" >
+                <label for="category_3"><?php _e('Category 3'); ?></label>
+                <select class="form-control category3Select select2-hidden-accessible" id="category_3" name="category_3" style="width: 100%;"  >
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
             <div class="form-group" id="status" name="status" style="display: none;" >
                 <label for="status"><?php _e('Status'); ?></label>
                 <select class="form-control statusSelect select2-hidden-accessible" style="width: 100%;"  >
@@ -181,8 +230,8 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="message" class="control-label"><?php _e('Closed By'); ?></label>
-                <select class="form-control select2" id="closed_by" name="closed_by" style="width: 100%;">
+                <label for="close_by" class="control-label"><?php _e('Closed By'); ?></label>
+                <select class="form-control select2" id="close_by" name="close_by" style="width: 100%;">
                     <option value="Not Set"><?php _e('Not Set'); ?></option>
                     <option value="Visit"><?php _e('Visit'); ?></option>
                     <option value="Remote"><?php _e('Remote'); ?></option>
@@ -190,17 +239,21 @@
             </div>
         </div>
         <div class="col-md-6">
-            <?php if($isAdmin) { ?>
+            <div class="form-group" id="email">
+                <label for="email"><?php _e('email'); ?> *</label>
+                <input type="text" class="form-control"name="email" value="">
+            </div>
+        </div>
+        <!-- <div class="col-md-6">
                 <div class="form-group">
-                    <label for="email"><?php _e('User or Email Address'); ?> * <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" title="<?php _e('Select an user for this ticket or type an email address and press enter.'); ?>"></i></label>
-                    <select class="form-control usersSelectEmail select2-hidden-accessible" id="email" name="email" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-
+                    <label for="email"><?php _e('Email Recipients'); ?> <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" title="<?php _e('Select Email recipients from contacts list or type an email address and press enter.'); ?>"></i></label>
+                    <select class="form-control select2tag select2-hidden-accessible" id="email" name="email" style="width: 100%;" multiple>
+                        <?php foreach ($contacts as $contact) { ?>
+                            <option value='<?php echo $contact['email']; ?>'><?php echo $contact['email']; ?></option>
+                        <?php } ?>
                     </select>
                 </div>
-            <?php } ?>
-            <?php if(!$isAdmin) { ?><input type="hidden" name="email" value="<?php echo $liu['email']; ?>"><?php } ?>
-
-        </div>
+        </div> -->
 
         <div class="col-md-6">
             <?php if($isAdmin) { ?>
@@ -296,6 +349,14 @@
             idcustomer = $("#idcustomer").val();
         });
 
+        $("#category_1").on("change", function (e) {
+            category_1 = $("#category_1").val();
+        });
+
+        $("#category_2").on("change", function (e) {
+            category_2 = $("#category_2").val();
+        });
+
         <?php if(!$isAdmin) { ?>
             clientid = <?php echo $liu['clientid']; ?>;
         <?php } ?>
@@ -310,6 +371,89 @@
     				q: params.term, // search term
     				qa: 'statusSelect',
                     filterid: idcustomer
+    			  };
+    			},
+    			processResults: function (data,params) {
+    				return {
+    					results: $.map(data, function(obj) {
+    						return { id: obj.id, text: obj.text };
+    					})
+    				};
+    			},
+    			cache: true,
+                
+    	    },
+    	    
+    		placeholder: "<?php _e('Please Select'); ?>",
+    	});
+
+        $('.category1Select').select2({
+    		ajax: {
+    			url: "index.php",
+    			dataType: 'json',
+                delay: 50,
+    			data: function (params) {
+    			  return {
+    				q: params.term, // search term
+    				qa: 'category1Select',
+                    filterid: idcustomer,
+
+    			  };
+    			},
+    			processResults: function (data,params) {
+    				return {
+    					results: $.map(data, function(obj) {
+    						return { id: obj.id, text: obj.text };
+    					})
+    				};
+    			},
+    			cache: true,
+                
+    	    },
+    	    
+    		placeholder: "<?php _e('Please Select'); ?>",
+    	});
+
+        $('.category2Select').select2({
+    		ajax: {
+    			url: "index.php",
+    			dataType: 'json',
+                delay: 50,
+    			data: function (params) {
+    			  return {
+    				q: params.term, // search term
+    				qa: 'category2Select',
+                    filterid: idcustomer,
+                    categoryid: category_1
+
+    			  };
+    			},
+    			processResults: function (data,params) {
+    				return {
+    					results: $.map(data, function(obj) {
+    						return { id: obj.id, text: obj.text };
+    					})
+    				};
+    			},
+    			cache: true,
+                
+    	    },
+    	    
+    		placeholder: "<?php _e('Please Select'); ?>",
+    	});
+
+        $('.category3Select').select2({
+    		ajax: {
+    			url: "index.php",
+    			dataType: 'json',
+                delay: 50,
+    			data: function (params) {
+    			  return {
+    				q: params.term, // search term
+    				qa: 'category3Select',
+                    filterid: idcustomer,
+                    categoryid: category_2
+
     			  };
     			},
     			processResults: function (data,params) {
@@ -452,6 +596,9 @@
                 document.getElementById('pic').style.display = "none";
                 document.getElementById('assetid').style.display = "block";
                 document.getElementById('phone_pic').style.display = "none";
+                document.getElementById('category_1').style.display = "block";
+                document.getElementById('category_2').style.display = "block";
+                document.getElementById('category_3').style.display = "block";
             } else if (idcustomer == "5") { //mcd
                 document.getElementById('clientid').style.display = "block";
                 document.getElementById('status').style.display = "block";
@@ -460,9 +607,14 @@
                 document.getElementById('pic').style.display = "none";
                 document.getElementById('assetid').style.display = "block";
                 document.getElementById('phone_pic').style.display = "none";
-                
+                document.getElementById('category_1').style.display = "block";
+                document.getElementById('category_2').style.display = "block";
+                document.getElementById('category_3').style.display = "block";
             } else if(idcustomer == "6") {
                 document.getElementById('status').style.display = "block";
+                document.getElementById('category_1').style.display = "block";
+                document.getElementById('category_2').style.display = "block";
+                document.getElementById('category_3').style.display = "block";
                 document.getElementById('pic').style.display = "block";
                 document.getElementById('phone_pic').style.display = "block";
                 document.getElementById('clientid').style.display = "none";
@@ -471,6 +623,9 @@
                 document.getElementById('assetid').style.display = "none";
             } else {
                 document.getElementById('clientid').style.display = "none";
+                document.getElementById('category_1').style.display = "none";
+                document.getElementById('category_2').style.display = "none";
+                document.getElementById('category_3').style.display = "none";
                 document.getElementById('assetid').style.display = "none";
                 document.getElementById('status').style.display = "none";
                 document.getElementById('id_case').style.display = "none";

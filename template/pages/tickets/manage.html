@@ -17,7 +17,7 @@
 	              	<ul class="nav nav-tabs">
 	                	<li <?php if ($section == "") echo 'class="active"'; ?> ><a href="#tab-ticket" data-toggle="tab" class="ticket-tab-button"><?php _e('Ticket'); ?></a></li>
 	  			  		<?php if(in_array("manageTicketNotes",$perms)) { ?><li <?php if ($section == "notes") echo 'class="active"'; ?> ><a href="#tab-notes" data-toggle="tab"><?php _e('Notes'); ?></a></li><?php } ?>
-						<?php if(in_array("viewComments",$perms)) { ?><li <?php if ($section == "foto") echo 'class="active"'; ?> ><a href="#tab-foto" data-toggle="tab"><?php _e('Foto'); ?></a></li><?php } ?>
+							<?php if($ticket['idcustomer'] == 2){ ?><?php if(in_array("viewComments",$perms)) { ?><li <?php if ($section == "foto") echo 'class="active"'; ?> ><a href="#tab-foto" data-toggle="tab"><?php _e('Foto'); ?></a></li><?php } ?><?php } ?>
 
 						<div class="btn-group pull-right" style="padding:6px;">
 							<?php if(in_array("viewPReplies",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Insert Predefined Reply'); ?>' onClick='showM("?modal=preplies/insert");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-arrow-right fw"></i> <?php _e('Predefined Reply'); ?></button><?php } ?>
@@ -188,6 +188,7 @@
 						
 
 						<?php if(in_array("viewComments",$perms)) { ?>
+							<?php if($ticket['idcustomer'] == 2){ ?>
 							<div class="tab-pane <?php if ($section == "foto") echo 'active'; ?>" id="tab-foto">
 								<div class="row">
 								
@@ -273,6 +274,7 @@
 								<!-- Akhir section -->
 							</div>
 							<!-- /.tab-pane -->
+							<?php } ?>
 							<?php } ?>
 
 						<?php if(in_array("manageTicketNotes",$perms)) { ?>
@@ -546,6 +548,15 @@
 									</td>
 								</tr>
 								<tr>
+									<td><b><?php _e('Closed By '); ?></b></td>
+									<td><?php echo $ticket['close_by']; ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Visit '); ?></b></td>
+									<td><?php echo $ticket['visit']; ?></td>
+								</tr>
+								<tr>
 									<td><b><?php _e('Priority'); ?></b></td>
 									<td><?php echo $ticket['priority']; ?></td>
 								</tr>
@@ -554,15 +565,93 @@
 									<td><?php echo $ticket['subject']; ?></td>
 								</tr>
 								<tr>
-									<td><b><?php _e('Department'); ?></b></td>
+									<td><b><?php _e('Description Problem'); ?></b></td>
+									<td><?php echo $ticket['description']; ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Action'); ?></b></td>
+									<?php if($ticket['action'] != "") echo $ticket['action'];
+										elseif($ticket['action'] == "") echo '<span class="text-muted">' . __('None') . '</span>';
+										else echo '<span class="text-muted">' . __('None') . '</span>'; ?>
+									<td><?php echo $ticket['action']; ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('PIC'); ?></b></td>
+									<td><?php echo $ticket['pic']; ?></td>
+								</tr>
+								<tr>
+									<td><b><?php _e('Phone'); ?></b></td>
+									<td><?php echo $ticket['phone_pic']; ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Category 1'); ?></b></td>
 									<td>
-										<?php if($ticket['departmentid'] != 0) echo getSingleValue("tickets_departments","name",$ticket['departmentid']);
-										elseif($ticket['departmentid'] == 0) echo '<span class="text-muted">' . __('None') . '</span>';
+										<?php if($ticket['category_1'] != 0) echo getSingleValue("category_1","name",$ticket['category_1']);
+										elseif($ticket['category_1'] == 0) echo '<span class="text-muted">' . __('None') . '</span>';
 										else echo '<span class="text-muted">' . __('None') . '</span>'; ?>
 									</td>
 								</tr>
+
 								<tr>
-									<td><b><?php _e('Created'); ?></b></td>
+									<td><b><?php _e('Category 2'); ?></b></td>
+									<td>
+										<?php if($ticket['category_2'] != 0) echo getSingleValue("category_2","name",$ticket['category_2']);
+										elseif($ticket['category_2'] == 0) echo '<span class="text-muted">' . __('None') . '</span>';
+										else echo '<span class="text-muted">' . __('None') . '</span>'; ?>
+									</td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Category 3'); ?></b></td>
+									<td>
+										<?php if($ticket['category_3'] != 0) echo getSingleValue("category_3","name",$ticket['category_3']);
+										elseif($ticket['category_3'] == 0) echo '<span class="text-muted">' . __('None') . '</span>';
+										else echo '<span class="text-muted">' . __('None') . '</span>'; ?>
+									</td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Create on'); ?></b></td>
+									<td><?php echo dateTimeDisplay($ticket['create_on']); ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Response Time'); ?></b></td>
+									<td><?php echo dateTimeDisplay($ticket['response_time']); ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Part Received'); ?></b></td>
+									<td><?php echo dateTimeDisplay($ticket['part_received']); ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Departure Time'); ?></b></td>
+									<td><?php echo dateTimeDisplay($ticket['departure_time']); ?></td>
+								</tr>
+
+								
+
+								<tr>
+									<td><b><?php _e('Arrival Time'); ?></b></td>
+									<td><?php echo dateTimeDisplay($ticket['arrival']); ?></td>
+								</tr>
+								
+								<tr>
+									<td><b><?php _e('Start Working'); ?></b></td>
+									<td><?php echo dateTimeDisplay($ticket['start_working']); ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Close Time'); ?></b></td>
+									<td><?php echo dateTimeDisplay($ticket['closed_time']); ?></td>
+								</tr>
+								
+								<tr>
+									<td><b><?php _e('Timestamp Created'); ?></b></td>
 									<td><?php echo dateTimeDisplay($ticket['timestamp']); ?></td>
 								</tr>
 								<tr>
@@ -623,33 +712,7 @@
 										?>
 									</td>
 								</tr>
-								<tr>
-									<td><b><?php _e('User'); ?></b></td>
-									<td>
-										<?php
-											if($ticket['userid'] == 0)
-												echo "<span class='text-muted'>".__("None")."</span>";
-											else {
-												if(in_array("editUser",$perms))
-													echo "<a href='?route=people/users/edit&id=".$ticket['userid']."'>".getSingleValue('people','name',$ticket['userid'])."</a>";
-												else echo getSingleValue('people','name',$ticket['userid']);
-											}
-										?>
-									</td>
-								</tr>
-								<tr>
-									<td><b><?php _e('Phone'); ?></b></td>
-									<td>
-										<?php
-											if($ticket['userid'] == 0)
-												echo "<span class='text-muted'>".__("None")."</span>";
-											else {
-												echo getSingleValue('people','mobile',$ticket['userid']);
-											}
-										?>
-									</td>
-								</tr>
-
+								
 								<tr>
 									<td><b><?php _e('Assigned To'); ?></b></td>
 									<td><?php if($ticket['adminid'] == 0) echo "<span class='text-muted'>".__("Nobody")."</span>"; else echo getSingleValue('people','name',$ticket['adminid']); ?></td>

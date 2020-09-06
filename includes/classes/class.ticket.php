@@ -3,7 +3,7 @@
 class Ticket extends App {
 
     // TICKETS
-
+    
 
     public static function add($data) {
     	global $database;
@@ -21,29 +21,46 @@ class Ticket extends App {
 
         if(isset($data['notes'])) $notes = $data['notes']; else $notes = "";
 
-    	$ticketid = $database->insert("tickets", [
-    		"ticket" => $random,
+        if($data['adminid'] != "0") $peopleid = $data['adminid']; else $peopleid = 0;
+        
+        $ticketid = $database->insert("tickets", [
+            "ticket" => $random,
             "departmentid" => 0,
-            "clientid" => $data['clientid'],
+            "clientid" => 0,
+            "projectid" => 0,
+            "assetid" => 0,
+            "userid" => 0,
+            "adminid" => $peopleid,
+            "email" => strtolower($data['email']),
             "idcustomer" => $data['idcustomer'],
-    		"id_case" => $data['id_case'],
-    		"ref" => $data['ref'],
-    		"create_on" => $data['create_on'],
-    		"userid" => $userid,
-    		"adminid" => $data['adminid'],
-    		"assetid" => $data['assetid'],
-            // "projectid" => $data['projectid'],
-    		"email" => strtolower($data['email']),
-    		"subject" => $data['subject'],
-    		"status" => "Open",
-    		"priority" => $data['priority'],
-    		"timestamp" => date('Y-m-d H:i:s'),
-    		"notes" => $notes,
-    		"ccs" => $ccs,
-            "timespent" => 0
-    	]);
+            "subject" => $data['subject'],
+            "status" => "Open",
+            "priority" => $data['priority'],
+            "timestamp" => date('Y-m-d H:i:s'),
+            "notes" => $notes,
+            "ccs" => $ccs,
+            "timespent" => 0,
 
-    	if($data['adminid'] != "0") $peopleid = $data['adminid']; else $peopleid = $userid;
+            "pic" => $data['pic'],
+            "phone_pic" => $data['phone_pic'],
+            "category_1" => $data['category_1'],
+            "customer_ticket" => $data['customer_ticket'],
+            "create_on" => $data['create_on'],
+            "response_time" => $data['response_time'],
+            "part_received" => $data['part_received'],
+            "departure_time" => $data['departure_time'],
+            "arrival" => $data['arrival'],
+            "start_working" => $data['start_working'],
+            "closed_time" => $data['closed_time'],
+            // "category_2" => $data['category_2'],
+            "category_3" => $data['category_3'],
+            // "close_by" => $data['close_by'],
+            // "serial_number" => $data['serial_number'],
+            // "action" => $data['action'],
+            // "description" => $data['description'],
+
+
+        ]);
 
     	$lastid = $database->insert("tickets_replies", [
     		"ticketid" => $ticketid,
