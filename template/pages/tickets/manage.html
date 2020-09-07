@@ -554,7 +554,11 @@
 
 								<tr>
 									<td><b><?php _e('Visit '); ?></b></td>
-									<td><?php echo $ticket['visit']; ?></td>
+									<td>
+										<?php if($ticket['visit'] != "") echo $ticket['visit'];
+										elseif($ticket['visit'] == "") echo '<span class="text-muted">' . __('None') . '</span>';
+										else echo '<span class="text-muted">' . __('None') . '</span>'; ?>
+									</td>
 								</tr>
 								<tr>
 									<td><b><?php _e('Priority'); ?></b></td>
@@ -571,10 +575,12 @@
 
 								<tr>
 									<td><b><?php _e('Action'); ?></b></td>
-									<?php if($ticket['action'] != "") echo $ticket['action'];
-										elseif($ticket['action'] == "") echo '<span class="text-muted">' . __('None') . '</span>';
+									<td>
+										<?php if($ticket['action_ticket'] != "") echo $ticket['action_ticket'];
+										elseif($ticket['action_ticket'] == "") echo '<span class="text-muted">' . __('None') . '</span>';
 										else echo '<span class="text-muted">' . __('None') . '</span>'; ?>
-									<td><?php echo $ticket['action']; ?></td>
+									</td>
+									
 								</tr>
 
 								<tr>

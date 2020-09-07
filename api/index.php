@@ -264,6 +264,23 @@ switch ($request_resource) {
         require $scriptpath . '/api/resources/action.php';
     break;
 
+    case 'status_tickets': ## DONE ##d
+        require $scriptpath . '/api/resources/status_tickets.php';
+    break;
+
+    case 'category1': ## DONE ##d
+        require $scriptpath . '/api/resources/category1.php';
+    break;
+    
+    case 'category2': ## DONE ##d
+        require $scriptpath . '/api/resources/category2.php';
+    break;
+
+    case 'category3': ## DONE ##d
+        require $scriptpath . '/api/resources/category3.php';
+    break;
+
+
     case 'count_spk': ## DONE ##d
         require $scriptpath . '/api/resources/count_spk.php';
     break;

@@ -82,8 +82,8 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="action"><?php _e('Action'); ?> *</label>
-                <input type="text" class="form-control" id="action" name="action" value="">
+                <label for="action_ticket"><?php _e('Action'); ?> *</label>
+                <input type="text" class="form-control" id="action_ticket" name="action_ticket" value="">
             </div>
         </div>
 
@@ -224,7 +224,7 @@
         <div class="col-md-4">
             <div class="form-group" id="status" name="status" style="display: none;" >
                 <label for="status"><?php _e('Status'); ?></label>
-                <select class="form-control statusSelect select2-hidden-accessible" style="width: 100%;"  >
+                <select class="form-control statusSelect select2-hidden-accessible" id="status" name="status" style="width: 100%;"  >
                 </select>
             </div>
         </div>
@@ -239,8 +239,17 @@
             </div>
         </div>
         <div class="col-md-6">
+            <div class="form-group">
+                <label for="visit"><?php _e('visit'); ?></label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="visit" name="visit">
+                    <span class="input-group-addon"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group" id="email">
-                <label for="email"><?php _e('email'); ?> *</label>
+                <label for="email"><?php _e('Email'); ?> *</label>
                 <input type="text" class="form-control"name="email" value="">
             </div>
         </div>
@@ -255,7 +264,7 @@
                 </div>
         </div> -->
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <?php if($isAdmin) { ?>
                 <div class="form-group">
                     <label for="ccs"><?php _e('CC Recipients'); ?> <i class="fa fa-info-circle fa-fw" data-toggle="tooltip" title="<?php _e('Select CC recipients from contacts list or type an email address and press enter.'); ?>"></i></label>

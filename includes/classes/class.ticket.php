@@ -21,46 +21,79 @@ class Ticket extends App {
 
         if(isset($data['notes'])) $notes = $data['notes']; else $notes = "";
 
+        if(isset($data['category_1'])) $category_1 = $data['category_1']; else $category_1 = 0;
+        if(isset($data['category_2'])) $category_2 = $data['category_2']; else $category_2 = 0;
+        if(isset($data['category_3'])) $category_3 = $data['category_3']; else $category_3 = 0;
+        if(isset($data['status'])) $statusticket = $data['status']; else $statusticket = 0;
+
+        if(isset($data['close_by'])) $close_by = $data['close_by']; else $close_by = "Not Set";
+        if(isset($data['projectid'])) $projectid = $data['projectid']; else $projectid = 0;
+        if(isset($data['assetid'])) $assetid = $data['assetid']; else $assetid = 0;
+        if(isset($data['clientid'])) $clientid = $data['clientid']; else $clientid = 0;
+
         if($data['adminid'] != "0") $peopleid = $data['adminid']; else $peopleid = 0;
         
-        $ticketid = $database->insert("tickets", [
-            "ticket" => $random,
-            "departmentid" => 0,
-            "clientid" => 0,
-            "projectid" => 0,
-            "assetid" => 0,
-            "userid" => 0,
-            "adminid" => $peopleid,
-            "email" => strtolower($data['email']),
-            "idcustomer" => $data['idcustomer'],
-            "subject" => $data['subject'],
-            "status" => "Open",
-            "priority" => $data['priority'],
-            "timestamp" => date('Y-m-d H:i:s'),
-            "notes" => $notes,
-            "ccs" => $ccs,
-            "timespent" => 0,
+        if($data['idcustomer'] == "2"){
+            $ticketid = $database->insert("tickets", [
+                "ticket" => $random,
+                "departmentid" => 0,
+                "clientid" => $clientid,
+                "projectid" => $projectid,
+                "assetid" => $assetid,
+                "userid" => $userid,
+                "adminid" => $peopleid,
+                "email" => strtolower($data['email']),
+                "idcustomer" => $data['idcustomer'],
+                "subject" => $data['subject'],
+                "status" => $statusticket,
+                "priority" => $data['priority'],
+                "timestamp" => date('Y-m-d H:i:s'),
+                "notes" => $notes,
+                "ccs" => $ccs,
+                "timespent" => 0,
+            ]);
 
-            "pic" => $data['pic'],
-            "phone_pic" => $data['phone_pic'],
-            "category_1" => $data['category_1'],
-            "customer_ticket" => $data['customer_ticket'],
-            "create_on" => $data['create_on'],
-            "response_time" => $data['response_time'],
-            "part_received" => $data['part_received'],
-            "departure_time" => $data['departure_time'],
-            "arrival" => $data['arrival'],
-            "start_working" => $data['start_working'],
-            "closed_time" => $data['closed_time'],
-            // "category_2" => $data['category_2'],
-            "category_3" => $data['category_3'],
-            // "close_by" => $data['close_by'],
-            // "serial_number" => $data['serial_number'],
-            // "action" => $data['action'],
-            // "description" => $data['description'],
+        } elseif($data['idcustomer'] == "6"){ //lenovo
+            $ticketid = $database->insert("tickets", [
+                "ticket" => $random,
+                "departmentid" => 0,
+                "clientid" => $clientid,
+                "projectid" => $projectid,
+                "assetid" => $assetid,
+                "userid" => $userid,
+                "adminid" => $peopleid,
+                "email" => strtolower($data['email']),
+                "idcustomer" => $data['idcustomer'],
+                "subject" => $data['subject'],
+                "status" => $statusticket,
+                "priority" => $data['priority'],
+                "timestamp" => date('Y-m-d H:i:s'),
+                "notes" => $notes,
+                "ccs" => $ccs,
+                "timespent" => 0,
 
+                "pic" => $data['pic'],
+                "phone_pic" => $data['phone_pic'],
+                "category_1" => $category_1,
+                "customer_ticket" => $data['customer_ticket'],
+                "create_on" => $data['create_on'],
+                "response_time" => $data['response_time'],
+                "part_received" => $data['part_received'],
+                "departure_time" => $data['departure_time'],
+                "arrival" => $data['arrival'],
+                "start_working" => $data['start_working'],
+                "closed_time" => $data['closed_time'],
+                "category_2" => $category_2,
+                "category_3" => $category_3,
+                "close_by" => $close_by,
+                "serial_number" => $data['serial_number'],
+                "action_ticket" => $data['action_ticket'],
+                "description" => $data['description'],
+                "visit" => $data['visit'],
+            ]);
+        } else {
 
-        ]);
+        }
 
     	$lastid = $database->insert("tickets_replies", [
     		"ticketid" => $ticketid,
@@ -227,7 +260,32 @@ class Ticket extends App {
         public static function editAPI($data) {
             global $database;
 
-            if($data['idcustomer'] == 2){
+            if(empty($data['ccs'])) $ccs = ""; else $ccs = serialize($data['ccs']);
+
+            if(!isset($data['userid'])) {
+                $userid = $database->get("people","id", [ "email" => strtolower($data['email']) ]);
+                if($userid == "") $userid = 0;
+            } else {
+                $userid = $data['userid'];
+            }
+
+            if(isset($data['notes'])) $notes = $data['notes']; else $notes = "";
+
+            if(isset($data['category_1'])) $category_1 = $data['category_1']; else $category_1 = 0;
+            if(isset($data['category_2'])) $category_2 = $data['category_2']; else $category_2 = 0;
+            if(isset($data['category_3'])) $category_3 = $data['category_3']; else $category_3 = 0;
+            if(isset($data['status'])) $statusticket = $data['status']; else $statusticket = 0;
+
+            if(isset($data['close_by'])) $close_by = $data['close_by']; else $close_by = "Not Set";
+            if(isset($data['projectid'])) $projectid = $data['projectid']; else $projectid = 0;
+            if(isset($data['assetid'])) $assetid = $data['assetid']; else $assetid = 0;
+            if(isset($data['clientid'])) $clientid = $data['clientid']; else $clientid = 0;
+
+            if($data['adminid'] != "0") $peopleid = $data['adminid']; else $peopleid = 0;
+            
+
+
+            if($data['idcustomer'] == "2"){
                 
                 $database->update("tickets", [
                     "remarks_wo" => $data['remarks_wo'],
@@ -239,14 +297,37 @@ class Ticket extends App {
 
                 Staff::editLocation($data);
 
-            } else {
+            } elseif($data['idcustomer'] == "6") {
                 $database->update("tickets", [
+                    "departmentid" => 0,
+                    "clientid" => $clientid,
+                    "projectid" => $projectid,
+                    "assetid" => $assetid,
+                    "userid" => $userid,
+                    "adminid" => $peopleid,
+                    "idcustomer" => $data['idcustomer'],
+                    "status" => $statusticket,
+                    "notes" => $notes,
+                    "timespent" => 0,
+                    "category_1" => $category_1,
+                    "response_time" => $data['response_time'],
+                    "part_received" => $data['part_received'],
+                    "departure_time" => $data['departure_time'],
+                    "arrival" => $data['arrival'],
+                    "start_working" => $data['start_working'],
                     "closed_time" => $data['closed_time'],
-                    "root_cause" => $data['root_cause'],
-                    "status" => $data['status'],
+                    "category_2" => $category_2,
+                    "category_3" => $category_3,
+                    "close_by" => $close_by,
+                    "serial_number" => $data['serial_number'],
+                    "action_ticket" => $data['action_ticket'],
+                    "description" => $data['description'],
+                    "visit" => $data['visit'],
                 ], [ "id" => $data['id'] ]);
 
                 Staff::editLocation($data);
+            } else {
+                
             }
 
             logSystem("Ticket Edited EDC API- ID: " . $data['id']);
