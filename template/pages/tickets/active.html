@@ -88,19 +88,18 @@
 												?>
 											</td>
 											<td>
-												<?php if($ticket['status'] == "Open") echo "<span class='badge bg-green'>".__("Open")."</span>"; ?>
-												<?php if($ticket['status'] == "In Progress") echo "<span class='badge bg-navy'>".__("In Progress")."</span>"; ?>
-												<?php if($ticket['status'] == "Answered") echo "<span class='badge bg-teal'>".__("Answered")."</span>"; ?>
-												<?php if($ticket['status'] == "Reopened") echo "<span class='badge bg-orange'>".__("Reopened")."</span>"; ?>
-												<?php if($ticket['status'] == "Closed") echo "<span class='badge bg-gray'>".__("Closed")."</span>"; ?>
+												<?php if($ticket['status'] != 0) { ?>
+													
+													<?php echo getSingleValue("status_tickets","name",$ticket['status']); ?>
+												<?php } else  echo "<span class='text-muted'>".__("Not Set")."</span>"; ?>
 											</td>
 											<td><span style="display:none"><?php echo Ticket::lastReplyStamp($ticket['id']); ?></span><?php echo Ticket::lastReply($ticket['id']); ?></td>
 											<td>
 												<div class='pull-right'>
 													<div class="btn-group">
 														<?php if(in_array("manageTicket",$perms)) { ?><a href='?route=tickets/manage&id=<?php echo $ticket['id']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a><?php } ?>
-														<?php if(in_array("editTicket",$perms)) { ?><a href="#" onClick='showM("index.php?modal=tickets/edit&reroute=tickets/ar&routeid=&id=<?php echo $ticket['id']; ?>&section=");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
-														<?php if(in_array("deleteTicket",$perms)) { ?><a href="#" onClick='showM("index.php?modal=tickets/delete&reroute=tickets/ar&routeid=&id=<?php echo $ticket['id']; ?>&section=");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?>
+														<?php if(in_array("editTicket",$perms)) { ?><a href="#" onClick='showM("index.php?modal=tickets/edit&reroute=tickets/active&routeid=&id=<?php echo $ticket['id']; ?>&section=");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+														<?php if(in_array("deleteTicket",$perms)) { ?><a href="#" onClick='showM("index.php?modal=tickets/delete&reroute=tickets/active&routeid=&id=<?php echo $ticket['id']; ?>&section=");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?>
 													</div>
 												</div>
 											</td>

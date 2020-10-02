@@ -342,17 +342,12 @@
         $('.summernote-modal').summernote({height: 200, maximumImageFileSize: 524288, dialogsInBody: true, disableDragAndDrop: true});
 
 
-        <?php if(isset($_GET['clientid'])) { ?>
-            var clientid = <?php echo $_GET['clientid']; ?>;
-        <?php } else { ?>
-            var clientid = 0;
-        <?php } ?>
+        
 
 
         $("#clientid").on("change", function (e) {
             clientid = $("#clientid").val();
         });
-        
 
         $("#idcustomer").on("change", function (e) {
             idcustomer = $("#idcustomer").val();
@@ -366,9 +361,7 @@
             category_2 = $("#category_2").val();
         });
 
-        <?php if(!$isAdmin) { ?>
-            clientid = <?php echo $liu['clientid']; ?>;
-        <?php } ?>
+        
 
         $('.statusSelect').select2({
     		ajax: {
@@ -498,7 +491,7 @@
     					})
     				};
     			},
-    			cache: true,
+    			// cache: true,
                 
     	    },
     	    minimumInputLength: 3,

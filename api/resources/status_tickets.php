@@ -12,6 +12,7 @@ switch ($request_method) {
         if(empty($filters)) {
             $result = $database->select("status_tickets", "*");
         } else {
+            $filters['id[!]'] = ['7','2','1'];
             $result = $database->select("status_tickets", "*", [ "AND" => $filters ]);
         }
 

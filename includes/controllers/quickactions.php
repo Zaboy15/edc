@@ -441,6 +441,10 @@ switch($_GET['qa']) {
 			}
 		}
 
+		$itemsall = $database->select("status_tickets", "*", [ "OR" => [
+			"id_customer[~]" => 0
+		]]);
+
 		$results = array();
 		$results[0]['id'] = 0;
 		$results[0]['text'] = __('None');
@@ -451,6 +455,13 @@ switch($_GET['qa']) {
 			$results[$i]['text'] = $item['name'];
 			$i++;
 		}
+
+		foreach($itemsall as $itemsall) {
+			$results[$i]['id'] = $itemsall['id'];
+			$results[$i]['text'] = $itemsall['name'];
+			$i++;
+		}
+
 
 		echo json_encode($results);
 	break;
@@ -489,7 +500,11 @@ switch($_GET['qa']) {
 		$i = 1;
 		foreach($items as $item) {
 			$results[$i]['id'] = $item['id'];
-			$results[$i]['text'] = $item['name'];
+			if($item['branch_code'] == ""){
+				$results[$i]['text'] = $item['name'];
+			} else {
+				$results[$i]['text'] = $item['name']."-". $item['branch_code'];
+			}
 			$i++;
 		}
 
@@ -593,13 +608,12 @@ switch($_GET['qa']) {
 				$items = $database->select("assets", "*", [ "AND" => [
 					"clientid" => $filterid,
 					"OR" => [
-						"tag[~]" => $searchstring,
+						"midtid[~]" => $searchstring,
 						"name[~]" => $searchstring
 					]
 				]]);
 			} else {
 				$items = $database->select("assets", "*", [ "OR" => [
-					"tag[~]" => $searchstring,
 					"name[~]" => $searchstring
 				]]);
 			}
@@ -618,7 +632,7 @@ switch($_GET['qa']) {
 		$i = 1;
 		foreach($items as $item) {
 			$results[$i]['id'] = $item['id'];
-			$results[$i]['text'] = $item['midtid'] . " " . $item['serial'];
+			$results[$i]['text'] = $item['name']."-".$item['midtid']."-".$item['serial'];
 			$i++;
 		}
 

@@ -74,13 +74,13 @@
 													</a>
 												<?php } ?>
 											</td>
+
 											
 											<td>
-												<?php if($ticket['status'] == "Open") echo "<span class='badge bg-green'>".__("Open")."</span>"; ?>
-												<?php if($ticket['status'] == "In Progress") echo "<span class='badge bg-navy'>".__("In Progress")."</span>"; ?>
-												<?php if($ticket['status'] == "Answered") echo "<span class='badge bg-teal'>".__("Answered")."</span>"; ?>
-												<?php if($ticket['status'] == "Reopened") echo "<span class='badge bg-orange'>".__("Reopened")."</span>"; ?>
-												<?php if($ticket['status'] == "Closed") echo "<span class='badge bg-gray'>".__("Closed")."</span>"; ?>
+												<?php if($ticket['status'] != 0) { ?>
+													
+													<?php echo getSingleValue("status_tickets","name",$ticket['status']); ?>
+												<?php } else  echo "<span class='text-muted'>".__("Not Set")."</span>"; ?>
 											</td>
 											<td><span style="display:none"><?php echo Ticket::lastReplyStamp($ticket['id']); ?></span><?php echo Ticket::lastReply($ticket['id']); ?></td>
 											<td>

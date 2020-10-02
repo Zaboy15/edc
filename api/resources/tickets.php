@@ -12,13 +12,10 @@ switch ($request_method) {
         if(empty($filters)) {
             $result = $database->select("tickets", "*");
         } else {
-        $filters['status[!]'] = 'Close - Completed';
-
+        $filters['status[!]'] = '8';
             $result = $database->select("tickets", "*", [ "AND" => $filters , "ORDER" => ["id" => "DESC"]]);
         }
 
-        
-        
         $i=0;
         foreach($result as $item) {
             if(empty($result['ccs'])) $result[$i]['ccs'] = ""; else $result[$i]['ccs'] = unserialize($data['ccs']);

@@ -650,10 +650,10 @@ if ($route == "tickets/ar") {
 if ($route == "tickets/active") {
 	isAuthorized("viewTickets");
 	if($isAdmin) {
-		$tickets = $database->select("tickets", "*", ["status[!]" => "Closed", "ORDER" => ["id" => "DESC"]]);
+		$tickets = $database->select("tickets", "*", ["status[!]" => "7", "ORDER" => ["id" => "DESC"]]);
 	}
 	else {
-		$tickets = $database->select("tickets", "*", [ "AND" => ["status[!]" => "Closed", "clientid" => $liu['clientid']], "ORDER" => ["id" => "DESC"]]);
+		$tickets = $database->select("tickets", "*", [ "AND" => ["status[!]" => "7", "clientid" => $liu['clientid']], "ORDER" => ["id" => "DESC"]]);
 	}
 	$pageTitle = __("Active Tickets");
 }
@@ -696,6 +696,7 @@ if ($route == "tickets/manage") {
 
 if ($route == "submitticket") {
 	$departments = getTable("tickets_departments");
+	$people = getTable("people");
 
 }
 

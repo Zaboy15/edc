@@ -210,6 +210,34 @@
 					placeholder: "<?php _e('Please Select'); ?>",
 				});
 
+				var idcustomer = <?php echo $ticket['idcustomer']; ?>;
+
+				$('.statusSelect').select2({
+    		ajax: {
+    			url: "index.php",
+    			dataType: 'json',
+                delay: 50,
+    			data: function (params) {
+    			  return {
+    				q: params.term, // search term
+    				qa: 'statusSelect',
+                    filterid: idcustomer
+    			  };
+    			},
+    			processResults: function (data,params) {
+    				return {
+    					results: $.map(data, function(obj) {
+    						return { id: obj.id, text: obj.text };
+    					})
+    				};
+    			},
+    			cache: true,
+                
+    	    },
+    	    
+    		placeholder: "<?php _e('Please Select'); ?>",
+    	});
+
 				
 				
 
