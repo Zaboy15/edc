@@ -239,6 +239,38 @@ class Import extends App {
 
 	}
 
+	public static function category1($data, $file) {
+    	global $database;
+		
+		
+		
+		$csv = fopen($file["file"]["tmp_name"],"r");
+		$filename = pathinfo($file['file']['name'], PATHINFO_FILENAME);
+		$lineindex = 0;
+
+
+		while( ($item = fgetcsv($csv, 0, ",", '"') ) !== FALSE ) {
+			
+			if($lineindex == 0) { 
+				//skip first line
+				$lineindex++; 
+				continue; 
+			}
+
+
+			$lastid = $database->insert("assetcategories", [
+				"name" => $item[0],
+				"color" => $item[1],
+	
+			]);
+
+
+			$lineindex++;
+		}
+
+
+	}
+
 	public static function assetscategory($data, $file) {
     	global $database;
 		

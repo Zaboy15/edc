@@ -218,6 +218,13 @@
                 </select>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="form-group" id="device_problem" name="device_problem" >
+                <label for="device_problem"><?php _e('Device Problem'); ?></label>
+                <select class="form-control deviceSelect select2-hidden-accessible" id="device_problem" name="device_problem" style="width: 100%;"  >
+                </select>
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -240,7 +247,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="visit"><?php _e('visit'); ?></label>
+                <label for="visit"><?php _e('Visit'); ?></label>
                 <div class="input-group">
                     <input type="number" class="form-control" id="visit" name="visit">
                     <span class="input-group-addon"></span>
@@ -469,6 +476,31 @@
                 
     	    },
     	    
+    		placeholder: "<?php _e('Please Select'); ?>",
+    	});
+
+        $('.deviceSelect').select2({
+    		ajax: {
+    			url: "index.php",
+    			dataType: 'json',
+                delay: 50,
+    			data: function (params) {
+    			  return {
+    				q: params.term, // search term
+    				qa: 'deviceSelect',
+                    filterid: idcustomer
+    			  };
+    			},
+    			processResults: function (data,params) {
+    				return {
+    					results: $.map(data, function(obj) {
+    						return { id: obj.id, text: obj.text };
+    					})
+    				};
+    			},
+    			// cache: true,
+                
+    	    },
     		placeholder: "<?php _e('Please Select'); ?>",
     	});
 

@@ -238,6 +238,19 @@
                 </select>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="form-group" id="device_problem" name="category_1" >
+                <label for="device_problem"><?php _e('Device Problem'); ?></label>
+                <select class="form-control deviceSelect select2-hidden-accessible" id="device_problem" name="device_problem" style="width: 100%;"  >
+                    <?php if($ticket['device_problem'] != 0) { ?>
+                        <option value="<?php echo $ticket['device_problem']; ?>"><?php echo getSingleValue("device_problem","name",$ticket['device_problem']) ; ?></option>
+                    <?php } else { ?>
+                        <option value="0"><?php _e('None'); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
         
     </div>
 
@@ -524,6 +537,31 @@
                 
     	    },
     	    minimumInputLength: 3,
+    		placeholder: "<?php _e('Please Select'); ?>",
+    	});
+
+        $('.deviceSelect').select2({
+    		ajax: {
+    			url: "index.php",
+    			dataType: 'json',
+                delay: 50,
+    			data: function (params) {
+    			  return {
+    				q: params.term, // search term
+    				qa: 'deviceSelect',
+                    filterid: idcustomer
+    			  };
+    			},
+    			processResults: function (data,params) {
+    				return {
+    					results: $.map(data, function(obj) {
+    						return { id: obj.id, text: obj.text };
+    					})
+    				};
+    			},
+    			cache: true,
+                
+    	    },
     		placeholder: "<?php _e('Please Select'); ?>",
     	});
 

@@ -268,6 +268,10 @@ switch ($request_resource) {
         require $scriptpath . '/api/resources/status_tickets.php';
     break;
 
+    case 'device_problem': ## DONE ##d
+        require $scriptpath . '/api/resources/device_problem.php';
+    break;
+
     case 'category1': ## DONE ##d
         require $scriptpath . '/api/resources/category1.php';
     break;

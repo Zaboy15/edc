@@ -4,3 +4,16 @@ id_customer INT(6) NOT NULL,
 name VARCHAR(30) NOT NULL,
 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+ALTER TABLE clients
+ADD COLUMN branch_contact VARCHAR(500) NOT NULL,
+
+
+
+INSERT INTO `category_1` (`id`, `id_customer`, `name`, `timestamp`) VALUES (NULL, '7', 'Incident', current_timestamp()), (NULL, '7', 'Request', current_timestamp())
+
+INSERT INTO `category_2` (`id`, `id_category_1`, `id_customer`, `name`, `timestamp`) VALUES (NULL, '0', '7', 'Aplikasi It Standard', current_timestamp()), (NULL, '0', '7', 'Core Banking', current_timestamp()), (NULL, '0', '7', 'Desktop-Server', current_timestamp()), (NULL, '0', '7', 'Mobile Device', current_timestamp()), (NULL, '0', '7', 'Network', current_timestamp()), (NULL, '0', '7', 'Request', current_timestamp()), (NULL, '0', '7', 'Soti Issue', current_timestamp())
+
+INSERT INTO `category_3` (`id`, `id_category_1`, `id_category_2`, `id_customer`, `name`, `timestamp`) VALUES (NULL, '0', '0', '7', 'Install & Uninstall', current_timestamp()), (NULL, '0', '0', '7', 'Pemasangan Perangkat It', current_timestamp()), (NULL, '0', '0', '7', 'Pergantian Perangkat', current_timestamp()), (NULL, '0', '0', '7', 'Pergantian Tablet', current_timestamp()), (NULL, '0', '0', '7', 'Reimage', current_timestamp()), (NULL, '0', '0', '7', 'Relokasi', current_timestamp()), (NULL, '0', '0', '7', 'Restaging', current_timestamp()), (NULL, '0', '0', '7', 'Service Pc', current_timestamp()), (NULL, '0', '0', '7', 'Setting Printer', current_timestamp()), (NULL, '0', '0', '7', 'Simcard', current_timestamp()), (NULL, '0', '0', '7', 'Standarisasi Software & Apps', current_timestamp()), (NULL, '0', '0', '7', 'Standarisasi Tablet', current_timestamp()), (NULL, '0', '0', '7', 'Tunning Sinyal', current_timestamp())
+
+INSERT INTO `category_2` (`id`, `id_category_1`, `id_customer`, `name`, `timestamp`) VALUES (NULL, '0', '5', 'Request', current_timestamp()), (NULL, '0', '5', 'Software', current_timestamp()), (NULL, '0', '5', 'Hardware', current_timestamp()), (NULL, '0', '5', 'Edc Machine', current_timestamp()), (NULL, '0', '5', 'Infrastructure', current_timestamp()), (NULL, '0', '5', 'Software ', current_timestamp()), (NULL, '0', '5', 'Backup Unit', current_timestamp())

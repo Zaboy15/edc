@@ -19,20 +19,28 @@ class File extends App {
                 	$filename = $nextfileid . "-" . basename($files["file"]["name"][$i]);
                     if(empty($data['name'])) { $emptyfilename = true; $data['name'] = $filename; }
 
-                	$targetfile = $targetdir . $filename;
+					$targetfile = $targetdir . $filename;
+					if(isset($data['clientid'])) $clientid = $data['clientid']; else $clientid = 0;
+					if(isset($data['projectid'])) $projectid = $data['projectid']; else $projectid = 0;
+					if(isset($data['assetid'])) $assetid = $data['assetid']; else $assetid = 0;
+					if(isset($data['ticketreplyid'])) $ticketreplyid = $data['ticketreplyid']; else $ticketreplyid = 0;
+					if(isset($data['spkid'])) $spkid = $data['spkid']; else $spkid = 0;
+					if(isset($data['image_spk'])) $image_spk = $data['image_spk']; else $image_spk = 0;
+
+					
 
                 	if (file_exists($targetfile)) { $status = 9501; }
 
                 	if($status == 9500) {
                 		if (move_uploaded_file($files["file"]["tmp_name"][$i], $targetfile)) {
                 			$database->insert("files", [
-                				"clientid" => $data['clientid'],
-                				"projectid" => $data['projectid'],
-                				"assetid" => $data['assetid'],
-                				"ticketreplyid" => $data['ticketreplyid'],
+                				"clientid" => $clientid,
+                				"projectid" => $projectid,
+                				"assetid" => $assetid,
+                				"ticketreplyid" => $ticketreplyid,
 								"name" => $data['name'],
-								"spkid" => $data['spkid'],
-								"image_spk" => $data['image_spk'],
+								"spkid" => $spkid,
+								"image_spk" => $image_spk,
                 				"file" => $filename
                 			]);
                 			$status == 9500;

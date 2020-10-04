@@ -511,6 +511,44 @@ switch($_GET['qa']) {
 		echo json_encode($results);
 	break;
 
+	case "deviceSelect":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("device_problem", "*", [ "AND" => [
+					"id_customer" => $filterid,
+					"OR" => [
+						"name[~]" => $searchstring,
+					]
+				]]);
+			} else {
+				$items = $database->select("device_problem", "*", [ "OR" => [
+					"name[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("device_problem", "*", [ "id_customer" => $filterid ]);
+			} else {
+				$items = $database->select("device_problem", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['name'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
 	case "simcardSelect":
 		$filterid = $_GET['filterid'];
 		$searchstring = "";
@@ -589,6 +627,47 @@ switch($_GET['qa']) {
 		foreach($items as $item) {
 			$results[$i]['id'] = $item['id'];
 			$results[$i]['text'] = $item['name']." - ".$item['mid'];
+			$i++;
+		}
+
+		echo json_encode($results);
+	break;
+
+	case "phoneSelect":
+		$filterid = $_GET['filterid'];
+		$searchstring = "";
+		if(isset($_GET['q'])) $searchstring = $_GET['q'];
+
+		if($searchstring != "") {
+			if($filterid != 0) {
+				$items = $database->select("clients", "*", [ "AND" => [
+					"id" => $filterid,
+					"OR" => [
+						"pic[~]" => $searchstring,
+						"phone_pic[~]" => $searchstring
+					]
+				]]);
+			} else {
+				$items = $database->select("clients", "*", [ "OR" => [
+					"phone_pic[~]" => $searchstring
+				]]);
+			}
+		} else {
+			if($filterid != 0) {
+				$items = $database->select("clients", "*", [ "id" => $filterid ]);
+			} else {
+				$items = $database->select("clients", "*");
+			}
+		}
+
+		$results = array();
+		$results[0]['id'] = 0;
+		$results[0]['text'] = __('None');
+
+		$i = 1;
+		foreach($items as $item) {
+			$results[$i]['id'] = $item['id'];
+			$results[$i]['text'] = $item['phone_pic'];
 			$i++;
 		}
 

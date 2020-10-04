@@ -24,6 +24,8 @@ class Ticket extends App {
         if(isset($data['category_1'])) $category_1 = $data['category_1']; else $category_1 = 0;
         if(isset($data['category_2'])) $category_2 = $data['category_2']; else $category_2 = 0;
         if(isset($data['category_3'])) $category_3 = $data['category_3']; else $category_3 = 0;
+        if(isset($data['device_problem'])) $device_problem = $data['device_problem']; else $device_problem = 0;
+
         if(isset($data['status'])) $statusticket = $data['status']; else $statusticket = 0;
 
         if(isset($data['close_by'])) $close_by = $data['close_by']; else $close_by = "Not Set";
@@ -46,6 +48,7 @@ class Ticket extends App {
                 "idcustomer" => $data['idcustomer'],
                 "subject" => $data['subject'],
                 "status" => $statusticket,
+                "device_problem" => $device_problem,
                 "priority" => $data['priority'],
                 "timestamp" => date('Y-m-d H:i:s'),
                 "notes" => $notes,
@@ -84,13 +87,51 @@ class Ticket extends App {
                 "closed_time" => $data['closed_time'],
                 "category_2" => $category_2,
                 "category_3" => $category_3,
+                "device_problem" => $device_problem,
                 "close_by" => $close_by,
                 "serial_number" => $data['serial_number'],
                 "action_ticket" => $data['action_ticket'],
                 "description" => $data['description'],
                 "visit" => $data['visit'],
             ]);
-        } else {
+        } elseif($data['idcustomer'] == "5"){ //mcd
+            $ticketid = $database->insert("tickets", [
+                "ticket" => $random,
+                "departmentid" => 0,
+                "clientid" => $clientid,
+                "projectid" => $projectid,
+                "assetid" => $assetid,
+                "userid" => $userid,
+                "adminid" => $peopleid,
+                "email" => strtolower($data['email']),
+                "idcustomer" => $data['idcustomer'],
+                "subject" => $data['subject'],
+                "status" => $statusticket,
+                "priority" => $data['priority'],
+                "timestamp" => date('Y-m-d H:i:s'),
+                "notes" => $notes,
+                "ccs" => $ccs,
+                "timespent" => 0,
+                "pic" => $data['pic'],
+                "phone_pic" => $data['phone_pic'],
+                "category_1" => $category_1,
+                "device_problem" => $device_problem,
+                "customer_ticket" => $data['customer_ticket'],
+                "create_on" => $data['create_on'],
+                "response_time" => $data['response_time'],
+                "part_received" => $data['part_received'],
+                "departure_time" => $data['departure_time'],
+                "arrival" => $data['arrival'],
+                "start_working" => $data['start_working'],
+                "closed_time" => $data['closed_time'],
+                "category_2" => $category_2,
+                "category_3" => $category_3,
+                "close_by" => $close_by,
+                "serial_number" => $data['serial_number'],
+                "action_ticket" => $data['action_ticket'],
+                "description" => $data['description'],
+                "visit" => $data['visit'],
+            ]);
 
         }
 
@@ -222,6 +263,8 @@ class Ticket extends App {
         if(isset($data['category_2'])) $category_2 = $data['category_2']; else $category_2 = 0;
         if(isset($data['category_3'])) $category_3 = $data['category_3']; else $category_3 = 0;
         if(isset($data['status'])) $statusticket = $data['status']; else $statusticket = 0;
+        if(isset($data['device_problem'])) $device_problem = $data['device_problem']; else $device_problem = 0;
+
 
         if(isset($data['close_by'])) $close_by = $data['close_by']; else $close_by = "Not Set";
         if(isset($data['projectid'])) $projectid = $data['projectid']; else $projectid = 0;
@@ -259,7 +302,7 @@ class Ticket extends App {
         //     "visit" => $data['visit'],
         // ],[ "id" => $data['id'] ]);
 
-        if($data['idcustomer'] == 2){
+        if($data['idcustomer'] == "2"){
             $database->update("tickets", [
                 "departmentid" => 0,
                 "clientid" => $clientid,
@@ -278,7 +321,7 @@ class Ticket extends App {
                 "timespent" => 0,
             ],[ "id" => $data['id'] ]);
 
-        } elseif($data['idcustomer'] == 6){ //lenovo
+        } elseif($data['idcustomer'] == "6"){ //lenovo
             $database->update("tickets", [
                 "adminid" => $peopleid,
                 "email" => strtolower($data['email']),
@@ -291,6 +334,68 @@ class Ticket extends App {
                 "pic" => $data['pic'],
                 "phone_pic" => $data['phone_pic'],
                 "category_1" => $category_1,
+
+                "customer_ticket" => $data['customer_ticket'],
+                "create_on" => $data['create_on'],
+                "response_time" => $data['response_time'],
+                "part_received" => $data['part_received'],
+                "departure_time" => $data['departure_time'],
+                "arrival" => $data['arrival'],
+                "start_working" => $data['start_working'],
+                "closed_time" => $data['closed_time'],
+                "category_2" => $category_2,
+                "category_3" => $category_3,
+                "device_problem" => $device_problem,
+                "close_by" => $close_by,
+                "serial_number" => $data['serial_number'],
+                "action_ticket" => $data['action_ticket'],
+                "description" => $data['description'],
+                "visit" => $data['visit'],
+            ],[ "id" => $data['id'] ]);
+        } elseif ($data['idcustomer'] == "5") { //mcd
+            $database->update("tickets", [
+                "adminid" => $peopleid,
+                "email" => strtolower($data['email']),
+                "idcustomer" => $data['idcustomer'],
+                "subject" => $data['subject'],
+                "status" => $statusticket,
+                "priority" => $data['priority'],
+                "notes" => $notes,
+                "ccs" => $ccs,
+                "pic" => $data['pic'],
+                "device_problem" => $device_problem,
+
+                "phone_pic" => $data['phone_pic'],
+                "customer_ticket" => $data['customer_ticket'],
+                "create_on" => $data['create_on'],
+                "response_time" => $data['response_time'],
+                "part_received" => $data['part_received'],
+                "departure_time" => $data['departure_time'],
+                "arrival" => $data['arrival'],
+                "start_working" => $data['start_working'],
+                "closed_time" => $data['closed_time'],
+                "category_2" => $category_2,
+                "close_by" => $close_by,
+                "serial_number" => $data['serial_number'],
+                "action_ticket" => $data['action_ticket'],
+                "description" => $data['description'],
+                "visit" => $data['visit'],
+            ],[ "id" => $data['id'] ]);
+
+        } elseif ($data['idcustomer'] == "7") { //btpns
+            $database->update("tickets", [
+                "adminid" => $peopleid,
+                "email" => strtolower($data['email']),
+                "idcustomer" => $data['idcustomer'],
+                "subject" => $data['subject'],
+                "status" => $statusticket,
+                "priority" => $data['priority'],
+                "notes" => $notes,
+                "ccs" => $ccs,
+                "pic" => $data['pic'],
+                "phone_pic" => $data['phone_pic'],
+                "category_1" => $category_1,
+                "device_problem" => $device_problem,
                 "customer_ticket" => $data['customer_ticket'],
                 "create_on" => $data['create_on'],
                 "response_time" => $data['response_time'],
@@ -307,6 +412,7 @@ class Ticket extends App {
                 "description" => $data['description'],
                 "visit" => $data['visit'],
             ],[ "id" => $data['id'] ]);
+
         } else {
 
         }
@@ -380,6 +486,8 @@ class Ticket extends App {
             if(isset($data['category_2'])) $category_2 = $data['category_2']; else $category_2 = 0;
             if(isset($data['category_3'])) $category_3 = $data['category_3']; else $category_3 = 0;
             if(isset($data['status'])) $statusticket = $data['status']; else $statusticket = 0;
+            if(isset($data['device_problem'])) $device_problem = $data['device_problem']; else $device_problem = 0;
+
 
             if(isset($data['close_by'])) $close_by = $data['close_by']; else $close_by = "Not Set";
             if(isset($data['projectid'])) $projectid = $data['projectid']; else $projectid = 0;
@@ -431,8 +539,67 @@ class Ticket extends App {
                 ], [ "id" => $data['id'] ]);
 
                 Staff::editLocation($data);
-            } else {
+            } elseif($data['idcustomer'] == "5") { // mcd
+
+                $database->update("tickets", [
+                    "departmentid" => 0,
+                    "clientid" => $clientid,
+                    "projectid" => $projectid,
+                    "assetid" => $assetid,
+                    "userid" => $userid,
+                    "adminid" => $peopleid,
+                    "idcustomer" => $data['idcustomer'],
+                    "status" => $statusticket,
+                    "notes" => $notes,
+                    "timespent" => 0,
+                    "device_problem" => $device_problem,
+                    "response_time" => $data['response_time'],
+                    "part_received" => $data['part_received'],
+                    "departure_time" => $data['departure_time'],
+                    "arrival" => $data['arrival'],
+                    "start_working" => $data['start_working'],
+                    "closed_time" => $data['closed_time'],
+                    "category_2" => $category_2,
+                    "close_by" => $close_by,
+                    "serial_number" => $data['serial_number'],
+                    "action_ticket" => $data['action_ticket'],
+                    "description" => $data['description'],
+                    "visit" => $data['visit'],
+                ], [ "id" => $data['id'] ]);
+
+                Staff::editLocation($data);
+
+            } elseif($data['idcustomer'] == "7") { // btpns
+
+                $database->update("tickets", [
+                    "departmentid" => 0,
+                    "clientid" => $clientid,
+                    "projectid" => $projectid,
+                    "assetid" => $assetid,
+                    "userid" => $userid,
+                    "adminid" => $peopleid,
+                    "idcustomer" => $data['idcustomer'],
+                    "status" => $statusticket,
+                    "notes" => $notes,
+                    "timespent" => 0,
+                    "response_time" => $data['response_time'],
+                    "part_received" => $data['part_received'],
+                    "departure_time" => $data['departure_time'],
+                    "arrival" => $data['arrival'],
+                    "start_working" => $data['start_working'],
+                    "closed_time" => $data['closed_time'],
+                    "category_2" => $category_2,
+                    "close_by" => $close_by,
+                    "serial_number" => $data['serial_number'],
+                    "action_ticket" => $data['action_ticket'],
+                    "description" => $data['description'],
+                    "visit" => $data['visit'],
+                ], [ "id" => $data['id'] ]);
+
+                Staff::editLocation($data);
                 
+            } else {
+
             }
 
             logSystem("Ticket Edited EDC API- ID: " . $data['id']);
