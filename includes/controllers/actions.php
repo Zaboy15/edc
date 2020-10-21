@@ -98,6 +98,17 @@ switch($_POST['action']) {
 		isAuthorized("releaseMilestone"); $status = Milestone::release($_POST);
 	break;
 
+	case "uploadToko":
+		isAuthorized("uploadFile"); $status = File::uploadTokoSPK($_POST,$_FILES);
+		break;
+
+	case "uploadStruk":
+		isAuthorized("uploadFile"); $status = File::uploadStrukSPK($_POST,$_FILES);
+		break;
+	
+	case "uploadMesin":
+		isAuthorized("uploadFile"); $status = File::uploadMesinSPK($_POST,$_FILES);
+		break;
 
 	// files
 	case "uploadFile":

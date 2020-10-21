@@ -2,6 +2,99 @@
 
 class File extends App {
 
+	public static function uploadTokoSPK($data,$files) {
+    	$status = 9500;
+    	global $database;
+		global $scriptpath;
+		
+                	$targetdir = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR;
+					$filename = date('dmYHis')."-".str_replace(" ","",basename($_FILES['file']['name']));
+					if(empty($data['name'])) { $emptyfilename = true; $data['name'] = $filename; }
+					$targetfile = $targetdir . $filename;
+					if(isset($data['spkid'])) $spkid = $data['spkid']; else $spkid = 0;
+
+					
+
+                	if (file_exists($targetfile)) { $status = 9501; }
+
+                	if($status == 9500) {
+                		if (move_uploaded_file($files["file"]["tmp_name"], $targetfile)) {
+                			$database->update("spk", [
+								"foto_toko" => $filename,
+							], [ "id" => $data['spkid'] ]);
+                			$status == 9500;
+                		}
+                		else $status == 9502;
+                	}
+
+                    if($emptyfilename) { $data['name'] = ""; }
+
+        
+    	return $status;
+	}
+
+	public static function uploadStrukSPK($data,$files) {
+    	$status = 9500;
+    	global $database;
+		global $scriptpath;
+		
+                	$targetdir = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR;
+					$filename = date('dmYHis')."-".str_replace(" ","",basename($_FILES['file']['name']));
+					if(empty($data['name'])) { $emptyfilename = true; $data['name'] = $filename; }
+					$targetfile = $targetdir . $filename;
+					if(isset($data['spkid'])) $spkid = $data['spkid']; else $spkid = 0;
+
+					
+
+                	if (file_exists($targetfile)) { $status = 9501; }
+
+                	if($status == 9500) {
+                		if (move_uploaded_file($files["file"]["tmp_name"], $targetfile)) {
+                			$database->update("spk", [
+								"foto_struk" => $filename,
+							], [ "id" => $data['spkid'] ]);
+                			$status == 9500;
+                		}
+                		else $status == 9502;
+                	}
+
+                    if($emptyfilename) { $data['name'] = ""; }
+
+        
+    	return $status;
+	}
+	
+	public static function uploadMesinSPK($data,$files) {
+    	$status = 9500;
+    	global $database;
+		global $scriptpath;
+		
+                	$targetdir = $scriptpath . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR;
+					$filename = date('dmYHis')."-".str_replace(" ","",basename($_FILES['file']['name']));
+					if(empty($data['name'])) { $emptyfilename = true; $data['name'] = $filename; }
+					$targetfile = $targetdir . $filename;
+					if(isset($data['spkid'])) $spkid = $data['spkid']; else $spkid = 0;
+
+					
+
+                	if (file_exists($targetfile)) { $status = 9501; }
+
+                	if($status == 9500) {
+                		if (move_uploaded_file($files["file"]["tmp_name"], $targetfile)) {
+                			$database->update("spk", [
+								"foto_mesin" => $filename,
+							], [ "id" => $data['spkid'] ]);
+                			$status == 9500;
+                		}
+                		else $status == 9502;
+                	}
+
+                    if($emptyfilename) { $data['name'] = ""; }
+
+        
+    	return $status;
+    }
+
 
     public static function upload($data,$files) {
     	$status = 9500;
