@@ -9,6 +9,10 @@ ALTER TABLE clients
 ADD COLUMN branch_contact VARCHAR(500) NOT NULL,
 
 
+ALTER TABLE clients
+ADD COLUMN branch_code VARCHAR(500) NOT NULL,
+
+
 
 INSERT INTO `category_1` (`id`, `id_customer`, `name`, `timestamp`) VALUES (NULL, '7', 'Incident', current_timestamp()), (NULL, '7', 'Request', current_timestamp())
 
