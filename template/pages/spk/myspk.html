@@ -83,9 +83,9 @@
 											<td>
 												<div class='pull-right'>
 													<div class="btn-group">
-														<?php if(in_array("manageTicket",$perms)) { ?><a href='?route=tickets/manage&id=<?php echo $ticket['id']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a><?php } ?>
-														<?php if(in_array("editTicket",$perms)) { ?><a href="#" onClick='showM("index.php?modal=tickets/edit&reroute=tickets/ar&routeid=&id=<?php echo $ticket['id']; ?>&section=");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
-														<?php if(in_array("deleteTicket",$perms)) { ?><a href="#" onClick='showM("index.php?modal=tickets/delete&reroute=tickets/ar&routeid=&id=<?php echo $ticket['id']; ?>&section=");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?>
+														<?php if(in_array("manageTicket",$perms)) { ?><a href='?route=spk/manage&id=<?php echo $spk['id']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a><?php } ?>
+														<?php if(in_array("editTicket",$perms)) { ?><a href="#" onClick='showM("index.php?modal=spk/edit&reroute=spk/myspk&id=<?php echo $spk['id']; ?>&section=");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+														<?php if(in_array("deleteTicket",$perms)) { ?><a href="#" onClick='showM("index.php?modal=spk/delete&reroute=spk/myspk&routeid=&id=<?php echo $spk['id']; ?>&section=");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?>
 													</div>
 												</div>
 											</td>
