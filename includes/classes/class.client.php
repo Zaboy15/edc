@@ -26,24 +26,9 @@ class Client extends App {
     public static function edit($data) {
     	global $database;
 
-        if(isset($data['notes'])) {
+        
             $database->update("clients", [
                 "name" => $data['name'],
-                "kode_merchant" => $data['kode_merchant'],
-                "alamat" => $data['alamat'],
-                "pic" => $data['pic'],
-                "phone_pic" => $data['phone_pic'],
-                "kordinat" => $data['kordinat'],
-                "status" => $data['status'],
-                "asset_tag_prefix" => $data['asset_tag_prefix'],
-                "license_tag_prefix" => $data['license_tag_prefix'],
-                "id_customer" => $data['id_customer'],
-                "notes" => $data['notes']
-            ], [ "id" => $data['id'] ]);
-        } else {
-            $database->update("clients", [
-                "name" => $data['name'],
-                "kode_merchant" => $data['kode_merchant'],
                 "alamat" => $data['alamat'],
                 "pic" => $data['pic'],
                 "phone_pic" => $data['phone_pic'],
@@ -53,7 +38,7 @@ class Client extends App {
                 "asset_tag_prefix" => $data['asset_tag_prefix'],
                 "license_tag_prefix" => $data['license_tag_prefix']
             ], [ "id" => $data['id'] ]);
-        }
+        
 
     	logSystem("Client Edited - ID: " . $data['id']);
     	return "20";
