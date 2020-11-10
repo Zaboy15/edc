@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="ibox ">
-		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		
 					
 					<div class="ibox-content">
 						<section id="mapid" ng-controller="GoogleMaps">
@@ -32,7 +32,7 @@
 	</section><!-- /.content -->
 </aside><!-- /.right-side -->
 
-<script>
+<!-- <script>
 	L.Map = L.Map.extend({
     openPopup: function(popup) {
         //        this.closePopup();  // just comment this
@@ -73,6 +73,46 @@
         }
     });
 	
+
+
+</script> -->
+
+
+<script>
+
+	var map = new L.Map('mapid', {zoom: 5, center: new L.latLng([-6.190819, 106.829507]) });	//set center from first location
+
+	map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	//base layer
+
+	var markersLayer = new L.LayerGroup();	//layer contain searched elements
+	map.addLayer(markersLayer);
+
+	var controlSearch = new L.Control.Search({layer: markersLayer, zoom: 20,initial: false, position:'topright'});
+
+	map.addControl( controlSearch );
+
+	var markers;
+	$.ajax({
+        type:'GET',
+        url: 'api/api2/api/location.php',
+        success: function (data){
+	
+			
+		var markers = JSON.parse(data);
+		for ( var i=0; i < markers.length; ++i ) {
+			console.log(markers[i].name);
+
+			var title = markers[i].name,
+			nik = markers[i].nik,
+
+			loc = [markers[i].latitude, markers[i].longtitude],		//position found
+			marker = new L.Marker(new L.latLng(loc), {title: title} );//se property searched
+		marker.bindPopup('Nama: '+ title);
+		markersLayer.addLayer(marker);
+	}
+
+        }
+	});
 
 
 </script>
