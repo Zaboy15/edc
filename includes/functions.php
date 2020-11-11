@@ -198,6 +198,7 @@ function getRowPemeriksaan($table,$idspk,$idticket) { //return associative array
 	return $row;
 }
 
+
 function getSingleValue($table,$column,$id) { //returns single value from table row by id
 	global $database;
 	$value = $database->get($table, $column, ["id" => $id]);

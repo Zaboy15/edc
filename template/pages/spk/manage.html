@@ -20,7 +20,13 @@
 						  <div class="btn-group pull-right" style="padding:6px;">
 							<!-- <?php if(in_array("viewPReplies",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Insert Predefined Reply'); ?>' onClick='showM("?modal=preplies/insert");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-arrow-right fw"></i> <?php _e('Predefined Reply'); ?></button><?php } ?> -->
 							<?php if(in_array("editTicket",$perms)) { ?><button data-toggle='tooltip' title='<?php _e('Edit SPK'); ?>' onClick='showM("?modal=spk/edit&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&id=<?php echo $spk['id']; ?>&section=");return false' type="button" class="btn btn-default btn-sm btn-flat"><i class="fa fa-edit"></i></button><?php } ?>
-							
+							<?php if($withdraw == 0) { ?>
+								<a data-toggle='tooltip' title='<?php _e('Tambah Data Withdraw'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=withdraw/add&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&idspk=<?php echo $spk['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-database'></i></a>
+								<?php } ?>
+								<?php if($withdraw >= 1) { ?>
+									<a data-toggle='tooltip' title='<?php _e('Ubah Data Withdraw'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=withdraw/edit&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&idspk=<?php echo $spk['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-database'></i></a>
+									<?php } ?>
+
 							<?php if($pemeriksaan == 0) { ?>
 							<a data-toggle='tooltip' title='<?php _e('Tambah Pemeriksaan Wajib'); ?>' class="btn btn-default btn-sm " href="#" onClick='showM("?modal=pemeriksaan/add&reroute=spk/manage&routeid=<?php echo $spk['id']; ?>&idspk=<?php echo $spk['id']; ?>");return false' class='btn btn-xs text-dark btn-flat'><i class='fa fa-comment'></i></a>
 							<?php } ?>

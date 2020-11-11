@@ -1,0 +1,83 @@
+<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"><?php _e('New Withdraw Data'); ?></h4></div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="serial_number"><?php _e('Serial Number EDC'); ?> *</label>
+                <input type="text" class="form-control" id="serial_number" name="serial_number">
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="type_edc"><?php _e('Type EDC'); ?> *</label>
+                <input type="text" class="form-control" id="type_edc" name="type_edc">
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="status_unit"><?php _e('Status Unit'); ?></label>
+                <select class="form-control select2 select2-hidden-accessible" id="status_unit" name="status_unit" style="width: 100%;" tabindex="-1" >
+                        <option value="BAD"><?php _e('BAD'); ?></option>
+                        <option value="GOOD"><?php _e('GOOD'); ?></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="kelengkapan"><?php _e('Kelengkapan Unit'); ?> *</label>
+            <div class="form-group"><div class="checkbox"><label><input type="checkbox" id="charger"name="charger" value="false" > <?php _e('Charger/Adapter'); ?></label></div></div>                   
+            <div class="form-group"><div class="checkbox"><label><input type="checkbox" id="batterai"name="batterai" value="false" > <?php _e('Batterai'); ?></label></div></div>
+            <div class="form-group"><div class="checkbox"><label><input type="checkbox" id="simcard"name="simcard" value="false" > <?php _e('Simcard'); ?></label></div></div>
+            <div class="form-group"><div class="checkbox"><label><input type="checkbox" id="paper"name="paper" value="false" > <?php _e('Paper Roll'); ?></label></div></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="tgl_bast"><?php _e('Tangga BAST'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="tgl_bast" name="tgl_bast" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="incoming_warehouse"><?php _e('Tangga Warehouse Terima'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="incoming_warehouse" name="incoming_warehouse" value="">
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="idspk" value="<?php if(isset($_GET['idspk'])) echo $_GET['idspk']; else echo "0"; ?>">
+    <input type="hidden" name="action" value="addWithdraw">
+    <input type="hidden" name="route" value="<?php echo $_GET['reroute']; ?>">
+    <input type="hidden" name="routeid" value="<?php echo $_GET['routeid']; ?>">
+    <input type="hidden" name="section" value="<?php echo $_GET['section']; ?>">
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php _e('Cancel'); ?></button>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> <?php _e('Create'); ?></button>
+</div>
+
+
+<script type="text/javascript">
+$(".select2").select2();
+
+$(".select2tag").select2({
+    tags: true,
+    maximumSelectionLength: 1
+});
+
+$(".select2tags").select2({
+    tags: true
+});
+
+$(".form_datetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            autoclose: true,
+            todayBtn: true
+        });
+</script>

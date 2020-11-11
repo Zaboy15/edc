@@ -228,6 +228,10 @@ switch($_GET['modal']) {
 
         break;
 
+        case "withdraw/edit":
+            $withdraw = $database->get("tabel_withdraw", "*", ["idspk" => $_GET['idspk']]);
+        break;
+
 
     // escalation rules
     case "escalationrules/add":

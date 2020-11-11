@@ -147,6 +147,15 @@ switch($_POST['action']) {
 		isAuthorized("deleteComment"); $status = Comment::delete($_POST['id']);
 		break;
 
+	//withdraw
+	case "addWithdraw":
+		isAuthorized("addTicket"); $status = Withdraw::addWithdraw($_POST);
+	break;
+
+	case "editWithdraw":
+		isAuthorized("addTicket"); $status = Withdraw::editWithdraw($_POST);
+	break;
+
 	//pemeriksaan
 
 	case "addPemeriksaanEDC":

@@ -721,6 +721,11 @@ if ($route == "spk/myspk") {
 	$pageTitle = __("All SPK");
 }
 
+if ($route == "spk/withdraw") {
+	isAuthorized("viewSPK");
+	$pageTitle = __("Detail Withdraw");
+}
+
 if ($route == "spk/all") {
 	isAuthorized("viewSPK");
 	$pageTitle = __("My SPK");
@@ -731,6 +736,8 @@ if ($route == "spk/all") {
 if ($route == "spk/manage") {
 	isAuthorized("manageTicket");
 	$pemeriksaan = countTableFiltered("tabel_pemeriksaan","idspk",$_GET['id']);
+	$withdraw = countTableFiltered("tabel_withdraw","idspk",$_GET['id']);
+
 	$spk = getRowById("spk",$_GET['id']);
 	$filesimage = getTableFiltered("files","spkid",$_GET['id'],"image_spk",1);
 	$filesimagesignaturemanage = getTableFiltered("files","spkid",$_GET['id'],"image_spk",2);

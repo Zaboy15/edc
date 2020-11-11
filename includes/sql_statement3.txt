@@ -5,3 +5,5 @@ name VARCHAR(30) NOT NULL,
 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+
+CREATE VIEW `tabelspkwithdraw` AS select `a`.`id` AS `id`,`a`.`id_itfs` AS `id_itfs`,`d`.`name` AS `namaitfs`,`a`.`ticket_spk` AS `ticket_spk`,`b`.`serial_number` AS `serial`,`a`.`wo_activity` AS `wo_activity`,`a`.`spk_number` AS `spk_number`,`a`.`id_merchant` AS `id_merchant`,`a`.`spk_status` AS `spk_status`,`a`.`wo_remarks` AS `wo_remarks`,`a`.`remarks_spk` AS `remarks_spk`,`c`.`name` AS `namamerchant` from (((`u4580489_edc`.`spk` `a` left join `u4580489_edc`.`tabel_withdraw` `b` on(`a`.`id` = `b`.`idspk`)) left join `u4580489_edc`.`clients` `c` on(`a`.`id_merchant` = `c`.`id`)) left join `u4580489_edc`.`people` `d` on(`a`.`id_itfs` = `d`.`id`))

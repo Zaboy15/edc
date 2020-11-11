@@ -260,6 +260,10 @@ switch ($request_method) {
 
 switch ($request_resource) {
 
+    case 'withdraw': ## DONE ##d
+        require $scriptpath . '/api/resources/withdraw.php';
+    break;
+
     case 'kode_action': ## DONE ##d
         require $scriptpath . '/api/resources/action.php';
     break;
