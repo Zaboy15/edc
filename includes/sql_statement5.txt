@@ -1,0 +1,4 @@
+ALTER TABLE people
+ADD COLUMN project_name VARCHAR(500) NOT NULL,
+
+

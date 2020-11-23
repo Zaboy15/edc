@@ -1265,6 +1265,8 @@ if ($route == "system/import/customerSample") {
 
 }
 
+
+
 if ($route == "system/import/assetscategoriesSample") {
 	isAuthorized("viewSystem");
 

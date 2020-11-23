@@ -5,9 +5,9 @@
 			<h1 class="pull-left"><?php _e('Custom Fields'); ?><small> <?php _e('Manage custom fields'); ?></small></h1>
 			<div class="pull-right">
 				<?php if(in_array("addCustomField",$perms)) { ?>
-					<a onClick='showM("?modal=assetscf/add&reroute=system/customfields&section=");return false' data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><?php _e('NEW CUSTOM ASSET FIELD'); ?></a>
-					<a onClick='showM("?modal=licensescf/add&reroute=system/customfields&section=licenses");return false' data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><?php _e('NEW CUSTOM LICENSE FIELD'); ?></a>
-					<a onClick='showM("?modal=staffcf/add&reroute=system/customfields&section=staff");return false' data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><?php _e('NEW CUSTOM STAFF FIELD'); ?></a>
+					<!-- <a onClick='showM("?modal=assetscf/add&reroute=system/customfields&section=");return false' data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><?php _e('NEW CUSTOM ASSET FIELD'); ?></a> -->
+					<!-- <a onClick='showM("?modal=licensescf/add&reroute=system/customfields&section=licenses");return false' data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><?php _e('NEW CUSTOM LICENSE FIELD'); ?></a> -->
+					<a onClick='showM("?modal=staffcf/add&reroute=system/customfields&section=");return false' data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><?php _e('NEW CUSTOM STAFF FIELD'); ?></a>
 				
 					<?php } ?>
 			</div>
@@ -24,9 +24,9 @@
                 <!-- Custom Tabs -->
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li <?php if ($section == "") echo 'class="active"'; ?> ><a href="#assets" data-toggle="tab"><?php _e('Custom Asset Fields'); ?></a></li>
-						<li <?php if ($section == "licenses") echo 'class="active"'; ?> ><a href="#licenses" data-toggle="tab"><?php _e('Custom License Fields'); ?></a></li>
-						<li <?php if ($section == "staff") echo 'class="active"'; ?> ><a href="#staff" data-toggle="tab"><?php _e('Custom Staff Fields'); ?></a></li>
+                        <!-- <li <?php if ($section == "") echo 'class="active"'; ?> ><a href="#assets" data-toggle="tab"><?php _e('Custom Asset Fields'); ?></a></li> -->
+						<!-- <li <?php if ($section == "licenses") echo 'class="active"'; ?> ><a href="#licenses" data-toggle="tab"><?php _e('Custom License Fields'); ?></a></li> -->
+						<li <?php if ($section == "") echo 'class="active"'; ?> ><a href="#staff" data-toggle="tab"><?php _e('Custom Staff Fields'); ?></a></li>
 
                     </ul>
 
@@ -34,7 +34,7 @@
                     <div class="tab-content">
 
 
-                        <div class="tab-pane <?php if ($section == "") echo 'active'; ?>" id="assets">
+                        <div class="tab-pane <?php if ($section == "assets") echo 'active'; ?>" id="assets">
 
 							<div class="table-responsive">
 								<table id="dataTablesFull" class="table table-striped table-hover table-bordered">
@@ -111,7 +111,7 @@
 
 						</div><!-- /.tab-pane -->
 
-						<div class="tab-pane <?php if ($section == "staff") echo 'active'; ?>" id="staff">
+						<div class="tab-pane <?php if ($section == "") echo 'active'; ?>" id="staff">
 
 							<div class="table-responsive">
 								<table id="dataTablesFull" class="table table-striped table-hover table-bordered">
@@ -135,8 +135,8 @@
 												<td><?php echo $staff_customfields['options']; ?></td>
 												<td>
 													<div class='pull-right btn-group'>
-														<?php if(in_array("editCustomField",$perms)) { ?><a href='#' onClick='showM("?modal=licensescf/edit&reroute=system/customfields&section=licenses&id=<?php echo $licenses_customfield['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
-														<?php if(in_array("deleteCustomField",$perms)) { ?><a href='#' onClick='showM("?modal=licensescf/delete&reroute=system/customfields&section=licenses&id=<?php echo $licenses_customfield['id']; ?>");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?>
+														<?php if(in_array("editCustomField",$perms)) { ?><a href='#' onClick='showM("?modal=staffcf/edit&reroute=system/customfields&section=&id=<?php echo $staff_customfields['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+														<?php if(in_array("deleteCustomField",$perms)) { ?><a href='#' onClick='showM("?modal=staffcf/delete&reroute=system/customfields&section=&id=<?php echo $staff_customfields['id']; ?>");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?>
 													</div>
 												</td>
 											</tr>

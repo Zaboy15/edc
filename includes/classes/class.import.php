@@ -230,7 +230,7 @@ class Import extends App {
 	public static function importstaff($data, $file) {
     	global $database;
 		
-		// $customfields = getTable("assets_customfields");
+		// $customfields = getTable("staff_customfields");
 		// $customfieldsdata = array();
 		
 		$csv = fopen($file["file"]["tmp_name"],"r");
@@ -251,6 +251,15 @@ class Import extends App {
 			if ($cekstaff > 0) {
 				echo "gagal";
 			} else {
+
+			$itemindex = 6;
+			foreach ($customfields as $customfield) {
+				if(isset($item[$itemindex])) {
+					$customfieldsdata[$customfield['id']] = $item[$itemindex];
+				}
+				$itemindex++;
+			}
+
 			$lastid = $database->insert("people", [
 				// "customfields" => serialize($customfieldsdata),
 				"roleid" => $item[0],//0
@@ -274,6 +283,7 @@ class Import extends App {
 				"autorefresh" => 0,
 				"lang" => getConfigValue("default_lang"),
 				"ticketsnotification" => 1,
+				"customfields" => serialize($customfieldsdata),
 				
 			]);
 
@@ -925,7 +935,7 @@ class Import extends App {
 	public static function samplestaff() {
 		global $database;
 
-
+		$customfields = getTable("staff_customfields");
 		
 		header('Content-Type: application/excel');
 		header('Content-Disposition: attachment; filename="samplestaff.csv"');
@@ -942,6 +952,10 @@ class Import extends App {
 			"nik", //5
 			
 		];
+
+		foreach ($customfields as $customfield) {
+			array_push($header, $customfield['name']);
+        }
 
 		
 	
