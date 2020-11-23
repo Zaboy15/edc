@@ -3,6 +3,53 @@
 class Ticket extends App {
 
     // TICKETS
+
+    public static function sla_aging($dataopen,$dataclosed){
+
+        $startDate = new DateTime($dataopen);
+        $endDate = new DateTime($dataclosed);
+        $periodInterval = new DateInterval( "PT1H" );
+    
+        $period = new DatePeriod( $startDate, $periodInterval, $endDate );
+        $count = 0;
+    
+        foreach($period as $date){
+    
+        $startofday = clone $date;
+        $startofday->setTime(7,00);
+    
+        $endofday = clone $date;
+        $endofday->setTime(17,00);
+    
+            if($date > $startofday && $date <= $endofday && !in_array($date->format('l'), array('Sunday','Saturday'))){
+    
+                $count++;
+            }
+    
+        }
+        
+        //Get seconds of Start time
+        $start_d = date("Y-m-d H:00:00", strtotime($dataopen));
+        $start_d_seconds = strtotime($start_d);
+        $start_t_seconds = strtotime($dataopen);
+        $start_seconds = $start_t_seconds - $start_d_seconds;
+                                
+        //Get seconds of End time
+        $end_d = date("Y-m-d H:00:00", strtotime($dataclosed));
+        $end_d_seconds = strtotime($end_d);
+        $end_t_seconds = strtotime($dataclosed);
+        $end_seconds = $end_t_seconds - $end_d_seconds;
+                                        
+        $diff = $end_seconds-$start_seconds;
+        
+        if($diff!=0):
+            $count--;
+        endif;
+            
+        $total_min_sec = date('i:s',$diff);
+        
+        return $count .":".$total_min_sec;
+    }
     
 
     public static function add($data) {
@@ -93,6 +140,53 @@ class Ticket extends App {
                 "action_ticket" => $data['action_ticket'],
                 "description" => $data['description'],
                 "visit" => $data['visit'],
+            ]);
+        }elseif($data['idcustomer'] == "7"){ //general
+            $ticketid = $database->insert("tickets", [
+                "ticket" => $random,
+                "departmentid" => 0,
+                "clientid" => $clientid,
+                "projectid" => $projectid,
+                "assetid" => $assetid,
+                "userid" => $userid,
+                "adminid" => $peopleid,
+                "email" => strtolower($data['email']),
+                "idcustomer" => $data['idcustomer'],
+                "subject" => $data['subject'],
+                "status" => $statusticket,
+                "priority" => $data['priority'],
+                "timestamp" => date('Y-m-d H:i:s'),
+                "notes" => $notes,
+                "ccs" => $ccs,
+                "timespent" => 0,
+                "pic" => $data['pic'],
+                "phone_pic" => $data['phone_pic'],
+                "category_1" => $category_1,
+                "customer_ticket" => $data['customer_ticket'],
+                "create_on" => $data['create_on'],
+                "response_time" => $data['response_time'],
+                "part_received" => $data['part_received'],
+                "departure_time" => $data['departure_time'],
+                "arrival" => $data['arrival'],
+                "start_working" => $data['start_working'],
+                "closed_time" => $data['closed_time'],
+                "category_2" => $category_2,
+                "category_3" => $category_3,
+                "serial_number" => $data['serial_number'],
+                "action_ticket" => $data['action_ticket'],
+                "description" => $data['description'],
+
+                "device_problem" => $data['device'],
+                "sla" => $data['sla'],
+                "parts" => $data['parts'],
+                "backup_unit" => $data['backup_unit'],
+                "cust_name" => $data['cust_name'],
+                "sub_cust_name" => $data['sub_cust_name'],
+
+
+
+
+
             ]);
         } elseif($data['idcustomer'] == "5"){ //mcd
             $ticketid = $database->insert("tickets", [
@@ -382,7 +476,7 @@ class Ticket extends App {
                 "visit" => $data['visit'],
             ],[ "id" => $data['id'] ]);
 
-        } elseif ($data['idcustomer'] == "7") { //btpns
+        } elseif ($data['idcustomer'] == "7") { //general
             $database->update("tickets", [
                 "adminid" => $peopleid,
                 "email" => strtolower($data['email']),
@@ -395,7 +489,6 @@ class Ticket extends App {
                 "pic" => $data['pic'],
                 "phone_pic" => $data['phone_pic'],
                 "category_1" => $category_1,
-                "device_problem" => $device_problem,
                 "customer_ticket" => $data['customer_ticket'],
                 "create_on" => $data['create_on'],
                 "response_time" => $data['response_time'],
@@ -406,11 +499,18 @@ class Ticket extends App {
                 "closed_time" => $data['closed_time'],
                 "category_2" => $category_2,
                 "category_3" => $category_3,
-                "close_by" => $close_by,
                 "serial_number" => $data['serial_number'],
                 "action_ticket" => $data['action_ticket'],
                 "description" => $data['description'],
-                "visit" => $data['visit'],
+
+
+                "device_problem" => $data['device'],
+                "sla" => $data['sla'],
+                "parts" => $data['parts'],
+                "backup_unit" => $data['backup_unit'],
+                "cust_name" => $data['cust_name'],
+                "sub_cust_name" => $data['sub_cust_name'],
+
             ],[ "id" => $data['id'] ]);
 
         } else {

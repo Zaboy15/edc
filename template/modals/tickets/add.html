@@ -56,40 +56,83 @@
 
     <div class="row">
         <div class="col-md-6">
+            <div class="form-group" id="cust_name" style="display: none;">
+                <label for="cust_name"><?php _e('Customer Name'); ?></label>
+                <input type="text" class="form-control" id="cust_name" name="cust_name" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group" id="sub_cust_name" style="display: none;">
+                <label for="sub_cust_name"><?php _e('Sub Customer Name'); ?></label>
+                <input type="text" class="form-control" id="sub_cust_name" name="sub_cust_name" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group" id="sla" style="display: none;">
+                <label for="sla"><?php _e('SLA'); ?></label>
+                <input type="text" class="form-control" id="sla" name="sla" value="">
+            </div>
+        </div>
+
+        
+        <div class="col-md-6">
             <div class="form-group">
-                <label for="customer_ticket"><?php _e('Customer Ticket'); ?> *</label>
-                <input type="text" class="form-control" id="customer_ticket" name="customer_ticket" value="" required>
+                <label for="customer_ticket"><?php _e('Customer Ticket'); ?></label>
+                <input type="text" class="form-control" id="customer_ticket" name="customer_ticket" value="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="subject"><?php _e('Subject'); ?> *</label>
-                <input type="text" class="form-control" id="subject" name="subject" value="" required>
+                <label for="subject"><?php _e('Subject'); ?></label>
+                <input type="text" class="form-control" id="subject" name="subject" value="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="description"><?php _e('Description Problem'); ?> *</label>
+                <label for="description"><?php _e('Description Problem'); ?></label>
                 <input type="text" class="form-control" id="description" name="description" value="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" id="device" style="display: none;">
+                <label for="device"><?php _e('Device'); ?></label>
+                <input type="text" class="form-control" id="device" name="device" value="">
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="form-group">
-                <label for="serial_number"><?php _e('Serial Number'); ?> *</label>
+                <label for="serial_number"><?php _e('Serial Number'); ?></label>
                 <input type="text" class="form-control" id="serial_number" name="serial_number" value="">
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="form-group" id="parts" style="display: none;">
+                <label for="parts"><?php _e('Parts'); ?></label>
+                <input type="text" class="form-control" id="parts" name="parts" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group" id="backup_unit" style="display: none;">
+                <label for="backup_unit"><?php _e('Backup Unit'); ?></label>
+                <input type="text" class="form-control" id="backup_unit" name="backup_unit" value="">
+            </div>
+        </div>
+
         <div class="col-md-4">
             <div class="form-group">
-                <label for="action_ticket"><?php _e('Action'); ?> *</label>
+                <label for="action_ticket"><?php _e('Action'); ?></label>
                 <input type="text" class="form-control" id="action_ticket" name="action_ticket" value="">
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="form-group">
-                <label for="notes"><?php _e('Notes'); ?> *</label>
+                <label for="notes"><?php _e('Notes'); ?></label>
                 <input type="text" class="form-control" id="notes" name="notes" value="">
             </div>
         </div>
@@ -99,47 +142,47 @@
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="create_on"><?php _e('Create On'); ?> *</label>
+                <label for="create_on"><?php _e('Create On'); ?></label>
                 <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="response_time"><?php _e('Response Time'); ?> *</label>
+                <label for="response_time"><?php _e('Response Time'); ?></label>
                 <input type="text" class="form-control form_datetime" id="response_time" name="response_time" value="">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="part_received"><?php _e('Part Receive'); ?> *</label>
+                <label for="part_received"><?php _e('Part Receive'); ?></label>
                 <input type="text" class="form-control form_datetime" id="part_received" name="part_received" value="">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="departure_time"><?php _e('Departure Time'); ?> *</label>
+                <label for="departure_time"><?php _e('Departure Time'); ?></label>
                 <input type="text" class="form-control form_datetime" id="departure_time" name="departure_time" value="">
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="arrival"><?php _e('Arrival Time'); ?> *</label>
+                <label for="arrival"><?php _e('Arrival Time'); ?></label>
                 <input type="text" class="form-control form_datetime" id="arrival" name="arrival" value="">
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="start_working"><?php _e('Start Working'); ?> *</label>
+                <label for="start_working"><?php _e('Start Working'); ?></label>
                 <input type="text" class="form-control form_datetime" id="start_working" name="start_working" value="">
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="closed_time"><?php _e('Close Time'); ?> *</label>
+                <label for="closed_time"><?php _e('Close Time'); ?></label>
                 <input type="text" class="form-control form_datetime" id="closed_time" name="closed_time" value="">
             </div>
         </div>
@@ -148,30 +191,29 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group" id="id_case" style="display: none;">
-                <label for="id_case" ><?php _e('ID Case'); ?> *</label>
+                <label for="id_case" ><?php _e('ID Case'); ?></label>
                 <input type="text" class="form-control" name="id_case" value="">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group" id="ref" style="display: none;">
-                <label for="ref"><?php _e('Ref'); ?> *</label>
+                <label for="ref"><?php _e('Ref'); ?></label>
                 <input type="text" class="form-control" name="ref" value="">
             </div>
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-md-6">
             <div class="form-group" id="pic" style="display: none;">
-                <label for="pic"><?php _e('PIC'); ?> *</label>
+                <label for="pic"><?php _e('PIC'); ?></label>
                 <input type="text" class="form-control"name="pic" value="">
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group" id="phone_pic" style="display: none;">
-                <label for="phone_pic"><?php _e('PIC PHONE'); ?> *</label>
+                <label for="phone_pic"><?php _e('PIC PHONE'); ?></label>
                 <input type="text" class="form-control" name="phone_pic" value="">
             </div>
         </div>
@@ -236,7 +278,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group">
+            <div class="form-group"id="close_by" name="close_by" style="display: none;" >
                 <label for="close_by" class="control-label"><?php _e('Closed By'); ?></label>
                 <select class="form-control select2" id="close_by" name="close_by" style="width: 100%;">
                     <option value="Not Set"><?php _e('Not Set'); ?></option>
@@ -246,7 +288,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group">
+            <div class="form-group" id="visit" name="visit" style="display: none;" >
                 <label for="visit"><?php _e('Visit'); ?></label>
                 <div class="input-group">
                     <input type="number" class="form-control" id="visit" name="visit">
@@ -256,7 +298,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group" id="email">
-                <label for="email"><?php _e('Email'); ?> *</label>
+                <label for="email"><?php _e('Email'); ?> </label>
                 <input type="text" class="form-control"name="email" value="">
             </div>
         </div>
@@ -633,6 +675,12 @@
                 document.getElementById('category_1').style.display = "block";
                 document.getElementById('category_2').style.display = "block";
                 document.getElementById('category_3').style.display = "block";
+
+                document.getElementById('sla').style.display = "none";
+                document.getElementById('cust_name').style.display = "none";
+                document.getElementById('device').style.display = "none";
+                document.getElementById('parts').style.display = "none";
+                document.getElementById('backup_unit').style.display = "none";
             } else if (idcustomer == "5") { //mcd
                 document.getElementById('clientid').style.display = "block";
                 document.getElementById('status').style.display = "block";
@@ -644,13 +692,44 @@
                 document.getElementById('category_1').style.display = "block";
                 document.getElementById('category_2').style.display = "block";
                 document.getElementById('category_3').style.display = "block";
-            } else if(idcustomer == "6") {
+
+                document.getElementById('sla').style.display = "none";
+                document.getElementById('cust_name').style.display = "none";
+                document.getElementById('device').style.display = "none";
+                document.getElementById('parts').style.display = "none";
+                document.getElementById('backup_unit').style.display = "none";
+            } else if(idcustomer == "6") { //lenovo
                 document.getElementById('status').style.display = "block";
                 document.getElementById('category_1').style.display = "block";
                 document.getElementById('category_2').style.display = "block";
                 document.getElementById('category_3').style.display = "block";
                 document.getElementById('pic').style.display = "block";
                 document.getElementById('phone_pic').style.display = "block";
+                document.getElementById('clientid').style.display = "none";
+                document.getElementById('id_case').style.display = "none";
+                document.getElementById('ref').style.display = "none";
+                document.getElementById('assetid').style.display = "none";
+
+                document.getElementById('sla').style.display = "none";
+                document.getElementById('cust_name').style.display = "none";
+                document.getElementById('device').style.display = "none";
+                document.getElementById('parts').style.display = "none";
+                document.getElementById('backup_unit').style.display = "none";
+            } else if(idcustomer == "7") { //general
+                document.getElementById('status').style.display = "block";
+                document.getElementById('category_1').style.display = "block";
+                document.getElementById('category_2').style.display = "block";
+                document.getElementById('category_3').style.display = "block";
+                document.getElementById('pic').style.display = "block";
+                document.getElementById('phone_pic').style.display = "block";
+
+                document.getElementById('sla').style.display = "block";
+                document.getElementById('cust_name').style.display = "block";
+                document.getElementById('device').style.display = "block";
+                document.getElementById('parts').style.display = "block";
+                document.getElementById('backup_unit').style.display = "block";
+
+
                 document.getElementById('clientid').style.display = "none";
                 document.getElementById('id_case').style.display = "none";
                 document.getElementById('ref').style.display = "none";
@@ -666,6 +745,11 @@
                 document.getElementById('ref').style.display = "none";
                 document.getElementById('pic').style.display = "none";
                 document.getElementById('phone_pic').style.display = "none";
+                document.getElementById('sla').style.display = "none";
+                document.getElementById('cust_name').style.display = "none";
+                document.getElementById('device').style.display = "none";
+                document.getElementById('parts').style.display = "none";
+                document.getElementById('backup_unit').style.display = "none";
             }
         });
     });

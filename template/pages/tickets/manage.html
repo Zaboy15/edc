@@ -665,6 +665,19 @@
 									<td><b><?php _e('Timestamp Created'); ?></b></td>
 									<td><?php echo dateTimeDisplay($ticket['timestamp']); ?></td>
 								</tr>
+
+								<tr>
+									<td><b><?php _e('Aging'); ?></b></td>
+									<td>
+                                        <?php
+											
+												$go = Ticket::sla_aging($ticket['create_on'],$ticket['closed_time']);
+                                        echo $go;
+											
+										?>
+									</td>
+								</tr>
+
 								<tr>
 									<td><b><?php _e('Email Address'); ?></b></td>
 									<td><?php echo $ticket['email']; ?></td>
