@@ -230,8 +230,8 @@ class Import extends App {
 	public static function importstaff($data, $file) {
     	global $database;
 		
-		// $customfields = getTable("staff_customfields");
-		// $customfieldsdata = array();
+		$customfields = getTable("staff_customfields");
+		$customfieldsdata = array();
 		
 		$csv = fopen($file["file"]["tmp_name"],"r");
 		$filename = pathinfo($file['file']['name'], PATHINFO_FILENAME);
