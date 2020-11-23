@@ -180,6 +180,52 @@ class Import extends App {
 
 	}
 
+	public static function importCustomer($data, $file) {
+    	global $database;
+		
+		// $customfields = getTable("assets_customfields");
+		// $customfieldsdata = array();
+		
+		$csv = fopen($file["file"]["tmp_name"],"r");
+		$filename = pathinfo($file['file']['name'], PATHINFO_FILENAME);
+		$lineindex = 0;
+
+
+		while( ($item = fgetcsv($csv, 0, ",", '"') ) !== FALSE ) {
+			
+			if($lineindex == 0) { 
+				//skip first line
+				$lineindex++; 
+				continue; 
+			}
+		
+			$lastid = $database->insert("tabel_customer", [
+				"id_cust" => $item[0],//0
+				"nama_customer" => $item[1],//1
+				"project_name" => $item[2],//2
+				"project_description" => $item[3],//1
+				"category" => $item[4],//4
+				"project_type" => $item[5],//5
+				"location" => $item[6],//6
+    			"cost_center" => $item[7],//7
+            	"address" => $item[8],//8
+    			"phone" => $item[9],//9
+    			"contact_person" => $item[10],//10
+				"project_manager" => $item[11],//11
+				"project_supervisior" => $item[12],//12
+				"account_manager" => $item[13],//13
+				"contract_start" => $item[14],//14
+				"contract_end" => $item[15],//15
+				"project_status" => $item[16] //16
+				
+			]);
+
+
+			$lineindex++;
+		
+	}
+}
+
 	
 	public static function importstaff($data, $file) {
     	global $database;
@@ -637,6 +683,48 @@ class Import extends App {
 
 
 
+		fclose($output);
+
+	}
+
+	public static function customerSample() {
+		global $database;
+
+		// $customfields = getTable("assets_customfields");
+		
+		header('Content-Type: application/excel');
+		header('Content-Disposition: attachment; filename="sample-customer.csv"');
+		
+		$output = fopen('php://output', 'w');
+
+		$header = [
+			"ID_CUSTOMER", // 0
+			"CUSTOMER_NAME", // 1###
+			"PROJECT_NAME", // 2
+			"PROJECT_DESCRIPTION/SOW", // 3
+			"CATEGORY", //4
+			"PROJECT_TYPE", //5
+			"LOCATION", //6
+			"COST_CENTER", //7
+			"ADDRESS", //8
+			"PHONE", //9 ###
+			"CONTACT_PERSON", //10
+			"PROJECT_MANAGER", //11 ###
+			"PROJECT_SUPERVISIOR", //12 ###
+			"ACCOUNT_MANAGER", //13 ###
+			"CONTRACT_START_DATE", //14 ###
+			"CONTRACT_END_DATE", //15 ###
+			"PROJECT_STATUS", //16 ###
+
+
+		];
+
+		// foreach ($customfields as $customfield) {
+		// 	array_push($header, $customfield['name']);
+        // }
+	
+	
+		fputcsv($output, $header, ",");
 		fclose($output);
 
 	}

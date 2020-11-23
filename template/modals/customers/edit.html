@@ -23,28 +23,103 @@
         </div>
         <div class="col-xs-6">
             <div class="form-group">
-                <label for="address"><?php _e('Address'); ?> *</label>
-                <input type="text" class="form-control" id="address" name="address" value="<?php echo $customers['address']; ?>" required>
+                <label for="address"><?php _e('Address'); ?> </label>
+                <input type="text" class="form-control" id="address" name="address" value="<?php echo $customers['address']; ?>">
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
-                <label for="phone"><?php _e('Phone'); ?> *</label>
-                <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $customers['phone']; ?>" required>
+                <label for="phone"><?php _e('Phone'); ?></label>
+                <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $customers['phone']; ?>" >
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
-                <label for="contact_person"><?php _e('Contact Person'); ?> *</label>
-                <input type="text" class="form-control" id="contact_person" name="contact_person" value="<?php echo $customers['contact_person']; ?>" required>
+                <label for="contact_person"><?php _e('Contact Person'); ?></label>
+                <input type="text" class="form-control" id="contact_person" name="contact_person" value="<?php echo $customers['contact_person']; ?>" >
             </div>
         </div>
         <div class="col-xs-6">
             <div class="form-group">
-                <label for="project_manager"><?php _e('Project Manager'); ?> *</label>
-                <input type="text" class="form-control" id="project_manager" name="project_manager" value="<?php echo $customers['project_manager']; ?>" required>
+                <label for="project_manager"><?php _e('Project Manager'); ?> </label>
+                <input type="text" class="form-control" id="project_manager" name="project_manager" value="<?php echo $customers['project_manager']; ?>">
             </div>
         </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_name"><?php _e('Project Name'); ?> </label>
+                <input type="text" class="form-control" id="project_name" name="project_name" value="<?php echo $customers['project_name']; ?>" >
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_description"><?php _e('Project Description'); ?> </label>
+                <input type="text" class="form-control" id="project_description" name="project_description" value="<?php echo $customers['project_description']; ?>" >
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="category"><?php _e('Category'); ?> </label>
+                <input type="text" class="form-control" id="category" name="category" value="<?php echo $customers['category']; ?>" >
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_type"><?php _e('Project Type'); ?> </label>
+                <input type="text" class="form-control" id="project_type" name="project_type" value="<?php echo $customers['project_type']; ?>" >
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="location"><?php _e('Location'); ?> </label>
+                <input type="text" class="form-control" id="location" name="location" value="<?php echo $customers['location']; ?>" >
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_supervisior"><?php _e('Project Supervisior'); ?> </label>
+                <input type="text" class="form-control" id="project_supervisior" name="project_supervisior" value="<?php echo $customers['project_supervisior']; ?>" >
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="account_manager"><?php _e('Account Manager'); ?> </label>
+                <input type="text" class="form-control" id="account_manager" name="account_manager" value="<?php echo $customers['account_manager']; ?>" >
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="contract_start"><?php _e('Contract Start Date'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="contract_start" name="contract_start" value="<?php echo $customers['contract_start']; ?>">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="contract_end"><?php _e('Contract End Date'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="contract_end" name="contract_end" value="<?php echo $customers['contract_end']; ?>">
+            </div>
+        </div>
+       
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="project_status" class="control-label"><?php _e('Project Status'); ?></label>
+                <select class="form-control select2" id="project_status" name="project_status" style="width: 100%;">
+                    <option value="PLANNING"<?php if($customers['project_status'] == "PLANNING") echo "selected"; ?>><?php _e('PLANNING'); ?></option>
+                    <option value="BUILD"<?php if($customers['project_status'] == "BUILD") echo "selected"; ?>><?php _e('BUILD'); ?></option>
+                    <option value="ACTIVE" <?php if($customers['project_status'] == "ACTIVE") echo "selected"; ?>><?php _e('ACTIVE'); ?></option>
+                    <option value="NOT ACTIVE" <?php if($customers['project_status'] == "NOT ACTIVE") echo "selected"; ?>><?php _e('NOT ACTIVE'); ?></option>
+
+                </select>
+            </div>
+        </div>
+        
 
     </div>
 
@@ -58,3 +133,16 @@
     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php _e('Cancel'); ?></button>
     <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> <?php _e('Save'); ?></button>
 </div>
+
+
+<script type="text/javascript">
+
+$(function() { $(".select2").select2(); });
+
+
+    $(".form_datetime").datetimepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: true
+        });
+</script>

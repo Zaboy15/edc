@@ -14,7 +14,17 @@ class Customer extends App {
             "address" => $data['address'],
             "phone" => $data['phone'],
             "contact_person" => $data['contact_person'],
-            "project_manager" => $data['project_manager'],
+            "project_name" => $data['project_manager'],
+            "project_description" => $data['project_description'],
+            "category" => $data['category'],
+            "project_type" => $data['project_type'],
+            "location" => $data['location'],
+            "project_supervisior" => $data['project_supervisior'],
+            "account_manager" => $data['account_manager'],
+            "contract_start" => $data['contract_start'],
+            "contract_end" => $data['contract_end'],
+            "project_status" => $data['project_status'],
+
 
         ]);
     	if ($lastid == "0") { return "11"; } else { logSystem("Customer Added - ID: " . $lastid); return "10"; }
@@ -31,6 +41,15 @@ class Customer extends App {
                 "phone" => $data['phone'],
                 "contact_person" => $data['contact_person'],
                 "project_manager" => $data['project_manager'],
+                "project_description" => $data['project_description'],
+                "category" => $data['category'],
+                "project_type" => $data['project_type'],
+                "location" => $data['location'],
+                "project_supervisior" => $data['project_supervisior'],
+                "account_manager" => $data['account_manager'],
+                "contract_start" => $data['contract_start'],
+                "contract_end" => $data['contract_end'],
+                "project_status" => $data['project_status'],
             ], [ "id" => $data['id'] ]);
         
 

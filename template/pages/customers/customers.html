@@ -4,7 +4,13 @@
 	<section class="content-header">
 			<h1 class="pull-left"><?php _e('Customer'); ?><small> <?php _e('Manage customer'); ?></small></h1>
 			<div class="pull-right"><?php if(in_array("addClient",$perms)) { ?><a onClick='showM("index.php?modal=customers/add&reroute=customers/customers");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Customers'); ?></a><?php } ?></div>
+			
 			<div style="clear:both"></div>
+	</section>
+
+	<section class="content-header">
+		<div class="pull-left"><?php if(in_array("addClient",$perms)) { ?><a onClick='showM("index.php?modal=import/customer&reroute=customers/customers");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('Import Customers'); ?></a><?php } ?></div>
+		<div style="clear:both"></div>
 	</section>
 	<!-- Main content -->
 	<section class="content">
@@ -17,16 +23,26 @@
 
                     <div class="box-body">
 						<div class="table-responsive">
-	                        <table id="dataTablesFull" class="table table-striped table-hover table-bordered">
+	                        <table id="dataTablesFull" class="table table-striped table-hover table-bordered nowrap">
 	                            <thead>
 	                                <tr>
 	                                    <th><?php _e('ID CUSTOMER'); ?></th>
-	                                    <th><?php _e('NAMA CUSTOMER'); ?></th>
-										<th><?php _e('COST CENTER'); ?></th>
+										<th><?php _e('CUSTOMER NAME'); ?></th>
+	                                    <th><?php _e('PROJECT NAME'); ?></th>
+	                                    <th><?php _e('PROJECT DESCRIPTION'); ?></th>
+										<th><?php _e('CATEGORY'); ?></th>
+	                                    <th><?php _e('PROJECT TYPE'); ?></th>
+	                                    <th><?php _e('LOCATION'); ?></th>
+	                                    <th><?php _e('COST CENTER'); ?></th>
 	                                    <th><?php _e('ADDRESS'); ?></th>
 	                                    <th><?php _e('PHONE'); ?></th>
-	                                    <th><?php _e('CONTACT PERSON'); ?></th>
+										<th><?php _e('CONTACT PERSON'); ?></th>
 	                                    <th><?php _e('PROJECT MANAGER'); ?></th>
+	                                    <th><?php _e('PROJECT SUPERVISIOR'); ?></th>
+	                                    <th><?php _e('ACCOUNT MANAGER'); ?></th>
+	                                    <th><?php _e('CONTRACT START'); ?></th>
+										<th><?php _e('CONTRACT END'); ?></th>
+	                                    <th><?php _e('PROJECT STATUS'); ?></th>
 										
 										<!-- <th></th> -->
 										<th class="text-right"></th>
@@ -36,14 +52,22 @@
 									<?php foreach ($customer as $customer) { ?>
 		                                <tr>
 		                                    <td><?php echo $customer['id_cust']; ?></td>
-		                                    <td><?php echo $customer['nama_customer']; ?></td>
-											<td><?php echo $customer['cost_center']; ?></td>
+											<td><?php echo $customer['nama_customer']; ?></td>
+		                                    <td><?php echo $customer['project_name']; ?></td>
+		                                    <td><?php echo $customer['project_description']; ?></td>
+		                                    <td><?php echo $customer['category']; ?></td>
+		                                    <td><?php echo $customer['project_type']; ?></td>
+		                                    <td><?php echo $customer['location']; ?></td>
+		                                    <td><?php echo $customer['cost_center']; ?></td>
 		                                    <td><?php echo $customer['address']; ?></td>
 		                                    <td><?php echo $customer['phone']; ?></td>
-											<td><?php echo $customer['contact_person']; ?></td>
+		                                    <td><?php echo $customer['contact_person']; ?></td>
 		                                    <td><?php echo $customer['project_manager']; ?></td>
-											
-											
+		                                    <td><?php echo $customer['project_supervisior']; ?></td>
+		                                    <td><?php echo $customer['account_manager']; ?></td>
+											<td><?php echo $customer['contract_start']; ?></td>
+											<td><?php echo $customer['contract_end']; ?></td>
+		                                    <td><?php echo $customer['project_status']; ?></td>
 
 											<!-- <td>
 												<span class='label label-lite-blue'><?php echo countTableFiltered("assets","clientid",$client['id']); ?> <?php _e('Assets'); ?></span>&nbsp;

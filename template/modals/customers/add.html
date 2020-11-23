@@ -45,6 +45,82 @@
                 <input type="text" class="form-control" id="project_manager" name="project_manager">
             </div>
         </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_name"><?php _e('Project Name'); ?> </label>
+                <input type="text" class="form-control" id="project_name" name="project_name" value="" >
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_description"><?php _e('Project Description'); ?> </label>
+                <input type="text" class="form-control" id="project_description" name="project_description" value="" >
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="category"><?php _e('Category'); ?> </label>
+                <input type="text" class="form-control" id="category" name="category" value="" >
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_type"><?php _e('Project Type'); ?> </label>
+                <input type="text" class="form-control" id="project_type" name="project_type" value="" >
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="location"><?php _e('Location'); ?> </label>
+                <input type="text" class="form-control" id="location" name="location" value="" >
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="project_supervisior"><?php _e('Project Supervisior'); ?> </label>
+                <input type="text" class="form-control" id="project_supervisior" name="project_supervisior" value="" >
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label for="account_manager"><?php _e('Account Manager'); ?> </label>
+                <input type="text" class="form-control" id="account_manager" name="account_manager" value="" >
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="contract_start"><?php _e('Contract Start Date'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="contract_start" name="contract_start" value="">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="contract_end"><?php _e('Contract End Date'); ?> *</label>
+                <input type="text" class="form-control form_datetime" id="contract_end" name="contract_end" value="">
+            </div>
+        </div>
+       
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="project_status" class="control-label"><?php _e('Project Status'); ?></label>
+                <select class="form-control select2" id="project_status" name="project_status" style="width: 100%;">
+                    <option value="PLANNING"><?php _e('PLANNING'); ?></option>
+                    <option value="BUILD"><?php _e('BUILD'); ?></option>
+                    <option value="ACTIVE"><?php _e('ACTIVE'); ?></option>
+                    <option value="NOT ACTIVE"><?php _e('NOT ACTIVE'); ?></option>
+
+                </select>
+            </div>
+        </div>
+
+
     </div>
 
     <input type="hidden" name="action" value="addCustomer">

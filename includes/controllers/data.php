@@ -1258,6 +1258,13 @@ if ($route == "system/import/merchantSample") {
 
 }
 
+if ($route == "system/import/customerSample") {
+	isAuthorized("viewSystem");
+
+	Import::customerSample();
+
+}
+
 if ($route == "system/import/assetscategoriesSample") {
 	isAuthorized("viewSystem");
 

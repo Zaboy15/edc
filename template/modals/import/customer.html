@@ -1,0 +1,23 @@
+<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title"><?php _e('Import Customer'); ?></h4></div>
+<div class="modal-body">
+
+    <div class="form-group">
+        <label for="file"><?php _e('CSV File'); ?></label>
+        <input type="file" id="file" name="file" required>
+        <p class="help-block"><?php _e('Max upload file size on your server is'); ?> <?php echo ini_get('upload_max_filesize'); ?>.</p>
+    </div>
+
+    <input type="hidden" name="action" value="importCustomer">
+    <input type="hidden" name="route" value="<?php echo $_GET['reroute']; ?>">
+    <input type="hidden" name="routeid" value="<?php echo $_GET['routeid']; ?>">
+    <input type="hidden" name="section" value="<?php if(isset($_GET['section'])) echo $_GET['section']; else echo ""; ?>">
+</div>
+<div class="modal-footer">
+    <a class="btn btn-default" href="?route=system/import/customerSample" target="_blank"><i class="fa fa-download fa-fw"></i><?php _e('Download Sample File'); ?></a>
+    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <?php _e('Cancel'); ?></button>
+    <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> <?php _e('Upload'); ?></button>
+</div>
+
+<script type="text/javascript">
+		$(".select2").select2();
+</script>
