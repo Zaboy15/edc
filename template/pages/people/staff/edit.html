@@ -159,6 +159,12 @@
 														<?php if($customfield['type'] == "Text Box") { ?>
 															<input type="text" class="form-control" name="<?php echo $customfield['id'] ?>" value="<?php echo $customdata[$customfield['id']] ?>">
 														<?php } ?>
+
+														<?php if($customfield['type'] == "DateTime") { ?>
+															
+															<input type="text" class="form-control form_datetime" name="<?php echo $customfield['id'] ?>" value="<?php echo $customdata[$customfield['id']] ?>">
+
+														<?php } ?>
 		
 														<?php if($customfield['type'] == "Text Area") { ?>
 															<textarea class="form-control" name="<?php echo $customfield['id'] ?>"><?php echo $customdata[$customfield['id']]; ?></textarea>
@@ -234,5 +240,7 @@
     $(".getNewPass").click(function(){
         $(".passwordinput").val(generatePassword());
     });
+
+	
 
 </script>
