@@ -57,6 +57,15 @@ switch($_GET['modal']) {
         $location = getRowById("locations",$_GET['id']);
         break;
 
+    case "status/add":
+        $customertable = getTable("tabel_customer");
+        break;
+
+    case "status/edit":
+        $status = getRowById("status_tickets",$_GET['id']);
+        $customertable = getTable("tabel_customer");
+        break;
+
 
     case "providercategories/edit":
         $category = getRowById("category_provider",$_GET['id']);
@@ -183,11 +192,33 @@ switch($_GET['modal']) {
         $ticket = getRowById("tickets",$_GET['id']);
         $ccs = array(); if($ticket['ccs'] != "") $ccs = unserialize($ticket['ccs']);
         $contacts = getTable("contacts");
+        $customertable = getTable("tabel_customer");
+
         if($isAdmin) { $assets = getTable("assets"); } else { $assets = getTableFiltered("assets","clientid",$liu['clientid']); }
         $departments = getTable("tickets_departments");
         $admins = getTableFiltered("people","type","admin");
         if($isAdmin) { $users = getTableFiltered("people","type","user"); } else { $users = getTableFiltered("people","type","user","clientid",$liu['clientid']); }
-        break;
+        
+    break;
+
+    case "category/addCategory1":
+        $customertable = getTable("tabel_customer");
+
+    break;
+
+    case "category/addCategory2":
+        $customertable = getTable("tabel_customer");
+        $category1 = getTable("category_1");
+
+    
+    break;
+
+    case "category/addCategory3":
+        $customertable = getTable("tabel_customer");
+        $category1 = getTable("category_1");
+        $category2 = getTable("category_2");
+    
+    break;
     
     case "spk/edit":
         $spkdata = getRowById("spk",$_GET['id']);

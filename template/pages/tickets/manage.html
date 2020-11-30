@@ -589,6 +589,16 @@
 								</tr>
 
 								<tr>
+									<td><b><?php _e('Parts'); ?></b></td>
+									<td><?php echo $ticket['parts']; ?></td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('Backup Unit'); ?></b></td>
+									<td><?php echo $ticket['backup_unit']; ?></td>
+								</tr>
+
+								<tr>
 									<td><b><?php _e('Device Problem'); ?></b></td>
 									<td>
 										<?php if($ticket['device_problem'] != 0) echo getSingleValue("device_problem","name",$ticket['device_problem']);
@@ -622,6 +632,11 @@
 										elseif($ticket['category_3'] == 0) echo '<span class="text-muted">' . __('None') . '</span>';
 										else echo '<span class="text-muted">' . __('None') . '</span>'; ?>
 									</td>
+								</tr>
+
+								<tr>
+									<td><b><?php _e('ETA on'); ?></b></td>
+									<td><?php echo dateTimeDisplay($ticket['eta']); ?></td>
 								</tr>
 
 								<tr>

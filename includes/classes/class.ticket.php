@@ -227,6 +227,49 @@ class Ticket extends App {
                 "visit" => $data['visit'],
             ]);
 
+        } else {
+            $ticketid = $database->insert("tickets", [
+                "ticket" => $random,
+                "departmentid" => 0,
+                "clientid" => $clientid,
+                "projectid" => $projectid,
+                "assetid" => $assetid,
+                "userid" => $userid,
+                "adminid" => $peopleid,
+                "email" => strtolower($data['email']),
+                "idcustomer" => $data['idcustomer'],
+                "subject" => $data['subject'],
+                "status" => $statusticket,
+                "priority" => $data['priority'],
+                "timestamp" => date('Y-m-d H:i:s'),
+                "notes" => $notes,
+                "ccs" => $ccs,
+                "timespent" => 0,
+                "pic" => $data['pic'],
+                "phone_pic" => $data['phone_pic'],
+                "category_1" => $category_1,
+                "customer_ticket" => $data['customer_ticket'],
+                "create_on" => $data['create_on'],
+                "response_time" => $data['response_time'],
+                "part_received" => $data['part_received'],
+                "departure_time" => $data['departure_time'],
+                "arrival" => $data['arrival'],
+                "start_working" => $data['start_working'],
+                "closed_time" => $data['closed_time'],
+                "category_2" => $category_2,
+                "category_3" => $category_3,
+                "serial_number" => $data['serial_number'],
+                "action_ticket" => $data['action_ticket'],
+                "description" => $data['description'],
+                "device_problem" => $data['device'],
+                "sla" => $data['sla'],
+                "parts" => $data['parts'],
+                "backup_unit" => $data['backup_unit'],
+                "cust_name" => $data['cust_name'],
+                "sub_cust_name" => $data['sub_cust_name'],
+                "eta" => $data['eta'],
+
+                ]);
         }
 
     	$lastid = $database->insert("tickets_replies", [
@@ -514,6 +557,42 @@ class Ticket extends App {
             ],[ "id" => $data['id'] ]);
 
         } else {
+            $database->update("tickets", [
+                "adminid" => $peopleid,
+                "email" => strtolower($data['email']),
+                "idcustomer" => $data['idcustomer'],
+                "subject" => $data['subject'],
+                "status" => $statusticket,
+                "priority" => $data['priority'],
+                "notes" => $notes,
+                "ccs" => $ccs,
+                "pic" => $data['pic'],
+                "phone_pic" => $data['phone_pic'],
+                "category_1" => $category_1,
+                "customer_ticket" => $data['customer_ticket'],
+                "create_on" => $data['create_on'],
+                "response_time" => $data['response_time'],
+                "part_received" => $data['part_received'],
+                "departure_time" => $data['departure_time'],
+                "arrival" => $data['arrival'],
+                "start_working" => $data['start_working'],
+                "closed_time" => $data['closed_time'],
+                "category_2" => $category_2,
+                "category_3" => $category_3,
+                "serial_number" => $data['serial_number'],
+                "action_ticket" => $data['action_ticket'],
+                "description" => $data['description'],
+
+
+                "device_problem" => $data['device'],
+                "sla" => $data['sla'],
+                "parts" => $data['parts'],
+                "backup_unit" => $data['backup_unit'],
+                "cust_name" => $data['cust_name'],
+                "sub_cust_name" => $data['sub_cust_name'],
+                "eta" => $data['eta'],
+
+            ],[ "id" => $data['id'] ]);
 
         }
 
@@ -699,6 +778,27 @@ class Ticket extends App {
                 Staff::editLocation($data);
                 
             } else {
+                $database->update("tickets", [
+                    "departmentid" => 0,
+                    "clientid" => $clientid,
+                    "projectid" => $projectid,
+                    "assetid" => $assetid,
+                    "userid" => $userid,
+                    "adminid" => $peopleid,
+                    "idcustomer" => $data['idcustomer'],
+                    "notes" => $notes,
+                    "timespent" => 0,
+                    "part_received" => $data['part_received'],
+                    "serial_number" => $data['serial_number'],
+                    "action_ticket" => $data['action_ticket'],
+                    "description" => $data['description'],
+                    "parts" => $data['parts'],
+                    "backup_unit" => $data['backup_unit'],
+
+
+                ], [ "id" => $data['id'] ]);
+
+                Staff::editLocation($data);
 
             }
 
@@ -780,14 +880,101 @@ class Ticket extends App {
 
     }
 
+    public static function updateStatusAPIGlobal($data) {
+        global $database;
+        
+        $status = getSingleValue("status_tickets","name",$data['status']);
+
+    	if($status == "Travel"){
+            $database->update("tickets", [
+                "response_time" => date('Y-m-d H:i:s'),
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
+            return "20";
+        } else if($status == "Onsite"){
+            $database->update("tickets", [
+                "departure_time" => date('Y-m-d H:i:s'),
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
+            return "20";
+        } else if($status == "Waiting Customer"){
+            $database->update("tickets", [
+                "arrival" => date('Y-m-d H:i:s'),
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
+            return "20";
+        } else if($status == "Inprogress"){
+            $database->update("tickets", [
+                "start_working" => date('Y-m-d H:i:s'),
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
+            return "20";
+        } else if($status == "Closed"){
+            $tanggalopen = getSingleValue("tickets","timestamp",$data['id']);
+            $tanggalopen2 = strtotime($tanggalopen);
+            $closedtime = date('Y-m-d H:i:s');
+            $closedtime2 = strtotime($closedtime);
+            $datediff = $closedtime2 - $tanggalopen2;
+
+            $hasil = round($datediff / (60 * 60 * 24));
+            if($hasil <= 1){
+                $slastatus = "Meet";
+            } else {
+                $slastatus = "Not Meet";
+            }
+            
+            $database->update("tickets", [
+                "closed_time" => $closedtime,
+                "sla" => $hasil,
+                "sla_status" => $slastatus,
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
+            return "20";
+        } else {
+            $database->update("tickets", [
+                "status" => $data['status']
+            ], [ "id" => $data['id'] ]);
+            logSystem("Ticket Status Update API - ID: " . $data['id']);
+            Staff::editLocation($data);
+            self::updateRepliesApi($data);
+            return "20";
+        }
+
+
+    }
+
     public static function updateRepliesApi($data){
         global $database;
         if($data['adminid'] != "0") $peopleid = $data['adminid']; else $peopleid = $userid;
+        $status = getSingleValue("status_tickets","name",$data['status']);
+        $type_tickets = getSingleValue("tickets","idcustomer",$data['id']);
+
+        if ($type_tickets > 7){
+            $message = "Status di ubah ke ".$status." dengan waktu ".date('Y-m-d H:i:s');
+        } else {
+            $message = "Status di ubah ke ".$data['status']." dengan waktu ".date('Y-m-d H:i:s');
+        }
+
 
     	$lastid = $database->insert("tickets_replies", [
     		"ticketid" => $data['id'],
     		"peopleid" => $peopleid,
-    		"message" => "Status di ubah ke ".$data['status']." dengan waktu ".date('Y-m-d H:i:s'),
+    		"message" => $message,
     		"timestamp" => date('Y-m-d H:i:s')
     	]);
 

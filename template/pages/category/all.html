@@ -1,0 +1,239 @@
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+			<h1 class="pull-left"><?php _e('Category'); ?><small> <?php _e('Manage Category'); ?></small></h1>
+			<div class="pull-right"><?php if(in_array("addClient",$perms)) { ?><a onClick='showM("index.php?modal=customers/add&reroute=customers/customers");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Customers'); ?></a><?php } ?></div>
+			<!-- <div class="pull-right"><a data-toggle='tooltip' class="btn btn-primary btn-flat btn-sm" title='<?php _e('Delete All  '); ?>' href="?qa=deleteWhatsapp"><?php _e('Delete All'); ?></a></div> -->
+			
+			
+			<div style="clear:both"></div>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<?php if(!empty($statusmessage)): ?>
+				<div class="row"><div class='col-md-12'><div class="alert alert-<?php print $statusmessage["type"]; ?> alert-auto" role="alert"><?php print __($statusmessage["message"]); ?></div></div></div>
+		<?php endif; ?>
+		<div class="row">
+			<div class="col-xs-12">
+
+				
+				<div class="box box-primary">
+					
+					<form role="form" method="post" class="">
+                    <div class="box-body">
+						<div class="table-responsive">
+	                        <table id="dataTablesFull" class="table table-striped table-hover table-bordered">
+	                            <thead>
+	                                <tr>
+	                                    <th><?php _e('ID CATEGORY 1'); ?></th>
+	                                    <th><?php _e('CUSTOMER'); ?></th>
+										<th><?php _e('CATEGORY NAME'); ?></th>
+	                                    <th><?php _e('TIMESTAMP'); ?></th>
+										
+										<!-- <th></th> -->
+										<th class="text-right"></th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+									<?php foreach ($category1 as $category1) { ?>
+		                                <tr>
+											
+											<td><?php echo $category1['id']; ?></td>
+		                                    <td><?php echo getSingleValue("tabel_customer","nama_customer",$category1['id_customer']); ?></td>
+		                                    <td><?php echo $category1['name']; ?></td>
+		                                    <td><?php echo $category1['timestamp']; ?></td>
+											
+		                                    
+											
+
+
+											<td>
+												<div class='pull-right'>
+													<div class="btn-group">
+												
+
+														<!-- <?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a><?php } ?> -->
+														<!-- <?php if(in_array("editClient",$perms)) { ?><a href='#' onClick='showM("index.php?modal=customers/edit&reroute=customers/customers&id=<?php echo $customer['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+														<?php if(in_array("deleteClient",$perms)) { ?><a href='#' onClick='showM("index.php?modal=customers/delete&reroute=customers/customers&id=<?php echo $customer['id']; ?>");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?> -->
+													</div>
+												</div>
+											</td>
+		                                </tr>
+									<?php } ?>
+								</tbody>
+								<div class='pull-left'>
+									<h3 class="pull-left"><?php _e('Category'); ?><small> <?php _e('Manage Category'); ?></small></h3>
+								
+									<div class="form-group">
+										<div class="pull-left"><?php if(in_array("addTicket",$perms)) { ?><a onClick='showM("index.php?modal=category/addCategory1&reroute=category/all");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Category 1'); ?></a><?php } ?></div>
+									<div style="clear:both"></div>
+									</div>
+								
+							</div>
+							</table>
+
+								<input type="hidden" name="action" value="deleteWhatsappMulti">
+								<input type="hidden" name="route" value="whatsapp/whatsapp">
+								<input type="hidden" name="routeid" value="">
+							</form>
+						</div>
+					</div>
+				</div>
+            </div>
+            
+
+
+			<div class="col-xs-12">
+
+				
+				
+					<div class="box box-primary">
+						
+						<form role="form" method="post" class="">
+						<div class="box-body">
+							<div class="table-responsive">
+								<table id="dataTablesFull" class="table table-striped table-hover table-bordered">
+									<thead>
+										<tr>
+											<th><?php _e('ID CATEGORY 2'); ?></th>
+											<th><?php _e('HEAD CATEGORY 1'); ?></th>
+											<th><?php _e('CUSTOMER'); ?></th>
+											<th><?php _e('CATEGORY NAME'); ?></th>
+											<th><?php _e('TIMESTAMP'); ?></th>
+											
+											<!-- <th></th> -->
+											<th class="text-right"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach ($category2 as $category2) { ?>
+											<tr>
+												<td><?php echo $category2['id']; ?></td>
+												<td><?php echo getSingleValue("category_1","name",$category2['id_category_1']); ?></td>
+												<td><?php echo getSingleValue("tabel_customer","nama_customer",$category2['id_customer']); ?></td>
+												<td><?php echo $category2['name']; ?></td>
+												<td><?php echo $category2['timestamp']; ?></td>
+	
+												<td>
+													<div class='pull-right'>
+														<div class="btn-group">
+													
+	
+															<!-- <?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a><?php } ?> -->
+															<!-- <?php if(in_array("editClient",$perms)) { ?><a href='#' onClick='showM("index.php?modal=customers/edit&reroute=customers/customers&id=<?php echo $customer['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+															<?php if(in_array("deleteClient",$perms)) { ?><a href='#' onClick='showM("index.php?modal=customers/delete&reroute=customers/customers&id=<?php echo $customer['id']; ?>");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?> -->
+														</div>
+													</div>
+												</td>
+											</tr>
+										<?php } ?>
+									</tbody>
+									<div class='pull-left'>
+										<h3 class="pull-left"><?php _e('Category'); ?><small> <?php _e('Manage Category'); ?></small></h3>
+									
+										<div class="form-group">
+											<div class="pull-left"><?php if(in_array("addTicket",$perms)) { ?><a onClick='showM("index.php?modal=category/addCategory2&reroute=category/all");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Category 2'); ?></a><?php } ?></div>
+										<div style="clear:both"></div>
+									</div>
+									
+								</div>
+								</table>
+	
+									<input type="hidden" name="action" value="deleteWhatsappMulti">
+									<input type="hidden" name="route" value="whatsapp/whatsapp">
+									<input type="hidden" name="routeid" value="">
+								</form>
+							</div>
+						</div>
+					</div>
+			</div>
+
+
+			<div class="col-xs-12">
+				
+					<div class="box box-primary">
+						
+						<form role="form" method="post" class="">
+						<div class="box-body">
+							<div class="table-responsive">
+								<table id="dataTablesFull" class="table table-striped table-hover table-bordered">
+									<thead>
+										<tr>
+											<th><?php _e('ID CATEGORY 2'); ?></th>
+											<th><?php _e('HEAD CATEGORY 1'); ?></th>
+											<th><?php _e('HEAD CATEGORY 2'); ?></th>
+											<th><?php _e('CUSTOMER'); ?></th>
+											<th><?php _e('CATEGORY NAME'); ?></th>
+											<th><?php _e('TIMESTAMP'); ?></th>
+											
+											<!-- <th></th> -->
+											<th class="text-right"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach ($category3 as $category3) { ?>
+											<tr>
+												<td><?php echo $category3['id']; ?></td>
+												<td><?php echo getSingleValue("category_1","name",$category3['id_category_1']); ?></td>
+												<td><?php echo getSingleValue("category_2","name",$category3['id_category_2']); ?></td>
+												<td><?php echo getSingleValue("tabel_customer","nama_customer",$category3['id_customer']); ?></td>
+												<td><?php echo $category3['name']; ?></td>
+												<td><?php echo $category3['timestamp']; ?></td>
+	
+												<td>
+													<div class='pull-right'>
+														<div class="btn-group">
+													
+	
+															<!-- <?php if(in_array("manageClient",$perms)) { ?><a href='?route=clients/manage&id=<?php echo $client['id']; ?>' class='btn btn-flat btn-primary btn-sm'><i class='fa fa-eye'></i></a><?php } ?> -->
+															<!-- <?php if(in_array("editClient",$perms)) { ?><a href='#' onClick='showM("index.php?modal=customers/edit&reroute=customers/customers&id=<?php echo $customer['id']; ?>");return false' class='btn btn-flat btn-success btn-sm'><i class='fa fa-edit'></i></a><?php } ?>
+															<?php if(in_array("deleteClient",$perms)) { ?><a href='#' onClick='showM("index.php?modal=customers/delete&reroute=customers/customers&id=<?php echo $customer['id']; ?>");return false' class='btn btn-flat btn-danger btn-sm'><i class='fa fa-trash-o'></i></a><?php } ?> -->
+														</div>
+													</div>
+												</td>
+											</tr>
+										<?php } ?>
+									</tbody>
+									<div class='pull-left'>
+										<h3 class="pull-left"><?php _e('Category 3'); ?><small> <?php _e('Manage Category 3'); ?></small></h3>
+									
+										<div class="form-group">
+											<div class="pull-left"><?php if(in_array("addTicket",$perms)) { ?><a onClick='showM("index.php?modal=category/addCategory3&reroute=category/all");return false' data-toggle="modal" class="btn btn-primary btn-flat btn-sm"><?php _e('New Category 3'); ?></a><?php } ?></div>
+										<div style="clear:both"></div>
+									</div>
+								</table>
+	
+									<input type="hidden" name="action" value="deleteWhatsappMulti">
+									<input type="hidden" name="route" value="whatsapp/whatsapp">
+									<input type="hidden" name="routeid" value="">
+								</form>
+							</div>
+						</div>
+					</div>
+			</div>
+
+
+
+		</div>
+	</section><!-- /.content -->
+</aside><!-- /.right-side -->
+
+<?php
+	//cek apakah tombol delete diklik
+	if($delete){
+		$jml = count($_POST['checkbox']);		//menghitung berapa data yang dicentang
+		if($jml > 0){		//jika ada data yang dicentang
+			for($i=0;$i<$count;$i++){
+				echo $checkbox[$i];
+			}
+			if($result){	//jika data berhasil dihapus
+				echo '<script language="javascript">alert("Berhasil menghapus '.$jml.' data"); document.location="index.php";</script>';
+			}else{		//jika gagal menghapus data
+				echo 'Gagal';
+			}
+		}else{		//jika tidak ada yang dicentang
+			echo 'Pilih data yang ingin dihapus!';
+		}
+	}
+	?>

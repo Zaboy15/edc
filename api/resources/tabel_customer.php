@@ -9,16 +9,26 @@ switch ($request_method) {
     case 'get':
         isAuthorizedApi("viewTickets");
 
-        if(empty($filters)) {
+        if($filters['id'] != "") {
+            $result = $database->select("tabel_customer", "*", ["id" => $filters['id'], "ORDER" => ["id" => "DESC"] ]);
+
+        } else if($filters['adminid'] != "")  {
             $result = $database->select("tabel_customer", "*");
         } else {
-            $result = $database->select("tabel_customer", "*", [ "AND" => $filters, "ORDER" => ["id" => "DESC"] ]);
+            $result = $database->select("tabel_customer", "*");
         }
 
         $i=0;
         foreach($result as $item) {
             $result[$i]['ccs'] = unserialize($item['ccs']);
             $i++;
+        }
+
+        $l = 0;
+
+        foreach($result as $data){
+            $result[$l]['count'] = $database->count("tickets", [ "AND" => ["idcustomer" => $data['id'], "adminid" => $filters['adminid']] ]);
+            $l++;
         }
 
         $response = [ "status" => 1, "status_message" => "Success!", "result" => $result ];

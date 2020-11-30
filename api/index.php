@@ -113,6 +113,7 @@ switch ($request_method) {
         }
 
     break;
+    
 
     case 'edit':
         if(isset($_POST['data'])) {
@@ -132,6 +133,23 @@ switch ($request_method) {
     break;
 
     case 'editStatus':
+        if(isset($_POST['data'])) {
+            if(is_array($_POST['data'])) {
+                $data = $_POST['data'];
+            } else {
+                $response = [ "status" => 909, "status_message" => "'data' Error! Expected array, string given." ];
+                echo json_encode($response);
+                exit;
+            }
+
+        } else {
+            $response = [ "status" => 910, "status_message" => "'data' array missing." ];
+            echo json_encode($response);
+            exit;
+        }
+    break;
+
+    case 'editStatusGlobal':
         if(isset($_POST['data'])) {
             if(is_array($_POST['data'])) {
                 $data = $_POST['data'];
@@ -286,6 +304,10 @@ switch ($request_resource) {
 
     case 'category3': ## DONE ##d
         require $scriptpath . '/api/resources/category3.php';
+    break;
+
+    case 'count_tickets_dashboard': ## DONE ##d
+        require $scriptpath . '/api/resources/count_tickets_dashboard.php';
     break;
 
 

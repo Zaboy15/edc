@@ -582,6 +582,23 @@ switch($_POST['action']) {
 		isAuthorized("deleteCustomField"); $status = CustomField::deleteStaffCF($_POST['id']);
 	break;
 
+	case "addStatus":
+		isAuthorized("addTicket"); $status = Status::add($_POST);
+	break;
+
+
+	case "addCategory1":
+		isAuthorized("addTicket"); $status = Category::addCategory1($_POST);
+	break;
+
+	case "addCategory2":
+		isAuthorized("addTicket"); $status = Category::addCategory2($_POST);
+	break;
+	
+	case "addCategory3":
+		isAuthorized("addTicket"); $status = Category::addCategory3($_POST);
+	break;
+
 
 	case "addLicenseCF":
 		isAuthorized("addCustomField"); $status = CustomField::addLicenseCF($_POST);

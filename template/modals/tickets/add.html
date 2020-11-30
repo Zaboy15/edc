@@ -142,6 +142,13 @@
 
         <div class="col-md-3">
             <div class="form-group">
+                <label for="eta"><?php _e('ETA Time'); ?></label>
+                <input type="text" class="form-control form_datetime" id="eta" name="eta" value="">
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
                 <label for="create_on"><?php _e('Create On'); ?></label>
                 <input type="text" class="form-control form_datetime" id="create_on" name="create_on" value="">
             </div>
@@ -735,21 +742,41 @@
                 document.getElementById('ref').style.display = "none";
                 document.getElementById('assetid').style.display = "none";
             } else {
+                // document.getElementById('clientid').style.display = "none";
+                // document.getElementById('category_1').style.display = "none";
+                // document.getElementById('category_2').style.display = "none";
+                // document.getElementById('category_3').style.display = "none";
+                // document.getElementById('assetid').style.display = "none";
+                // document.getElementById('status').style.display = "none";
+                // document.getElementById('id_case').style.display = "none";
+                // document.getElementById('ref').style.display = "none";
+                // document.getElementById('pic').style.display = "none";
+                // document.getElementById('phone_pic').style.display = "none";
+                // document.getElementById('sla').style.display = "none";
+                // document.getElementById('cust_name').style.display = "none";
+                // document.getElementById('device').style.display = "none";
+                // document.getElementById('parts').style.display = "none";
+                // document.getElementById('backup_unit').style.display = "none";
+
+                document.getElementById('status').style.display = "block";
+                document.getElementById('category_1').style.display = "block";
+                document.getElementById('category_2').style.display = "block";
+                document.getElementById('category_3').style.display = "block";
+                document.getElementById('pic').style.display = "block";
+                document.getElementById('phone_pic').style.display = "block";
+
+                document.getElementById('sla').style.display = "block";
+                document.getElementById('cust_name').style.display = "block";
+                document.getElementById('device').style.display = "block";
+                document.getElementById('parts').style.display = "block";
+                document.getElementById('backup_unit').style.display = "block";
+
+
                 document.getElementById('clientid').style.display = "none";
-                document.getElementById('category_1').style.display = "none";
-                document.getElementById('category_2').style.display = "none";
-                document.getElementById('category_3').style.display = "none";
-                document.getElementById('assetid').style.display = "none";
-                document.getElementById('status').style.display = "none";
                 document.getElementById('id_case').style.display = "none";
                 document.getElementById('ref').style.display = "none";
-                document.getElementById('pic').style.display = "none";
-                document.getElementById('phone_pic').style.display = "none";
-                document.getElementById('sla').style.display = "none";
-                document.getElementById('cust_name').style.display = "none";
-                document.getElementById('device').style.display = "none";
-                document.getElementById('parts').style.display = "none";
-                document.getElementById('backup_unit').style.display = "none";
+                document.getElementById('assetid').style.display = "none";
+                
             }
         });
     });

@@ -657,14 +657,11 @@ if ($route == "tickets/active") {
 	}
 	$pageTitle = __("Active Tickets");
 }
+
 if ($route == "tickets/all") {
 	isAuthorized("viewTickets");
-	if($isAdmin) {
-		$tickets = $database->select("tickets", "*", ["ORDER" => ["id" => "DESC"]]);
-	}
-	else {
-		$tickets = $database->select("tickets", "*", ["clientid" => $liu['clientid'], "ORDER" => ["id" => "DESC"]]);
-	}
+	
+
 	$pageTitle = __("All Tickets");
 }
 
@@ -694,6 +691,20 @@ if ($route == "tickets/manage") {
 }
 
 
+if ($route == "category/all") {
+	isAuthorized("viewTickets");
+
+	$category1 = getTable("category_1");
+	$category2 = getTable("category_2");
+	$category3 = getTable("category_3");
+
+	
+
+
+	$pageTitle = __("All Tickets");
+}
+
+
 if ($route == "submitticket") {
 	$departments = getTable("tickets_departments");
 	$people = getTable("people");
@@ -704,6 +715,13 @@ if ($route == "rootcause/rootcause") {
 	isAuthorized("viewSPK");
 	$rootcause = getTable('kode_rc');
 	$pageTitle = __("My SPK");
+}
+
+
+if ($route == "status/all") {
+	isAuthorized("viewSPK");
+	$statusticket = getTable('status_tickets');
+	$pageTitle = __("Status Ticket");
 }
 
 //SPK

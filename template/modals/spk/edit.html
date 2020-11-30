@@ -16,7 +16,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="wo_activity">WO Activity *</label>
-                <select class="form-control select2" id="wo_activity" name="wo_activity" style="width: 100%;">
+                <select class="form-control select2new" id="wo_activity" name="wo_activity" style="width: 100%;">
                     <option value="INSTALLATION" <?php if($spkdata['wo_activity'] == "INSTALLATION") echo "selected"; ?>><?php _e('INSTALLATION'); ?></option>
                     <option value="REINIT" <?php if($spkdata['wo_activity'] == "REINIT") echo "selected"; ?>><?php _e('REINIT'); ?></option>
                     <option value="REPLACEMENT" <?php if($spkdata['wo_activity'] == "REPLACEMENT") echo "selected"; ?>><?php _e('REPLACEMENT'); ?></option>
@@ -39,7 +39,7 @@
                 <?php if(in_array("manageTicketAssignment",$perms)) { ?>
             <div class="form-group">
                 <label for="id_itfs"><?php _e('ID ITFS'); ?></label>
-                <select class="form-control select2 select2-hidden-accessible" id="id_itfs" name="id_itfs" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                <select class="form-control select2new select2-hidden-accessible" id="id_itfs" name="id_itfs" style="width: 100%;" tabindex="-1" aria-hidden="true">
                     <option value="0">Nobody</option>
                     <?php foreach ($adminspk as $adminspk) { ?>
                         <option value='<?php echo $adminspk['id']; ?>' <?php if($spkdata['id_itfs'] == $adminspk['id']) echo "selected"; ?> ><?php echo $adminspk['name']; ?></option>
@@ -156,7 +156,7 @@
             <div class="col-md-4">
                     <div class="form-group">
                         <label for="spk_status">Status *</label>
-                        <select class="form-control select2" id="spk_status" name="spk_status" style="width: 100%;">
+                        <select class="form-control select2new" id="spk_status" name="spk_status" style="width: 100%;">
                             <option value="In Progress" <?php if($spkdata['spk_status'] == "In Progress") echo "selected"; ?>><?php _e('In Progress'); ?></option>
                             <option value="Close - Completed" <?php if($spkdata['spk_status'] == "Close - Completed") echo "selected"; ?>><?php _e('Close - Complete'); ?></option>
                             <option value="Open - Pending" <?php if($spkdata['spk_status'] == "Open - Pending") echo "selected"; ?>><?php _e('Open - Pending'); ?></option>
@@ -208,7 +208,7 @@
 </div>
 
 <script type="text/javascript">
-    $(function() { $(".select2").select2(); });
+    $(function() { $(".select2new").select2(); });
 
     $(function() { $(".select2tag").select2({
         tags: true,
