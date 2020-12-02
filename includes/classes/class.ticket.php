@@ -588,7 +588,6 @@ class Ticket extends App {
                 "sla" => $data['sla'],
                 "parts" => $data['parts'],
                 "backup_unit" => $data['backup_unit'],
-                "cust_name" => $data['cust_name'],
                 "sub_cust_name" => $data['sub_cust_name'],
                 "eta" => $data['eta'],
 
