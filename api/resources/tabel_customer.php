@@ -27,7 +27,7 @@ switch ($request_method) {
         $l = 0;
 
         foreach($result as $data){
-            $result[$l]['count'] = $database->count("tickets", [ "AND" => ["idcustomer" => $data['id'], "adminid" => $filters['adminid']] ]);
+            $result[$l]['count'] = $database->count("tickets", [ "AND" => ["idcustomer" => $data['id'], "adminid" => $filters['adminid'],"status[!]" => ["7","29"]] ]);
             $l++;
         }
 
