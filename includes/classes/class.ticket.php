@@ -791,7 +791,6 @@ class Ticket extends App {
                     "action_ticket" => $data['action_ticket'],
                     "parts" => $data['parts'],
                     "backup_unit" => $data['backup_unit'],
-                    "alamat" => $data['alamat'],
 
 
 
@@ -886,7 +885,7 @@ class Ticket extends App {
 
     	if($status == "Travel"){
             $database->update("tickets", [
-                "response_time" => date('Y-m-d H:i:s'),
+                "departure_time" => date('Y-m-d H:i:s'),
                 "status" => $data['status']
             ], [ "id" => $data['id'] ]);
             logSystem("Ticket Status Update API - ID: " . $data['id']);
@@ -895,7 +894,7 @@ class Ticket extends App {
             return "20";
         } else if($status == "Onsite"){
             $database->update("tickets", [
-                "departure_time" => date('Y-m-d H:i:s'),
+                "arrival" => date('Y-m-d H:i:s'),
                 "status" => $data['status']
             ], [ "id" => $data['id'] ]);
             logSystem("Ticket Status Update API - ID: " . $data['id']);
@@ -904,7 +903,6 @@ class Ticket extends App {
             return "20";
         } else if($status == "Waiting Customer"){
             $database->update("tickets", [
-                "arrival" => date('Y-m-d H:i:s'),
                 "status" => $data['status']
             ], [ "id" => $data['id'] ]);
             logSystem("Ticket Status Update API - ID: " . $data['id']);
