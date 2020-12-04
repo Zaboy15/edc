@@ -72,6 +72,13 @@
         </div>
 
         <div class="col-md-6">
+            <div class="form-group" id="alamat" >
+                <label for="alamat"><?php _e('Alamat'); ?></label>
+                <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $ticket['alamat']; ?>">
+            </div>
+        </div>
+
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="customer_ticket"><?php _e('Customer Ticket'); ?></label>
                 <input type="text" class="form-control" id="customer_ticket" name="customer_ticket" value="<?php echo $ticket['customer_ticket']; ?>">

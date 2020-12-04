@@ -19,6 +19,8 @@
             
         </div>
 
+       
+
         <div class="col-md-3">
             <div class="form-group" id="clientid" name="clientid" style="display:none;" >
                 <label for="clientid"><?php _e('Cabang'); ?></label>
@@ -61,6 +63,12 @@
             <div class="form-group" id="sub_cust_name" style="display: none;">
                 <label for="sub_cust_name"><?php _e('Sub Customer Name'); ?></label>
                 <input type="text" class="form-control" id="sub_cust_name" name="sub_cust_name" value="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" id="alamat" style="display: none;">
+                <label for="alamat"><?php _e('Alamat'); ?></label>
+                <input type="text" class="form-control" id="alamat" name="alamat" value="">
             </div>
         </div>
 
@@ -766,6 +774,8 @@
                 document.getElementById('device').style.display = "block";
                 document.getElementById('parts').style.display = "block";
                 document.getElementById('backup_unit').style.display = "block";
+                document.getElementById('alamat').style.display = "block";
+
 
 
                 document.getElementById('clientid').style.display = "none";

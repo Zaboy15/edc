@@ -180,7 +180,6 @@ class Ticket extends App {
                 "sla" => $data['sla'],
                 "parts" => $data['parts'],
                 "backup_unit" => $data['backup_unit'],
-                "cust_name" => $data['cust_name'],
                 "sub_cust_name" => $data['sub_cust_name'],
 
 
@@ -265,9 +264,10 @@ class Ticket extends App {
                 "sla" => $data['sla'],
                 "parts" => $data['parts'],
                 "backup_unit" => $data['backup_unit'],
-                "cust_name" => $data['cust_name'],
                 "sub_cust_name" => $data['sub_cust_name'],
                 "eta" => $data['eta'],
+                "alamat" => $data['alamat'],
+
 
                 ]);
         }
@@ -551,7 +551,6 @@ class Ticket extends App {
                 "sla" => $data['sla'],
                 "parts" => $data['parts'],
                 "backup_unit" => $data['backup_unit'],
-                "cust_name" => $data['cust_name'],
                 "sub_cust_name" => $data['sub_cust_name'],
 
             ],[ "id" => $data['id'] ]);
@@ -790,9 +789,10 @@ class Ticket extends App {
                     "part_received" => $data['part_received'],
                     "serial_number" => $data['serial_number'],
                     "action_ticket" => $data['action_ticket'],
-                    "description" => $data['description'],
                     "parts" => $data['parts'],
                     "backup_unit" => $data['backup_unit'],
+                    "alamat" => $data['alamat'],
+
 
 
                 ], [ "id" => $data['id'] ]);

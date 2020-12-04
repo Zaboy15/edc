@@ -40,16 +40,6 @@ $columns = array(
 	array( 'db' => 'serial',  'dt' => 6 ),
 	array( 'db' => 'remarks_spk',  'dt' => 7 ),
 	array( 'db' => 'spk_status',  'dt' => 8 ),
-
-
-
-	// array(
-	//        'db'        => 'start_date',
-	//        'dt'        => 4,
-	//        'formatter' => function( $d, $row ) {
-	//         return date( 'jS M y', strtotime($d));
-	//        }
-    // ),
 );
 
 // SQL server connection information
