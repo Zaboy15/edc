@@ -81,11 +81,14 @@
 								<?php foreach($tickets as $ticket) { ?>
 									<div class="col-xs-3"><div class="callout callout-gray">
 					                  <h4><?php if(in_array("manageTicket",$perms)) { ?><a href="?route=tickets/manage&id=<?php echo $ticket['id']; ?>"># <?php echo $ticket['ticket']; ?></a><?php } else $ticket['ticket']; ?></h4>
-					                  <p><?php echo $ticket['subject']; ?></p>
+									  <p><?php echo $ticket['subject']; ?></p>
+					                  <p><?php echo getSingleValue("people","name",$ticket['adminid']); ?></p>
+									  
 					                </div></div>
 								<?php } ?>
 							</div>
 						<?php } ?>
+
 
 						<?php if(!empty($articles)) { ?>
 							<div class="row">

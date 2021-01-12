@@ -178,8 +178,22 @@ if ($route == "search") {
 		"mid[~]" => $_GET['q']
 	]]);
 
+	$peopleid = $database->select("people", "*", [ "OR" => [
+		"name[~]" => $_GET['q'],
+	]]);
+
+	$dataidorang = [];
+
+	foreach($peopleid as $people){
+		array_push($dataidorang,$people['id']);
+	}
+
+	
 	$tickets = $database->select("tickets", "*", [ "OR" => [
 		"ticket[~]" => $_GET['q'],
+		"adminid[~]" => $dataidorang,
+		"pic[~]" => $_GET['q'],
+		"phone_pic[~]" => $_GET['q'],
 		"subject[~]" => $_GET['q']
 	]]);
 
@@ -1059,6 +1073,14 @@ if ($route == "reports/efkm") {
 	
 	
 	$pageTitle = __("Data E-FKM");
+}
+
+if ($route == "reports/tickets") {
+	isAuthorized("viewTickets");
+	$ticket = getRowById("tickets",$_GET['id']);
+	$replies = getTableFiltered("tickets_replies", "ticketid", $_GET['id'], "", "", "*", "id", "DESC");
+	
+	$pageTitle = __("Data E-Tickets");
 }
 
 

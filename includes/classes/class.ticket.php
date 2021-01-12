@@ -793,12 +793,18 @@ class Ticket extends App {
                     "action_ticket" => $data['action_ticket'],
                     "parts" => $data['parts'],
                     "backup_unit" => $data['backup_unit'],
+                    "eta" => $data['eta'],
+                    "reschedule_time" => $data['reschedule_time'],
+
+
 
 
 
                 ], [ "id" => $data['id'] ]);
 
                 Staff::editLocation($data);
+                self::updateRepliesEditApi($data);
+
 
             }
 
@@ -969,6 +975,28 @@ class Ticket extends App {
             $message = "Status di ubah ke ".$data['status']." dengan waktu ".date('Y-m-d H:i:s');
         }
 
+
+    	$lastid = $database->insert("tickets_replies", [
+    		"ticketid" => $data['id'],
+    		"peopleid" => $peopleid,
+    		"message" => $message,
+    		"timestamp" => date('Y-m-d H:i:s')
+    	]);
+
+    }
+
+    public static function updateRepliesEditApi($data){
+        global $database;
+        if($data['adminid'] != "0") $peopleid = $data['adminid']; else $peopleid = $userid;
+        
+        $message = "Perubahan Data : \n
+        Part Received : ".$data['part_received']." \n 
+        Eta Time : ".$data['eta']. " \n
+        Rescheduled Time : ".$data['reschedule_time']. " \n
+        Parts : ".$data['parts']. " \n
+        Backup Unit : ".$data['backup_unit']. " \n
+        Action Ticket : ".$data['action_ticket']. " \n
+        Timestamp Update : ".date('Y-m-d H:i:s');
 
     	$lastid = $database->insert("tickets_replies", [
     		"ticketid" => $data['id'],
