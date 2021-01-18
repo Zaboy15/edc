@@ -58,7 +58,7 @@ if(!isset($_GET['modal']) && !isset($_GET['qa'])) {
     if($route == "signin" || $route == "forgot" || $route == "submitticket") {
         require($scriptpath . DIRECTORY_SEPARATOR . 'template'. DIRECTORY_SEPARATOR . $route . '.html');
     }
-    elseif($route == "pdf" || $route == "system/import/assetsSample" || $route == "system/import/customerSample" || $route == "system/import/merchantSample" || $route == "export/exportDataSPK" || $route == "system/import/licensesSample"|| $route == "system/import/sampledataSPK"|| $route == "system/import/samplestaff"|| $route == "system/import/sampleUpdateSPK") {
+    elseif($route == "pdf" || $route == "system/import/assetsSample" || $route == "system/import/customerSample" || $route == "system/import/merchantSample" || $route == "export/exportDataSPK" || $route == "export/exportDataTicket" || $route == "system/import/licensesSample"|| $route == "system/import/sampledataSPK"|| $route == "system/import/samplestaff"|| $route == "system/import/sampleUpdateSPK") {
         // do nothing if pdf
     }
     // load header + page + footer

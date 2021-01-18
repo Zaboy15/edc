@@ -290,6 +290,233 @@ class Export extends App {
 		fclose($output);
         }
 
+    }
+    
+    public static function exportDataTicket($data) {
+        global $database;
+        
+        
+        if($data['idcustomer'] == ""){
+            $startdate = dateDb($data['startDate']) . " 00:00:00";
+        $enddate = dateDb($data['endDate']) . " 23:59:59";
+           
+            
+            $tickets = $database->select("tickets", "*", [
+				"create_on[<>]" => [$startdate, $enddate]
+            ]);
+            
+            $namefile = "ReportTicket-".$startdate ." - ".$enddate.".csv";
+            
+            header('Content-Type: application/excel');
+            header('Content-Disposition: attachment;'.' filename='.$namefile);
+            
+            $output = fopen('php://output', 'w');
+            $no = 1;
+    
+            $header = [
+                "No",
+                "Ticket Number",
+                "Customer Ticket",
+                "Status",
+                "Assign To",
+                "Customer",
+                "Closed By",
+                "Visit",
+                "Priority",
+                "Subject",
+                "Alamat",
+                "Description Problem",
+                "Action",
+                "PIC",
+                "Phone PIC",
+                "Sub Cust Name",
+                "Parts",
+                "Backup Unit",
+                "Device Problem",
+                "Category 1",
+                "Category 2",
+                "Category 3",
+                "ETA Time",
+                "Create Time",
+                "Response Time",
+                "Part Received",
+                "Departure Time",
+                "Arrival Time",
+                "Start Working",
+                "Close Time",
+                "Reschedule Time",
+                "Timestamp Created",
+                "Email Address",
+                "Asset",
+                "CC Receipents",
+
+
+
+            ];
+    
+        
+        
+            fputcsv($output, $header);
+    
+            foreach ($tickets as $row) 
+                {
+                    $data = [
+                        $no,
+                        $row['ticket'],
+                        $row['customer_ticket'],
+                        getSingleValue("status_tickets","name",$row['status']),
+                        getSingleValue("people","name",$row['adminid']),
+                        getSingleValue("tabel_customer","nama_customer",$row['idcustomer']),
+                        $row['close_by'],
+                        $row['visit'],
+                        $row['priority'],
+                        $row['subject'],
+                        $row['alamat'],
+                        $row['description'],
+                        $row['action'],
+                        $row['pic'],
+                        $row['phone_pic'],
+                        $row['sub_cust_name'],
+                        $row['parts'],
+                        $row['backup_unit'],
+                        $row['device_problem'],
+                        $row['category_1'],
+                        $row['category_2'],
+                        $row['category_3'],
+                        $row['eta'],
+                        $row['create_on'],
+                        $row['response_time'],
+                        $row['part_received'],
+                        $row['departure_time'],
+                        $row['arrival'],
+                        $row['start_working'],
+                        $row['closed_time'],
+                        $row['reschedule_time'],
+                        $row['timestamp'],
+                        $row['email'],
+                        $row['assetid'],
+                        $row['ccs'],
+
+
+
+
+
+
+                    ];
+                    $no++;
+            fputcsv($output, $data);
+                }
+    
+    
+    
+            fclose($output);
+        } else {
+            $startdate = "2020-12-01" . " 00:00:00";
+            $enddate = "2020-12-01" . " 23:59:59";
+
+            $tickets = $database->select("tickets", "*", [ "AND" => [
+				"create_on[<>]" => [$startdate, $enddate],
+				"idcustomer" => $data['idcustomer']
+            ]]);
+        
+		header('Content-Type: application/excel');
+		header('Content-Disposition: attachment; filename="reportspk.csv"');
+		
+        $output = fopen('php://output', 'w');
+        $no = 1;
+
+		$header = [
+            "No",
+            "Ticket Number",
+            "Customer Ticket",
+            "Status",
+            "Assign To",
+            "Customer",
+            "Closed By",
+            "Visit",
+            "Priority",
+            "Subject",
+            "Alamat",
+            "Description Problem",
+            "Action",
+            "PIC",
+            "Phone PIC",
+            "Sub Cust Name",
+            "Parts",
+            "Backup Unit",
+            "Device Problem",
+            "Category 1",
+            "Category 2",
+            "Category 3",
+            "ETA Time",
+            "Create Time",
+            "Response Time",
+            "Part Received",
+            "Departure Time",
+            "Arrival Time",
+            "Start Working",
+            "Close Time",
+            "Reschedule Time",
+            "Timestamp Created",
+            "Email Address",
+            "Asset",
+            "CC Receipents",
+
+
+		];
+
+	
+	
+        fputcsv($output, $header);
+
+        foreach ($tickets as $row) 
+            {
+                $data = [
+                    $no,
+                    $row['ticket'],
+                        $row['customer_ticket'],
+                        getSingleValue("status_tickets","name",$row['status']),
+                        getSingleValue("people","name",$row['adminid']),
+                        getSingleValue("tabel_customer","nama_customer",$row['idcustomer']),
+                        $row['close_by'],
+                        $row['visit'],
+                        $row['priority'],
+                        $row['subject'],
+                        $row['alamat'],
+                        $row['description'],
+                        $row['action'],
+                        $row['pic'],
+                        $row['phone_pic'],
+                        $row['sub_cust_name'],
+                        $row['parts'],
+                        $row['backup_unit'],
+                        $row['device_problem'],
+                        $row['category_1'],
+                        $row['category_2'],
+                        $row['category_3'],
+                        $row['eta'],
+                        $row['create_on'],
+                        $row['response_time'],
+                        $row['part_received'],
+                        $row['departure_time'],
+                        $row['arrival'],
+                        $row['start_working'],
+                        $row['closed_time'],
+                        $row['reschedule_time'],
+                        $row['timestamp'],
+                        $row['email'],
+                        $row['assetid'],
+                        $row['ccs'],
+                ];
+                $no++;
+        fputcsv($output, $data);
+            }
+
+
+
+		fclose($output);
+        }
+
 	}
 
     }

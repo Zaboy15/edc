@@ -1278,6 +1278,13 @@ if ($route == "export/exportDataSPK") {
 
 }
 
+if ($route == "export/exportDataTicket") {
+	isAuthorized("viewSystem");
+
+	Export::exportDataTicket($_GET);
+
+}
+
 # Import
 if ($route == "system/import") {
 	isAuthorized("viewSystem");

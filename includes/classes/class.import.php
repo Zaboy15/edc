@@ -812,7 +812,11 @@ class Import extends App {
 	public static function sampleUpdateSPK() {
 		global $database;
 
-		$customfields = getTable("licenses_customfields");
+		// $tickets = $database->select("tickets", "*", ["status[!]" => "7", "ORDER" => ["id" => "DESC"]]);
+		// $tickets = getTable("tickets");
+
+
+
 		
 		header('Content-Type: application/excel');
 		header('Content-Disposition: attachment; filename="sample.csv"');
@@ -864,8 +868,29 @@ class Import extends App {
 			
 		];
 
+		$bodyisi = [];
+
+		// $list = array (
+		// 	array('aaa', 'bbb', 'ccc', 'dddd'),
+		// 	array('123', '456', '789'),
+		// 	array('"aaa"', '"bbb"')
+		// );
+
+		
+
 	
+		
+		// foreach ($tickets as $tickets) {
+		// 	// fputcsv($output, $fields['id']);
+		// 	array_push($bodyisi, array($tickets['id'],getSingleValue("people","name",$tickets['adminid']),$tickets['ticket']));
+		// }
 		fputcsv($output, $header, ",");
+
+
+		// foreach ($bodyisi as $bodyisi) {
+		// 	fputcsv($output, $bodyisi);
+		// 	// array_push($output, $fields['subject']);
+		// }
 
 		fclose($output);
 	}
