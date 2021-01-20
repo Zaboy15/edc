@@ -568,6 +568,10 @@
 						<table id="ticketDetailsTable" class="table table-striped table-hover">
 							<tbody>
 								<tr>
+									<td><b><?php _e('Customer Ticket'); ?></b></td>
+									<td><?php echo $ticket['customer_ticket']; ?></td>
+								</tr>
+								<tr>
 									<td><b><?php _e('Status'); ?></b></td>
 									<td>
 										<?php if($ticket['status'] != 0) echo getSingleValue("status_tickets","name",$ticket['status']);
