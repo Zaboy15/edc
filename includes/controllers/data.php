@@ -188,15 +188,45 @@ if ($route == "search") {
 		array_push($dataidorang,$people['id']);
 	}
 
+	if(!empty($dataidorang)){
+		$tickets = $database->select("tickets", "*", [ "OR" => [
+			// "ticket[~]" => $_GET['q'],
+			// "subject[~]" => $_GET['q'],
+			// "pic[~]" => $_GET['q'],
+			// "phone_pic[~]" => $_GET['q'],
+			// "customer_ticket[~]" => $_GET['q'],
+			"adminid[~]" => $dataidorang,
+			
+		]]);
+	} else {
+		$tickets = $database->select("tickets", "*", [ "OR" => [
+			"ticket[~]" => $_GET['q'],
+			"subject[~]" => $_GET['q'],
+			"pic[~]" => $_GET['q'],
+			"phone_pic[~]" => $_GET['q'],
+			"customer_ticket[~]" => $_GET['q'],
+			// "adminid[~]" => $dataidorang,
+			
+		]]);
+
+	}
 	
-	$tickets = $database->select("tickets", "*", [ "OR" => [
-		"ticket[~]" => $_GET['q'],
-		"adminid[~]" => $dataidorang,
-		"pic[~]" => $_GET['q'],
-		"phone_pic[~]" => $_GET['q'],
-		"customer_ticket[~]" => $_GET['q'],
-		"subject[~]" => $_GET['q']
-	]]);
+	
+
+
+	// $tickets = $database->select("tickets", [
+	// 	"AND" => [
+	// 		"OR" => [
+	// 			"customer_ticket[~]" => $_GET['q'],
+	// 			"ticket[~]" => $_GET['q'],
+	// 			"subject[~]" => $_GET['q'],
+	// 			"pic[~]" => $_GET['q'],
+	// 			"phone_pic[~]" => $_GET['q'],
+	// 		],
+			
+	// 		"adminid[~]" => $dataidorang,
+	// 	]
+	// ]);
 
 	$issues = $database->select("issues", "*", [ "OR" => [
 		"name[~]" => $_GET['q'],
