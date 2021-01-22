@@ -12,7 +12,7 @@
 				<div class="row"><div class='col-md-12'><div class="alert alert-<?php print $statusmessage["type"]; ?> alert-auto" role="alert"><?php print __($statusmessage["message"]); ?></div></div></div>
 		<?php endif; ?>
 
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-xs-12">
 				<div class="box box-primary">
 
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 	</div>
-		</div>
+		</div> -->
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="box box-primary">
@@ -66,7 +66,7 @@
 	</section><!-- /.content -->
 </aside><!-- /.right-side -->
 
-<script type="text/javascript" language="javascript" >
+<!-- <script type="text/javascript" language="javascript" >
 
 $(document).ready(function() {
 	fill_datatable();
@@ -82,7 +82,6 @@ $(document).ready(function() {
       filter_ticket:filter_ticket
 	 }
 	},
-			"searching" : false,
 			"columnDefs": [ {
              "targets": -1,
              "defaultContent": "<button class='btn btn-primary btn-xs tblView'>View</button><button class='btn btn-success btn-xs tblEdit'>Edit</button><button class='btn btn-danger btn-xs tblDelete'>Delete</button>"
@@ -118,4 +117,35 @@ $(document).ready(function() {
 	
 	
 
-</script>
+</script> -->
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		var table = $('#example').DataTable( {
+				"processing": true,
+				"serverSide": true,
+				"ajax": "includes/controllers/sspticketall.php",
+				"columnDefs": [ {
+				 "targets": -1,
+				 "data": null,
+				 "defaultContent": "<button class='btn btn-primary btn-xs tblView'>View</button><button class='btn btn-success btn-xs tblEdit'>Edit</button><button class='btn btn-danger btn-xs tblDelete'>Delete</button>"
+				 }]
+			} );
+			$('#example tbody').on( 'click', '.tblView', function () {
+         var data = table.row( $(this).parents('tr') ).data();
+		 window.location.href = "?route=tickets/manage&id="+ data[0]; 
+     } );
+		$('#example tbody').on( 'click', '.tblEdit', function () {
+         var data = table.row( $(this).parents('tr') ).data();
+         showM("index.php?modal=tickets/edit&reroute=tickets/all&id="+ data[0]); 
+     } );
+	 $('#example tbody').on( 'click', '.tblDelete', function () {
+         var data = table.row( $(this).parents('tr') ).data();
+         showM("index.php?modal=tickets/delete&reroute=tickets/all&id="+ data[0]); 
+	 } );
+		
+		} );
+		
+	
+	</script>

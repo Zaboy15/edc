@@ -67,12 +67,12 @@ $sql_details = array(
 
 // $ticket = $_POST['filter_ticket'];
 
-if(!empty($_POST['filter_ticket'])){
+// if(!empty($_POST['filter_ticket'])){
 	
-	$ticket = 'status ='.'"'.$_POST['filter_ticket'].'"';
-} else {
-	$ticket = null;
-}
+// 	$ticket = 'status ='.'"'.$_POST['filter_ticket'].'"';
+// } else {
+// 	$ticket = null;
+// }
 
 require( '../../ssp/ssp.class.php' );
 // /Applications/XAMPP/xamppfiles/htdocs/edcmip/template/assets/plugins/scripts
@@ -90,7 +90,7 @@ require( '../../ssp/ssp.class.php' );
 	// }
 
 	echo json_encode(
-		SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns,$ticket )
+		SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns,null )
 	);
 	
 	
