@@ -65,11 +65,33 @@ $sql_details = array(
  * server-side, there is no need to edit below this line.
  */
 
+// $ticket = $_POST['filter_ticket'];
+
+if(!empty($_POST['filter_ticket'])){
+	
+	$ticket = 'status ='.'"'.$_POST['filter_ticket'].'"';
+} else {
+	$ticket = null;
+}
+
 require( '../../ssp/ssp.class.php' );
 // /Applications/XAMPP/xamppfiles/htdocs/edcmip/template/assets/plugins/scripts
 // /Applications/XAMPP/xamppfiles/htdocs/edcmip/vendor/classes
 
-echo json_encode(
-	SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns,null )
-);
+
+	// if($_POST['filter_ticket'] == ""){
+	// 	echo json_encode(
+	// 		SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+	// 	);
+	// } else {
+	// 	echo json_encode(
+	// 	SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns,null )
+	// );
+	// }
+
+	echo json_encode(
+		SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns,$ticket )
+	);
+	
+	
 

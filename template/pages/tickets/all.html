@@ -11,6 +11,29 @@
 		<?php if(!empty($statusmessage)): ?>
 				<div class="row"><div class='col-md-12'><div class="alert alert-<?php print $statusmessage["type"]; ?> alert-auto" role="alert"><?php print __($statusmessage["message"]); ?></div></div></div>
 		<?php endif; ?>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box box-primary">
+
+                    <div class="box-body">
+						<div class="form-group">
+							<label for="filter_ticket"><?php _e('Status Name'); ?></label>
+							<select class="form-control select2 select2-hidden-accessible" id="filter_ticket" name="filter_ticket" style="width: 100%;" tabindex="-1" >
+									<option value="0"><?php _e('None'); ?></option>
+								<?php foreach ($statustickets as $statustickets) { ?>
+									<option value='<?php echo $statustickets['name']; ?>'><?php echo $statustickets['name']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+
+			   <div class="form-group" align="center">
+				<button type="button" name="filter" id="filter" class="btn btn-info">Filter</button>
+			   </div>
+			</div>
+		</div>
+	</div>
+		</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="box box-primary">
@@ -43,21 +66,32 @@
 	</section><!-- /.content -->
 </aside><!-- /.right-side -->
 
-<script type="text/javascript">
+<script type="text/javascript" language="javascript" >
 
 $(document).ready(function() {
-	var table = $('#example').DataTable( {
+	fill_datatable();
+	function fill_datatable(filter_ticket = '')
+	{
+	var dataTable = $('#example').DataTable( {
 	        "processing": true,
 	        "serverSide": true,
-	        "ajax": "includes/controllers/sspticketall.php",
+			"ajax": {
+				url: "includes/controllers/sspticketall.php",
+				type:"POST",
+     data:{
+      filter_ticket:filter_ticket
+	 }
+	},
+			"searching" : false,
 			"columnDefs": [ {
              "targets": -1,
-             "data": null,
              "defaultContent": "<button class='btn btn-primary btn-xs tblView'>View</button><button class='btn btn-success btn-xs tblEdit'>Edit</button><button class='btn btn-danger btn-xs tblDelete'>Delete</button>"
          	}]
 			
             
-	    } );
+		} );
+		
+	}
 		$('#example tbody').on( 'click', '.tblView', function () {
          var data = table.row( $(this).parents('tr') ).data();
 		 window.location.href = "?route=tickets/manage&id="+ data[0]; 
@@ -69,9 +103,19 @@ $(document).ready(function() {
 	 $('#example tbody').on( 'click', '.tblDelete', function () {
          var data = table.row( $(this).parents('tr') ).data();
          showM("index.php?modal=tickets/delete&reroute=tickets/all&id="+ data[0]); 
-     } );
+	 } );
+
+	 $('#filter').click(function(){
+            filter_ticket = $("#filter_ticket").val();
+	  $('#example').DataTable().destroy();
+	   fill_datatable(filter_ticket);
+	   console.log(filter_ticket);
+	 });
+	 
+	 
     
-    } );
+	} );
+	
 	
 
 </script>

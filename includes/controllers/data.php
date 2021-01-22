@@ -194,6 +194,7 @@ if ($route == "search") {
 		"adminid[~]" => $dataidorang,
 		"pic[~]" => $_GET['q'],
 		"phone_pic[~]" => $_GET['q'],
+		"customer_ticket[~]" => $_GET['q'],
 		"subject[~]" => $_GET['q']
 	]]);
 
@@ -674,6 +675,8 @@ if ($route == "tickets/active") {
 
 if ($route == "tickets/all") {
 	isAuthorized("viewTickets");
+
+	$statustickets = getTable("status_tickets");
 	
 
 	$pageTitle = __("All Tickets");
