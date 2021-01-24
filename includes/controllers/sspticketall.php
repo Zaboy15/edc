@@ -32,13 +32,15 @@ $primaryKey = 'id';
 // parameter names
 $columns = array(
 	array( 'db' => 'id', 'dt' => 0 ),
-	array( 'db' => 'create_on', 'dt' => 1 ),
-	array( 'db' => 'closed_time', 'dt' => 2 ),
-	array( 'db' => 'ticket', 'dt' => 3 ),
-	array( 'db' => 'namaitfs', 'dt' => 4 ),
-	array( 'db' => 'subject',  'dt' => 5 ),
-	array( 'db' => 'nama_customer',  'dt' => 6 ),
-	array( 'db' => 'status',  'dt' => 7 ),
+	array( 'db' => 'customer_ticket',  'dt' => 1 ),
+	array( 'db' => 'create_on', 'dt' => 2 ),
+	array( 'db' => 'closed_time', 'dt' => 3 ),
+	array( 'db' => 'ticket', 'dt' => 4 ),
+	array( 'db' => 'namaitfs', 'dt' => 5 ),
+	array( 'db' => 'subject',  'dt' => 6 ),
+	array( 'db' => 'nama_customer',  'dt' => 7 ),
+	array( 'db' => 'status',  'dt' => 8 ),
+	
 
 
 

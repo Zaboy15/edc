@@ -12,5 +12,33 @@ ADD COLUMN eta TEXT NOT NULL
 ALTER TABLE tickets
 ADD COLUMN reschedule_time TEXT NOT NULL
 
+SELECT
+    `a`.`id` AS `id`,
+    `a`.`ticket` AS `ticket`,
+    `a`.`customer_ticket` AS `customer_ticket`,
+    `d`.`name` AS `namaitfs`,
+    `c`.`nama_customer` AS `nama_customer`,
+    `a`.`subject` AS `subject`,
+    `b`.`name` AS `status`,
+    `a`.`create_on` AS `create_on`,
+    `a`.`closed_time` AS `closed_time`
+FROM
+    (
+        (
+            (
+                `u4580489_edc`.`tickets` `a`
+            LEFT JOIN `u4580489_edc`.`status_tickets` `b`
+            ON
+                (`a`.`status` = `b`.`id`)
+            )
+        LEFT JOIN `u4580489_edc`.`tabel_customer` `c`
+        ON
+            (`a`.`idcustomer` = `c`.`id`)
+        )
+    LEFT JOIN `u4580489_edc`.`people` `d`
+    ON
+        (`a`.`adminid` = `d`.`id`)
+    )
+
 
 
