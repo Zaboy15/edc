@@ -440,13 +440,13 @@ if ($route == "inventory/assets/create") {
 	}
 
 	// $clients = getTable("clients");
-	// $admins = getTableFiltered("people","type","admin");
-	// $models = getTable("models");
-	// $manufacturers = getTable("manufacturers");
-	// $categories = getTable("assetcategories");
-	// $labels = getTable("labels");
-	// $suppliers = getTable("suppliers");
-	// $customfields = getTable("assets_customfields");
+	$admins = getTableFiltered("people","type","admin");
+	$models = getTable("models");
+	$manufacturers = getTable("manufacturers");
+	$categories = getTable("assetcategories");
+	$labels = getTable("labels");
+	$suppliers = getTable("suppliers");
+	$customfields = getTable("assets_customfields");
 
 	$pageTitle = __("Create Asset");
 
