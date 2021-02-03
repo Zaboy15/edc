@@ -535,6 +535,13 @@ if ($route == "inventory/acrylic") {
 
 }
 
+if ($route == "inventory/consumable") {
+	isAuthorized("addLicense");
+	$consumable = getTable("tabel_consumable");
+
+
+}
+
 if ($route == "inventory/acrylic/create") {
 	isAuthorized("addLicense");
 	$itfs = getTable("people");

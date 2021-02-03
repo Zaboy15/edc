@@ -254,6 +254,13 @@ switch($_POST['action']) {
 		isAuthorized("deleteLicense"); $status = Acrylic::delete($_POST['id']);
 		break;
 
+
+	case "addConsumable":
+		isAuthorized("addLicense"); $status = Consumable::add($_POST);
+		break;
+
+
+
 	case "addPaper":
 		isAuthorized("addLicense"); $status = Paper::addLog($_POST);
 		break;
