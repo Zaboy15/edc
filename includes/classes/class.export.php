@@ -532,7 +532,7 @@ class Export extends App {
             ]);
         
             header('Content-Type: application/excel');
-            header('Content-Disposition: attachment; filename="reportspk.csv"');
+            header('Content-Disposition: attachment; filename="reportaddedwithdraw.csv"');
             
             $output = fopen('php://output', 'w');
             $no = 1;
