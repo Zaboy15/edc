@@ -1328,7 +1328,7 @@ if ($route == "export/exportDataTicket") {
 if ($route == "export/exportAddedWithdraw") {
 	isAuthorized("viewSystem");
 
-	Export::exportDataTicket($_GET);
+	Export::exportAddedWithdraw($_GET);
 
 }
 
