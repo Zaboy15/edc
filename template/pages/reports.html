@@ -127,6 +127,44 @@
 			  </form>
 		  </div>
 
+		  <div class="box box-primary">
+			<div class="box-header with-border"><h3 class="box-title"><?php _e('Report Added Withdraw'); ?></h3></div><!-- /.box-header -->
+		  <form role="form" method="get" action="" target="_blank">
+			  <div class="box-body">
+				  <p><?php _e('Generate a report with all the tasks in the selected period and a summary of all Added Withdraw.'); ?></p>
+				  
+				<!-- <div class="form-group">
+					<label for="spk_status">Status *</label>
+					<select class="form-control select2" id="spk_status" name="idcustomer" style="width: 100%;">
+						<option value=""><?php _e('None'); ?></option>
+						<option value="Open - Pending"><?php _e('Open - Pending'); ?></option>
+						<option value="In Progress"><?php _e('In Progress'); ?></option>
+						<option value="Close - Completed"><?php _e('Close - Completed'); ?></option>
+					</select>
+				</div> -->
+
+				  <div class="form-group">
+					  <label for="startDate"><?php _e('Start Date'); ?></label>
+					  <div class="input-group">
+						  <input type="text" class="form-control" id="startDate" name="startDate" required>
+						  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					  </div>
+				  </div>
+				  <div class="form-group">
+					  <label for="endDate"><?php _e('End Date'); ?></label>
+					  <div class="input-group">
+						  <input type="text" class="form-control" id="endDate" name="endDate" required>
+						  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					  </div>
+				  </div>
+				  <input type="hidden" name="report" value="exportAddedWithdraw">
+					<input type="hidden" name="route" value="export/exportAddedWithdraw">
+				  
+			  </div>
+			  <div class="box-footer"><button type="submit" class="btn btn-primary btn-flat"><?php _e('Generate'); ?></button></div>
+		  </form>
+	  </div>
+
 				<!-- <div class="box box-primary">
           			<div class="box-header with-border"><h3 class="box-title"><?php _e('Timesheet With Summary'); ?></h3></div>
 					<form role="form" method="get" action="" target="_blank">

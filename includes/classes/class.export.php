@@ -519,6 +519,70 @@ class Export extends App {
 
 	}
 
+
+    public static function exportAddedWithdraw($data) {
+        global $database;
+        
+        
+            $startdate = "2020-12-01" . " 00:00:00";
+            $enddate = "2020-12-01" . " 23:59:59";
+
+            $datalist = $database->select("tabel_withdraw", "*", [
+				"tgl_bast[<>]" => [$startdate, $enddate]
+            ]);
+        
+            header('Content-Type: application/excel');
+            header('Content-Disposition: attachment; filename="reportspk.csv"');
+            
+            $output = fopen('php://output', 'w');
+            $no = 1;
+
+            $header = [
+                "No",
+                "IDSPK Number",
+                "Serial Number",
+                "Tanggal BAST",
+                "Incoming Warehouse",
+                "Charger",
+                "Batterai",
+                "Simcard",
+                "Paper",
+                "Status Unit",
+                "Type EDC Unit",
+
+
+            ];
+
+        
+        
+            fputcsv($output, $header);
+
+            foreach ($datalist as $row) 
+                {
+                    $data = [
+                        $no,
+                            $row['idspk'],
+                            $row['serial_number'],
+                            $row['tgl_bast'],
+                            $row['incoming_warehous'],
+                            $row['charger'],
+                            $row['batterai'],
+                            $row['simcard'],
+                            $row['paper'],
+                            $row['status_unit'],
+                            $row['type_edc'],
+                    ];
+                    $no++;
+            fputcsv($output, $data);
+                }
+
+
+
+            fclose($output);
+        
+
+	}
+
     }
 
 ?>
