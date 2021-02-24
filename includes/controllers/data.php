@@ -1325,6 +1325,27 @@ if ($route == "export/exportDataTicket") {
 
 }
 
+if ($route == "absensi/absenku") {
+	isAuthorized("viewTickets");
+	$absensi = getTableFiltered("absensi","staffid",$liu['id']);
+	$pageTitle = __("Absensi");
+}
+
+if ($route == "absensi/allabsensi") {
+	isAuthorized("viewTickets");
+	// $absensi = getTable("absensi");
+	$hari_ini = date("Y-m-d 23:59:00");
+        // Tanggal pertama pada bulan ini
+        $startdate = date('Y-m-01 00:00:01', strtotime($hari_ini));
+        // Tanggal terakhir pada bulan ini
+        $enddate = date('Y-m-31 23:59:00', strtotime($hari_ini));
+	
+		$absensi = $database->select("absensi", "*", [
+			"check_in[<>]" => [$startdate, $enddate]
+		]);
+	$pageTitle = __("All Absensi Karyawan");
+}
+
 if ($route == "export/exportAddedWithdraw") {
 	isAuthorized("viewSystem");
 

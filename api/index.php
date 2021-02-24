@@ -149,6 +149,19 @@ switch ($request_method) {
         }
     break;
 
+    case 'getdataabsenku':
+        if(isset($_POST['filters'])) {
+            if(is_array($_POST['filters'])) {
+                $filters = $_POST['filters'];
+            } else {
+                $response = [ "status" => 908, "status_message" => "'filters' Error! Expected array, string given." ];
+                echo json_encode($response);
+                exit;
+            }
+
+        } else $filters = array();
+    break;
+
     case 'editStatusGlobal':
         if(isset($_POST['data'])) {
             if(is_array($_POST['data'])) {
@@ -337,6 +350,10 @@ switch ($request_resource) {
 
     case 'ticketsedc': ## DONE ##d
         require $scriptpath . '/api/resources/ticketsedc.php';
+    break;
+
+    case 'absensi': ## DONE ##d
+        require $scriptpath . '/api/resources/absensi.php';
     break;
 
     case 'gpstrack': ## DONE ##d
