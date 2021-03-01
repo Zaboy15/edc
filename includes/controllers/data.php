@@ -531,6 +531,8 @@ if ($route == "inventory/acrylic") {
 	isAuthorized("addLicense");
 	$log_acrylic = getTable("log_acrylic");
 	$acrylic = getSingleValue("tabel_consumable","qty","3");
+	$acrylic1 = getSingleValue("tabel_consumable","qty","6");
+
 
 
 }
