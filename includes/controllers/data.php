@@ -491,7 +491,7 @@ if ($route == "inventory/assets/manage") {
 }
 
 if ($route == "inventory/wobler") {
-	isAuthorized("addLicense");
+	isAuthorized("viewAssets");
 	$log_wobler = getTable("log_wobler");
 	$wobler = getSingleValue("tabel_consumable","qty","5");
 
@@ -499,7 +499,7 @@ if ($route == "inventory/wobler") {
 }
 
 if ($route == "inventory/wobler/create") {
-	isAuthorized("addLicense");
+	isAuthorized("addAsset");
 	$itfs = getTable("people");
 	$acrylic_type = getTableFiltered("tabel_consumable","type","Wobler");
 
@@ -510,7 +510,7 @@ if ($route == "inventory/wobler/create") {
 
 
 if ($route == "inventory/tentcard") {
-	isAuthorized("addLicense");
+	isAuthorized("viewAssets");
 	$log_tentcard = getTable("log_tentcard");
 	$tentcard = getSingleValue("tabel_consumable","qty","4");
 
@@ -518,7 +518,7 @@ if ($route == "inventory/tentcard") {
 }
 
 if ($route == "inventory/tentcard/create") {
-	isAuthorized("addLicense");
+	isAuthorized("addAsset");
 	$itfs = getTable("people");
 	$acrylic_type = getTableFiltered("tabel_consumable","type","Tent Card");
 
@@ -528,7 +528,7 @@ if ($route == "inventory/tentcard/create") {
 }
 
 if ($route == "inventory/acrylic") {
-	isAuthorized("addLicense");
+	isAuthorized("viewAssets");
 	$log_acrylic = getTable("log_acrylic");
 	$acrylic = getSingleValue("tabel_consumable","qty","3");
 	$acrylic1 = getSingleValue("tabel_consumable","qty","6");
@@ -538,14 +538,14 @@ if ($route == "inventory/acrylic") {
 }
 
 if ($route == "inventory/consumable") {
-	isAuthorized("addLicense");
+	isAuthorized("viewAssets");
 	$consumable = getTable("tabel_consumable");
 
 
 }
 
 if ($route == "inventory/acrylic/create") {
-	isAuthorized("addLicense");
+	isAuthorized("addAsset");
 	$itfs = getTable("people");
 	$acrylic_type = getTableFiltered("tabel_consumable","type","Acrylic");
 
@@ -557,7 +557,7 @@ if ($route == "inventory/acrylic/create") {
 
 
 if ($route == "inventory/paper") {
-	isAuthorized("addLicense");
+	isAuthorized("viewAssets");
 	$log_paper = getTable("log_paper");
 	$paper_blank = getSingleValue("tabel_consumable","qty","2");
 	$paper_logo = getSingleValue("tabel_consumable","qty","1");
@@ -584,7 +584,7 @@ if ($route == "whatsapp/whatsapprespon") {
 
 }
 if ($route == "inventory/paper/create") {
-	isAuthorized("addLicense");
+	isAuthorized("addAsset");
 	$itfs = getTable("people");
 	$typepaper = getTableFiltered("tabel_consumable","type","Paper Roll");
 
