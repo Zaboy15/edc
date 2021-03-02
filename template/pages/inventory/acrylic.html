@@ -70,6 +70,7 @@
 										<th><?php _e('QTY'); ?></th>
 										<th><?php _e('DATE'); ?></th>
 										<th><?php _e('ITFS'); ?></th>
+										<th><?php _e('TYPE'); ?></th>
 										<th><?php _e('REMARKS'); ?></th>
 										<th class="text-right"></th>
 
@@ -84,6 +85,7 @@
 											<td><?php echo $log_acrylic['qty']; ?></td>
 											<td><?php echo $log_acrylic['date']; ?></td>
 											<td><?php echo getSingleValue("people","name",$log_acrylic['id_itfs']); ?></td>
+											<td><?php echo getSingleValue("tabel_consumable","name",$log_acrylic['id_type']); ?></td>
 											<td><?php echo $log_acrylic['remarks']; ?></td>
 											<td>
 												<div class='pull-right'>
