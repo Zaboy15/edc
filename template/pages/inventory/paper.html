@@ -58,6 +58,7 @@
 										<th><?php _e('INCOMING QTY'); ?></th>
 										<th><?php _e('INCOMING DATE'); ?></th>
 										<th><?php _e('ITFS'); ?></th>
+										<th><?php _e('TYPE ACRYLIC'); ?></th>
 										<th><?php _e('REMARKS'); ?></th>
 										<th class="text-right"></th>
 
@@ -72,6 +73,8 @@
 											<td><?php echo $log_paper['qty']; ?></td>
 											<td><?php echo $log_paper['date']; ?></td>
 											<td><?php echo getSingleValue("people","name",$log_paper['id_itfs']); ?></td>
+											<td><?php echo getSingleValue("tabel_consumable","name",$log_paper['id_type']); ?></td>
+
 											<td><?php echo $log_paper['remarks']; ?></td>
 											<td>
 												<div class='pull-right'>
