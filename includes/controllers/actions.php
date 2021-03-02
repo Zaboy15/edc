@@ -231,46 +231,46 @@ switch($_POST['action']) {
 		break;
 
 	case "addWoblerLog":
-		isAuthorized("addLicense"); $status = Wobler::addLog($_POST);
+		isAuthorized("addAsset"); $status = Wobler::addLog($_POST);
 		break;
 
 	case "deleteWobler":
-		isAuthorized("deleteLicense"); $status = Wobler::delete($_POST['id']);
+		isAuthorized("deleteAsset"); $status = Wobler::delete($_POST['id']);
 		break;	
 		
 	case "addTentcardLog":
-		isAuthorized("addLicense"); $status = Tentcard::addLog($_POST);
+		isAuthorized("addAsset"); $status = Tentcard::addLog($_POST);
 		break;
 
 	case "deleteTentcard":
-		isAuthorized("deleteLicense"); $status = Tentcard::delete($_POST['id']);
+		isAuthorized("deleteAsset"); $status = Tentcard::delete($_POST['id']);
 		break;	
 
 	case "addAcrylicLog":
-		isAuthorized("addLicense"); $status = Acrylic::addLog($_POST);
+		isAuthorized("addAsset"); $status = Acrylic::addLog($_POST);
 		break;
 
 	case "deleteAcrylic":
-		isAuthorized("deleteLicense"); $status = Acrylic::delete($_POST['id']);
+		isAuthorized("deleteAsset"); $status = Acrylic::delete($_POST['id']);
 		break;
 
 
 	case "addConsumable":
-		isAuthorized("addLicense"); $status = Consumable::add($_POST);
+		isAuthorized("addAsset"); $status = Consumable::add($_POST);
 		break;
 
 
 
 	case "addPaper":
-		isAuthorized("addLicense"); $status = Paper::addLog($_POST);
+		isAuthorized("addAsset"); $status = Paper::addLog($_POST);
 		break;
 
 	case "addPaperOutgoing":
-		isAuthorized("addLicense"); $status = Paper::addOutgoing($_POST);
+		isAuthorized("addAsset"); $status = Paper::addOutgoing($_POST);
 		break;
 
 	case "deletePaper":
-		isAuthorized("deleteLicense"); $status = Paper::delete($_POST['id']);
+		isAuthorized("deleteAsset"); $status = Paper::delete($_POST['id']);
 		break;
 
 	// licenses
