@@ -272,10 +272,11 @@ if ($route == "search") {
 // GENERAL
 if($isAdmin) {
 	$arTicketsCount = $database->count("tickets", ["status" => ["Open","Reopened"]] );
-	$activeTicketsCount = $database->count("tickets", ["status[!]" => "Closed"] );
+	$activeTicketsCount = $database->count("tickets", ["status[!]" => "7"] );
+	
 	$allSPKCount = $database->count("spk");
 	$allMySPKCount = $database->count("spk",["spk_status[!]" => "Closed","id_itfs" => $liu['id']]);
-
+	$allTicketsCount = $database ->count("tickets");
 
 	$overdueIssuesCount = $database->count("issues", [ "AND" => ["status[!]" => "Done", "duedate[<]" => date("Y-m-d") , "duedate[!]" => ""] ]);
 	$activeIssuesCount = $database->count("issues", [ "status[!]" => "Done" ] );
@@ -283,8 +284,8 @@ if($isAdmin) {
 }
 else {
 	$arTicketsCount = $database->count("tickets", [ "AND" => ["status" => ["Open","Reopened"], "clientid" => $liu['clientid']]] );
-	$activeTicketsCount = $database->count("tickets", [ "AND" => ["status[!]" => "Closed", "clientid" => $liu['clientid']]] );
-	$allTicketsCount = countTableFiltered("tickets","clientid",$liu['clientid']);
+	$activeTicketsCount = $database->count("tickets", ["status[!]" => "7"] );
+	$allTicketsCount = $database ->count("tickets");
 
 	$overdueIssuesCount = $database->count("issues", [ "AND" => ["status[!]" => "Done", "duedate[<]" => date("Y-m-d") , "duedate[!]" => "", "clientid" => $liu['clientid']] ]);
 	$activeIssuesCount = $database->count("issues", [ "AND" => ["status[!]" => "Done", "clientid" => $liu['clientid']] ] );
