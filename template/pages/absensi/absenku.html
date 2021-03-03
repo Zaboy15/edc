@@ -31,9 +31,13 @@
 										<th><?php _e('Check In'); ?></th>
 										<th><?php _e('Lokasi Check In'); ?></th>
 										<th><?php _e('Kordinat Check In'); ?></th>
+										<th><?php _e('Alasan Check In'); ?></th>
+
 										<th><?php _e('Check Out'); ?></th>
 										<th><?php _e('Lokasi Check Out'); ?></th>
-										<th><?php _e('Kordinat Check In'); ?></th>
+										<th><?php _e('Kordinat Check Out'); ?></th>
+										<th><?php _e('Alasan Check Out'); ?></th>
+
 										
 										<!-- <th></th> -->
 										<!-- <th class="text-right"></th> -->
@@ -51,10 +55,14 @@
 											<td><?php echo dateTimeDisplay($absensi['check_in']); ?></td>
 											<td><a href='https://maps.google.com/?q=<?php echo $absensi['kordinat_in']; ?>' target="_blank"><i class='fa fa-map-marker fa-fw'></i><?php echo "Lihat Lokasi Absen"; ?></a></td>
 		                                    <td><?php echo $absensi['kordinat_in']; ?></td>
+		                                    <td><?php echo $absensi['alasan_c_in']; ?></td>
+
 											
 											<td><?php echo dateTimeDisplay($absensi['check_out']); ?></td>
 											<td><a href='https://maps.google.com/?q=<?php echo $absensi['kordinat_out']; ?>' target="_blank"><i class='fa fa-map-marker fa-fw'></i><?php echo "Lihat Lokasi Absen"; ?></a></td>
 		                                    <td><?php echo $absensi['kordinat_out']; ?></td>
+		                                    <td><?php echo $absensi['alasan_c_out']; ?></td>
+
 											
 											
 											<!-- <td>
